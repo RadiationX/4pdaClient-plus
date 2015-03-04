@@ -8,7 +8,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 21
         versionCode 511
-        versionName "2.5b8_Mod_Radiation15"
+        versionName "2.5b8_Coba[0.7a]"
     }
     buildTypes {
         release {
