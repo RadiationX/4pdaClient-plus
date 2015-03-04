@@ -278,6 +278,7 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
 
             optionsMenu.add(String.format("Аватары (%s)",
                     App.getContext().getResources().getStringArray(R.array.AvatarsShowTitles)[Preferences.Topic.getShowAvatarsOpt()]))
+                    .setIcon(R.drawable.ic_menu_images)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(final MenuItem menuItem) {
 
@@ -303,7 +304,7 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
             });
 
             optionsMenu.add("Скрывать верхнюю панель")
-                    .setIcon(R.drawable.ic_menu_images).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    .setIcon(R.drawable.ic_menu_visibility).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     Preferences.setHideActionBar(!Preferences.isHideActionBar());
                     getInterface().setHideActionBar();
@@ -322,6 +323,7 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                 }
             }).setCheckable(true).setChecked(getInterface().getLoadsImagesAutomatically());
             optionsMenu.add("Размер шрифта")
+                    .setIcon(R.drawable.ic_menu_textsize)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {

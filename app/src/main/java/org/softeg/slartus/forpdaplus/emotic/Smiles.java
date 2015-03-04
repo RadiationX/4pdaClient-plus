@@ -177,7 +177,7 @@ public class Smiles extends ArrayList<Smile> {
         res.put(":ph34r:", "ph34r.gif");
         res.put(":banned:", "banned.gif");
         res.put(":antifeminism:", "antifeminism.gif");
-        res.put(":beta:", "beta.gif");
+        res.put(":beta:", "beta.svg");
         res.put(":boy_girl:", "boy_girl.gif");
         res.put(":butcher:", "butcher.gif");
         res.put(":bubble:", "bubble.gif");

@@ -30,7 +30,6 @@
     </PreferenceScreen>
 
     <PreferenceScreen
-        android:summary="Лучше не трогать ;)"
         android:title="Системное">
 
         <Preference

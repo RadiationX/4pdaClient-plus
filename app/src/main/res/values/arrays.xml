@@ -93,11 +93,11 @@
     </string-array>
 
     <string-array name="appthemesArray">
-        <item>Светлый</item>
-        <item>Тёмный</item>
-        <item>Цвета как в браузере</item>
-        <item>Светлый для планшетов</item>
-        <item>Тёмный для планшетов</item>
+        <item>Светлый (Material) [Морфий]</item>
+        <item>Тёмный (Coba)</item>
+        <item>Светлый (Coba)</item>
+        <item>Светлый для планшетов[NVFC]</item>
+        <item>Тёмный для планшетов[NVFC]</item>
     </string-array>
 
     <string-array name="appthemesValues">
