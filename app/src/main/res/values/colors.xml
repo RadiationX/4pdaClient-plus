@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="main_title_color">#F2F2F2</color>
+    <color name="main_title_color">#ffF2F2F2</color>
 
     <color name="theme_light_background_light" >#FAFAFA</color>
     <color name="theme_light_background_dark" >#0C0C0C</color>
@@ -39,6 +39,7 @@
 
     <!-- Mod -->
     <color name="default_progress_bar_color">#ffffffff</color>
+    <color name="spb_default_color">#ffffffff</color>
 
     <color name="app_background_wh">#fffafafa</color>
     <color name="app_background_bl">#ff222222</color>

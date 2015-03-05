@@ -4,6 +4,10 @@
         <item name="ptrProgressBarStyle">inside</item>
     </style>
 
+    <style name="SmoothProgressBar" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
+        <item name="spb_color">@color/spb_default_color</item>
+    </style>
+
     <style name="actionbar_wh" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/actionbar_wh</item>
         <item name="android:icon">@drawable/iconca</item>

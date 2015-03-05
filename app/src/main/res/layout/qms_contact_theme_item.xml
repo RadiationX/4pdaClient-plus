@@ -36,10 +36,11 @@
             <CheckBox
                 android:id="@+android:id/text1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:checkMark="?android:listChoiceIndicatorMultiple"
                 android:focusable="false"
-                android:visibility="gone" />
+                android:visibility="visible"
+                android:layout_marginRight="8dp" />
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/llayout1"
@@ -61,15 +62,15 @@
                     android:orientation="horizontal"
                     android:paddingTop="4dp">
 
+
                     <TextView
                         android:id="@+id/txtDateTime"
                         style="?list_text_minor_color"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center|right"
-                        android:text=""
-                        android:textAppearance="?android:textAppearanceSmall" />
-
+                        android:text="ррр"
+                        android:textAppearance="?android:textAppearanceSmall"
+                        android:visibility="gone"/>
                     <TextView
                         android:id="@+id/txtMessagesCount"
                         style="?list_text_minor_color"
@@ -77,10 +78,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:ellipsize="middle"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:singleLine="true"
                         android:text="12"
                         android:textAppearance="?android:textAppearanceSmall" />
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
