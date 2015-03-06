@@ -101,6 +101,21 @@
         <item name="android:background">@drawable/news_image_corner_bl</item>
     </style>
 
+    <style name="news_full_wh">
+        <item name="android:background">@drawable/news_full_wh</item>
+    </style>
+    <style name="news_full_bl">
+        <item name="android:background">@drawable/news_full_bl</item>
+    </style>
+
+    <style name="news_full_image_corner_wh">
+        <item name="android:background">@drawable/news_full_image_corner_wh</item>
+    </style>
+    <style name="news_full_image_corner_bl">
+        <item name="android:background">@drawable/news_full_image_corner_bl</item>
+    </style>
+
+
     <style name="drawer_menu_wh">
         <item name="android:background">@color/drawer_menu_background_wh</item>
     </style>

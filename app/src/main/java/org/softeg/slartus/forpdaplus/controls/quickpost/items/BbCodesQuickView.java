@@ -69,7 +69,7 @@ public class BbCodesQuickView extends BaseQuickView {
             sb.append("<a style=\"text-decoration: none;\" href=\"")
                     .append(key).append("\">")
                     .append("<img style=\"padding:5px;\" src=\"")
-                    .append(path).append(key.toLowerCase()).append(".svg\" />").append("</a> ");
+                    .append(path).append(key.toLowerCase()).append(".png\" />").append("</a> ");
         }
 
         sb.append("</body></html>");

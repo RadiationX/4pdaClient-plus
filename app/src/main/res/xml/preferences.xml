@@ -306,7 +306,7 @@
     <PreferenceScreen android:title="О программе">
         <Preference
             android:key="About.AppVersion"
-            android:summary="Нажми меня" />
+            android:title="О программе" />
         <Preference
             android:key="About.History"
             android:title="История изменений" />

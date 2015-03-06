@@ -20,6 +20,7 @@
         <item name="left_separator">@style/left_separator_wh</item>
         <item name="right_separator">@style/right_separator_wh</item>
         <item name="news">@style/news_wh</item>
+        <item name="news_full">@style/news_full_wh</item>
         <item name="news_image_corner">@style/news_image_corner_wh</item>
         <item name="drawer_menu">@style/drawer_menu_wh</item>
         <item name="popup_topic">@style/popup_topic_wh</item>
@@ -52,6 +53,7 @@
         <item name="left_separator">@style/left_separator_bl</item>
         <item name="right_separator">@style/right_separator_bl</item>
         <item name="news">@style/news_bl</item>
+        <item name="news_full">@style/news_full_bl</item>
         <item name="news_image_corner">@style/news_image_corner_bl</item>
         <item name="drawer_menu">@style/drawer_menu_bl</item>
         <item name="popup_topic">@style/popup_topic_bl</item>

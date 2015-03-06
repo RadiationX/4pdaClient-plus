@@ -105,7 +105,7 @@ public class DevDbDeviceActivity extends BaseFragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("Браузер")
-                .setIcon(R.drawable.ic_menu_goto)
+                .setIcon(R.drawable.ic_menu_browser)
                 .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
                     public boolean onMenuItemClick(MenuItem item) {

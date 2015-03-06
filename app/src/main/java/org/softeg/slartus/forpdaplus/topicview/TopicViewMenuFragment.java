@@ -191,10 +191,20 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
     public void onCreateOptionsMenu(Menu menu, final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         try {
+            MenuItem item;
+            item = menu.add(R.string.Refresh)
+                    .setIcon(R.drawable.ic_menu_refresh)
+                    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
+                        public boolean onMenuItemClick(MenuItem item) {
+                            getInterface().reloadTopic();
+                            return true;
+                        }
+                    });
+            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
             SubMenu subMenu = menu.addSubMenu(R.string.Attaches)
                     .setIcon(R.drawable.ic_menu_download);
-            subMenu.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+            //subMenu.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
             subMenu.add("Вложения текущей страницы")
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                         public boolean onMenuItemClick(MenuItem item) {
@@ -235,17 +245,8 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                         }
                     });
 
-            menu.add(R.string.Refresh)
-                    .setIcon(R.drawable.ic_menu_refresh)
-                    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-
-                        public boolean onMenuItemClick(MenuItem item) {
-                            getInterface().reloadTopic();
-                            return true;
-                        }
-                    });
             menu.add(R.string.Browser)
-                    .setIcon(R.drawable.ic_menu_goto)
+                    .setIcon(R.drawable.ic_menu_browser)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
                         public boolean onMenuItemClick(MenuItem item) {

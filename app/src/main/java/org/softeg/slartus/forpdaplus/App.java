@@ -68,6 +68,10 @@ public class App extends android.app.Application {
     public static final int THEME_WHITE_HD = 13;
     public static final int THEME_BLACK_HD = 14;
 
+    public static final int THEME_WHITE_MATERIAL_CYAN = 15;
+    public static final int THEME_WHITE_MATERIAL_LB = 16;
+    public static final int THEME_WHITE_MATERIAL_GRAY= 17;
+    public static final int THEME_BLACK_MATERIAL_DARK = 18;
 
     public static final int THEME_WHITE_REMIE = 2;
 
@@ -80,7 +84,7 @@ public class App extends android.app.Application {
     public static final int THEME_CUSTOM_CSS = 99;
 
     private final Integer[] WHITE_THEMES = {THEME_WHITE_TRABLONE, THEME_WHITE_VETALORLOV, THEME_WHITE_REMIE,
-            THEME_WHITER_REMIE, THEME_WHITE, THEME_WHITE_OLD, THEME_WHITE_HD};
+            THEME_WHITER_REMIE, THEME_WHITE, THEME_WHITE_OLD, THEME_WHITE_HD, THEME_WHITE_MATERIAL_CYAN, THEME_WHITE_MATERIAL_LB, THEME_WHITE_MATERIAL_GRAY};
 
     private static boolean m_IsDebugModeLoaded = false;
     private static boolean m_IsDebugMode = false;
@@ -141,7 +145,7 @@ public class App extends android.app.Application {
 
     public String getCurrentTheme() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        return preferences.getString("appstyle", Integer.toString(THEME_WHITE_OLD));
+        return preferences.getString("appstyle", Integer.toString(THEME_WHITE));
     }
 
     public String getCurrentThemeName() {
@@ -165,7 +169,7 @@ public class App extends android.app.Application {
     }
 
     private String defaultCssTheme() {
-        return "/android_asset/forum/css/white.css";
+        return "/android_asset/forum/css/coba_white_blue.css";
     }
 
     public String getThemeCssFileName() {
@@ -178,27 +182,39 @@ public class App extends android.app.Application {
             return checkThemeFile(themeStr);
 
         String path = "/android_asset/forum/css/";
-        String cssFile = "white.css";
+        String cssFile = "coba_white_blue.css";
         int theme = Integer.parseInt(themeStr);
         if (theme == -1)
             return themeStr;
         switch (theme) {
             case THEME_WHITE:
-                cssFile = "white.css";
+                cssFile = "coba_white_blue.css";
                 break;
+            /*case THEME_WHITE_OLD:
+                cssFile = "coba_white_blue.css";
+                break;*/
             case THEME_BLACK:
-                cssFile = "black.css";
+                cssFile = "coba_dark_blue.css";
                 break;
-            case THEME_WHITE_OLD:
-                cssFile = "white_old.css";
+            case THEME_WHITE_MATERIAL_CYAN:
+                cssFile = "material_cyan.css";
+                break;
+            case THEME_WHITE_MATERIAL_LB:
+                cssFile = "material_light-blue.css";
+                break;
+            case THEME_WHITE_MATERIAL_GRAY:
+                cssFile = "material_gray.css";
+                break;
+            case THEME_BLACK_MATERIAL_DARK:
+                cssFile = "material_dark.css";
                 break;
 
-            case THEME_WHITE_HD:
+            /*case THEME_WHITE_HD:
                 cssFile = "white_hd.css";
                 break;
             case THEME_BLACK_HD:
                 cssFile = "black_hd.css";
-                break;
+                break;*/
             case THEME_CUSTOM_CSS:
                 return "/mnt/sdcard/style.css";
         }
