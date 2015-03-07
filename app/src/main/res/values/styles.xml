@@ -27,18 +27,22 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="popup_menu_wh" parent="@android:style/Theme.Holo">
-        <item name="android:popupMenuStyle">@style/popup_menu_style_wh</item>
-    </style>
-    <style name="popup_menu_bl" parent="@android:style/Theme.Holo">
-        <item name="android:popupMenuStyle">@style/popup_menu_style_bl</item>
-    </style>
-
-    <style name="popup_menu_style_wh" parent="@android:style/Widget.Holo.ListPopupWindow">
+    <style name="popup_menu_wh" parent="@android:style/Widget.Holo.ListPopupWindow">
         <item name="android:popupBackground">@drawable/popup_menu_wh</item>
     </style>
-    <style name="popup_menu_style_bl" parent="@android:style/Widget.Holo.ListPopupWindow">
+    <style name="popup_menu_bl" parent="@android:style/Widget.Holo.ListPopupWindow">
         <item name="android:popupBackground">@drawable/popup_menu_bl</item>
+    </style>
+    <style name="popup_menu_abDark" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/popup_menu_wh</item>
+    </style>
+    <style name="myPopupMenuTextAppearanceSmall">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="myPopupMenuTextAppearanceLarge">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="dropdown_nav_wh" parent="@android:style/Widget.Holo.Spinner">

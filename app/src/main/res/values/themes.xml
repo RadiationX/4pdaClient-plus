@@ -6,13 +6,17 @@
 
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:actionBarStyle">@style/actionbar_wh</item>
+
         <item name="android:actionDropDownStyle">@style/dropdown_nav_wh</item>
-        <item name="android:actionOverflowButtonStyle">@style/overflow_button</item>
         <item name="android:popupMenuStyle">@style/popup_menu_wh</item>
+        <item name="android:actionBarWidgetTheme">@style/popup_menu_abDark</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/myPopupMenuTextAppearanceLarge</item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/myPopupMenuTextAppearanceSmall</item>
+
+        <item name="android:actionOverflowButtonStyle">@style/overflow_button</item>
         <item name="theme_background">@android:color/white</item>
         <item name="theme_light_background">@color/theme_light_background_light</item>
         <item name="android:windowBackground">@color/app_background_wh</item>
-        <item name="android:actionBarWidgetTheme">@style/popup_menu_wh</item>
         <item name="ptrHeaderStyle">@style/Ptr.Style</item>
         <item name="btnsend">@style/btnsend_wh</item>
         <item name="panel">@style/panel_wh</item>
@@ -39,13 +43,14 @@
 
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:actionBarStyle">@style/actionbar_bl</item>
+
         <item name="android:actionDropDownStyle">@style/dropdown_nav_bl</item>
-        <item name="android:actionOverflowButtonStyle">@style/overflow_button</item>
         <item name="android:popupMenuStyle">@style/popup_menu_bl</item>
+
+        <item name="android:actionOverflowButtonStyle">@style/overflow_button</item>
         <item name="theme_background">@android:color/black</item>
         <item name="theme_light_background">@color/theme_light_background_dark</item>
         <item name="android:windowBackground">@color/app_background_bl</item>
-        <item name="android:actionBarWidgetTheme">@style/popup_menu_bl</item>
         <item name="ptrHeaderStyle">@style/Ptr.Style</item>
         <item name="btnsend">@style/btnsend_bl</item>
         <item name="panel">@style/panel_bl</item>
