@@ -1,5 +1,7 @@
 package org.softeg.slartus.forpdaplus.listfragments.next;
 
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -85,7 +87,7 @@ public class UserReputationFragment extends BrickFragmentListBase {
         super.onLoadFinished(loader,data);
         if(data.getEx()==null){
             if(data instanceof ReputationsListData){
-                getActivity().getActionBar().setSubtitle(((ReputationsListData) data).getRep());
+                ((ActionBarActivity)getActivity()).getSupportActionBar().setSubtitle(((ReputationsListData) data).getRep());
                 Args.putString(USER_NICK_KEY, ((ReputationsListData) data).getUser());
             }
         }

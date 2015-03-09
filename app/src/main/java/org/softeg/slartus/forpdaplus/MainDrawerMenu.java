@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -90,14 +91,26 @@ public class MainDrawerMenu {
                 mDrawerList.expandGroup(i);
         }
 
-        mDrawerToggle = new ActionBarDrawerToggle(mActivity, mDrawerLayout,
-                R.drawable.ic_drawer, R.string.menu, R.string.app_name) {
-            public void onDrawerClosed(View view) {
-            }
+        if(Integer.valueOf(android.os.Build.VERSION.SDK) >= 21 ) {
+            mDrawerToggle = new ActionBarDrawerToggle(mActivity, mDrawerLayout,
+                    R.drawable.ic_drawer_material, R.string.menu, R.string.app_name) {
+                public void onDrawerClosed(View view) {
+                }
 
-            public void onDrawerOpened(View drawerView) {
-            }
-        };
+                public void onDrawerOpened(View drawerView) {
+                }
+            };
+        }else {
+            mDrawerToggle = new ActionBarDrawerToggle(mActivity, mDrawerLayout,
+                    R.drawable.ic_drawer, R.string.menu, R.string.app_name) {
+                public void onDrawerClosed(View view) {
+                }
+
+                public void onDrawerOpened(View drawerView) {
+                }
+            };
+        }
+
 
         BrickInfo brickInfo = ListCore.getRegisteredBrick(Preferences.Lists.getLastSelectedList());
         if (brickInfo == null)

@@ -1,6 +1,7 @@
 package org.softeg.slartus.forpdaplus;
 
-import android.app.ActionBar;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,7 +19,7 @@ import org.softeg.slartus.forpdaplus.search.ui.SearchSettingsDialogFragment;
  * Date: 14.03.12
  * Time: 12:51
  */
-public class BaseFragmentActivity extends FragmentActivity
+public class BaseFragmentActivity extends ActionBarActivity
         implements SearchSettingsDialogFragment.ISearchDialogListener {
     public static final String SENDER_ACTIVITY = "sender_activity";
     public static final String FORCE_EXIT_APPLICATION = "org.softeg.slartus.forpdaplus.FORCE_EXIT_APPLICATION";
@@ -31,17 +32,17 @@ public class BaseFragmentActivity extends FragmentActivity
         return this;
     }
 
-    public ActionBar getSupportActionBar() {
-        return getActionBar();
+    /*public ActionBar getSupportActionBar() {
+        return getSupportActionBar();
     }
 
-    protected void setSupportProgressBarIndeterminateVisibility(boolean b) {
-        setProgressBarIndeterminateVisibility(b);
+    public void setSupportProgressBarIndeterminateVisibility(boolean b) {
+        setSupportProgressBarIndeterminateVisibility(b);
     }
 
-    protected void setSupportProgressBarIndeterminate(boolean b) {
-        setProgressBarIndeterminate(b);
-    }
+    public void setSupportProgressBarIndeterminate(boolean b) {
+        setSupportProgressBarIndeterminate(b);
+    }*/
 
     @Override
     public void startActivity(android.content.Intent intent) {

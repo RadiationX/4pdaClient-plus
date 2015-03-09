@@ -2,7 +2,8 @@ package org.softeg.slartus.forpdaplus.search.ui;/*
  * Created by slinkin on 29.04.2014.
  */
 
-import android.app.ActionBar;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -135,7 +136,7 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
     public void setHideActionBar() {
         if (getWebView() == null || !(getWebView() instanceof AdvWebView))
             return;
-        ActionBar actionBar = getActivity().getActionBar();
+        ActionBar actionBar = ((ActionBarActivity)getActivity()).getSupportActionBar();
         if (actionBar == null) return;
         BrowserViewsFragmentActivity.setHideActionBar(mWvBody, actionBar);
     }

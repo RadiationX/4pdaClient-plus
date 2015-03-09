@@ -3,7 +3,8 @@ package org.softeg.slartus.forpdaplus.search.ui;/*
  */
 
 
-import android.app.ActionBar;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -87,7 +88,7 @@ public class SearchActivity extends BaseFragmentActivity
             assert searchSettings != null;
 
 
-            getActionBar().setSubtitle(searchSettings.getQuery());
+            getSupportActionBar().setSubtitle(searchSettings.getQuery());
 
 
             Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragment_container);

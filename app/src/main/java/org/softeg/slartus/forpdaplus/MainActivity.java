@@ -1,6 +1,7 @@
 package org.softeg.slartus.forpdaplus;
 
-import android.app.ActionBar;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;

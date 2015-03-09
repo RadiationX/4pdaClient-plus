@@ -1,5 +1,7 @@
 package org.softeg.slartus.forpdaplus.topicbrowser;
 
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -197,7 +199,7 @@ public class TopicFragment extends TopicBaseFragment {
 
         if (getActivity() == null) return;
         getActivity().setTitle(mTopicBodyParser.getTopicTitle());
-        getActivity().getActionBar().setSubtitle(mTopicBodyParser.getCurrentPage() + "/" + mTopicBodyParser.getPagesCount());
+        ((ActionBarActivity)getActivity()).getSupportActionBar().setSubtitle(mTopicBodyParser.getCurrentPage() + "/" + mTopicBodyParser.getPagesCount());
     }
 
     private void setData(String data) {

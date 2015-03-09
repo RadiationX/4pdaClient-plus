@@ -46,7 +46,7 @@ public class QmsNewThreadActivity extends BaseFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.qms_new_thread);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

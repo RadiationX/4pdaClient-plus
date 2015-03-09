@@ -1,6 +1,7 @@
 package org.softeg.slartus.forpdaplus.topicview;
 
-import android.app.ActionBar;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
@@ -139,7 +140,7 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
     }
 
     protected void afterCreate() {
-        getWindow().requestFeature(android.view.Window.FEATURE_INDETERMINATE_PROGRESS);
+        //getWindow().requestFeature(android.view.Window.FEATURE_INDETERMINATE_PROGRESS);
     }
 
     private DeveloperWebInterface m_DeveloperWebInterface;
@@ -154,9 +155,8 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
             Toast.makeText(this, "Режим разработчика", Toast.LENGTH_SHORT).show();
 
         LoadsImagesAutomatically = null;
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowHomeEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         createActionMenu();
 
@@ -268,8 +268,8 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
                 android.util.Log.e(TAG, e.getMessage());
             }
         }
-        if (getActionBar() != null)
-            webView.setActionBarheight(getActionBar().getHeight());
+        if (getSupportActionBar() != null)
+            webView.setActionBarheight(getSupportActionBar().getHeight());
         setHideActionBar();
         webView.addJavascriptInterface(new HtmloutWebInterface(this), HtmloutWebInterface.NAME);
         m_DeveloperWebInterface = new DeveloperWebInterface(this);

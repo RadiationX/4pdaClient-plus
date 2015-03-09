@@ -1,6 +1,7 @@
 package org.softeg.slartus.forpdaplus.classes;
 
-import android.app.ActionBar;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -61,7 +62,7 @@ public abstract class BrowserViewsFragmentActivity extends BaseFragmentActivity 
     public void setHideActionBar() {
         if (getWebView() == null || !(getWebView() instanceof AdvWebView))
             return;
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar == null) return;
         setHideActionBar((AdvWebView)getWebView(),actionBar);
     }

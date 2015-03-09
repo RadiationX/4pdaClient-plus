@@ -1,5 +1,7 @@
 package org.softeg.slartus.forpdaplus.topicbrowser;
 
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -54,24 +56,24 @@ public class TopicBaseFragment extends Fragment {
         mWebView.setOnScrollChangedCallback(new TopicWebView.OnScrollChangedCallback() {
             @Override
             public void onScrollDown() {
-                if (getActivity().getActionBar().isShowing()) {
+                if (((ActionBarActivity)getActivity()).getSupportActionBar().isShowing()) {
                     mHideHandler.removeCallbacks(mHideRunnable);
-                    getActivity().getActionBar().hide();
+                    ((ActionBarActivity)getActivity()).getSupportActionBar().hide();
                 }
             }
 
             @Override
             public void onScrollUp() {
-                if (!getActivity().getActionBar().isShowing()) {
+                if (!((ActionBarActivity)getActivity()).getSupportActionBar().isShowing()) {
                     mHideHandler.removeCallbacks(mHideRunnable);
-                    getActivity().getActionBar().show();
+                    ((ActionBarActivity)getActivity()).getSupportActionBar().show();
                 }
             }
 
             @Override
             public void onTouch() {
-                if (!getActivity().getActionBar().isShowing()) {
-                    getActivity().getActionBar().show();
+                if (!((ActionBarActivity)getActivity()).getSupportActionBar().isShowing()) {
+                    ((ActionBarActivity)getActivity()).getSupportActionBar().show();
                     mHideHandler.removeCallbacks(mHideRunnable);
                     mHideHandler.postDelayed(mHideRunnable, 3000);
                 }
@@ -127,14 +129,14 @@ public class TopicBaseFragment extends Fragment {
         @Override
         public void run() {
             if (getActivity() != null)
-                getActivity().getActionBar().hide();
+                ((ActionBarActivity)getActivity()).getSupportActionBar().hide();
         }
     };
 
     @Override
     public void onActivityCreated(android.os.Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mWebView.setActionBarheight(getActivity().getActionBar().getHeight());
+        mWebView.setActionBarheight(((ActionBarActivity)getActivity()).getSupportActionBar().getHeight());
         setupPullToRefreshLayout();
 
     }

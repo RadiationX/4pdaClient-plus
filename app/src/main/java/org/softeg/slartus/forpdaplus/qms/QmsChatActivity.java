@@ -108,7 +108,7 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
         super.onCreate(savedInstanceState);
 
 
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        //requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.qms_chat);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

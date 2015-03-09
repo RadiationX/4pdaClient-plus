@@ -1,7 +1,8 @@
 package org.softeg.slartus.forpdaplus.listfragments.news;
 
 
-import android.app.ActionBar;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -123,14 +124,14 @@ public class NewsNavigationFragment extends BaseBrickFragment implements ActionB
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        assert getActivity().getActionBar() != null;
-        getActivity().getActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-        getActivity().getActionBar().setDisplayShowTitleEnabled(false);
+        assert ((ActionBarActivity)getActivity()).getSupportActionBar() != null;
+        ((ActionBarActivity)getActivity()).getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        ((ActionBarActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         NavigationListAdapter listAdapter = new NavigationListAdapter(getActivity());
-        getActivity().getActionBar().setListNavigationCallbacks(listAdapter, this);
+        ((ActionBarActivity)getActivity()).getSupportActionBar().setListNavigationCallbacks(listAdapter, this);
 
-        getActivity().getActionBar().setSelectedNavigationItem(Preferences.News.getLastSelectedSection());
+        ((ActionBarActivity)getActivity()).getSupportActionBar().setSelectedNavigationItem(Preferences.News.getLastSelectedSection());
 
     }
 

@@ -1,5 +1,7 @@
 package org.softeg.slartus.forpdaplus;
 
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
@@ -100,7 +102,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
     }
 
     protected void afterCreate() {
-        getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        //getWindow().requestFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
     }
 
     @Override
@@ -131,7 +133,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
 
             }
         }
-        webView.setActionBarheight(getActionBar().getHeight());
+        webView.setActionBarheight(getSupportActionBar().getHeight());
         setHideActionBar();
 
         webView.setWebChromeClient(new MyWebChromeClient());
