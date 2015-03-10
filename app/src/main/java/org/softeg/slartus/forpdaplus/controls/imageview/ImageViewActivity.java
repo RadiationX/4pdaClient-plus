@@ -1,6 +1,8 @@
 package org.softeg.slartus.forpdaplus.controls.imageview;
 
 
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 /*
  * Created by slartus on 14.10.2014.
  */
-public class ImageViewActivity extends FragmentActivity {
+public class ImageViewActivity extends ActionBarActivity {
     private static final String IMAGE_URLS_KEY = "IMAGE_URLS_KEY";
     private static final String SELECTED_INDEX_KEY = "SELECTED_INDEX_KEY";
 

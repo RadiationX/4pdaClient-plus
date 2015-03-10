@@ -32,7 +32,8 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:id="@+id/theme_buttons_panel_coba">
 
             <ImageButton
                 android:id="@+id/btnShowHideEditPost"

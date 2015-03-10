@@ -1,8 +1,18 @@
 <resources>
 
 
-    <style name="Theme.White" parent="Theme.AppCompat.Light">
+    <style name="Theme.White" parent="Theme.AppCompat.Light.DarkActionBar">
+
         <item name="forum_header_text_color">@color/holo_blue_dark</item>
+        <item name="actionBarStyle">@style/actionbar_wh</item>
+
+        <item name="actionBarTheme">@style/Base.ThemeOverlay.AppCompat.Light</item>
+
+        <item name="android:windowBackground">@color/app_background_wh</item>
+        <item name="ptrHeaderStyle">@style/Ptr.Style</item>
+
+        <item name="spinnerDropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
+
 
         <item name="theme_background">@android:color/white</item>
         <item name="theme_light_background">@color/theme_light_background_light</item>
@@ -50,7 +60,6 @@
         <item name="news_text_second_color">@style/news_text_second_color_bl</item>
         <item name="edit_text">@style/edit_text_bl</item>
     </style>
-
 
 
 </resources>

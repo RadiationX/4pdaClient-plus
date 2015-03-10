@@ -2,10 +2,38 @@
 <resources>
 
 
+    <style name="Ptr.Style" parent="@android:style/Widget">
+        <item name="ptrProgressBarStyle">inside</item>
+    </style>
+
+    <style name="SmoothProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="spb_color">@color/spb_default_color</item>
+    </style>
+
+    <style name="Base.ThemeOverlay.AppCompat.Light" parent="@style/Base.ThemeOverlay.AppCompat">
+        <item name="android:textColorPrimary">#ffffffff</item>
+        <item name="android:colorBackground">@color/popup_menu_background_wh</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlHighlight">@color/ripple_material_light</item>
+    </style>
+
+
+    <style name="actionbar_wh" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@drawable/actionbar_wh</item>
+    </style>
+
+    <style name="actionbar_bl" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="background">@drawable/actionbar_bl</item>
+    </style>
+
+    <style name="overflow_button" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_action_overflow</item>
+    </style>
 
     <style name="btnsend_wh">
         <item name="android:background">@drawable/action_btnsend_wh</item>
     </style>
+
     <style name="btnsend_bl">
         <item name="android:background">@drawable/action_btnsend_bl</item>
     </style>
@@ -13,6 +41,7 @@
     <style name="panel_wh">
         <item name="android:background">@drawable/panel_wh</item>
     </style>
+
     <style name="panel_bl">
         <item name="android:background">@drawable/panel_bl</item>
     </style>
@@ -20,6 +49,7 @@
     <style name="bottom_separator_wh">
         <item name="android:background">@drawable/bottom_separator_wh</item>
     </style>
+
     <style name="bottom_separator_bl">
         <item name="android:background">@drawable/bottom_separator_bl</item>
     </style>
@@ -27,6 +57,7 @@
     <style name="left_separator_wh">
         <item name="android:background">@drawable/left_separator_wh</item>
     </style>
+
     <style name="left_separator_bl">
         <item name="android:background">@drawable/left_separator_bl</item>
     </style>
@@ -34,6 +65,7 @@
     <style name="right_separator_wh">
         <item name="android:background">@drawable/right_separator_wh</item>
     </style>
+
     <style name="right_separator_bl">
         <item name="android:background">@drawable/right_separator_bl</item>
     </style>
@@ -41,6 +73,7 @@
     <style name="news_wh">
         <item name="android:background">@drawable/news_wh</item>
     </style>
+
     <style name="news_bl">
         <item name="android:background">@drawable/news_bl</item>
     </style>
@@ -48,6 +81,7 @@
     <style name="news_image_corner_wh">
         <item name="android:background">@drawable/news_image_corner_wh</item>
     </style>
+
     <style name="news_image_corner_bl">
         <item name="android:background">@drawable/news_image_corner_bl</item>
     </style>
@@ -55,6 +89,7 @@
     <style name="news_full_wh">
         <item name="android:background">@drawable/news_full_wh</item>
     </style>
+
     <style name="news_full_bl">
         <item name="android:background">@drawable/news_full_bl</item>
     </style>
@@ -62,6 +97,7 @@
     <style name="news_full_image_corner_wh">
         <item name="android:background">@drawable/news_full_image_corner_wh</item>
     </style>
+
     <style name="news_full_image_corner_bl">
         <item name="android:background">@drawable/news_full_image_corner_bl</item>
     </style>
@@ -70,6 +106,7 @@
     <style name="drawer_menu_wh">
         <item name="android:background">@color/drawer_menu_background_wh</item>
     </style>
+
     <style name="drawer_menu_bl">
         <item name="android:background">@color/drawer_menu_background_bl</item>
     </style>
@@ -77,6 +114,7 @@
     <style name="popup_topic_wh">
         <item name="android:background">@drawable/popup_topic_wh</item>
     </style>
+
     <style name="popup_topic_bl">
         <item name="android:background">@drawable/popup_topic_bl</item>
     </style>
@@ -84,6 +122,7 @@
     <style name="popup_item_wh">
         <item name="android:background">@drawable/action_popup_item_wh</item>
     </style>
+
     <style name="popup_item_bl">
         <item name="android:background">@drawable/action_popup_item_bl</item>
     </style>
@@ -91,18 +130,23 @@
     <style name="list_text_general_color_wh">
         <item name="android:textColor">@color/list_text_general_color_wh</item>
     </style>
+
     <style name="list_text_general_color_bl">
         <item name="android:textColor">@color/list_text_general_color_bl</item>
     </style>
+
     <style name="list_text_minor_color_wh">
         <item name="android:textColor">@color/list_text_minor_color_wh</item>
     </style>
+
     <style name="list_text_minor_color_bl">
         <item name="android:textColor">@color/list_text_minor_color_bl</item>
     </style>
+
     <style name="list_text_second_color_wh">
         <item name="android:textColor">@color/list_text_second_color_wh</item>
     </style>
+
     <style name="list_text_second_color_bl">
         <item name="android:textColor">@color/list_text_second_color_bl</item>
     </style>
@@ -110,18 +154,23 @@
     <style name="news_text_general_color_wh">
         <item name="android:textColor">@color/news_text_general_color_wh</item>
     </style>
+
     <style name="news_text_general_color_bl">
         <item name="android:textColor">@color/news_text_general_color_bl</item>
     </style>
+
     <style name="news_text_minor_color_wh">
         <item name="android:textColor">@color/news_text_minor_color_wh</item>
     </style>
+
     <style name="news_text_minor_color_bl">
         <item name="android:textColor">@color/news_text_minor_color_bl</item>
     </style>
+
     <style name="news_text_second_color_wh">
         <item name="android:textColor">@color/news_text_second_color_wh</item>
     </style>
+
     <style name="news_text_second_color_bl">
         <item name="android:textColor">@color/news_text_second_color_bl</item>
     </style>
@@ -129,11 +178,13 @@
     <style name="edit_text_wh">
         <item name="android:background">@color/edit_text_wh</item>
     </style>
+
     <style name="edit_text_bl">
         <item name="android:background">@color/edit_text_bl</item>
     </style>
 
     <style name="NotificationText" parent="android:TextAppearance.StatusBar.EventContent" />
+
     <style name="NotificationTitle" parent="android:TextAppearance.StatusBar.EventContent.Title" />
 
 </resources>

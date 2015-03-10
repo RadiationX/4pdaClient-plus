@@ -1,5 +1,8 @@
 package org.softeg.slartus.forpdaplus.post;
 
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v4.view.MenuItemCompat;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
@@ -1092,7 +1095,8 @@ public class EditPostActivity extends BaseFragmentActivity {
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                 }
             });
-            item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            // Переделать для appcompat
+            /*item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
                 @Override
                 public boolean onMenuItemActionExpand(MenuItem item) {
                     getInterface().searchEditText.requestFocus();
@@ -1104,7 +1108,7 @@ public class EditPostActivity extends BaseFragmentActivity {
                     getInterface().txtPost.setText(getInterface().clearPostHighlight());
                     return true;
                 }
-            });
+            });*/
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
 
             item = menu.add("Скрыть панели").setIcon(R.drawable.ic_media_fullscreen);
