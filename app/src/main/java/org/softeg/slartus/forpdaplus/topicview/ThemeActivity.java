@@ -802,7 +802,7 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
             translucentNavigation = false;
         Window w = getWindow();
         if (translucentNavigation)
-            //w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
         pnlSearch.setVisibility(View.GONE);
         mQuickPostPanel.setVisibility(View.VISIBLE);

@@ -1,5 +1,6 @@
 package org.softeg.slartus.forpdaplus;
 
+import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
@@ -13,6 +14,8 @@ import org.softeg.slartus.forpdaapi.search.SearchSettings;
 import org.softeg.slartus.forpdacommon.ExtPreferences;
 import org.softeg.slartus.forpdaplus.search.ui.SearchActivity;
 import org.softeg.slartus.forpdaplus.search.ui.SearchSettingsDialogFragment;
+
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 /**
  * User: slinkin
@@ -35,11 +38,9 @@ public class BaseFragmentActivity extends ActionBarActivity
     /*public ActionBar getSupportActionBar() {
         return getSupportActionBar();
     }
-
     public void setSupportProgressBarIndeterminateVisibility(boolean b) {
         setSupportProgressBarIndeterminateVisibility(b);
     }
-
     public void setSupportProgressBarIndeterminate(boolean b) {
         setSupportProgressBarIndeterminate(b);
     }*/
@@ -102,6 +103,15 @@ public class BaseFragmentActivity extends ActionBarActivity
         setTheme(isTransluent() ? App.getInstance().getTransluentThemeStyleResID() : App.getInstance().getThemeStyleResID());
         super.onCreate(saveInstance);
 
+        if(Integer.valueOf(android.os.Build.VERSION.SDK) == 19 ) {
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+            if(App.getInstance().getCurrentThemeName().equals("white")){
+                tintManager.setTintColor(getResources().getColor(R.color.actionbar_background_wh));
+            }else if(App.getInstance().getCurrentThemeName().equals("black")) {
+                tintManager.setTintColor(getResources().getColor(R.color.actionbar_background_bl));
+            }
+        }
 
 
         args.clear();

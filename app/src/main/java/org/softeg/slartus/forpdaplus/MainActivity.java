@@ -96,7 +96,6 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
 
         try {
 
-
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
 

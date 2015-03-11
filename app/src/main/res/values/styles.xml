@@ -4,6 +4,12 @@
 
     <style name="Ptr.Style" parent="@android:style/Widget">
         <item name="ptrProgressBarStyle">inside</item>
+        <item name="ptrHeaderBackground">@color/actionbar_background_wh</item>
+        <item name="ptrHeaderHeight">56dp</item>
+        <item name="ptrHeaderTitleTextAppearance">@style/Ptr.Style.Text_wh</item>
+    </style>
+    <style name="Ptr.Style.Text_wh">
+        <item name="android:textColor">#ffffffff</item>
     </style>
 
     <style name="SmoothProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
@@ -19,7 +25,7 @@
 
 
     <style name="actionbar_wh" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="background">@drawable/actionbar_wh</item>
+        <item name="background">@color/actionbar_background_wh</item>
     </style>
 
     <style name="actionbar_bl" parent="@style/Widget.AppCompat.ActionBar.Solid">

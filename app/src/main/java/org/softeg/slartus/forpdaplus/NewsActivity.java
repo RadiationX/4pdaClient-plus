@@ -109,7 +109,6 @@ public class NewsActivity extends BrowserViewsFragmentActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.news_activity);
 
         if (Preferences.System.isDeveloper())
