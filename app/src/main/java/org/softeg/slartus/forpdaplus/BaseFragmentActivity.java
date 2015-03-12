@@ -103,13 +103,21 @@ public class BaseFragmentActivity extends ActionBarActivity
         setTheme(isTransluent() ? App.getInstance().getTransluentThemeStyleResID() : App.getInstance().getThemeStyleResID());
         super.onCreate(saveInstance);
 
-        if(Integer.valueOf(android.os.Build.VERSION.SDK) == 19 ) {
+        if(Integer.valueOf(android.os.Build.VERSION.SDK) >= 19 ) {
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
             if(App.getInstance().getCurrentThemeName().equals("white")){
-                tintManager.setTintColor(getResources().getColor(R.color.actionbar_background_wh));
+                if(Integer.valueOf(android.os.Build.VERSION.SDK) >= 21 ){
+                    tintManager.setTintColor(getResources().getColor(R.color.sb_l_wh));
+                }else {
+                    tintManager.setTintColor(getResources().getColor(R.color.sb_kk_wh));
+                }
             }else if(App.getInstance().getCurrentThemeName().equals("black")) {
-                tintManager.setTintColor(getResources().getColor(R.color.actionbar_background_bl));
+                if(Integer.valueOf(android.os.Build.VERSION.SDK) >= 21 ){
+                    tintManager.setTintColor(getResources().getColor(R.color.sb_l_bl));
+                }else {
+                    tintManager.setTintColor(getResources().getColor(R.color.sb_kk_bl));
+                }
             }
         }
 

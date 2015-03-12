@@ -73,6 +73,11 @@
     <color name="actionbar_borderbottom_wh">#ff45A6D3</color>
     <color name="actionbar_borderbottom_bl">#ff163644</color>
 
+    <color name="sb_l_wh">#ff51C5FF</color>
+    <color name="sb_kk_wh">#ff47aee5</color>
+    <color name="sb_l_bl">#ff47aee5</color>
+    <color name="sb_kk_bl">#ff47aee5</color>
+
     <color name="popup_topic_background_wh">#ff28627F</color>
     <color name="popup_topic_background_bl">#ff163644</color>
     <color name="popup_topic_border_wh">#ff1B4456</color>

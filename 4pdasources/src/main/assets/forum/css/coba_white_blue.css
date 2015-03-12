@@ -2254,6 +2254,9 @@ a {
     display: block;
   }
 }
+div[style*="margin-top:54pt"] {
+margin-top:80px!important;
+}
 div[style*="margin-top:54pt"] > .navi + br + br ~ .between_messages + .topic_title_post ~ #bottom_navi {
   margin-bottom: 54pt;
 }

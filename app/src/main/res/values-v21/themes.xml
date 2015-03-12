@@ -5,7 +5,9 @@
         <item name="android:windowBackground">@color/app_background_wh</item>
         <item name="ptrHeaderStyle">@style/Ptr.Style</item>
         <item name="spinnerDropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
-        <item name="android:statusBarColor">@color/actionbar_background_wh</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
 
         <item name="forum_header_text_color">@color/holo_blue_light</item>
         <item name="theme_background">@android:color/white</item>
@@ -54,14 +56,13 @@
     </style>
 
     <style name="Theme.Transluent.White" parent="Theme.White">
-        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:fitsSystemWindows">false</item>
-
     </style>
 
     <style name="Theme.Transluent.Black" parent="Theme.Black">
-        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">false</item>
     </style>
