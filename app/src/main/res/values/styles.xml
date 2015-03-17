@@ -18,11 +18,26 @@
 
     <style name="Base.ThemeOverlay.AppCompat.Light" parent="@style/Base.ThemeOverlay.AppCompat">
         <item name="android:textColorPrimary">#ffffffff</item>
-        <item name="android:colorBackground">@color/popup_menu_background_wh</item>
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlHighlight">@color/ripple_material_light</item>
     </style>
-
+    <style name="Widget.AppCompat.Light.Spinner.DropDown.ActionBar" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar" />
+    <style name="Widget.AppCompat.Spinner.DropDown.ActionBar" parent="@style/Base.Widget.AppCompat.Spinner.DropDown.ActionBar" />
+    <style name="Base.Widget.AppCompat.Spinner.DropDown.ActionBar" parent="@android:style/Widget">
+        <item name="android:textColorPrimary">#ffffffff</item>
+        <item name="android:gravity">start|center</item>
+        <item name="android:background">@drawable/abc_spinner_mtrl_am_alpha</item>
+        <item name="android:clickable">true</item>
+        <item name="android:dropDownSelector">?listChoiceBackgroundIndicator</item>
+        <item name="android:popupBackground">@drawable/abc_popup_background_mtrl_mult</item>
+        <item name="android:dropDownWidth">wrap_content</item>
+        <item name="android:dropDownHorizontalOffset">0.0dip</item>
+        <item name="android:dropDownVerticalOffset">0.0dip</item>
+        <item name="overlapAnchor">true</item>
+        <item name="spinnerMode">dropdown</item>
+        <item name="popupPromptView">@layout/abc_simple_dropdown_hint</item>
+        <item name="disableChildrenWhenDisabled">true</item>
+    </style>
 
     <style name="actionbar_wh" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="background">@color/actionbar_background_wh</item>

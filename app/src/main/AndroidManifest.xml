@@ -19,7 +19,7 @@
         android:icon="@drawable/icon"
         android:hardwareAccelerated="true"
         android:name=".App"
-        android:theme="@style/Theme.Black">
+        android:theme="@style/Theme.White">
 
         <activity
             android:name="org.softeg.slartus.forpdaplus.MainActivity"
