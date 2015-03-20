@@ -86,8 +86,7 @@ public class ImageViewDialogFragment extends DialogFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        new ImageViewFragment.DownloadImageTask(getActivity(), m_ProgressView, m_PhotoView, mPreviewUrl)
-                .execute();
+        new ImageViewFragment.DownloadImageTask(m_ProgressView, m_PhotoView, mPreviewUrl).execute();
     }
 
     @Override
