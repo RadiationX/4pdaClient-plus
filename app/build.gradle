@@ -7,8 +7,8 @@ android {
         applicationId 'org.softeg.slartus.forpdaplus'
         minSdkVersion 15
         targetSdkVersion 21
-        versionCode 513
-        versionName "2.5b9_CobaDebug3"
+        versionCode 520
+        versionName "2.5b9_CobaDebug4"
     }
     buildTypes {
         release {
@@ -18,7 +18,13 @@ android {
     }
     signingConfigs {
         release {
+            storeFile file("keystore.key")
+            keyAlias "4pdakey"
 
+
+            keyPassword "xjFX06dR7HGj6RvgHUtPQTEJVeuuMOgY"
+
+            storePassword "xjFX06dR7HGj6RvgHUtPQTEJVeuuMOgY"
         }
     }
     buildTypes {
@@ -48,7 +54,9 @@ dependencies {
     compile 'com.github.chrisbanes.photoview:library:1.2.2'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile 'de.hdodenhof:circleimageview:1.1.0'
+    compile 'com.dmitriy-tarasov:android-intents:+'
     compile 'ch.acra:acra:4.6.1'
+
     compile project(':newquickaction')
     compile project(':forpdacommon')
     compile project(':forpdanotifyservice')

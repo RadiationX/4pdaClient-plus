@@ -465,6 +465,8 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
     }
 
     public void showTopicAttaches() {
+        if (m_Topic == null)
+            return;
         TopicAttachmentListFragment.showActivity(this, m_Topic.getId());
     }
 
@@ -1007,7 +1009,9 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
 
             if (tryQuote(url))
                 return true;
-            IntentActivity.tryShowUrl(ThemeActivity.this, mHandler, url, true, false, m_Topic.getAuthKey());
+
+            IntentActivity.tryShowUrl(ThemeActivity.this, mHandler, url, true, false,
+                    m_Topic == null ? null : m_Topic.getAuthKey());
 
             return true;
         }

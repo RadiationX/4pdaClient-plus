@@ -2,6 +2,7 @@ package org.softeg.slartus.forpdaplus.controls.imageview;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -149,8 +150,8 @@ public class ImageViewFragment extends BaseFragment {
 
     private void updateSubtitle(int selectedPageIndex) {
         mSelectedIndex = selectedPageIndex;
-        if (((ActionBarActivity)getActivity()).getSupportActionBar() != null)
-            ((ActionBarActivity)getActivity()).getSupportActionBar().setSubtitle(String.format("%d \\ %d", selectedPageIndex + 1, urls.size()));
+        if (getActivity().getSupportActionBar() != null)
+            getActivity().getSupportActionBar().setSubtitle(String.format("%d \\ %d", selectedPageIndex + 1, urls.size()));
         mPageAdapter.showImage(selectedPageIndex);
     }
 
