@@ -303,7 +303,6 @@ public class PreferencesActivity extends BasePreferencesActivity {
                     "Copyright 2014 Artem Slinkin <slartus@gmail.com>";
 
             AlertDialog dialog = new AlertDialogBuilder(getActivity())
-                    .setIcon(R.drawable.icon)
                     .setTitle(getProgramFullName(getActivity()))
                     .setMessage(Html.fromHtml(text))
                     .setPositiveButton(android.R.string.ok, null)
@@ -382,7 +381,6 @@ public class PreferencesActivity extends BasePreferencesActivity {
                 AppLog.e(getActivity(), e);
             }
             AlertDialog dialog = new AlertDialogBuilder(getActivity())
-                    .setIcon(R.drawable.icon)
                     .setTitle(getString(R.string.ChangesHistory))
                     .setMessage(sb)
                     .setPositiveButton(android.R.string.ok, null)

@@ -12,5 +12,5 @@
         android:paddingLeft="16dp"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:textSize="14sp"
-        android:textColor="@color/list_text_general_color_wh" />
+        style="?drawer_menu_text" />
 </LinearLayout>

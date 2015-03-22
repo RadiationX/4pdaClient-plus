@@ -106,7 +106,6 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
                 AppLog.e(mContext, ex);
             else
                 new AlertDialogBuilder(mContext)
-                        .setIcon(R.drawable.icon)
                         .setTitle("Ошибка")
                         .setMessage(Client.getInstance().getLoginFailedReason())
                         .setPositiveButton(android.R.string.ok, null)

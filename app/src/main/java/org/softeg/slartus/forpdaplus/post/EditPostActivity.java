@@ -1065,7 +1065,7 @@ public class EditPostActivity extends BaseFragmentActivity {
                 item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
             }
 
-            item = menu.add("Поиск по тексту").setIcon(R.drawable.ic_menu_search);
+            item = menu.add("Поиск по тексту");
             item.setActionView(R.layout.action_collapsible_search);
             getInterface().searchEditText = (EditText) item.getActionView().findViewById(R.id.editText);
             getInterface().searchEditText.setOnKeyListener(new View.OnKeyListener() {
@@ -1111,7 +1111,7 @@ public class EditPostActivity extends BaseFragmentActivity {
             });*/
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
 
-            item = menu.add("Скрыть панели").setIcon(R.drawable.ic_media_fullscreen);
+            item = menu.add("Скрыть панели");
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     getInterface().hidePanels();

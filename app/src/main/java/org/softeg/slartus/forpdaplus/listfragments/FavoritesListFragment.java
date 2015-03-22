@@ -113,7 +113,6 @@ public class FavoritesListFragment extends TopicsListFragment {
         super.onCreateOptionsMenu(menu, inflater);
 
         MenuItem item = menu.add("Фильтр и сортировка")
-                .setIcon(R.drawable.ic_menu_preferences)
                 .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {

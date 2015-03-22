@@ -63,7 +63,6 @@ public class ExtUrl {
                                        final String postId, final String userId, final String user) {
 
         menu.add("Открыть в браузере")
-                .setIcon(R.drawable.ic_menu_browser)
                 .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         showInBrowser(context, url);
@@ -71,14 +70,14 @@ public class ExtUrl {
                     }
                 });
 
-        menu.add("Поделиться ссылкой").setIcon(R.drawable.ic_menu_share).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        menu.add("Поделиться ссылкой").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 shareIt(context, title, url, url);
                 return true;
             }
         });
 
-        menu.add("Скопировать ссылку").setIcon(R.drawable.ic_menu_share).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        menu.add("Скопировать ссылку").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 copyLinkToClipboard(context, url);
                 return true;
@@ -86,7 +85,7 @@ public class ExtUrl {
         });
 
         if (!TextUtils.isEmpty(topicId)) {
-            menu.add("Создать заметку").setIcon(R.drawable.ic_menu_share).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            menu.add("Создать заметку").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     NoteDialog.showDialog(handler, context,
                             title, body, url, topicId, topic,
@@ -101,7 +100,6 @@ public class ExtUrl {
                                   final String title,
                                   final String url) {
         menu.add("Открыть в браузере")
-                .setIcon(R.drawable.ic_menu_browser)
                 .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         showInBrowser(context, url);
@@ -109,14 +107,14 @@ public class ExtUrl {
                     }
                 });
 
-        menu.add("Поделиться ссылкой").setIcon(R.drawable.ic_menu_share).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        menu.add("Поделиться ссылкой").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 shareIt(context, title, url, url);
                 return true;
             }
         });
 
-        menu.add("Скопировать ссылку").setIcon(R.drawable.ic_menu_share).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        menu.add("Скопировать ссылку").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 copyLinkToClipboard(context, url);
                 return true;

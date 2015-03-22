@@ -70,13 +70,11 @@
 
     <color name="actionbar_background_wh">#ff47aee5</color>
     <color name="actionbar_background_bl">#ff1C4556</color>
-    <color name="actionbar_borderbottom_wh">#ff45A6D3</color>
-    <color name="actionbar_borderbottom_bl">#ff163644</color>
 
     <color name="sb_l_wh">#ff51C5FF</color>
     <color name="sb_kk_wh">#ff47aee5</color>
-    <color name="sb_l_bl">#ff47aee5</color>
-    <color name="sb_kk_bl">#ff47aee5</color>
+    <color name="sb_l_bl">#ff255c74</color>
+    <color name="sb_kk_bl">#ff1C4556</color>
 
     <color name="popup_topic_background_wh">#ff28627F</color>
     <color name="popup_topic_background_bl">#ff163644</color>
@@ -88,8 +86,15 @@
     <color name="popup_item_pressed_border_wh">#ff2D708E</color>
     <color name="popup_item_pressed_border_bl">#ff28627f</color>
 
-    <color name="drawer_menu_background_wh">#fffafafa</color>
-    <color name="drawer_menu_background_bl">#ff163644</color>
+    <color name="drawer_menu_background_wh">@color/app_background_wh</color>
+    <color name="drawer_menu_background_bl">@color/app_background_bl</color>
+    <color name="drawer_menu_text_wh">@color/list_text_general_color_wh</color>
+    <color name="drawer_menu_text_bl">@color/list_text_general_color_bl</color>
+    <color name="drawer_menu_group_wh">@color/list_text_minor_color_wh</color>
+    <color name="drawer_menu_group_bl">@color/list_text_minor_color_bl</color>
+
+    <color name="divider_wh">#ffe0e0e0</color>
+    <color name="divider_bl">#ff333333</color>
 
     <color name="text_color_0">#ffffffff</color>
     <color name="text_color_1">#fff2f2f2</color>
@@ -103,9 +108,9 @@
     <color name="list_text_minor_color_wh">#ff757575</color>
     <color name="list_text_second_color_wh">#ffBCBCBC</color>
 
-    <color name="list_text_general_color_bl">#ffb7b7b7</color>
-    <color name="list_text_minor_color_bl">#ff777777</color>
-    <color name="list_text_second_color_bl">#ff777777</color>
+    <color name="list_text_general_color_bl">#ffdedede</color>
+    <color name="list_text_minor_color_bl">#ff8a8a8a</color>
+    <color name="list_text_second_color_bl">#ff424242</color>
 
     <color name="news_text_general_color_wh">#ffffffff</color>
     <color name="news_text_general_color_bl">#ffffffff</color>
@@ -119,6 +124,7 @@
 
     <color name="popup_menu_background_wh">#ff28627F</color>
     <color name="popup_menu_background_bl">#ff163644</color>
+
     <color name="reed">#ffff0000</color>
     <color name="gradient_start">#50000000</color>
     <color name="gradient_light_start">#30000000</color>

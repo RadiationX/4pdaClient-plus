@@ -1,14 +1,12 @@
 <resources>
     <style name="Theme.White" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionOverflowButtonStyle">@style/overflow_button</item>
         <item name="actionBarStyle">@style/actionbar_wh</item>
-        <item name="actionBarTheme">@style/Base.ThemeOverlay.AppCompat.Light</item>
-        <item name="android:windowBackground">@color/app_background_wh</item>
-        <item name="ptrHeaderStyle">@style/Ptr.Style</item>
-        <item name="spinnerDropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
+        <item name="actionBarPopupTheme">@style/PopupMenu_wh</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:fitsSystemWindows">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-
+        <item name="android:windowBackground">@color/app_background_wh</item>
+        <item name="ptrHeaderStyle">@style/Ptr.Style_wh</item>
         <item name="forum_header_text_color">@color/holo_blue_light</item>
         <item name="theme_background">@android:color/white</item>
         <item name="theme_light_background">@color/theme_light_background_light</item>
@@ -21,6 +19,9 @@
         <item name="news_full">@style/news_full_wh</item>
         <item name="news_image_corner">@style/news_image_corner_wh</item>
         <item name="drawer_menu">@style/drawer_menu_wh</item>
+        <item name="drawer_menu_group">@style/drawer_menu_group_wh</item>
+        <item name="drawer_menu_text">@style/drawer_menu_text_wh</item>
+        <item name="drawer_divider">@style/drawer_divider_wh</item>
         <item name="popup_topic">@style/popup_topic_wh</item>
         <item name="popup_item">@style/popup_item_wh</item>
         <item name="list_text_general_color">@style/list_text_general_color_wh</item>
@@ -30,8 +31,17 @@
         <item name="news_text_minor_color">@style/news_text_minor_color_wh</item>
         <item name="news_text_second_color">@style/news_text_second_color_wh</item>
         <item name="edit_text">@style/edit_text_wh</item>
+        <item name="divider_color">@style/divider_wh</item>
     </style>
     <style name="Theme.Black" parent="Theme.AppCompat">
+        <item name="actionOverflowButtonStyle">@style/overflow_button</item>
+        <item name="actionBarStyle">@style/actionbar_bl</item>
+        <item name="actionBarPopupTheme">@style/PopupMenu_bl</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowBackground">@color/app_background_bl</item>
+        <item name="ptrHeaderStyle">@style/Ptr.Style_bl</item>
         <item name="forum_header_text_color">@color/holo_blue_dark</item>
         <item name="theme_background">@android:color/black</item>
         <item name="theme_light_background">@color/theme_light_background_dark</item>
@@ -44,6 +54,9 @@
         <item name="news_full">@style/news_full_bl</item>
         <item name="news_image_corner">@style/news_image_corner_bl</item>
         <item name="drawer_menu">@style/drawer_menu_bl</item>
+        <item name="drawer_menu_group">@style/drawer_menu_group_bl</item>
+        <item name="drawer_menu_text">@style/drawer_menu_text_bl</item>
+        <item name="drawer_divider">@style/drawer_divider_bl</item>
         <item name="popup_topic">@style/popup_topic_bl</item>
         <item name="popup_item">@style/popup_item_bl</item>
         <item name="list_text_general_color">@style/list_text_general_color_bl</item>
@@ -53,6 +66,7 @@
         <item name="news_text_minor_color">@style/news_text_minor_color_bl</item>
         <item name="news_text_second_color">@style/news_text_second_color_bl</item>
         <item name="edit_text">@style/edit_text_bl</item>
+        <item name="divider_color">@style/divider_bl</item>
     </style>
 
     <style name="Theme.Transluent.White" parent="Theme.White">

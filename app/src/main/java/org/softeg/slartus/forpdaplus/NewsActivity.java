@@ -596,7 +596,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             optionsMenu.getItem().setIcon(R.drawable.ic_menu_preferences);
             optionsMenu.getItem().setTitle(R.string.Settings);
             optionsMenu.add("Скрывать верхнюю панель")
-                    .setIcon(R.drawable.ic_menu_visibility).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     Preferences.setHideActionBar(!Preferences.isHideActionBar());
                     getInterface().setHideActionBar();
@@ -605,7 +605,6 @@ public class NewsActivity extends BrowserViewsFragmentActivity
                 }
             }).setCheckable(true).setChecked(Preferences.isHideActionBar());
             optionsMenu.add("Размер шрифта")
-                    .setIcon(R.drawable.ic_menu_textsize)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
@@ -615,7 +614,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
                     });
 
             optionsMenu.add(R.string.LoadImages)
-                    .setIcon(R.drawable.ic_menu_images).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     Boolean loadImagesAutomatically1 = getInterface().getWebView().getSettings().getLoadsImagesAutomatically();
                     getInterface().getWebView().getSettings().setLoadsImagesAutomatically(!loadImagesAutomatically1);

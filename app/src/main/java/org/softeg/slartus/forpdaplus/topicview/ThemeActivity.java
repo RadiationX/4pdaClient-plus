@@ -685,7 +685,6 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
             int claimPosition = -1;
             if (Client.getInstance().getLogined()) {
                 actionItem = new ActionItem();
-                actionItem.setIcon(getResources().getDrawable(R.drawable.ic_action_claim));
                 actionItem.setTitle("Жалоба");
                 claimPosition = mQuickAction.addActionItem(actionItem);
             }
@@ -693,9 +692,7 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
             int editPosition = -1;
             if (canEdit) {
                 actionItem = new ActionItem();
-                actionItem.setIcon(getResources().getDrawable(R.drawable.ic_menu_editing));
                 actionItem.setTitle("Редактировать");
-
                 editPosition = mQuickAction.addActionItem(actionItem);
             }
 
@@ -704,7 +701,6 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
             if (canDelete) {
                 actionItem = new ActionItem();
                 actionItem.setTitle("Удалить");
-                actionItem.setIcon(getResources().getDrawable(R.drawable.ic_menu_delete));
                 deletePosition = mQuickAction.addActionItem(actionItem);
             }
 
@@ -714,16 +710,10 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
 
                 actionItem = new ActionItem();
                 actionItem.setTitle("Хорошо");
-                actionItem.setIcon(getResources().getDrawable(R.drawable.ic_menu_rating_good
-                        //MyApp.getInstance().isWhiteTheme() ?R.drawable.rating_good_white : R.drawable.rating_good_dark)
-                ));
                 plusOdinPosition = mQuickAction.addActionItem(actionItem);
 
                 actionItem = new ActionItem();
                 actionItem.setTitle("Плохо");
-                actionItem.setIcon(getResources().getDrawable(R.drawable.ic_menu_rating_bad
-                        //MyApp.getInstance().isWhiteTheme() ?R.drawable.rating_good_white : R.drawable.rating_good_dark)
-                ));
                 minusOdinPosition = mQuickAction.addActionItem(actionItem);
             }
 
@@ -731,7 +721,6 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
 
             actionItem = new ActionItem();
             actionItem.setTitle("Заметка");
-            actionItem.setIcon(getResources().getDrawable(R.drawable.ic_action_attach));
             notePosition = mQuickAction.addActionItem(actionItem);
 
 
@@ -739,7 +728,6 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
             if (Client.getInstance().getLogined()) {
                 actionItem = new ActionItem();
                 actionItem.setTitle("Цитата");
-                actionItem.setIcon(getResources().getDrawable(R.drawable.ic_menu_quote));
                 quotePosition = mQuickAction.addActionItem(actionItem);
             }
 

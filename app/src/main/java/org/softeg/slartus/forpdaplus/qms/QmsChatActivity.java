@@ -947,7 +947,7 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
                         }
                     });
 
-            item = menu.add("Профиль собеседника").setIcon(R.drawable.ic_action_user_online);
+            item = menu.add("Профиль собеседника");
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     getInterface().showCompanionProfile();

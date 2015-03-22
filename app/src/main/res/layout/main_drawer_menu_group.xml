@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/custom_group_devider">
+    style="?drawer_divider">
 
     <TextView
         android:id="@+id/group"
@@ -13,5 +13,5 @@
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:gravity="center_vertical"
         android:textSize="14sp"
-        android:textColor="@color/list_text_minor_color_wh" />
+        style="?drawer_menu_group" />
 </LinearLayout>

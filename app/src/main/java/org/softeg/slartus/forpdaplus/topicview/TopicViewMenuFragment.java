@@ -225,7 +225,6 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
             subMenu.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
             subMenu.add(R.string.FindOnPage)
-                    .setIcon(R.drawable.ic_action_forum_search)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
                         public boolean onMenuItemClick(MenuItem item) {
@@ -235,7 +234,6 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                         }
                     });
             subMenu.add(R.string.FindInTopic)
-                    .setIcon(R.drawable.ic_action_post_search)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
                         public boolean onMenuItemClick(MenuItem item) {
@@ -273,13 +271,11 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
 
 
             SubMenu optionsMenu = menu.addSubMenu("Вид");
-            optionsMenu.getItem().setIcon(R.drawable.ic_menu_preferences);
             optionsMenu.getItem().setTitle("Вид");
 
 
             optionsMenu.add(String.format("Аватары (%s)",
                     App.getContext().getResources().getStringArray(R.array.AvatarsShowTitles)[Preferences.Topic.getShowAvatarsOpt()]))
-                    .setIcon(R.drawable.ic_menu_images)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(final MenuItem menuItem) {
 
@@ -305,7 +301,7 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
             });
 
             optionsMenu.add("Скрывать верхнюю панель")
-                    .setIcon(R.drawable.ic_menu_visibility).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     Preferences.setHideActionBar(!Preferences.isHideActionBar());
                     getInterface().setHideActionBar();
@@ -315,7 +311,7 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
             }).setCheckable(true).setChecked(Preferences.isHideActionBar());
 
             optionsMenu.add("Загр-ть изобр-я (для сессии)")
-                    .setIcon(R.drawable.ic_menu_images).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     Boolean loadImagesAutomatically1 = getInterface().getLoadsImagesAutomatically();
                     getInterface().setLoadsImagesAutomatically(!loadImagesAutomatically1);
@@ -324,7 +320,6 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                 }
             }).setCheckable(true).setChecked(getInterface().getLoadsImagesAutomatically());
             optionsMenu.add("Размер шрифта")
-                    .setIcon(R.drawable.ic_menu_textsize)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
@@ -333,14 +328,14 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                         }
                     });
 
-            optionsMenu.add("Стиль").setIcon(R.drawable.ic_menu_styles).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            optionsMenu.add("Стиль").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     showStylesDialog(prefs);
                     return true;
                 }
             });
 
-            menu.add("Быстрый доступ..").setIcon(R.drawable.ic_menu_quickrun).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            menu.add("Быстрый доступ..").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem item) {
                     BricksListDialogFragment.showDialog((BricksListDialogFragment.IBricksListDialogCaller) getActivity(),
                             BricksListDialogFragment.QUICK_LIST_ID,

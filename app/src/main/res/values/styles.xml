@@ -2,13 +2,19 @@
 <resources>
 
 
-    <style name="Ptr.Style" parent="@android:style/Widget">
+    <style name="Ptr.Style_wh" parent="@android:style/Widget">
         <item name="ptrProgressBarStyle">inside</item>
         <item name="ptrHeaderBackground">@color/actionbar_background_wh</item>
         <item name="ptrHeaderHeight">56dp</item>
-        <item name="ptrHeaderTitleTextAppearance">@style/Ptr.Style.Text_wh</item>
+        <item name="ptrHeaderTitleTextAppearance">@style/ptr_Text_wh</item>
     </style>
-    <style name="Ptr.Style.Text_wh">
+    <style name="Ptr.Style_bl" parent="@android:style/Widget">
+        <item name="ptrProgressBarStyle">inside</item>
+        <item name="ptrHeaderBackground">@color/actionbar_background_bl</item>
+        <item name="ptrHeaderHeight">56dp</item>
+        <item name="ptrHeaderTitleTextAppearance">@style/ptr_Text_wh</item>
+    </style>
+    <style name="ptr_Text_wh">
         <item name="android:textColor">#ffffffff</item>
     </style>
 
@@ -16,39 +22,31 @@
         <item name="spb_color">@color/spb_default_color</item>
     </style>
 
-    <style name="Base.ThemeOverlay.AppCompat.Light" parent="@style/Base.ThemeOverlay.AppCompat">
-        <item name="android:textColorPrimary">#ffffffff</item>
-        <item name="colorControlNormal">@color/white</item>
-        <item name="colorControlHighlight">@color/ripple_material_light</item>
-    </style>
-    <style name="Widget.AppCompat.Light.Spinner.DropDown.ActionBar" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar" />
-    <style name="Widget.AppCompat.Spinner.DropDown.ActionBar" parent="@style/Base.Widget.AppCompat.Spinner.DropDown.ActionBar" />
-    <style name="Base.Widget.AppCompat.Spinner.DropDown.ActionBar" parent="@android:style/Widget">
-        <item name="android:textColorPrimary">#ffffffff</item>
-        <item name="android:gravity">start|center</item>
-        <item name="android:background">@drawable/abc_spinner_mtrl_am_alpha</item>
-        <item name="android:clickable">true</item>
-        <item name="android:dropDownSelector">?listChoiceBackgroundIndicator</item>
-        <item name="android:popupBackground">@drawable/abc_popup_background_mtrl_mult</item>
-        <item name="android:dropDownWidth">wrap_content</item>
-        <item name="android:dropDownHorizontalOffset">0.0dip</item>
-        <item name="android:dropDownVerticalOffset">0.0dip</item>
-        <item name="overlapAnchor">true</item>
-        <item name="spinnerMode">dropdown</item>
-        <item name="popupPromptView">@layout/abc_simple_dropdown_hint</item>
-        <item name="disableChildrenWhenDisabled">true</item>
-    </style>
-
     <style name="actionbar_wh" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="background">@color/actionbar_background_wh</item>
+        <item name="elevation">2dp</item>
+        <item name="displayOptions">homeAsUp|showTitle</item>
+    </style>
+    <style name="actionbar_bl" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="background">@color/actionbar_background_bl</item>
+        <item name="elevation">2dp</item>
+        <item name="displayOptions">homeAsUp|showTitle</item>
     </style>
 
-    <style name="actionbar_bl" parent="@style/Widget.AppCompat.ActionBar.Solid">
-        <item name="background">@drawable/actionbar_bl</item>
+    <style name="PopupMenu_wh">
+        <item name="android:background">@color/popup_menu_background_wh</item>
+        <item name="android:drawSelectorOnTop">true</item>
+    </style>
+    <style name="PopupMenu_bl">
+        <item name="android:background">@color/popup_menu_background_bl</item>
+        <item name="android:drawSelectorOnTop">true</item>
     </style>
 
     <style name="overflow_button" parent="@style/Widget.AppCompat.ActionButton.Overflow">
-        <item name="android:src">@drawable/ic_action_overflow</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingLeft">-2dp</item>
     </style>
 
     <style name="btnsend_wh">
@@ -127,9 +125,33 @@
     <style name="drawer_menu_wh">
         <item name="android:background">@color/drawer_menu_background_wh</item>
     </style>
-
     <style name="drawer_menu_bl">
         <item name="android:background">@color/drawer_menu_background_bl</item>
+    </style>
+    <style name="drawer_menu_group_wh">
+        <item name="android:textColor">@color/drawer_menu_group_wh</item>
+    </style>
+    <style name="drawer_menu_group_bl">
+        <item name="android:textColor">@color/drawer_menu_group_bl</item>
+    </style>
+    <style name="drawer_menu_text_wh">
+        <item name="android:textColor">@color/drawer_menu_text_wh</item>
+    </style>
+    <style name="drawer_menu_text_bl">
+        <item name="android:textColor">@color/drawer_menu_text_bl</item>
+    </style>
+    <style name="drawer_divider_wh">
+        <item name="android:background">@drawable/custom_group_devider_wh</item>
+    </style>
+    <style name="drawer_divider_bl">
+        <item name="android:background">@drawable/custom_group_devider_bl</item>
+    </style>
+
+    <style name="divider_wh">
+        <item name="android:divider">@color/divider_wh</item>
+    </style>
+    <style name="divider_bl">
+        <item name="android:divider">@color/divider_bl</item>
     </style>
 
     <style name="popup_topic_wh">

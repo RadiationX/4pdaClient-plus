@@ -125,7 +125,7 @@ public class ProfileWebViewActivity extends BaseFragmentActivity {
             }
 
 
-            item = menu.add(getString(R.string.Reputation)).setIcon(R.drawable.ic_menu_view);
+            item = menu.add(getString(R.string.Reputation));
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     new AlertDialogBuilder(getActivity())
@@ -157,7 +157,7 @@ public class ProfileWebViewActivity extends BaseFragmentActivity {
             });
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-            item = menu.add(getString(R.string.FindUserTopics)).setIcon(R.drawable.ic_menu_forum_search);
+            item = menu.add(getString(R.string.FindUserTopics));
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     SearchActivity.startForumSearch(getActivity(),
@@ -169,7 +169,7 @@ public class ProfileWebViewActivity extends BaseFragmentActivity {
             });
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-            item = menu.add(getString(R.string.FindUserPosts)).setIcon(R.drawable.ic_menu_post_search);
+            item = menu.add(getString(R.string.FindUserPosts));
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     SearchActivity.startForumSearch(getActivity(),
@@ -181,7 +181,7 @@ public class ProfileWebViewActivity extends BaseFragmentActivity {
             });
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
 
-            item = menu.add("Ссылка на профиль").setIcon(R.drawable.ic_menu_browser);
+            item = menu.add("Ссылка на профиль");
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     ExtUrl.showSelectActionDialog(getActivity(),"Ссылка на профиль","http://4pda.ru/forum/index.php?showuser=" + userId);

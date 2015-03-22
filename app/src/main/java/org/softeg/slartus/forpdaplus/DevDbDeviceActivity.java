@@ -105,7 +105,6 @@ public class DevDbDeviceActivity extends BaseFragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add("Браузер")
-                .setIcon(R.drawable.ic_menu_browser)
                 .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
                     public boolean onMenuItemClick(MenuItem item) {
@@ -119,7 +118,6 @@ public class DevDbDeviceActivity extends BaseFragmentActivity {
                     }
                 });
         menu.add("Закрыть")
-                .setIcon(R.drawable.ic_menu_close_clear_cancel)
                 .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
                     public boolean onMenuItemClick(MenuItem item) {

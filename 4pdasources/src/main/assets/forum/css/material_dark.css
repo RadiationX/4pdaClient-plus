@@ -73,7 +73,6 @@ HTML body {
 #main img {
   height: auto;
   max-width: 100%;
-  margin: 0.1rem;
 }
 /*
 *         FONT_SIZE
@@ -130,6 +129,7 @@ HTML body {
   display: none;
 }
 .post-block.box > .block-body {
+  max-height: 10rem;
   overflow: auto;
 }
 .post-block.quote {
@@ -160,11 +160,43 @@ HTML body {
   overflow: hidden;
   -webkit-box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
 }
-.post-block.code.box > .block-title:before,
-.post-block.code.unbox > .block-title:before,
-.post-block.code.box .block-title:empty:before,
-.post-block.code.unbox .block-title:empty:before {
+.post-block.code > .block-title:before,
+.post-block.code .block-title:empty:before {
   content: 'Код';
+}
+.post-block.code.box > .block-title,
+.post-block.code.box .block-title:empty {
+  position: relative;
+}
+.post-block.code.box > .block-title:before,
+.post-block.code.box .block-title:empty:before {
+  content: '▼';
+  display: inline-block;
+  position: absolute;
+  inline-height: 1rem;
+  height: 1rem;
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+.post-block.code.box > .block-title:after,
+.post-block.code.box .block-title:empty:after {
+  content: 'Код';
+  margin-left: 1.1rem;
+}
+.post-block.code.unbox > .block-title:before,
+.post-block.code.unbox .block-title:empty:before {
+  content: '▲';
+  display: inline-block;
+  position: absolute;
+  inline-height: 1rem;
+  height: 1rem;
+  font-size: 1.2rem;
+  opacity: 0.7;
+}
+.post-block.code.unbox > .block-title:after,
+.post-block.code.unbox .block-title:empty:after {
+  content: 'Код';
+  margin-left: 1.1rem;
 }
 .post-block.code > .block-title {
   font-weight: bold;
@@ -1156,8 +1188,13 @@ div[name*="msg"] > .hidetop B:before {
   opacity: 0.3;
 }
 .post_body table[id*="ipb-attach"] * {
-  display: inline;
+  display: inline-block;
+  margin: 0;
+  padding: 0 ;
   text-decoration: none;
+}
+.post_body table[id*="ipb-attach"] * .attach {
+  margin-bottom: 0.3rem;
 }
 .post_body a {
   color: #aaddff;
@@ -1192,108 +1229,16 @@ div[name*="msg"] > .hidetop B:before {
 }
 .signature {
   position: relative;
-  display: block;
-  padding: 0.5rem 0.8rem 0.7rem;
-  margin: 0 -1px;
-  z-index: 11;
-  text-align: left;
-  border-left: 1px solid #191919;
-  border-right: 1px solid #191919;
-  background-clip: padding-box;
-  background: #2d2d2d;
   font-size: 0.85rem;
 }
-.signature img {
-  height: auto;
-  max-width: 100%;
-  margin: 0.1rem;
-}
 @media screen and (min-width: 800px) {
   .signature {
-    margin: 0.6rem 0 0;
-    min-height: 13rem;
-    padding-left: 14rem;
-    border-radius: 0.15rem 0.15rem 0 0;
-    border-left: none;
-    border-right: none;
-    -webkit-box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
-  }
-  .signature:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 13rem;
-    left: 0rem;
-    bottom: 0;
-    -webkit-box-shadow: 0.15rem 0 0.3rem rgba(0, 0, 0, 0.2);
-  }
-}
-.signature a[href*="act=findpost&pid="][title="Перейти к сообщению"] {
-  position: relative;
-  display: inline-block;
-  margin: 0;
-  text-decoration: none;
-}
-.signature a[href*="act=findpost&pid="][title="Перейти к сообщению"] > img {
-  display: none;
-}
-.signature a[href*="act=findpost&pid="][title="Перейти к сообщению"]:after {
-  content: '\f137';
-  font-family: 'fontello';
-  display: inline-block;
-  font-size: 1rem;
-  text-align: center;
-  width: 1em;
-  color: white;
-  opacity: 0.3;
-}
-.signature table[id*="ipb-attach"] * {
-  display: inline;
-  text-decoration: none;
-}
-.signature a {
-  color: #aaddff;
-}
-.signature font {
-  font-size: 0.9rem !important;
-}
-.signature .edit {
-  display: block;
-  font-size: 85% !important;
-  color: #969696;
-}
-.signature .post-edit-reason {
-  display: inline-block;
-  font-size: 90%;
-  margin-top: 0.5rem;
-  border-radius: 0.15rem;
-  background: #424242;
-  padding: 0.4rem;
-  color: #969696;
-  text-align: left;
-}
-.signature ul,
-.signature ol {
-  margin-left: -0.5rem;
-}
-.signature:before {
-  content: '-------';
-  display: block;
-  font-size: 1rem;
-  color: #969696;
-  width: auto;
-}
-@media screen and (min-width: 800px) {
-  .signature {
-    margin: 0;
+    margin: -2rem -0.7rem 0;
     padding: 0.7rem;
     border-radius: 0;
-    min-height: 1px;
     -webkit-box-shadow: none;
+    background: #2d2d2d;
     border-top: 1px solid #575757;
-  }
-  .signature:before {
-    display: none;
   }
 }
 .s_post_footer {
@@ -1853,12 +1798,8 @@ img[src*="style_emoticons"] {
 .container .content a {
   color: #aaddff;
 }
-.container .content .content-box p {
+.container .content .content-box P[style="text-align: justify;"] {
   text-align: left !important;
-}
-.container .content .content-box p img {
-  display: block;
-  margin: auto;
 }
 .product-detail {
   position: relative;
@@ -2706,7 +2647,7 @@ h3 a {
   background: #1e1e1e;
   right: 1.4rem;
   bottom: 1.4rem;
-  display: inline-block;
+  display: none;
   padding: 0 !important;
   margin: 0 0 0 -4rem !important;
   text-align: center;
@@ -2890,15 +2831,13 @@ h3 a {
   margin: 0.5rem 0;
 }
 ::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.5rem;
-}
-::-webkit-scrollbar-track {
-  border-radius: 0.15rem;
-  background: rgba(0, 0, 0, 0.3);
+  width: 0.25rem;
+  height: 0.25rem;
 }
 ::-webkit-scrollbar-thumb {
-  border-radius: 0.15rem;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0.1rem;
+  background: rgba(255, 255, 255, 0.3);
+}
+div[style*="margin-top:54pt"] {
+margin-top:80px!important;
 }

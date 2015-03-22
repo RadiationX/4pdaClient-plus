@@ -457,16 +457,12 @@ public class HtmloutWebInterface {
                     actionItem = new ActionItem();
 
                     actionItem.setTitle("+1");
-                    actionItem.setIcon(getContext().getResources().getDrawable(R.drawable.ic_menu_rating_good
-                            //MyApp.getInstance().isWhiteTheme() ?R.drawable.rating_good_white : R.drawable.rating_good_dark)
-                    ));
                     plusRepPosition = mQuickAction.addActionItem(actionItem);
                 }
 
                 int showRepPosition;
 
                 actionItem = new ActionItem();
-                actionItem.setIcon(getContext().getResources().getDrawable(R.drawable.ic_menu_view));
                 actionItem.setTitle("Посмотреть");
 
                 showRepPosition = mQuickAction.addActionItem(actionItem);
@@ -476,9 +472,6 @@ public class HtmloutWebInterface {
                     actionItem = new ActionItem();
 
                     actionItem.setTitle("-1");
-                    actionItem.setIcon(getContext().getResources().getDrawable(R.drawable.ic_menu_rating_bad
-                            //MyApp.getInstance().isWhiteTheme() ?R.drawable.rating_good_white : R.drawable.rating_good_dark)
-                    ));
                     minusRepPosition = mQuickAction.addActionItem(actionItem);
                 }
 

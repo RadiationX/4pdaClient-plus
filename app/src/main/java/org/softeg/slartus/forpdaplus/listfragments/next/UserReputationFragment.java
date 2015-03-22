@@ -163,7 +163,7 @@ public class UserReputationFragment extends BrickFragmentListBase {
             if (Client.getInstance().getLogined() && !getUserId().equals(Client.getInstance().UserId)) {
 
 
-                item = menu.add("Повысить репутацию").setIcon(R.drawable.ic_menu_rating_good);
+                item = menu.add("Повысить репутацию");
                 item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem menuItem) {
 
@@ -173,7 +173,7 @@ public class UserReputationFragment extends BrickFragmentListBase {
                 });
                 item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
-                item = menu.add("Понизить репутацию").setIcon(R.drawable.ic_menu_rating_bad);
+                item = menu.add("Понизить репутацию");
                 item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         minusRep();
@@ -182,7 +182,7 @@ public class UserReputationFragment extends BrickFragmentListBase {
                 });
                 item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
             }
-            item = menu.add("Профиль").setIcon(R.drawable.ic_menu_rating_good);
+            item = menu.add("Профиль");
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     ProfileWebViewActivity.startActivity(getActivity(), getUserId(), getUserNick());
