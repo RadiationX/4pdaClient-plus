@@ -11,6 +11,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import com.melnykov.fab.FloatingActionButton;
 
 import org.softeg.slartus.forpdaplus.BaseFragmentActivity;
 import org.softeg.slartus.forpdaplus.R;
@@ -63,11 +64,13 @@ public abstract class BrowserViewsFragmentActivity extends BaseFragmentActivity 
         if (getWebView() == null || !(getWebView() instanceof AdvWebView))
             return;
         ActionBar actionBar = getSupportActionBar();
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         if (actionBar == null) return;
-        setHideActionBar((AdvWebView)getWebView(),actionBar);
+        if (fab == null) return;
+        setHideActionBar((AdvWebView)getWebView(),actionBar, fab);
     }
 
-    public static void setHideActionBar(AdvWebView advWebView, final ActionBar actionBar) {
+    public static void setHideActionBar(AdvWebView advWebView, final ActionBar actionBar, final FloatingActionButton fab) {
         Boolean hide = Preferences.isHideActionBar();
 
         if (hide) {
@@ -78,7 +81,7 @@ public abstract class BrowserViewsFragmentActivity extends BaseFragmentActivity 
                     if (!inTouch)
                         return;
                     if (actionBar.isShowing()) {
-
+                        fab.hide();
                         actionBar.hide();
                     }
                 }
@@ -88,7 +91,7 @@ public abstract class BrowserViewsFragmentActivity extends BaseFragmentActivity 
                     if (!inTouch)
                         return;
                     if (!actionBar.isShowing()) {
-
+                        fab.show();
                         actionBar.show();
                     }
                 }
@@ -96,11 +99,13 @@ public abstract class BrowserViewsFragmentActivity extends BaseFragmentActivity 
                 @Override
                 public void onTouch() {
                     actionBar.show();
+                    fab.show();
                 }
             });
         } else {
             advWebView.setOnScrollChangedCallback(null);
             actionBar.show();
+            fab.show();
         }
     }
 

@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.view.Window;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
@@ -32,6 +33,8 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import com.melnykov.fab.FloatingActionButton;
 
 import org.softeg.slartus.forpdaapi.search.SearchSettings;
 import org.softeg.slartus.forpdacommon.FileUtils;
@@ -137,8 +140,10 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
         if (getWebView() == null || !(getWebView() instanceof AdvWebView))
             return;
         ActionBar actionBar = ((ActionBarActivity)getActivity()).getSupportActionBar();
+        FloatingActionButton fab = (FloatingActionButton) ((ActionBarActivity)getActivity()).findViewById(R.id.fab);
+        if (fab == null) return;
         if (actionBar == null) return;
-        BrowserViewsFragmentActivity.setHideActionBar(mWvBody, actionBar);
+        BrowserViewsFragmentActivity.setHideActionBar(mWvBody, actionBar, fab);
     }
 
     @Override

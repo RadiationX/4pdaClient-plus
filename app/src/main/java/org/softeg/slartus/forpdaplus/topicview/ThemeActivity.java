@@ -40,6 +40,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.melnykov.fab.FloatingActionButton;
+
 import net.londatiga.android3d.ActionItem;
 import net.londatiga.android3d.QuickAction;
 
@@ -105,7 +107,7 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
 
 
     TopicViewMenuFragment mFragment1;
-    ImageButton btnShowHideEditPost;
+    FloatingActionButton btnShowHideEditPost;
     public static Boolean LoadsImagesAutomatically = null;
     private QuickPostFragment mQuickPostFragment;
     private LinearLayout mQuickPostPanel;
@@ -230,7 +232,7 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
                 closeSearch();
             }
         });
-        btnShowHideEditPost = (ImageButton) findViewById(R.id.btnShowHideEditPost);
+        btnShowHideEditPost = (FloatingActionButton) findViewById(R.id.fab);
 
         btnShowHideEditPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -902,8 +904,9 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
                 webView.scrollTo(0, 0);
                 webView.onActionBarOnScrollEvents();
                 webView.evalJs("scrollToElement('" + m_ScrollElement + "');");
-                if (getSupportActionBar() != null && Preferences.isHideActionBar())
+                if (getSupportActionBar() != null && Preferences.isHideActionBar()) {
                     getSupportActionBar().hide();
+                }
             }
 
             m_ScrollElement = null;

@@ -18,6 +18,7 @@
             android:textSize="12.0dip" />
     </RelativeLayout>
 
+
     <LinearLayout
         android:id="@+id/bottom_panel"
         android:layout_width="fill_parent"
@@ -47,6 +48,23 @@
                 android:contentDescription="Написать сообщение"
                 android:padding="10.0dip"
                 android:src="@drawable/ic_menu_edit" />
+
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:fab="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.melnykov.fab.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/ic_menu_edit"
+                    fab:fab_colorNormal="#ffff0000"
+                    fab:fab_colorPressed="#ff00ff00"
+                    fab:fab_colorRipple="#ff0000ff" />
+            </FrameLayout>
 
             <ImageButton
                 android:id="@+id/btnUp"

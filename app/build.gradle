@@ -53,6 +53,7 @@ dependencies {
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     compile 'com.github.chrisbanes.photoview:library:1.2.2'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    compile 'com.melnykov:floatingactionbutton:1.2.0'
     compile 'de.hdodenhof:circleimageview:1.1.0'
     compile 'com.dmitriy-tarasov:android-intents:+'
     compile 'ch.acra:acra:4.6.1'
