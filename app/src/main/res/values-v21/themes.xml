@@ -2,7 +2,7 @@
     <style name="Theme.White" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="actionOverflowButtonStyle">@style/overflow_button</item>
         <item name="actionBarStyle">@style/actionbar_wh</item>
-        <item name="actionBarPopupTheme">@style/PopupMenu_wh</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowBackground">@color/app_background_wh</item>
@@ -24,6 +24,7 @@
         <item name="drawer_divider">@style/drawer_divider_wh</item>
         <item name="popup_topic">@style/popup_topic_wh</item>
         <item name="popup_item">@style/popup_item_wh</item>
+        <item name="popup_item_text">@style/popup_item_text_wh</item>
         <item name="list_text_general_color">@style/list_text_general_color_wh</item>
         <item name="list_text_minor_color">@style/list_text_minor_color_wh</item>
         <item name="list_text_second_color">@style/list_text_second_color_wh</item>
@@ -36,7 +37,7 @@
     <style name="Theme.Black" parent="Theme.AppCompat">
         <item name="actionOverflowButtonStyle">@style/overflow_button</item>
         <item name="actionBarStyle">@style/actionbar_bl</item>
-        <item name="actionBarPopupTheme">@style/PopupMenu_bl</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:fitsSystemWindows">true</item>
@@ -59,6 +60,7 @@
         <item name="drawer_divider">@style/drawer_divider_bl</item>
         <item name="popup_topic">@style/popup_topic_bl</item>
         <item name="popup_item">@style/popup_item_bl</item>
+        <item name="popup_item_text">@style/popup_item_text_bl</item>
         <item name="list_text_general_color">@style/list_text_general_color_bl</item>
         <item name="list_text_minor_color">@style/list_text_minor_color_bl</item>
         <item name="list_text_second_color">@style/list_text_second_color_bl</item>

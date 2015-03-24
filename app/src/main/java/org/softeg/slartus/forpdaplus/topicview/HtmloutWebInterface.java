@@ -210,7 +210,7 @@ public class HtmloutWebInterface {
             @Override
             public void run() {
                 if (getContext().getTopic() == null) {
-                    Toast.makeText(getContext(), "что-то пошло не так", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Что-то пошло не так", Toast.LENGTH_SHORT).show();
                 } else {
                     TopicWritersTab.show(getContext(), getContext().getTopic().getId());
                 }
@@ -456,7 +456,7 @@ public class HtmloutWebInterface {
                 if ("1".equals(canPlus)) {
                     actionItem = new ActionItem();
 
-                    actionItem.setTitle("+1");
+                    actionItem.setTitle("Поднять (+1)");
                     plusRepPosition = mQuickAction.addActionItem(actionItem);
                 }
 
@@ -471,7 +471,7 @@ public class HtmloutWebInterface {
                 if ("1".equals(canMinus)) {
                     actionItem = new ActionItem();
 
-                    actionItem.setTitle("-1");
+                    actionItem.setTitle("Опустить (-1)");
                     minusRepPosition = mQuickAction.addActionItem(actionItem);
                 }
 

@@ -711,11 +711,11 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
             if (Client.getInstance().getLogined() && !Client.getInstance().UserId.equals(userId)) {
 
                 actionItem = new ActionItem();
-                actionItem.setTitle("Хорошо");
+                actionItem.setTitle("Хорошо (+)");
                 plusOdinPosition = mQuickAction.addActionItem(actionItem);
 
                 actionItem = new ActionItem();
-                actionItem.setTitle("Плохо");
+                actionItem.setTitle("Плохо (-)");
                 minusOdinPosition = mQuickAction.addActionItem(actionItem);
             }
 
@@ -787,12 +787,12 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
 
     public void showMessagePanel() {
         btnShowHideEditPost.setImageResource(R.drawable.ic_menu_edit_close);
-        Boolean translucentNavigation = true;
+        /*Boolean translucentNavigation = true;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
             translucentNavigation = false;
         Window w = getWindow();
         if (translucentNavigation)
-            w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);*/
 
         pnlSearch.setVisibility(View.GONE);
         mQuickPostPanel.setVisibility(View.VISIBLE);
@@ -801,12 +801,12 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
 
     public void hideMessagePanel() {
         btnShowHideEditPost.setImageResource(R.drawable.ic_menu_edit);
-        Boolean translucentNavigation = true;
+        /*Boolean translucentNavigation = true;
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
             translucentNavigation = false;
         Window w = getWindow();
         if (translucentNavigation)
-            w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);*/
 
 
         mQuickPostPanel.setVisibility(View.GONE);

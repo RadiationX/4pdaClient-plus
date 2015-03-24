@@ -76,16 +76,6 @@
     <color name="sb_l_bl">#ff255c74</color>
     <color name="sb_kk_bl">#ff1C4556</color>
 
-    <color name="popup_topic_background_wh">#ff28627F</color>
-    <color name="popup_topic_background_bl">#ff163644</color>
-    <color name="popup_topic_border_wh">#ff1B4456</color>
-    <color name="popup_topic_border_bl">#ff0C1E26</color>
-
-    <color name="popup_item_pressed_background_wh">#ff1B4456</color>
-    <color name="popup_item_pressed_background_bl">#ff0C1E26</color>
-    <color name="popup_item_pressed_border_wh">#ff2D708E</color>
-    <color name="popup_item_pressed_border_bl">#ff28627f</color>
-
     <color name="drawer_menu_background_wh">@color/app_background_wh</color>
     <color name="drawer_menu_background_bl">@color/app_background_bl</color>
     <color name="drawer_menu_text_wh">@color/list_text_general_color_wh</color>

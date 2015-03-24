@@ -15,6 +15,7 @@
     <attr name="drawer_divider" format="reference" />
     <attr name="popup_topic" format="reference" />
     <attr name="popup_item" format="reference" />
+    <attr name="popup_item_text" format="reference" />
     <attr name="list_text_general_color" format="reference" />
     <attr name="list_text_minor_color" format="reference" />
     <attr name="list_text_second_color" format="reference" />

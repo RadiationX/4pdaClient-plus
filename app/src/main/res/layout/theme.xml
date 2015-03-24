@@ -30,77 +30,59 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center_vertical">
 
-            <ImageButton
-                android:id="@+id/btnShowHideEditPost"
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:fab="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp">
+
+            <com.melnykov.fab.FloatingActionButton
+                android:id="@+id/fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="right"
-                android:background="@null"
-                android:contentDescription="Написать сообщение"
-                android:padding="10.0dip"
-                android:src="@drawable/ic_menu_edit" />
+                android:layout_gravity="end"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_menu_edit"
+                fab:fab_colorNormal="#ffE91E63"
+                fab:fab_colorPressed="#ffe97883"
+                fab:fab_colorRipple="#ff0000ff" />
 
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:fab="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
 
-                <com.melnykov.fab.FloatingActionButton
-                    android:id="@+id/fab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
-                    android:layout_margin="16dp"
-                    android:src="@drawable/ic_menu_edit"
-                    fab:fab_colorNormal="#ffff0000"
-                    fab:fab_colorPressed="#ff00ff00"
-                    fab:fab_colorRipple="#ff0000ff" />
-            </FrameLayout>
+                <ImageButton
+                    android:id="@+id/btnDown"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="16dp"
+                    android:background="@null"
+                    android:onClick="onBtnDownClick"
+                    android:src="@drawable/ic_btn_down"/>
 
-            <ImageButton
-                android:id="@+id/btnUp"
-                android:layout_width="60.0dip"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="2.0dip"
-                android:background="@null"
-                android:contentDescription="Вверх"
-                android:onClick="onBtnUpClick"
-                android:src="@drawable/ic_btn_up"
-                android:text="вверх" />
+                <ImageButton
+                    android:id="@+id/btnUp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@null"
+                    android:layout_gravity="center"
+                    android:onClick="onBtnUpClick"
+                    android:src="@drawable/ic_btn_up"/>
+            </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/btnDown"
-                android:layout_width="60.0dip"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="2.0dip"
-                android:layout_toRightOf="@+id/btnUp"
-                android:background="@null"
-                android:contentDescription="Вниз"
-                android:onClick="onBtnDownClick"
-                android:src="@drawable/ic_btn_down"
-                android:text="вниз" />
-        </RelativeLayout>
+        </FrameLayout>
+
 
         <LinearLayout
             android:id="@+id/quick_post_panel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="?android:colorBackground"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <fragment
                 android:id="@+id/quick_post_fragment"

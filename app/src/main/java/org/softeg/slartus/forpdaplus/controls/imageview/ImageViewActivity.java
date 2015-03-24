@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import com.readystatesoftware.systembartint.SystemBarTintManager;
+
+import org.softeg.slartus.forpdaplus.App;
 import org.softeg.slartus.forpdaplus.R;
 
 import java.util.ArrayList;
@@ -19,7 +22,6 @@ import java.util.ArrayList;
 public class ImageViewActivity extends ActionBarActivity {
     private static final String IMAGE_URLS_KEY = "IMAGE_URLS_KEY";
     private static final String SELECTED_INDEX_KEY = "SELECTED_INDEX_KEY";
-
 
 
     public static void startActivity(Context context,
@@ -46,13 +48,30 @@ public class ImageViewActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Integer.valueOf(android.os.Build.VERSION.SDK) >= 19) {
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+            if (App.getInstance().getCurrentThemeName().equals("white")) {
+                if (Integer.valueOf(android.os.Build.VERSION.SDK) >= 21) {
+                    tintManager.setTintColor(getResources().getColor(R.color.sb_l_wh));
+                } else {
+                    tintManager.setTintColor(getResources().getColor(R.color.sb_kk_wh));
+                }
+            } else if (App.getInstance().getCurrentThemeName().equals("black")) {
+                if (Integer.valueOf(android.os.Build.VERSION.SDK) >= 21) {
+                    tintManager.setTintColor(getResources().getColor(R.color.sb_l_bl));
+                } else {
+                    tintManager.setTintColor(getResources().getColor(R.color.sb_kk_bl));
+                }
+            }
+        }
         setContentView(R.layout.image_view_activity);
 
         ImageViewFragment fragment =
-                (ImageViewFragment)getSupportFragmentManager().findFragmentById(R.id.image_view_fragment);
+                (ImageViewFragment) getSupportFragmentManager().findFragmentById(R.id.image_view_fragment);
 
 
-        ArrayList<String> urls =new ArrayList<>();
+        ArrayList<String> urls = new ArrayList<>();
 
         if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().containsKey(IMAGE_URLS_KEY))
             urls = getIntent().getExtras().getStringArrayList(IMAGE_URLS_KEY);
@@ -66,8 +85,7 @@ public class ImageViewActivity extends ActionBarActivity {
         else if (getIntent() != null && getIntent().getExtras() != null && getIntent().getExtras().containsKey(SELECTED_INDEX_KEY))
             index = getIntent().getExtras().getInt(SELECTED_INDEX_KEY);
 
-        fragment.showImage(urls,index);
+        fragment.showImage(urls, index);
     }
-
 
 }

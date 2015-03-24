@@ -106,7 +106,9 @@
 
         <activity
             android:name=".controls.imageview.ImageViewActivity"
-            android:label="Изображение" />
+            android:label="Изображение"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTop"/>
 
         <activity
             android:name="org.acra.CrashReportDialog"

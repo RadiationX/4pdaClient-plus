@@ -70,19 +70,19 @@ public class ForumUser {
             if (Client.getInstance().getLogined()) {
                 if (insertNickInterface != null)
                     mQuickAction.addActionItem(new net.londatiga.android3d.ActionItem(insertNickPosition,
-                            context.getString(R.string.InsertNick), resourses.getDrawable(R.drawable.ic_action_paste)));
+                            context.getString(R.string.InsertNick)));
                 mQuickAction.addActionItem(new net.londatiga.android3d.ActionItem(sendQmsPosition,
-                        context.getString(R.string.MessagesQms), resourses.getDrawable(R.drawable.ic_action_qms)));
+                        context.getString(R.string.MessagesQms)));
             }
             int showProfilePosition = id++;
             mQuickAction.addActionItem(new net.londatiga.android3d.ActionItem(showProfilePosition,
-                    context.getString(R.string.Profile), resourses.getDrawable(R.drawable.ic_action_user_online)));
+                    context.getString(R.string.Profile)));
             int showUserTopicsPosition = id++;
             mQuickAction.addActionItem(new net.londatiga.android3d.ActionItem(showUserTopicsPosition,
-                    context.getString(R.string.FindUserTopics), resourses.getDrawable(R.drawable.ic_action_search)));
+                    context.getString(R.string.FindUserTopics)));
             int showUserPostsPosition = id++;
             mQuickAction.addActionItem(new net.londatiga.android3d.ActionItem(showUserPostsPosition,
-                    context.getString(R.string.FindUserPosts), resourses.getDrawable(R.drawable.ic_action_search)));
+                    context.getString(R.string.FindUserPosts)));
 
             if (mQuickAction.getItemsCount() == 0) return;
 
