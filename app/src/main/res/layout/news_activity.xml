@@ -70,9 +70,40 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <org.softeg.slartus.forpdaplus.classes.AdvWebView
-        android:id="@id/wvBody"
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:textSize="12.0dip" />
+        android:layout_height="fill_parent">
+
+        <org.softeg.slartus.forpdaplus.classes.AdvWebView
+            android:id="@id/wvBody"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textSize="12.0dip"
+            android:clipToPadding="false"/>
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:fab="http://schemas.android.com/apk/res-auto"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:fitsSystemWindows="true">
+
+            <com.melnykov.fab.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="16dp"
+                android:clickable="true"
+                android:src="@drawable/ic_menu_edit"
+                fab:fab_colorNormal="#ffE91E63"
+                fab:fab_colorPressed="#ffe97883"
+                fab:fab_colorRipple="#ffe97883" />
+        </FrameLayout>
+    </RelativeLayout>
+
+
 </LinearLayout>

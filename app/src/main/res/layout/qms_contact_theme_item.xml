@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="72dp"
+    android:layout_height="56dp"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:textAppearance="?android:textAppearanceLarge">
@@ -40,51 +40,44 @@
                 android:gravity="center_vertical"
                 android:focusable="false"
                 android:visibility="visible"
-                android:layout_marginRight="8dp" />
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp" />
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/llayout1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_marginLeft="8dp">
 
                 <TextView
                     android:id="@+id/txtNick"
                     style="?list_text_general_color"
-                    android:layout_width="fill_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sslartus"
                     android:textAppearance="?android:textAppearanceMedium"
                     android:textSize="16dp"/>
-
-                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="fill_parent"
+                <TextView
+                    android:id="@+id/txtMessagesCount"
+                    style="?list_text_minor_color"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-
+                    android:singleLine="true"
+                    android:text="122/2222"
+                    android:textAppearance="?android:textAppearanceSmall"
+                    android:ellipsize="middle"
+                    android:layout_marginLeft="8dp"/>
                     <TextView
                         android:id="@+id/txtDateTime"
                         style="?list_text_minor_color"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="ррр"
                         android:textAppearance="?android:textAppearanceSmall"
                         android:visibility="gone"/>
-                    <TextView
-                        android:id="@+id/txtMessagesCount"
-                        style="?list_text_minor_color"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:ellipsize="middle"
-                        android:gravity="left"
-                        android:singleLine="true"
-                        android:text="T12"
-                        android:textAppearance="?android:textAppearanceSmall" />
 
-                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>

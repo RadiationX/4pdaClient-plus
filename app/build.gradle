@@ -8,7 +8,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 21
         versionCode 520
-        versionName "2.5.1_Coba[0.8Debug]"
+        versionName "2.5.1_Coba[0.8D2]"
     }
     buildTypes {
         release {

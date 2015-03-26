@@ -42,6 +42,8 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.melnykov.fab.FloatingActionButton;
+
 import org.softeg.slartus.forpdacommon.FileUtils;
 import org.softeg.slartus.forpdacommon.PatternExtensions;
 import org.softeg.slartus.forpdaplus.classes.AdvWebView;
@@ -78,6 +80,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
     private Handler mHandler = new Handler();
     private AdvWebView webView;
     private RelativeLayout pnlSearch;
+    private FloatingActionButton fabComment;
 
     private Boolean m_FromHistory = false;
     private int m_ScrollY = 0;
@@ -185,6 +188,17 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         m_NewsUrl = extras.getString(URL_KEY);
         s_NewsUrl = m_NewsUrl;
 
+        fabComment = (FloatingActionButton) findViewById(R.id.fab);
+        if(Client.getInstance().getLogined()){
+            fabComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    respond();
+                }
+            });
+        }else{
+            fabComment.setVisibility(View.GONE);
+        }
     }
 
     private final static int FILECHOOSER_RESULTCODE = 1;
@@ -560,16 +574,6 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
             super.onCreateOptionsMenu(menu, inflater);
             MenuItem item;
-
-            item = menu.add(R.string.DoComment).setIcon(R.drawable.ic_menu_comment);
-            item.setVisible(Client.getInstance().getLogined());
-            item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                public boolean onMenuItemClick(MenuItem menuItem) {
-                    ((NewsActivity) getActivity()).respond();
-                    return true;
-                }
-            });
-            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
             item = menu.add(R.string.Refresh).setIcon(R.drawable.ic_menu_refresh);
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {

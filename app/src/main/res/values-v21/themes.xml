@@ -1,9 +1,14 @@
 <resources>
     <style name="Theme.White" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="actionModeBackground">@color/actionbar_background_wh</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:actionModeBackground">@color/actionbar_background_wh</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="colorAccent">@color/accent_wh</item>
+        <item name="android:statusBarColor">@color/sb_l_wh</item>
         <item name="actionOverflowButtonStyle">@style/overflow_button</item>
         <item name="actionBarStyle">@style/actionbar_wh</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowBackground">@color/app_background_wh</item>
         <item name="ptrHeaderStyle">@style/Ptr.Style_wh</item>
@@ -35,11 +40,16 @@
         <item name="divider_color">@style/divider_wh</item>
     </style>
     <style name="Theme.Black" parent="Theme.AppCompat">
+        <item name="actionModeBackground">@color/actionbar_background_bl</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:actionModeBackground">@color/actionbar_background_bl</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="colorAccent">@color/accent_bl</item>
+        <item name="android:statusBarColor">@color/sb_l_bl</item>
         <item name="actionOverflowButtonStyle">@style/overflow_button</item>
         <item name="actionBarStyle">@style/actionbar_bl</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowBackground">@color/app_background_bl</item>
         <item name="ptrHeaderStyle">@style/Ptr.Style_bl</item>
@@ -72,13 +82,13 @@
     </style>
 
     <style name="Theme.Transluent.White" parent="Theme.White">
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:fitsSystemWindows">false</item>
     </style>
 
     <style name="Theme.Transluent.Black" parent="Theme.Black">
-        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:fitsSystemWindows">false</item>
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:windowTranslucentNavigation">false</item>
     </style>

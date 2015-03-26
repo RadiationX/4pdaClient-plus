@@ -11,61 +11,53 @@
         android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             style="?panel"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp">
+            android:minHeight="36dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp">
 
-            <RelativeLayout
+            <ImageButton
+                android:id="@+id/advanced_button"
+                style="?right_separator"
+                android:layout_width="48dp"
+                android:layout_height="36dp"
+                android:contentDescription="Дополнительно"
+                android:src="@drawable/btn_show_post_panel"
+                android:layout_alignBottom="@+id/edMessage" />
+
+            <EditText
+                android:id="@+id/edMessage"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:minHeight="36dp"
+                android:background="#00000000"
+                android:capitalize="sentences"
+                android:hint="Сообщение"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines="6"
+                android:minLines="1"
+                android:singleLine="false"
+                android:padding="6dp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/advanced_button"
+                android:layout_toLeftOf="@+id/btnSend"
+                android:layout_toStartOf="@+id/btnSend" />
 
-                <ImageButton
-                    android:id="@+id/advanced_button"
-                    style="?right_separator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/edMessage"
-                    android:layout_alignParentBottom="false"
-                    android:layout_alignParentEnd="false"
-                    android:layout_alignParentTop="false"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginTop="4dp"
-                    android:paddingLeft="4.0dip"
-                    android:paddingRight="8.0dip"
-                    android:src="@drawable/btn_show_post_panel" />
-
-                <EditText
-                    android:id="@+id/edMessage"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/btnSend"
-                    android:layout_toRightOf="@+id/advanced_button"
-                    android:background="#00000000"
-                    android:capitalize="sentences"
-                    android:maxLines="6"
-                    android:minLines="1"
-                    android:padding="8.0dip"
-                    android:singleLine="false" />
-
-                <ImageButton
-                    android:id="@+id/btnSend"
-                    style="?btnsend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/edMessage"
-                    android:layout_alignParentRight="true"
-                    android:paddingBottom="4.0dip"
-                    android:paddingLeft="12.0dip"
-                    android:paddingRight="12.0dip"
-                    android:paddingTop="4.0dip"
-                    android:src="@drawable/btn_send" />
-            </RelativeLayout>
-        </LinearLayout>
+            <ImageButton
+                android:id="@+id/btnSend"
+                style="?btnsend"
+                android:layout_width="wrap_content"
+                android:minWidth="56dp"
+                android:layout_height="36dp"
+                android:contentDescription="Отправить"
+                android:src="@drawable/btn_send"
+                android:layout_alignBottom="@+id/edMessage"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/footer_for_emoticons"

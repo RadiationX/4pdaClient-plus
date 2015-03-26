@@ -5,13 +5,13 @@
     <style name="Ptr.Style_wh" parent="@android:style/Widget">
         <item name="ptrProgressBarStyle">inside</item>
         <item name="ptrHeaderBackground">@color/actionbar_background_wh</item>
-        <item name="ptrHeaderHeight">56dp</item>
+        <item name="ptrHeaderHeight">@dimen/ptr_height</item>
         <item name="ptrHeaderTitleTextAppearance">@style/ptr_Text_wh</item>
     </style>
     <style name="Ptr.Style_bl" parent="@android:style/Widget">
         <item name="ptrProgressBarStyle">inside</item>
         <item name="ptrHeaderBackground">@color/actionbar_background_bl</item>
-        <item name="ptrHeaderHeight">56dp</item>
+        <item name="ptrHeaderHeight">@dimen/ptr_height</item>
         <item name="ptrHeaderTitleTextAppearance">@style/ptr_Text_wh</item>
     </style>
     <style name="ptr_Text_wh">
@@ -21,16 +21,33 @@
     <style name="SmoothProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
         <item name="spb_color">@color/spb_default_color</item>
     </style>
+    <style name="actionMode_style" parent="@style/Base.Widget.AppCompat.ActionMode">
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:background">?attr/actionModeBackground</item>
+        <item name="android:height">@dimen/ptr_height_bug</item>
+        <item name="height">@dimen/ptr_height_bug</item>
+    </style>
 
     <style name="actionbar_wh" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="background">@color/actionbar_background_wh</item>
         <item name="elevation">2dp</item>
         <item name="displayOptions">homeAsUp|showTitle</item>
+        <item name="titleTextStyle">@style/actionbar_title</item>
+        <item name="subtitleTextStyle">@style/actionbar_subtitle</item>
     </style>
     <style name="actionbar_bl" parent="@style/Widget.AppCompat.ActionBar.Solid">
         <item name="background">@color/actionbar_background_bl</item>
         <item name="elevation">2dp</item>
         <item name="displayOptions">homeAsUp|showTitle</item>
+    </style>
+    <style name="actionbar_title">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="actionbar_subtitle">
+        <item name="android:textColor">#ccffffff</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="PopupMenu_wh">

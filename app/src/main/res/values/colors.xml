@@ -42,7 +42,7 @@
     <color name="spb_default_color">#ffffffff</color>
 
     <color name="app_background_wh">#fffafafa</color>
-    <color name="app_background_bl">#ff222222</color>
+    <color name="app_background_bl">#ff242424</color>
 
     <color name="left_separator_color_wh">#ffd9d9d9</color>
     <color name="left_separator_color_bl">#ff494949</color>
@@ -58,8 +58,8 @@
 
     <color name="panel_background_wh">#ffffffff</color>
     <color name="panel_background_bl">#ff333333</color>
-    <color name="panel_bordertop_wh">#ffc9c9c9</color>
-    <color name="panel_bordertop_bl">#ff3D3D3D</color>
+    <color name="panel_bordertop_wh">#ffd9d9d9</color>
+    <color name="panel_bordertop_bl">#ff494949</color>
 
     <color name="news_background_wh">#ffffffff</color>
     <color name="news_background_bl">#ff333333</color>
@@ -71,9 +71,9 @@
     <color name="actionbar_background_wh">#ff47aee5</color>
     <color name="actionbar_background_bl">#ff1C4556</color>
 
-    <color name="sb_l_wh">#ff51C5FF</color>
+    <color name="sb_l_wh">#ff3B91BF</color>
     <color name="sb_kk_wh">#ff47aee5</color>
-    <color name="sb_l_bl">#ff255c74</color>
+    <color name="sb_l_bl">#ff163542</color>
     <color name="sb_kk_bl">#ff1C4556</color>
 
     <color name="drawer_menu_background_wh">@color/app_background_wh</color>
@@ -114,6 +114,9 @@
 
     <color name="popup_menu_background_wh">#ff28627F</color>
     <color name="popup_menu_background_bl">#ff163644</color>
+
+    <color name="accent_wh">#ff47aee5</color>
+    <color name="accent_bl">#ff1C4556</color>
 
     <color name="reed">#ffff0000</color>
     <color name="gradient_start">#50000000</color>

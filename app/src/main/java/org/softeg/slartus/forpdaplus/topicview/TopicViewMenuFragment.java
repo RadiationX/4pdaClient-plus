@@ -201,7 +201,7 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                             return true;
                         }
                     });
-            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
             SubMenu subMenu = menu.addSubMenu(R.string.Attaches)
                     .setIcon(R.drawable.ic_menu_download);
             //subMenu.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
@@ -222,7 +222,7 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
 
 
             subMenu = menu.addSubMenu(R.string.FindOnPage).setIcon(R.drawable.ic_menu_search);
-            subMenu.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            subMenu.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
             subMenu.add(R.string.FindOnPage)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {

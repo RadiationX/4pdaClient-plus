@@ -314,7 +314,7 @@ public class UserReputationFragment extends BrickFragmentListBase {
         public android.view.View getView(int position, android.view.View view, android.view.ViewGroup parent) {
             final ViewHolder holder;
             if (view == null) {
-                view = mInflater.inflate(R.layout.list_item, parent, false);
+                view = mInflater.inflate(R.layout.list_item_reputation, parent, false);
                 holder = new ViewHolder();
                 holder.Flag = (ImageView) view.findViewById(R.id.imgFlag);
                 holder.TopLeft = (TextView) view.findViewById(R.id.txtTopLeft);

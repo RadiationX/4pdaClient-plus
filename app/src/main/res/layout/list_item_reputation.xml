@@ -31,7 +31,7 @@
 
             <TextView
                 android:id="@+id/txtMain"
-                style="?list_text_second_color"
+                style="?list_text_general_color"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="22dp"
@@ -43,13 +43,13 @@
 
             <TextView
                 android:id="@+id/txtSubMain"
-                style="?list_text_second_color"
+                style="?list_text_minor_color"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="20dp"
                 android:maxLines="2"
                 android:text="Sub main textySub main textySub main textySub main textySub main texty"
-                android:textAppearance="?android:textAppearanceSmall"/>
+                android:textAppearance="?android:textAppearanceSmall" />
 
             <RelativeLayout
                 android:id="@+id/lnrTop"
@@ -60,7 +60,7 @@
 
                 <TextView
                     android:id="@+id/txtTopLeft"
-                    style="?list_text_second_color"
+                    style="?list_text_minor_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -73,7 +73,7 @@
 
                 <TextView
                     android:id="@+id/txtTopRight"
-                    style="?list_text_second_color"
+                    style="?list_text_minor_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -95,6 +95,7 @@
             android:layout_alignParentTop="true"
             android:indeterminateOnly="true"
             android:paddingTop="8dp"
-            android:paddingBottom="8dp"/>
+            android:paddingBottom="8dp"
+            android:visibility="invisible"/>
     </FrameLayout>
 </RelativeLayout>
