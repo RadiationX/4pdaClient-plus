@@ -40,6 +40,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.melnykov.fab.FloatingActionButton;
 
 import net.londatiga.android3d.ActionItem;
@@ -188,10 +189,10 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
                             }
                         });
                     else if (!TextUtils.isEmpty(postResult.ForumErrorMessage))
-                        new AlertDialogBuilder(getContext())
-                                .setTitle("Сообщение форума")
-                                .setMessage(postResult.ForumErrorMessage)
-                                .create().show();
+                        new MaterialDialog.Builder(getContext())
+                                .title("Сообщение форума")
+                                .content(postResult.ForumErrorMessage)
+                                .show();
                 }
             }
         });
@@ -583,22 +584,18 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
 
         getPostBody();
         if (!TextUtils.isEmpty(m_PostBody)) {
-            new AlertDialogBuilder(ThemeActivity.this)
-                    .setTitle("Подтвердите действие")
-                    .setMessage("Имеется введенный текст сообщения! Закрыть тему?")
-                    .setPositiveButton("Да", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
+            new MaterialDialog.Builder(ThemeActivity.this)
+                    .title("Подтвердите действие")
+                    .content("Имеется введенный текст сообщения! Закрыть тему?")
+                    .positiveText("Да")
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
                             clear();
                             ThemeActivity.super.onBackPressed();
                         }
                     })
-                    .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    })
-                    .create()
+                    .negativeText("Отмена")
                     .show();
         } else {
             clear();
@@ -653,13 +650,13 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
         if (TextUtils.isEmpty(clipboardText))
             titles = new CharSequence[]{"Редактор цитаты", "Пустая цитата"};
         final CharSequence finalClipboardText = clipboardText;
-        new AlertDialogBuilder(getContext())
-                .setTitle("Цитата")
-                .setCancelable(true)
-                .setSingleChoiceItems(titles, -1, new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(getContext())
+                .title("Цитата")
+                .cancelable(true)
+                .items(titles)
+                .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+                    public void onSelection(MaterialDialog dialog, View view, int i, CharSequence titles) {
                         switch (i) {
                             case 0:
                                 showQuoteEditor("http://4pda.ru/forum/index.php?act=Post&CODE=02&f=" + forumId + "&t=" + topicId + "&qpid=" + postId);
@@ -672,7 +669,8 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
                                 break;
                         }
                     }
-                }).create().show();
+                })
+                .show();
     }
 
     public void openActionMenu(final String postId, final String postDate,
@@ -833,23 +831,17 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
 
     public void setLoadsImagesAutomatically(boolean loadsImagesAutomatically) {
         LoadsImagesAutomatically = loadsImagesAutomatically;
-        new AlertDialogBuilder(this)
-                .setTitle("Выберите действие")
-                .setMessage("Обновить страницу?")
-                .setPositiveButton("Обновить", new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(this)
+                .title("Выберите действие")
+                .content("Обновить страницу?")
+                .positiveText("Обновить")
+                .callback(new MaterialDialog.ButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+                    public void onPositive(MaterialDialog dialog) {
                         reloadTopic();
                     }
                 })
-                .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .create()
+                .negativeText("Нет")
                 .show();
     }
 
@@ -1147,21 +1139,17 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
     }
 
     private void prepareDeleteMessage(final String postId) {
-        new AlertDialogBuilder(ThemeActivity.this)
-                .setTitle("Подтвердите действие")
-                .setMessage("Вы действительно хотите удалить это сообщение?")
-                .setPositiveButton("Удалить", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
+        new MaterialDialog.Builder(ThemeActivity.this)
+                .title("Подтвердите действие")
+                .content("Вы действительно хотите удалить это сообщение?")
+                .positiveText("Удалить")
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
                         deleteMessage(postId);
                     }
                 })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-
-                    }
-                })
-                .create()
+                .negativeText("Отмена")
                 .show();
     }
 

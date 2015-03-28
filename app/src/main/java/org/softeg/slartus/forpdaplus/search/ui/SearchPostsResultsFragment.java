@@ -34,6 +34,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.softeg.slartus.forpdaapi.search.SearchSettings;
@@ -388,15 +389,16 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
                     pages[p] = "Стр. " + (p + 1) + " (" + ((p * postsPerPage + 1) + "-" + (p + 1) * postsPerPage) + ")";
                 }
 
-                new AlertDialogBuilder(getContext())
-                        .setTitle("Перейти к странице")
-                        .setSingleChoiceItems(pages, m_SearchResult.getCurrentPage() - 1, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
+                new MaterialDialog.Builder(getContext())
+                        .title("Перейти к странице")
+                        .items(pages)
+                        .itemsCallbackSingleChoice(m_SearchResult.getCurrentPage() - 1, new MaterialDialog.ListCallbackSingleChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, View view, int i, CharSequence pages) {
                                 search(i * postsPerPage);
+                                return true; // allow selection
                             }
                         })
-                        .create()
                         .show();
             }
         });

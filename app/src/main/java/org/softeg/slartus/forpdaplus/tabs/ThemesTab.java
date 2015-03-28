@@ -22,6 +22,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaapi.OnProgressChangedListener;
 import org.softeg.slartus.forpdaapi.Topic;
 import org.softeg.slartus.forpdaplus.App;
@@ -557,60 +559,48 @@ public abstract class ThemesTab extends BaseTab {
         final CharSequence[] values = new CharSequence[]{Topic.NAVIGATE_VIEW_FIRST_POST,
                 Topic.NAVIGATE_VIEW_LAST_POST, Topic.NAVIGATE_VIEW_NEW_POST};
         final int[] selected = {2};
-        new AlertDialogBuilder(activity)
-                .setSingleChoiceItems(titles, selected[0], new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(activity)
+                .items(titles)
+                .itemsCallbackSingleChoice(selected[0], new MaterialDialog.ListCallbackSingleChoice() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public boolean onSelection(MaterialDialog dialog, View view, int i, CharSequence titles) {
                         selected[0] = i;
+                        return true; // allow selection
                     }
                 })
-                .setTitle("Действие по умолчанию")
-                .setPositiveButton("Всегда",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.dismiss();
+                .title("Действие по умолчанию")
+                .positiveText("Всегда")
+                .neutralText("Только сейчас")
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        new MaterialDialog.Builder(activity)
+                                .title("Подсказка")
+                                .content("Вы можете изменить действие по умолчанию долгим тапом по теме")
+                                .cancelable(false)
+                                .positiveText("OK")
+                                .callback(new MaterialDialog.ButtonCallback() {
+                                    @Override
+                                    public void onPositive(MaterialDialog dialog) {
+                                        String navigateAction = values[selected[0]].toString();
+                                        saveOpenThemeParams(tabId, templateId, navigateAction);
+                                        ExtTopic.showActivity(activity, topicId,
+                                                ThemeOpenParams.getUrlParams(navigateAction, null));
 
-                                new AlertDialogBuilder(activity)
-                                        .setTitle("Подсказка")
-                                        .setMessage("Вы можете изменить действие по умолчанию долгим тапом по теме")
-                                        .setCancelable(false)
-                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                dialogInterface.dismiss();
+                                        onClickListener.onClick(null, -1);
+                                    }
+                                })
+                                .show();
+                    }
+                    @Override
+                    public void onNeutral(MaterialDialog dialog) {
+                        String navigateAction = values[selected[0]].toString();
+                        ExtTopic.showActivity(activity, topicId,
+                                ThemeOpenParams.getUrlParams(navigateAction, null));
 
-                                                String navigateAction = values[selected[0]].toString();
-                                                saveOpenThemeParams(tabId, templateId, navigateAction);
-                                                ExtTopic.showActivity(activity, topicId,
-                                                        ThemeOpenParams.getUrlParams(navigateAction, null));
-
-                                                onClickListener.onClick(null, -1);
-                                            }
-                                        })
-                                        .create().show();
-
-
-                            }
-                        }
-                )
-                .setNeutralButton("Только сейчас",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.dismiss();
-
-
-                                String navigateAction = values[selected[0]].toString();
-                                ExtTopic.showActivity(activity, topicId,
-                                        ThemeOpenParams.getUrlParams(navigateAction, null));
-
-                                onClickListener.onClick(null, -1);
-                            }
-                        }
-                )
-                .create()
+                        onClickListener.onClick(null, -1);
+                    }
+                })
                 .show();
-
     }
-
-
 }

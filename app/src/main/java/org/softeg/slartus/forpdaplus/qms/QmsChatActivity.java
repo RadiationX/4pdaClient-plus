@@ -38,6 +38,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaapi.qms.QmsApi;
 import org.softeg.slartus.forpdacommon.ExtPreferences;
 import org.softeg.slartus.forpdacommon.FileUtils;
@@ -273,26 +275,19 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
                     return;
                 }
 
-                new AlertDialogBuilder(QmsChatActivity.this)
-                        .setTitle("Подтвердите действие")
-                        .setCancelable(true)
-                        .setMessage(String.format("Вы действительно хотите удалить выбранные сообщения (%d)?", ids.size()))
-                        .setPositiveButton("Удалить", new DialogInterface.OnClickListener() {
+                new MaterialDialog.Builder(QmsChatActivity.this)
+                        .title("Подтвердите действие")
+                        .cancelable(true)
+                        .content(String.format("Вы действительно хотите удалить выбранные сообщения (%d)?", ids.size()))
+                        .positiveText("Удалить")
+                        .callback(new MaterialDialog.ButtonCallback() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-
+                            public void onPositive(MaterialDialog dialog) {
                                 m_SendTask = new DeleteTask(QmsChatActivity.this);
                                 m_SendTask.execute(ids);
                             }
                         })
-                        .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        })
-                        .create()
+                        .negativeText("Отмена")
                         .show();
             }
         });
@@ -300,28 +295,21 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
 
     public void deleteDialog() {
 
-        new AlertDialogBuilder(this)
-                .setTitle("Подтвердите действие")
-                .setCancelable(true)
-                .setMessage("Вы действительно хотите удалить диалог?")
-                .setPositiveButton("Удалить", new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(this)
+                .title("Подтвердите действие")
+                .cancelable(true)
+                .content("Вы действительно хотите удалить диалог?")
+                .positiveText("Удалить")
+                .callback(new MaterialDialog.ButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-
+                    public void onPositive(MaterialDialog dialog) {
                         ArrayList<String> ids = new ArrayList<>();
                         ids.add(m_TId);
                         m_SendTask = new DeleteDialogTask(QmsChatActivity.this, ids);
                         m_SendTask.execute();
                     }
                 })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .create()
+                .negativeText("Отмена")
                 .show();
 
     }
@@ -510,17 +498,17 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
                     wvChat.loadDataWithBaseURL("\"file:///android_asset/\"", finalChatBody, "text/html", "UTF-8", null);
                 } else {
                     if ("Такого диалога не существует.".equals(finalEx.getMessage())) {
-                        new AlertDialogBuilder(QmsChatActivity.this)
-                                .setTitle("Ошибка")
-                                .setMessage(finalEx.getMessage())
-                                .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+                        new MaterialDialog.Builder(QmsChatActivity.this)
+                                .title("Ошибка")
+                                .content(finalEx.getMessage())
+                                .positiveText("ОК")
+                                .callback(new MaterialDialog.ButtonCallback() {
                                     @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        dialogInterface.dismiss();
+                                    public void onPositive(MaterialDialog dialog) {
                                         showThread();
                                     }
                                 })
-                                .create().show();
+                                .show();
                         m_UpdateTimer.cancel();
                         m_UpdateTimer.purge();
 
@@ -855,24 +843,22 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
 
             }
         });
-        new AlertDialogBuilder(this)
-                .setTitle("Размер шрифта")
-                .setView(v)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(this)
+                .title("Размер шрифта")
+                .customView(v)
+                .positiveText("OK")
+                .negativeText("Отмена")
+                .callback(new MaterialDialog.ButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+                    public void onPositive(MaterialDialog dialog) {
                         Preferences.setFontSize(Prefix(), seekBar.getProgress() + 1);
                     }
-                })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+                    public void onNegative(MaterialDialog dialog) {
                         getWebView().getSettings().setDefaultFontSize(Preferences.Topic.getFontSize());
                     }
                 })
-                .create().show();
+                .show();
 
     }
 

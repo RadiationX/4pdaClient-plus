@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.notes.NoteDialog;
@@ -127,12 +129,12 @@ public class ExtUrl {
                                               final String url) {
 
         CharSequence[] titles = {"Открыть в браузере", "Поделиться ссылкой", "Скопировать ссылку"};
-        new AlertDialogBuilder(context)
-                .setTitle(title)
-                .setSingleChoiceItems(titles, -1, new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(context)
+                .title(title)
+                .items(titles)
+                .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+                    public boolean onSelection(MaterialDialog dialog, View view, int i, CharSequence titles) {
                         switch (i) {
                             case 0:
                                 showInBrowser(context, url);
@@ -144,16 +146,12 @@ public class ExtUrl {
                                 copyLinkToClipboard(context, url);
                                 break;
                         }
+                        return true; // allow selection
                     }
                 })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .setCancelable(true)
-                .create().show();
+                .negativeText("Отмена")
+                .cancelable(true)
+                .show();
 
 
 

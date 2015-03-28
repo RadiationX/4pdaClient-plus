@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.apache.http.client.CookieStore;
 import org.apache.http.cookie.Cookie;
 import org.softeg.slartus.forpdaapi.ForumsApi;
@@ -398,11 +400,13 @@ public class Client implements IHttpClient {
                 autologin_checkbox.setChecked(preferences.getBoolean("AutoLogin", true));
 
 
-                m_LoginDialog = new AlertDialogBuilder(context)
-                        .setTitle("Вход")
-                        .setView(layout)
-                        .setPositiveButton("Вход", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                m_LoginDialog = new MaterialDialog.Builder(context)
+                        .title("Вход")
+                        .customView(layout)
+                        .positiveText("Вход")
+                        .callback(new MaterialDialog.ButtonCallback() {
+                            @Override
+                            public void onPositive(MaterialDialog dialog) {
                                 LoginTask loginTask = new LoginTask(context);
                                 loginTask.setOnUserChangedListener(monUserChangedListener);
                                 loginTask.execute(username_edit.getText().toString(), password_edit.getText().toString(),
@@ -411,13 +415,8 @@ public class Client implements IHttpClient {
                                 );
                             }
                         })
-                        .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                if (monUserChangedListener != null)
-//                                    monUserChangedListener.onUserChanged(m_User, false);
-                            }
-                        })
-                        .create();
+                        .negativeText("Отмена")
+                        .build();
             }
 
             m_LoginDialog.show();

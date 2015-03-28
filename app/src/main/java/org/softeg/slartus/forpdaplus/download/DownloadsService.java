@@ -23,6 +23,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.cookie.Cookie;
 import org.softeg.slartus.forpdacommon.ActionSelectDialogFragment;
@@ -221,22 +223,21 @@ public class DownloadsService extends IntentService {
                     FileUtils.getFileNameFromUrl(url) + "_download");
             final File file = new File(filePath);
             if (file.exists()) {
-                new AlertDialogBuilder(context1)
-                        .setTitle("Внимание!")
-                        .setMessage("Имеется недокачанный файл с таким же названием.\nДокачать?")
-                        .setPositiveButton("Докачать", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
+                new MaterialDialog.Builder(context1)
+                        .title("Внимание!")
+                        .content("Имеется недокачанный файл с таким же названием.\nДокачать?")
+                        .positiveText("Докачать")
+                        .negativeText("Перекачать")
+                        .callback(new MaterialDialog.ButtonCallback() {
+                            @Override
+                            public void onPositive(MaterialDialog dialog) {
                                 startDownload(context1, url, filePath, notificationId, fileName);
                             }
-                        })
-                        .setNegativeButton("Перекачать", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                                file.delete();
+                            @Override
+                            public void onNegative(MaterialDialog dialog) {
                                 startDownload(context1, url, null, notificationId, fileName);
                             }
-                        }).create().show();
+                        }).show();
                 return;
             }
         }

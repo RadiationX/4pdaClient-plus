@@ -14,6 +14,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaapi.TopicApi;
 import org.softeg.slartus.forpdaapi.devdb.DevDbApi;
 import org.softeg.slartus.forpdaapi.search.SearchSettings;
@@ -600,26 +602,26 @@ public class IntentActivity extends BaseFragmentActivity implements BricksListDi
             final TextView message = (TextView) view.findViewById(R.id.textView);
             message.setText("Начать закачку файла?");
             checkBox.setText("Подтверждать скачивание");
-            new AlertDialogBuilder(activity)
-                    .setTitle("Подтвердите действие")
-                    .setView(view)
-                    .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
+            new MaterialDialog.Builder(activity)
+                    .title("Подтвердите действие")
+                    .customView(view)
+                    .positiveText("ОК")
+                    .negativeText("Отмена")
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            //dialogInterface.dismiss();
                             if (!checkBox.isChecked())
                                 Preferences.Files.setConfirmDownload(false);
                             DownloadsService.download(activity, url,finish);
-
-
                         }
-                    })
-                    .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
+                        @Override
+                        public void onNegative(MaterialDialog dialog) {
                             if (finish)
                                 activity.finish();
                         }
                     })
-                    .create().show();
+                    .show();
 
         } else {
             DownloadsService.download(activity, url,finish);

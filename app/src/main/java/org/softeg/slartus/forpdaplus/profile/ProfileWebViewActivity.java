@@ -10,6 +10,10 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.prefs.MaterialListPreference;
 
 import org.softeg.slartus.forpdaplus.BaseFragmentActivity;
 import org.softeg.slartus.forpdaplus.Client;
@@ -128,29 +132,30 @@ public class ProfileWebViewActivity extends BaseFragmentActivity {
             item = menu.add(getString(R.string.Reputation));
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
-                    new AlertDialogBuilder(getActivity())
-                            .setTitle("Репутация")
-                            .setItems(new CharSequence[]{"+1", "Посмотреть", "-1", "Кому изменял репутацию"}, new DialogInterface.OnClickListener() {
+                    CharSequence[] items = {"+1", "Посмотреть", "-1", "Кому изменял репутацию"};
+                    new MaterialDialog.Builder(getActivity())
+                            .title("Репутация")
+                            .items(items)
+                            .itemsCallback(new MaterialDialog.ListCallback() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
+                                public void onSelection(MaterialDialog dialog, View view, int i, CharSequence items) {
                                     switch (i) {
                                         case 0:
                                             UserReputationFragment.plusRep(getActivity(), new Handler(), userId, userNick);
                                             break;
                                         case 1:
-                                            UserReputationFragment.showActivity(getActivity(),userId,false);
+                                            UserReputationFragment.showActivity(getActivity(), userId, false);
                                             break;
                                         case 2:
                                             UserReputationFragment.minusRep(getActivity(), new Handler(), userId, userNick);
                                             break;
                                         case 3:
-                                            UserReputationFragment.showActivity(getActivity(), userId,true);
+                                            UserReputationFragment.showActivity(getActivity(), userId, true);
                                             break;
                                     }
-                                    dialogInterface.dismiss();
                                 }
                             })
-                            .create().show();
+                            .show();
 
                     return true;
                 }

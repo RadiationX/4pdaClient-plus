@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
@@ -119,18 +120,18 @@ public class ForumFragment extends Fragment implements
                 Toast.makeText(getActivity(), "Форум задан стартовым", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.update_forum_struct:
-                new AlertDialogBuilder(getActivity())
-                        .setTitle("Внимание!")
-                        .setMessage("Обновление структуры форума может занять продолжительное время " +
+                new MaterialDialog.Builder(getActivity())
+                        .title("Внимание!")
+                        .content("Обновление структуры форума может занять продолжительное время " +
                                 "и использует большой объем интернет-траффика")
-                        .setPositiveButton("Обновить", new DialogInterface.OnClickListener() {
+                        .positiveText("Обновить")
+                        .callback(new MaterialDialog.ButtonCallback() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
+                            public void onPositive(MaterialDialog dialog) {
                                 new UpdateForumStructTask(getActivity()).execute();
                             }
                         })
-                        .setNegativeButton("Отмена", null).create().show();
+                        .negativeText("Отмена").show();
 
                 return true;
         }
@@ -142,12 +143,13 @@ public class ForumFragment extends Fragment implements
             Toast.makeText(getActivity(), "Необходимо залогиниться!", Toast.LENGTH_SHORT).show();
             return;
         }
-        new AlertDialogBuilder(getActivity())
-                .setTitle("Подтвердите действие")
-                .setMessage("Отметить этот форум прочитанным?")
-                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+        new MaterialDialog.Builder(getActivity())
+                .title("Подтвердите действие")
+                .content("Отметить этот форум прочитанным?")
+                .positiveText("Да")
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
                         Toast.makeText(getActivity(), "Запрос отправлен", Toast.LENGTH_SHORT).show();
                         new Thread(new Runnable() {
                             public void run() {
@@ -181,12 +183,7 @@ public class ForumFragment extends Fragment implements
                         }).start();
                     }
                 })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .create()
+                .negativeText("Отмена")
                 .show();
     }
 

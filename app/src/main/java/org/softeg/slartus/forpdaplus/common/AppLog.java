@@ -8,6 +8,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.apache.http.MalformedChunkCodingException;
 import org.apache.http.NoHttpResponseException;
 import org.apache.http.client.ClientProtocolException;
@@ -61,18 +63,18 @@ public final class AppLog {
         if (ex.getClass() == ShowInBrowserException.class) {
             ShowInBrowserDialog.showDialog(context, (ShowInBrowserException) ex);
         } else if (ex instanceof NotReportException) {
-            new AlertDialogBuilder(context)
-                    .setTitle("Ошибка")
-                    .setMessage(message)
-                    .setPositiveButton("ОК", null)
-                    .create().show();
+            new MaterialDialog.Builder(context)
+                    .title("Ошибка")
+                    .content(message)
+                    .positiveText("ОК")
+                    .show();
         } else if (ex.getClass() == MessageInfoException.class) {
             MessageInfoException messageInfoException = (MessageInfoException) ex;
-            new AlertDialogBuilder(context)
-                    .setTitle(messageInfoException.Title)
-                    .setMessage(messageInfoException.Text)
-                    .setPositiveButton("ОК", null)
-                    .create().show();
+            new MaterialDialog.Builder(context)
+                    .title(messageInfoException.Title)
+                    .content(messageInfoException.Text)
+                    .positiveText("ОК")
+                    .show();
         } else {
             org.acra.ACRA.getErrorReporter().handleException(ex);
 
@@ -85,22 +87,22 @@ public final class AppLog {
             String message = getLocalizedMessage(ex, null);
             if (message == null)
                 return false;
-            AlertDialog.Builder builder = new AlertDialog.Builder(context)
-                    .setTitle("Проверьте соединение")
-                    .setMessage(message)
-                    .setPositiveButton("ОК", null);
+            MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
+                    .title("Проверьте соединение")
+                    .content(message)
+                    .positiveText("ОК");
 
 
             if (netExceptionAction != null) {
-                builder.setNegativeButton("Повторить", new DialogInterface.OnClickListener() {
+                builder.negativeText("Повторить")
+                .callback(new MaterialDialog.ButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+                    public void onPositive(MaterialDialog dialog) {
                         netExceptionAction.run();
                     }
                 });
             }
-            builder.create().show();
+            builder.show();
             return true;
 
         } catch (Throwable loggedEx) {

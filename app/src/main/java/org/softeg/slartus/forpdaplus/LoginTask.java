@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.classes.AppProgressDialog;
 import org.softeg.slartus.forpdaplus.common.AppLog;
@@ -21,12 +23,12 @@ import org.softeg.slartus.forpdaplus.common.AppLog;
 public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
     private Context mContext;
-    private final ProgressDialog dialog;
+    //private final MaterialDialog.Builder dialog;
 
     public LoginTask(Context context) {
         mContext = context;
-        dialog = new AppProgressDialog(context);
-        dialog.setCancelable(false);
+        //dialog = new MaterialDialog.Builder(context).progress(true, 0);
+        //dialog.cancelable(false);
     }
 
     private String m_Login;
@@ -56,8 +58,8 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
     // can use UI thread here
     protected void onPreExecute() {
-        this.dialog.setMessage("Вход...");
-        this.dialog.show();
+        //this.dialog.content("Вход...");
+        //this.dialog.show();
     }
 
     protected void onCancelled() {
@@ -81,9 +83,9 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
     // can use UI thread here
     protected void onPostExecute(final Boolean success) {
-        if (this.dialog.isShowing()) {
-            this.dialog.dismiss();
-        }
+        //if (this.dialog.isShowing()) {
+        //    this.dialog.dismiss();
+        //}
         doOnUserChangedListener(m_Login, success);
         Client.getInstance().doOnUserChangedListener(m_Login, success);
         if (success) {
@@ -105,11 +107,11 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
             if (ex != null)
                 AppLog.e(mContext, ex);
             else
-                new AlertDialogBuilder(mContext)
-                        .setTitle("Ошибка")
-                        .setMessage(Client.getInstance().getLoginFailedReason())
-                        .setPositiveButton(android.R.string.ok, null)
-                        .create().show();
+                new MaterialDialog.Builder(mContext)
+                        .title("Ошибка")
+                        .content(Client.getInstance().getLoginFailedReason())
+                        .positiveText(android.R.string.ok)
+                        .show();
 //                    Toast.makeText(mContext, Client.getInstance().getLoginFailedReason(),
 //                            Toast.LENGTH_SHORT).show();
         }

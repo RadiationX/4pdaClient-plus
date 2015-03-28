@@ -12,6 +12,8 @@ import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.TextUtils;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.softeg.slartus.forpdacommon.Http;
@@ -98,14 +100,14 @@ public class ForPdaVersionNotifier extends MainNotifier {
             handler.post(new Runnable() {
                 public void run() {
                     try {
-                        addToStack(new AlertDialogBuilder(context)
-                                .setTitle("Новая версия!")
-                                .setMessage("На сайте 4pda.ru обнаружена новая версия: " + version + "\n\n" +
+                        addToStack(new MaterialDialog.Builder(context)
+                                .title("Новая версия!")
+                                .content("На сайте 4pda.ru обнаружена новая версия: " + version + "\n\n" +
                                         "Изменения:\n" + info)
-                                .setPositiveButton("Скачать", new DialogInterface.OnClickListener() {
+                                .positiveText("Скачать")
+                                .callback(new MaterialDialog.ButtonCallback() {
                                     @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        dialogInterface.dismiss();
+                                    public void onPositive(MaterialDialog dialog) {
                                         try {
                                             IntentActivity.tryShowFile((Activity) context, Uri.parse(apk), false);
                                         } catch (Throwable ex) {
@@ -113,7 +115,8 @@ public class ForPdaVersionNotifier extends MainNotifier {
                                         }
                                     }
                                 })
-                                .setNegativeButton("Закрыть", null).create());
+                                .negativeText("Закрыть")
+                                .build());
 
                     } catch (Exception ex) {
                         AppLog.e(context, new NotReportException("Ошибка проверки новой версии", ex));

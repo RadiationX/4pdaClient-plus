@@ -11,6 +11,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.softeg.slartus.forpdaplus.BaseFragmentActivity;
@@ -165,24 +167,22 @@ public abstract class BrowserViewsFragmentActivity extends BaseFragmentActivity 
 
             }
         });
-        new AlertDialogBuilder(this)
-                .setTitle("Размер шрифта")
-                .setView(v)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(this)
+                .title("Размер шрифта")
+                .customView(v)
+                .positiveText("OK")
+                .negativeText("Отмена")
+                .callback(new MaterialDialog.ButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+                    public void onPositive(MaterialDialog dialog) {
                         Preferences.setFontSize(Prefix(), seekBar.getProgress() + 1);
                     }
-                })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+                    public void onNegative(MaterialDialog dialog) {
                         getWebView().getSettings().setDefaultFontSize(Preferences.Topic.getFontSize());
                     }
                 })
-                .create().show();
+                .show();
 
     }
 }

@@ -22,6 +22,8 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaapi.TopicApi;
 import org.softeg.slartus.forpdaplus.App;
 import org.softeg.slartus.forpdaplus.Client;
@@ -278,24 +280,23 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                     App.getContext().getResources().getStringArray(R.array.AvatarsShowTitles)[Preferences.Topic.getShowAvatarsOpt()]))
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(final MenuItem menuItem) {
+                   String[] avatars = App.getContext().getResources().getStringArray(R.array.AvatarsShowTitles);
+                   new MaterialDialog.Builder(getActivity())
+                           .title("Показывать аватары")
+                           .cancelable(true)
+                           .items(avatars)
+                           .itemsCallbackSingleChoice(Preferences.Topic.getShowAvatarsOpt(), new MaterialDialog.ListCallbackSingleChoice() {
+                               @Override
+                               public boolean onSelection(MaterialDialog dialog, View view, int i, CharSequence avatars) {
+                                   //if(i==-1) return false;
 
-                   new AlertDialogBuilder(getActivity())
-                           .setTitle("Показывать аватары")
-                           .setCancelable(true)
-                           .setSingleChoiceItems(App.getContext().getResources().getStringArray(R.array.AvatarsShowTitles),
-                                   Preferences.Topic.getShowAvatarsOpt(), new DialogInterface.OnClickListener() {
-                                       @Override
-                                       public void onClick(DialogInterface dialogInterface, int i) {
-                                           dialogInterface.dismiss();
-                                           if(i==-1)
-                                               return;
-
-                                           Preferences.Topic.setShowAvatarsOpt(i);
-                                           menuItem.setTitle(String.format("Показывать аватары (%s)",
-                                                   App.getContext().getResources().getStringArray(R.array.AvatarsShowTitles)[Preferences.Topic.getShowAvatarsOpt()]));
-                                       }
-                                   })
-                           .create().show();
+                                   Preferences.Topic.setShowAvatarsOpt(i);
+                                   menuItem.setTitle(String.format("Показывать аватары (%s)",
+                                           App.getContext().getResources().getStringArray(R.array.AvatarsShowTitles)[Preferences.Topic.getShowAvatarsOpt()]));
+                                   return true; // allow selection
+                               }
+                           })
+                           .show();
                     return true;
                 }
             });
@@ -388,22 +389,18 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         getInterface().getPostBody();
                         if (!TextUtils.isEmpty(getInterface().getPostBody())) {
-                            new AlertDialogBuilder(getActivity())
-                                    .setTitle("Подтвердите действие")
-                                    .setMessage("Имеется введенный текст сообщения! Закрыть тему?")
-                                    .setPositiveButton("Да", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            dialogInterface.dismiss();
+                            new MaterialDialog.Builder(getActivity())
+                                    .title("Подтвердите действие")
+                                    .content("Имеется введенный текст сообщения! Закрыть тему?")
+                                    .positiveText("Да")
+                                    .callback(new MaterialDialog.ButtonCallback() {
+                                        @Override
+                                        public void onPositive(MaterialDialog dialog) {
                                             getInterface().clear();
                                             getInterface().finish();
                                         }
                                     })
-                                    .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            dialogInterface.dismiss();
-                                        }
-                                    })
-                                    .create()
+                                    .negativeText("Отмена")
                                     .show();
                         } else {
                             getInterface().clear(true);

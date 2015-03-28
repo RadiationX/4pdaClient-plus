@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.common.AppLog;
@@ -102,24 +104,22 @@ public class ForumUser {
                             assert insertNickInterface != null;
                             insertNickInterface.insert(String.format(TopicBodyBuilder.NICK_SNAPBACK_TEMPLATE,postId, finalUserNick ));
                         } else if (actionId == finalSendQmsPosition) {
-                            new AlertDialogBuilder(context)
-                                    .setTitle(context.getString(R.string.SelectAnAction))
-                                    .setMessage(context.getString(R.string.OpenWith) + " " + finalUserNick + "..")
-                                    .setCancelable(true)
-                                    .setPositiveButton(context.getString(R.string.NewDialog), new DialogInterface.OnClickListener() {
+                            new MaterialDialog.Builder(context)
+                                    .title(context.getString(R.string.SelectAnAction))
+                                    .content(context.getString(R.string.OpenWith) + " " + finalUserNick + "..")
+                                    .cancelable(true)
+                                    .positiveText(context.getString(R.string.NewDialog))
+                                    .neutralText(context.getString(R.string.AllDialogs))
+                                    .callback(new MaterialDialog.ButtonCallback() {
                                         @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            dialogInterface.dismiss();
+                                        public void onPositive(MaterialDialog dialog) {
                                             QmsNewThreadActivity.showUserNewThread(context, userId, finalUserNick);
                                         }
-                                    })
-                                    .setNeutralButton(context.getString(R.string.AllDialogs), new DialogInterface.OnClickListener() {
                                         @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                        public void onNegative(MaterialDialog dialog) {
                                             QmsContactThemesActivity.showThemes(context, userId, finalUserNick);
                                         }
                                     })
-                                    .create()
                                     .show();
 
                         } else if (actionId == finalShowProfilePosition) {
@@ -159,24 +159,22 @@ public class ForumUser {
                         .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem menuItem) {
-                                new AlertDialogBuilder(context)
-                                        .setTitle(context.getString(R.string.SelectAnAction))
-                                        .setMessage(context.getString(R.string.OpenWith) + " " + finalUserNick + "..")
-                                        .setCancelable(true)
-                                        .setPositiveButton(context.getString(R.string.NewDialog), new DialogInterface.OnClickListener() {
+                                new MaterialDialog.Builder(context)
+                                        .title(context.getString(R.string.SelectAnAction))
+                                        .content(context.getString(R.string.OpenWith) + " " + finalUserNick + "..")
+                                        .cancelable(true)
+                                        .positiveText(context.getString(R.string.NewDialog))
+                                        .neutralText(context.getString(R.string.AllDialogs))
+                                        .callback(new MaterialDialog.ButtonCallback() {
                                             @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                dialogInterface.dismiss();
+                                            public void onPositive(MaterialDialog dialog) {
                                                 QmsNewThreadActivity.showUserNewThread(context, userId, finalUserNick);
                                             }
-                                        })
-                                        .setNeutralButton(context.getString(R.string.AllDialogs), new DialogInterface.OnClickListener() {
                                             @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                            public void onNeutral(MaterialDialog dialog) {
                                                 QmsContactThemesActivity.showThemes(context, userId, finalUserNick);
                                             }
                                         })
-                                        .create()
                                         .show();
                                 return true;
                             }
@@ -227,13 +225,13 @@ public class ForumUser {
         TextView username_view = (TextView) layout.findViewById(R.id.username_view);
         final EditText message_edit = (EditText) layout.findViewById(R.id.message_edit);
         username_view.setText(userNick);
-        new AlertDialogBuilder(context)
-                .setTitle(title)
-                .setView(layout)
-                .setPositiveButton(context.getString(R.string.Change), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-
+        new MaterialDialog.Builder(context)
+                .title(title)
+                .customView(layout)
+                .positiveText(context.getString(R.string.Change))
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
                         Toast.makeText(context, context.getString(R.string.ChangeReputationRequest), Toast.LENGTH_SHORT).show();
 
                         new Thread(new Runnable() {
@@ -257,16 +255,11 @@ public class ForumUser {
                                                 Toast.makeText(context, context.getString(R.string.ChangeReputationError), Toast.LENGTH_SHORT).show();
                                                 AppLog.e(context, finalEx);
                                             } else if (!finalRes) {
-                                                new AlertDialogBuilder(context)
-                                                        .setTitle(context.getString(R.string.ChangeReputationError))
-                                                        .setMessage(outParams.get("Result"))
-                                                        .setCancelable(true)
-                                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                                dialogInterface.dismiss();
-                                                            }
-                                                        })
-                                                        .create()
+                                                new MaterialDialog.Builder(context)
+                                                        .title(context.getString(R.string.ChangeReputationError))
+                                                        .content(outParams.get("Result"))
+                                                        .cancelable(true)
+                                                        .positiveText("OK")
                                                         .show();
                                             } else {
                                                 Toast.makeText(context, outParams.get("Result"), Toast.LENGTH_SHORT).show();
@@ -279,14 +272,9 @@ public class ForumUser {
                                 });
                             }
                         }).start();
-
                     }
                 })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .create().show();
+                .negativeText("Отмена")
+                .show();
     }
 }

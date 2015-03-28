@@ -20,6 +20,8 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.listtemplates.BrickInfo;
@@ -272,12 +274,13 @@ public class MainDrawerMenu {
                         Toast.makeText(mActivity, "Необходимо залогиниться!", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    new AlertDialogBuilder(mActivity)
-                            .setTitle("Подтвердите действие")
-                            .setMessage("Отметить весь форум прочитанным?")
-                            .setPositiveButton("Да", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
+                    new MaterialDialog.Builder(mActivity)
+                            .title("Подтвердите действие")
+                            .content("Отметить весь форум прочитанным?")
+                            .positiveText("Да")
+                            .callback(new MaterialDialog.ButtonCallback() {
+                                @Override
+                                public void onPositive(MaterialDialog dialog) {
                                     Toast.makeText(mActivity, "Запрос отправлен", Toast.LENGTH_SHORT).show();
                                     new Thread(new Runnable() {
                                         public void run() {
@@ -309,12 +312,7 @@ public class MainDrawerMenu {
                                     }).start();
                                 }
                             })
-                            .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.dismiss();
-                                }
-                            })
-                            .create()
+                            .negativeText("Отмена")
                             .show();
                     break;
             }

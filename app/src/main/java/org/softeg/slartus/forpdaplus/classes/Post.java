@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.common.HtmlUtils;
@@ -194,13 +196,13 @@ public class Post {
         assert layout != null;
         final EditText message_edit = (EditText) layout.findViewById(R.id.message_edit);
 
-        new AlertDialogBuilder(context)
-                .setTitle("Отправить жалобу модератору на сообщение")
-                .setView(layout)
-                .setPositiveButton("Отправить жалобу", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-
+        new MaterialDialog.Builder(context)
+                .title("Отправить жалобу модератору на сообщение")
+                .customView(layout)
+                .positiveText("Отправить жалобу")
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
                         Toast.makeText(context, "Жалоба отправлена", Toast.LENGTH_SHORT).show();
 
                         new Thread(new Runnable() {
@@ -233,15 +235,10 @@ public class Post {
                                 });
                             }
                         }).start();
-
                     }
                 })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .create().show();
+                .negativeText("Отмена")
+                .show();
     }
 
     public static void plusOne(Activity themeActivity, Handler handler, String postId) {

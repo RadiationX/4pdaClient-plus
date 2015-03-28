@@ -42,6 +42,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.softeg.slartus.forpdacommon.FileUtils;
@@ -909,13 +910,14 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         final EditText message_edit = (EditText) layout.findViewById(R.id.comment);
         if (user != null)
             message_edit.setText("<b>" + URLDecoder.decode(user) + ",</b>");
-        new AlertDialogBuilder(this)
-                .setTitle(R.string.LeaveComment)
-                .setView(layout)
-                .setPositiveButton(R.string.Send, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-
+        new MaterialDialog.Builder(this)
+                .title(R.string.LeaveComment)
+                .customView(layout)
+                .positiveText(R.string.Send)
+                .negativeText("Отмена")
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
                         String message = message_edit.getText().toString();
                         if (TextUtils.isEmpty(message.trim())) {
                             Toast.makeText(NewsActivity.this, "Текст не можут быть пустым!", Toast.LENGTH_SHORT).show();
@@ -927,15 +929,9 @@ public class NewsActivity extends BrowserViewsFragmentActivity
                         getThemeTask.ReplyId = replyId;
                         getThemeTask.Dp = dp;
                         getThemeTask.execute(m_NewsUrl);
-
                     }
                 })
-                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .create().show();
+                .show();
     }
 
     @Override

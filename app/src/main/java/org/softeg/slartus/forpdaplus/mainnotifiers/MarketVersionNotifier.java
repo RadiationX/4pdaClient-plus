@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.os.Handler;
 import android.text.TextUtils;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.json.JSONObject;
 import org.softeg.slartus.forpdacommon.Http;
 import org.softeg.slartus.forpdacommon.NotReportException;
@@ -49,14 +51,14 @@ public class MarketVersionNotifier extends MainNotifier {
                         handler.post(new Runnable() {
                             public void run() {
                                 try {
-                                    new AlertDialogBuilder(context)
-                                            .setTitle("Новая версия!")
-                                            .setMessage("В Google Play обнаружена новая версия: "
+                                    new MaterialDialog.Builder(context)
+                                            .title("Новая версия!")
+                                            .content("В Google Play обнаружена новая версия: "
                                                     + finalReleaseVer)
-                                            .setPositiveButton("Открыть маркет", new DialogInterface.OnClickListener() {
+                                            .positiveText("Открыть маркет")
+                                            .callback(new MaterialDialog.ButtonCallback() {
                                                 @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                    dialogInterface.dismiss();
+                                                public void onPositive(MaterialDialog dialog) {
                                                     try {
                                                         ExtUrl.showInBrowser(context, "https://play.google.com/store/apps/details?id=" + context.getPackageName());
                                                     } catch (Throwable ex) {
@@ -64,8 +66,8 @@ public class MarketVersionNotifier extends MainNotifier {
                                                     }
                                                 }
                                             })
-                                            .setNegativeButton("Отмена", null)
-                                            .create().show();
+                                            .negativeText("Отмена")
+                                            .show();
 
                                 } catch (Exception ex) {
                                     AppLog.e(context, new NotReportException("Ошибка проверки новой версии", ex));

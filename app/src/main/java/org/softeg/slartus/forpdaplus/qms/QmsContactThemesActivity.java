@@ -30,6 +30,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaapi.qms.QmsApi;
 import org.softeg.slartus.forpdaapi.qms.QmsUserTheme;
 import org.softeg.slartus.forpdaapi.qms.QmsUserThemes;
@@ -208,16 +210,6 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
     public Boolean DeleteMode = false;
 
     private void startDeleteMode() {
-//        if("0".equals(m_Id))
-//        {
-//            new AlertDialogBuilder(this)
-//                    .setTitle("Внимание!")
-//                    .setMessage("В настоящее время нельзя удалить диалоги от пользователя '"+m_Nick+"'")
-//                    .setCancelable(true)
-//                    .setPositiveButton("OK",null)
-//                    .create().show();
-//            return;
-//        }
         mMode = startActionMode(new AnActionModeOfEpicProportions());
         DeleteMode = true;
         m_ListView.setSelection(AbsListView.CHOICE_MODE_MULTIPLE);
@@ -505,19 +497,18 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
         @Override
         public boolean onActionItemClicked(final ActionMode mode, MenuItem item) {
             if (m_QmsUsers.getSelectedCount() != 0)
-                new AlertDialogBuilder(QmsContactThemesActivity.this)
-                        .setTitle("Подтвердите действие")
-                        .setMessage("Вы действительно хотите удалить выбранные диалоги с пользователем " + m_Nick + "?")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                new MaterialDialog.Builder(QmsContactThemesActivity.this)
+                        .title("Подтвердите действие")
+                        .content("Вы действительно хотите удалить выбранные диалоги с пользователем " + m_Nick + "?")
+                        .positiveText("OK")
+                        .callback(new MaterialDialog.ButtonCallback() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
+                            public void onPositive(MaterialDialog dialog) {
                                 mode.finish();
                                 deleteSelectedDialogs();
                             }
                         })
-                        .setNegativeButton("Отмена", null)
-                        .create()
+                        .negativeText("Отмена")
                         .show();
 
             return true;

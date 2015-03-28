@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.webkit.WebView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdacommon.DateExtensions;
 import org.softeg.slartus.forpdacommon.ExtPreferences;
 import org.softeg.slartus.forpdacommon.Http;
@@ -26,7 +28,7 @@ import java.util.regex.Pattern;
  */
 public class TopicAttentionNotifier extends MainNotifier {
     public TopicAttentionNotifier(NotifiersManager notifiersManager) {
-        super(notifiersManager,"TopicAttentionNotifier", 2);
+        super(notifiersManager, "TopicAttentionNotifier", 2);
     }
 
     public void start(Context context) {
@@ -79,33 +81,30 @@ public class TopicAttentionNotifier extends MainNotifier {
                     final String topicAttention = m.group(2);
                     handler.post(new Runnable() {
                         public void run() {
-                            final WebView webView=new WebView(context);
-                            AlertDialog alertDialog=
-                                    new AlertDialogBuilder(context)
-                                            .setTitle("Объявление клиента")
-                                            .setView(webView)
-                                            .setPositiveButton("Я прочитал", null).create();
-                            alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                                @Override
-                                public void onShow(DialogInterface dialogInterface) {
-                                    StringBuilder body=new StringBuilder();
-                                    body.append("<http>\n");
-                                    body.append("<head>\n");
-                                    body.append("<meta http-equiv=\"content-type\" content=\"text/html; charset=windows-1251\" />\n");
-                                    body.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\">\n");
-                                    body.append("</head>");
-                                    body.append("<body>");
-                                    body.append(topicAttention);
-                                    body.append("</body>");
-                                    body.append("</html>");
+                            final WebView webView = new WebView(context);
+                            MaterialDialog alertDialog =
+                                    new MaterialDialog.Builder(context)
+                                            .title("Объявление клиента")
+                                            .customView(webView)
+                                            .positiveText("Я прочитал").showListener(new DialogInterface.OnShowListener() {
+                                        @Override
+                                        public void onShow(DialogInterface dialog) {
+                                            StringBuilder body = new StringBuilder();
+                                            body.append("<http>\n");
+                                            body.append("<head>\n");
+                                            body.append("<meta http-equiv=\"content-type\" content=\"text/html; charset=windows-1251\" />\n");
+                                            body.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\">\n");
+                                            body.append("</head>");
+                                            body.append("<body>");
+                                            body.append(topicAttention);
+                                            body.append("</body>");
+                                            body.append("</html>");
 
-                                    webView.getSettings().supportZoom();
-                                    webView.loadDataWithBaseURL("http://4pda.ru/forum/", body.toString(), "text/html", "UTF-8", null);
-                                }
-                            });
+                                            webView.getSettings().supportZoom();
+                                            webView.loadDataWithBaseURL("http://4pda.ru/forum/", body.toString(), "text/html", "UTF-8", null);
+                                        }
+                                    }).build();
                             addToStack(alertDialog);
-
-
 
 
                         }

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 
@@ -50,18 +52,13 @@ public class ImageViewDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder= new AlertDialogBuilder(getActivity())
-                .setTitle(mTitle)
-                .setNegativeButton("Закрыть", new DialogInterface.OnClickListener() {
+        MaterialDialog.Builder builder= new MaterialDialog.Builder(getActivity())
+                .title(mTitle)
+                .negativeText("Закрыть")
+                .positiveText("Полная версия")
+                .callback(new MaterialDialog.ButtonCallback() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .setPositiveButton("Полная версия", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+                    public void onPositive(MaterialDialog dialog) {
                         String url = mUrl;
                         try {
                             URI uri = new URI(mUrl);
@@ -77,9 +74,9 @@ public class ImageViewDialogFragment extends DialogFragment {
         m_PhotoView=(PhotoView)v.findViewById(R.id.iv_photo);
         m_PhotoView.setMaximumScale(10f);
         m_ProgressView=v.findViewById(R.id.progressBar);
-        builder.setView(v);
+        builder.customView(v);
 
-        return builder.create();
+        return builder.build();
 
     }
 

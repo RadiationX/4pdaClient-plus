@@ -27,6 +27,8 @@ import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdacommon.PatternExtensions;
 import org.softeg.slartus.forpdaplus.BaseFragmentActivity;
 import org.softeg.slartus.forpdaplus.IntentActivity;
@@ -128,39 +130,34 @@ public class PlayerActivity extends BaseFragmentActivity {
         }
         CharSequence[] items = {"Плеер клиента", "Проигрыватель системы"};
         final int[] selected_player = {0};
-        new AlertDialogBuilder(activity)
-                .setTitle("Выберите проигрыватель")
-                .setSingleChoiceItems(items, selected_player[0], new DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(activity)
+                .title("Выберите проигрыватель")
+                .items(items)
+                .itemsCallbackSingleChoice(selected_player[0], new MaterialDialog.ListCallbackSingleChoice() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public boolean onSelection(MaterialDialog dialog, View view, int i, CharSequence text) {
                         selected_player[0] = i;
-
+                        return true; // allow selection
                     }
                 })
-                .setPositiveButton("Всегда",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int whichButton) {
-                                dialogInterface.dismiss();
+                .positiveText("Всегда")
+                .neutralText("Только сейчас")
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        PreferenceManager.getDefaultSharedPreferences(App.getContext())
+                                .edit()
+                                .putString("news.videoplayer", Integer.toString(selected_player[0]))
+                                .commit();
 
-                                PreferenceManager.getDefaultSharedPreferences(App.getContext())
-                                        .edit()
-                                        .putString("news.videoplayer", Integer.toString(selected_player[0]))
-                                        .commit();
-
-                                startVideo(selected_player[0], activity, youtubeUrl);
-                            }
-                        }
-                )
-                .setNeutralButton("Только сейчас",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int whichButton) {
-                                dialogInterface.dismiss();
-
-                                startVideo(selected_player[0], activity, youtubeUrl);
-                            }
-                        }
-                )
-                .create().show();
+                        startVideo(selected_player[0], activity, youtubeUrl);
+                    }
+                    @Override
+                    public void onNeutral(MaterialDialog dialog) {
+                        startVideo(selected_player[0], activity, youtubeUrl);
+                    }
+                })
+                .show();
     }
 
     private static void startVideo(int selectedPlayer, Activity activity, CharSequence youtubeUrl) {
@@ -268,25 +265,24 @@ public class PlayerActivity extends BaseFragmentActivity {
         for (Quality format : videoItem.getQualities()) {
             titles[i++] = format.getTitle();
         }
-        new AlertDialogBuilder(getContext())
-                .setTitle("Качество видео ")
-                .setSingleChoiceItems(titles, -1, new android.content.DialogInterface.OnClickListener() {
+        new MaterialDialog.Builder(getContext())
+                .title("Качество видео ")
+                .items(titles)
+                .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
-                    public void onClick(android.content.DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+                    public void onSelection(MaterialDialog dialog, View view, int i, CharSequence text) {
                         String path = videoItem.getFilePath(videoItem.getQualities().get(i).getFileName());
                         //createActionMenu(apiId, parseResult);
                         playVideo(videoItem, path);
                     }
                 })
-                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                .cancelListener(new DialogInterface.OnCancelListener() {
                     @Override
-                    public void onCancel(DialogInterface dialogInterface) {
-                        dialogInterface.dismiss();
+                    public void onCancel(DialogInterface dialog) {
+                        dialog.dismiss();
                         finish();
                     }
                 })
-                .create()
                 .show();
     }
 

@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.IntentActivity;
 import org.softeg.slartus.forpdaplus.tabs.ListViewMethodsBridge;
@@ -79,14 +81,15 @@ public class NotesListFragment extends TopicsListFragment {
 
         menu.add("Удалить..").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem menuItem) {
-                new AlertDialogBuilder(getContext())
-                        .setTitle("Подтвердите действие")
-                        .setMessage("Удалить заметку?")
-                        .setCancelable(true)
-                        .setNegativeButton("Отмена", null)
-                        .setPositiveButton("Удалить", new DialogInterface.OnClickListener() {
+                new MaterialDialog.Builder(getContext())
+                        .title("Подтвердите действие")
+                        .content("Удалить заметку?")
+                        .cancelable(true)
+                        .negativeText("Отмена")
+                        .positiveText("Удалить")
+                        .callback(new MaterialDialog.ButtonCallback() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                            public void onPositive(MaterialDialog dialog) {
                                 try {
                                     NotesTable.delete(topic.getId().toString());
                                     mData.remove(topic);
@@ -96,7 +99,7 @@ public class NotesListFragment extends TopicsListFragment {
                                 }
                             }
                         })
-                        .create().show();
+                        .show();
                 return true;
             }
         });
