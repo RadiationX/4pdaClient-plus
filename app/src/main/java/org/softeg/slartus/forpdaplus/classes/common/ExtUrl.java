@@ -20,6 +20,8 @@ import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.notes.NoteDialog;
 
+import java.lang.reflect.Array;
+
 /**
  * Created by IntelliJ IDEA.
  * User: slartus
@@ -165,52 +167,35 @@ public class ExtUrl {
     public static void showSelectActionDialog(final android.os.Handler handler, final Context context,
                                               final String title, final String body, final String url, final String topicId, final String topic,
                                               final String postId, final String userId, final String user) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(org.softeg.slartus.forpdaplus.R.layout.link_dialog, null);
-
-        final AlertDialog dialog = new AlertDialogBuilder(context)
-                .setTitle("Ссылка...")
-                .setView(layout)
-                .setNegativeButton("Отмена", null)
-                .setCancelable(true)
-                .create();
-
-        assert layout != null;
-        ((TextView) layout.findViewById(org.softeg.slartus.forpdaplus.R.id.text)).setText(url);
-        layout.findViewById(org.softeg.slartus.forpdaplus.R.id.rbShowInBrowser).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                showInBrowser(context, url);
-            }
-        });
-        layout.findViewById(org.softeg.slartus.forpdaplus.R.id.rbShareIt).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                shareIt(context, title, url, url);
-            }
-        });
-        layout.findViewById(org.softeg.slartus.forpdaplus.R.id.rbCopyToClipboard).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                copyLinkToClipboard(context, url);
-            }
-        });
-        layout.findViewById(org.softeg.slartus.forpdaplus.R.id.rbNote).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                NoteDialog.showDialog(handler, context,
-                        title, body, url, topicId, topic,
-                        postId, userId, user);
-            }
-        });
-
-
-        dialog.show();
-
+        CharSequence[] titles = new CharSequence[]{"Открыть в..", "Поделиться ссылкой", "Скопировать ссылку", "Создать заметку"};
+        new MaterialDialog.Builder(context)
+                .title("Ссылка...")
+                .content(url)
+                .items(titles)
+                .itemsCallback(new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View view, int i, CharSequence titles) {
+                        switch (i) {
+                            case 0:
+                                showInBrowser(context, url);
+                                break;
+                            case 1:
+                                shareIt(context, title, url, url);
+                                break;
+                            case 2:
+                                copyLinkToClipboard(context, url);
+                                break;
+                            case 3:
+                                NoteDialog.showDialog(handler, context,
+                                        title, body, url, topicId, topic,
+                                        postId, userId, user);
+                                break;
+                        }
+                    }
+                })
+                .negativeText("Отмена")
+                .cancelable(true)
+                .show();
     }
 
     public static void showSelectActionDialog(final android.os.Handler handler, final Context context, final String url) {

@@ -195,8 +195,6 @@ public class BbCodesPanel extends BbCodesBasePanel {
 
             rowCount++;
         }
-        AlertDialog.Builder builder = new AlertDialogBuilder(mContext);
-
         scrollView.addView(tl, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         m_ColorsDialog = new MaterialDialog.Builder(mContext)
                 .cancelable(true)

@@ -47,6 +47,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaapi.post.EditAttach;
 import org.softeg.slartus.forpdaapi.post.EditPost;
 import org.softeg.slartus.forpdaapi.post.PostApi;
@@ -200,17 +202,18 @@ public class EditPostActivity extends BaseFragmentActivity {
             return true;
 
         if (Preferences.Topic.getConfirmSend()) {
-            new AlertDialogBuilder(getContext())
-                    .setTitle("Уверены?")
-                    .setMessage("Подтвердите отправку")
-                    .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
+            new MaterialDialog.Builder(getContext())
+                    .title("Уверены?")
+                    .content("Подтвердите отправку")
+                    .positiveText("ОК")
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
                             sendPost(body, getEditReasonText());
                         }
                     })
-                    .setNegativeButton("Отмена", null)
-                    .create().show();
+                    .negativeText("Отмена")
+                    .show();
         } else {
             sendPost(body, getEditReasonText());
         }
@@ -302,32 +305,35 @@ public class EditPostActivity extends BaseFragmentActivity {
             return;
         }
         AttachesAdapter adapter = new AttachesAdapter(m_EditPost.getAttaches(), this);
-        mAttachesListDialog = new AlertDialogBuilder(this)
-                .setCancelable(true)
-                .setTitle("Вложения")
-                .setSingleChoiceItems(adapter, -1, null)
-                .setPositiveButton("Добавить", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+        mAttachesListDialog = new MaterialDialog.Builder(this)
+                .cancelable(true)
+                .title("Вложения")
+                        //.setSingleChoiceItems(adapter, -1, null)
+                .adapter(adapter, new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
+                    }
+                })
+                .positiveText("Добавить")
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
                         startAddAttachment();
                     }
                 })
-                .setNegativeButton("Закрыть", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                })
-                .create();
+                .negativeText("Закрыть")
+                .build();
         mAttachesListDialog.show();
     }
 
     private void startAddAttachment() {
         CharSequence[] items = new CharSequence[]{"Файл", "Изображение"};
-        new AlertDialogBuilder(getContext())
-                .setItems(items, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-
+        new MaterialDialog.Builder(getContext())
+                .title("Загрузить")
+                .items(items)
+                .itemsCallback(new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View view, int i, CharSequence items) {
                         switch (i) {
                             case 0://файл
 
@@ -363,7 +369,8 @@ public class EditPostActivity extends BaseFragmentActivity {
                                 break;
                         }
                     }
-                }).create().show();
+                })
+                .show();
     }
 
     @Override
@@ -386,7 +393,7 @@ public class EditPostActivity extends BaseFragmentActivity {
     }
 
     public String getRealPathFromURI(Uri contentUri) throws NotReportException {
-        if(contentUri==null)
+        if (contentUri == null)
             throw new NotReportException("Выбран пустой путь!");
         if (!contentUri.toString().startsWith("content://"))
             return contentUri.getPath();

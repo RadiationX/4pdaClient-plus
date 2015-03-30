@@ -437,18 +437,19 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
             final CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBox);
             checkBox.setChecked(prefs.getBoolean("theme.BrowserStyle", false));
 
-            AlertDialog alertDialog = new AlertDialogBuilder(getActivity())
-                    .setTitle("Стиль")
-                    .setCancelable(true)
-                    .setView(view)
-                    .setPositiveButton("Применить и перезагрузить страницу", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
+            new MaterialDialog.Builder(getActivity())
+                    .title("Стиль")
+                    .cancelable(true)
+                    .customView(view)
+                    .positiveText("Применить")
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
                             int selected = listView.getCheckedItemPosition();
                             if (selected == -1) {
                                 Toast.makeText(getActivity(), "Выберите стиль", Toast.LENGTH_LONG).show();
                                 return;
                             }
-                            dialogInterface.dismiss();
                             SharedPreferences.Editor editor = prefs.edit();
                             editor.putString("appstyle", newstyleValues.get(selected).toString());
                             editor.putBoolean("theme.BrowserStyle", checkBox.isChecked());
@@ -457,14 +458,9 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                             getInterface().showTheme(getInterface().getLastUrl());
                         }
                     })
-                    .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    })
-                    .create();
+                    .negativeText("Отмена")
+                    .show();
 
-            alertDialog.show();
         } catch (Exception ex) {
             AppLog.e(getInterface(), ex);
         }

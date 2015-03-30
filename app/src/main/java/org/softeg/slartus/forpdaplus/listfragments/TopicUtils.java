@@ -161,19 +161,13 @@ public class TopicUtils {
         new MaterialDialog.Builder(context)
                 .title("Добавление в избранное/подписки")
                 .items(titles)
-                .itemsCallbackSingleChoice(selectedId[0], new MaterialDialog.ListCallbackSingleChoice() {
+                .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override
-                    public boolean onSelection(MaterialDialog dialog, View view, int i, CharSequence titles) {
+                    public void onSelection(MaterialDialog dialog, View view, int i, CharSequence text) {
                         selectedId[0] = i;
-                        return true; // allow selection
-                    }
-                })
-                .positiveText("Добавить")
-                .callback(new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onPositive(MaterialDialog dialog) {
                         if (selectedId[0] == -1)
                             return;
+
                         String emailtype = values[selectedId[0]];
 
                         Toast.makeText(context, "Запрос на добавление отправлен", Toast.LENGTH_SHORT).show();
@@ -216,6 +210,7 @@ public class TopicUtils {
                         }
                     }
                 })
+                //.positiveText("Добавить")
                 .negativeText(android.R.string.cancel)
                 .show();
     }
