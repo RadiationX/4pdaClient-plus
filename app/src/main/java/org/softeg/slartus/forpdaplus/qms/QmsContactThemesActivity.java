@@ -427,12 +427,14 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
     private class DeleteTask extends AsyncTask<String, Void, Boolean> {
 
 
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
         ArrayList<String> m_Ids;
 
         public DeleteTask(Context context, ArrayList<String> ids) {
             m_Ids = ids;
-            dialog = new AppProgressDialog(context);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .build();
         }
 
         @Override
@@ -450,7 +452,7 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setMessage("Удаление диалогов...");
+            this.dialog.setContent("Удаление диалогов...");
             this.dialog.show();
         }
 

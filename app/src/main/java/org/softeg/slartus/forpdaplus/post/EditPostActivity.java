@@ -454,7 +454,7 @@ public class EditPostActivity extends BaseFragmentActivity {
 
 
     private class UpdateTask extends AsyncTask<String, Pair<String, Integer>, Boolean> {
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
         private ProgressState m_ProgressState;
 
         private List<String> attachFilePaths;
@@ -462,7 +462,9 @@ public class EditPostActivity extends BaseFragmentActivity {
         public UpdateTask(Context context, List<String> attachFilePaths) {
 
             this.attachFilePaths = attachFilePaths;
-            dialog = new AppProgressDialog(context);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(false, 150)
+                    .build();
         }
 
         public UpdateTask(Context context, String newAttachFilePath) {
@@ -499,16 +501,15 @@ public class EditPostActivity extends BaseFragmentActivity {
         protected void onProgressUpdate(Pair<String, Integer>... values) {
             super.onProgressUpdate(values);
             if (!TextUtils.isEmpty(values[0].first))
-                dialog.setMessage(values[0].first);
+                dialog.setContent(values[0].first);
             dialog.setProgress(values[0].second);
         }
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setMessage("Отправка файла..");
+            this.dialog.setContent("Отправка файла..");
             this.dialog.setCancelable(true);
             this.dialog.setCanceledOnTouchOutside(false);
-            this.dialog.setMax(100);
             this.dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public void onCancel(DialogInterface dialogInterface) {
@@ -517,8 +518,6 @@ public class EditPostActivity extends BaseFragmentActivity {
                 }
             });
             this.dialog.setProgress(0);
-            this.dialog.setIndeterminate(false);
-            this.dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 
             this.dialog.show();
         }
@@ -572,7 +571,7 @@ public class EditPostActivity extends BaseFragmentActivity {
     }
 
     private class DeleteAttachTask extends AsyncTask<String, Void, Boolean> {
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
 
         private String attachId;
 
@@ -580,7 +579,9 @@ public class EditPostActivity extends BaseFragmentActivity {
 
             this.attachId = attachId;
 
-            dialog = new AppProgressDialog(context);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .build();
         }
 
 
@@ -597,7 +598,7 @@ public class EditPostActivity extends BaseFragmentActivity {
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setMessage("Удаление файла...");
+            this.dialog.setContent("Удаление файла...");
             this.dialog.show();
         }
 
@@ -622,7 +623,7 @@ public class EditPostActivity extends BaseFragmentActivity {
     }
 
     private class AcceptEditTask extends AsyncTask<String, Void, Boolean> {
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
         private String postBody;
         private String postEditReason;
         private Boolean enableEmo;
@@ -634,7 +635,9 @@ public class EditPostActivity extends BaseFragmentActivity {
             this.postEditReason = postEditReason;
             this.enableEmo = enableEmo;
             this.enableSign = enableSign;
-            dialog = new AppProgressDialog(context);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .build();
         }
 
         @Override
@@ -651,7 +654,7 @@ public class EditPostActivity extends BaseFragmentActivity {
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setMessage("Редактирование сообщения...");
+            this.dialog.setContent("Редактирование сообщения...");
             this.dialog.show();
         }
 
@@ -701,7 +704,7 @@ public class EditPostActivity extends BaseFragmentActivity {
     }
 
     private class LoadTask extends AsyncTask<String, Void, Boolean> {
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
         private String forumId;
         private String topicId;
         private String postId;
@@ -712,15 +715,15 @@ public class EditPostActivity extends BaseFragmentActivity {
             this.topicId = topicId;
             this.postId = postId;
             this.authKey = authKey;
-            dialog = new AppProgressDialog(context);
-            dialog.setCancelable(true);
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialogInterface) {
-                    cancel(true);
-                }
-            });
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .cancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            cancel(true);
+                        }
+                    })
+                    .build();
         }
 
         private EditPost editPost;
@@ -738,7 +741,7 @@ public class EditPostActivity extends BaseFragmentActivity {
         }
 
         protected void onPreExecute() {
-            this.dialog.setMessage("Загрузка сообщения...");
+            this.dialog.setContent("Загрузка сообщения...");
             this.dialog.show();
         }
 
@@ -772,7 +775,7 @@ public class EditPostActivity extends BaseFragmentActivity {
     }
 
     private class PostTask extends AsyncTask<String, Void, Boolean> {
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
         private String mPostResult = null;// при удачной отправке страница топика
         private String mError = null;
         private String postBody;
@@ -786,7 +789,9 @@ public class EditPostActivity extends BaseFragmentActivity {
             this.postEditReason = postEditReason;
             this.enableEmo = enableEmo;
             this.enableSign = enableSign;
-            dialog = new AppProgressDialog(context);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .build();
         }
 
         @Override
@@ -804,7 +809,7 @@ public class EditPostActivity extends BaseFragmentActivity {
         }
 
         protected void onPreExecute() {
-            this.dialog.setMessage("Отправка сообщения...");
+            this.dialog.setContent("Отправка сообщения...");
             this.dialog.show();
         }
 

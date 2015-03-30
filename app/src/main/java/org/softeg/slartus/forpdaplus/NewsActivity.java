@@ -748,13 +748,16 @@ public class NewsActivity extends BrowserViewsFragmentActivity
     }
 
     private class GetNewsTask extends AsyncTask<String, String, Boolean> {
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
         public String Comment = null;
         public String ReplyId;
         public String Dp;
 
         public GetNewsTask(Context context) {
-            dialog = new AppProgressDialog(context);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .content("Загрузка новости")
+                    .build();
         }
 
         private String m_ThemeBody;
@@ -855,17 +858,15 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         protected void onProgressUpdate(final String... progress) {
             mHandler.post(new Runnable() {
                 public void run() {
-                    dialog.setMessage(progress[0]);
+                    dialog.setContent(progress[0]);
                 }
             });
         }
 
         protected void onPreExecute() {
             try {
-                this.dialog.setMessage("Загрузка новости...");
                 this.dialog.show();
             } catch (Exception ex) {
-
                 this.cancel(true);
             }
         }

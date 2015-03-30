@@ -666,13 +666,14 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
     private class SendTask extends AsyncTask<ArrayList<String>, Void, Boolean> {
 
 
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
         public String m_ChatBody;
 
 
         public SendTask(Context context) {
-
-            dialog = new AppProgressDialog(context);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .build();
         }
 
         @Override
@@ -691,7 +692,7 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setMessage("Отправка сообщения...");
+            this.dialog.setContent("Отправка сообщения...");
             this.dialog.show();
         }
 
@@ -712,13 +713,15 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
     private class DeleteTask extends AsyncTask<ArrayList<String>, Void, Boolean> {
 
 
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
         public String m_ChatBody;
 
 
         public DeleteTask(Context context) {
 
-            dialog = new AppProgressDialog(context);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .build();
         }
 
         @Override
@@ -737,7 +740,7 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setMessage("Удаление сообщений...");
+            this.dialog.setContent("Удаление сообщений...");
             this.dialog.show();
         }
 
@@ -756,13 +759,15 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
     private class DeleteDialogTask extends AsyncTask<ArrayList<String>, Void, Boolean> {
 
 
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
 
         ArrayList<String> m_Ids;
 
         public DeleteDialogTask(Context context, ArrayList<String> ids) {
             m_Ids = ids;
-            dialog = new AppProgressDialog(context);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .build();
         }
 
         @Override
@@ -780,7 +785,7 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setMessage("Удаление диалогов...");
+            this.dialog.setContent("Удаление диалогов...");
             this.dialog.show();
         }
 

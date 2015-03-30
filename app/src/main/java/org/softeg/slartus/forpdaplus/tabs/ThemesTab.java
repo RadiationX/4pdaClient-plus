@@ -363,19 +363,20 @@ public abstract class ThemesTab extends BaseTab {
 
     private class ShowLatestTask extends AsyncTask<ForumItem, String, Boolean> {
 
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
 
         public ShowLatestTask(Context context) {
 
-            dialog = new AppProgressDialog(context);
-            dialog.setCancelable(false);
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialogInterface) {
-                    cancel(true);
-                }
-            });
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .cancelable(false)
+                    .cancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            cancel(true);
+                        }
+                    })
+                    .build();
         }
 
         int m_SelectedIndex = 0;
@@ -412,7 +413,7 @@ public abstract class ThemesTab extends BaseTab {
 
         @Override
         protected void onProgressUpdate(String... progress) {
-            this.dialog.setMessage(progress[0]);
+            this.dialog.setContent(progress[0]);
         }
 
         protected void onCancelled() {
@@ -422,7 +423,7 @@ public abstract class ThemesTab extends BaseTab {
         // can use UI thread here
         protected void onPreExecute() {
             try {
-                this.dialog.setMessage(getContext().getResources().getString(R.string.loading));
+                this.dialog.setContent(getContext().getResources().getString(R.string.loading));
                 this.dialog.show();
             } catch (Exception ex) {
                 AppLog.e(null, ex);

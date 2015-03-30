@@ -22,6 +22,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaplus.BaseFragmentActivity;
 import org.softeg.slartus.forpdaplus.IntentActivity;
 import org.softeg.slartus.forpdaplus.R;
@@ -221,12 +223,14 @@ public class NoteActivity extends BaseFragmentActivity {
     public class LoadPageTask extends AsyncTask<String, String, Note> {
 
 
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
 
         public LoadPageTask(Context context) {
 
-            dialog = new AppProgressDialog(context);
-            dialog.setCancelable(false);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .cancelable(false)
+                    .build();
         }
 
         @Override
@@ -250,7 +254,7 @@ public class NoteActivity extends BaseFragmentActivity {
 
         protected void onPreExecute() {
             try {
-                this.dialog.setMessage(getString(R.string.Loading_));
+                this.dialog.setContent("Загрузка...");
                 this.dialog.show();
             } catch (Exception ex) {
                 AppLog.e(null, ex);

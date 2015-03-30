@@ -1,5 +1,6 @@
 package org.softeg.slartus.forpdaplus;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -93,14 +94,17 @@ public class LoginDialog {
     public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
         Context mContext;
-        //private final MaterialDialog.Builder dialog;
+        private final MaterialDialog dialog;
         private Runnable m_OnConnectResult;
 
         public LoginTask(Context context, Runnable onConnectResult) {
             mContext = context;
             m_OnConnectResult = onConnectResult;
-            //dialog = new MaterialDialog.Builder(mContext).progress(true, 0);
-            //dialog.setCancelable(false);
+            dialog = new MaterialDialog.Builder(mContext)
+                    .progress(true, 0)
+                    .cancelable(false)
+                    .content("Вход")
+                    .build();
         }
 
         private String m_Login;
@@ -126,8 +130,7 @@ public class LoginDialog {
 
         // can use UI thread here
         protected void onPreExecute() {
-            //this.dialog.content("Вход...");
-            //this.dialog.show();
+            this.dialog.show();
         }
 
         protected void onCancelled() {
@@ -149,9 +152,10 @@ public class LoginDialog {
 
         // can use UI thread here
         protected void onPostExecute(final Boolean success) {
-            //if (this.dialog.isShowing()) {
-            //    this.dialog.dismiss();
-            //}
+            if (this.dialog.isShowing()) {
+                this.dialog.dismiss();
+            }
+
             doOnUserChangedListener(m_Login, success);
             Client.getInstance().doOnUserChangedListener(m_Login, success);
             if (success) {
@@ -174,11 +178,14 @@ public class LoginDialog {
     public static class LogoutTask extends AsyncTask<String, Void, Boolean> {
 
         Context mContext;
-        //private final MaterialDialog.Builder dialog;
+        private final MaterialDialog dialog;
 
         public LogoutTask(Context context) {
             mContext = context;
-            //dialog = new MaterialDialog.Builder(mContext).progress(true, 0);
+            dialog = new MaterialDialog.Builder(mContext)
+                    .progress(true, 0)
+                    .cancelable(true)
+                    .build();
         }
 
         private String m_Login;
@@ -203,9 +210,8 @@ public class LoginDialog {
 
         // can use UI thread here
         protected void onPreExecute() {
-            //this.dialog.cancelable(true);
-            //this.dialog.content("Выход...");
-            //this.dialog.show();
+            this.dialog.setContent("Выход...");
+            this.dialog.show();
         }
 
         protected void onCancelled() {
@@ -222,9 +228,9 @@ public class LoginDialog {
 
         // can use UI thread here
         protected void onPostExecute(final Boolean success) {
-            //if (!this.dialog.isShowing()) {
-            //    this.dialog.dismiss();
-            //}
+            if(this.dialog.isShowing()) {
+                this.dialog.dismiss();
+            }
             doOnUserChangedListener(m_Login, success);
 
             if (success) {

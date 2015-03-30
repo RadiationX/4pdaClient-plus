@@ -22,6 +22,8 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaplus.classes.AppProgressDialog;
 import org.softeg.slartus.forpdaplus.classes.DevDbDevice;
 import org.softeg.slartus.forpdaplus.classes.LazyGallery.LazyAdapter;
@@ -252,17 +254,19 @@ public class DevDbDeviceActivity extends BaseFragmentActivity {
     public class LoadPageTask extends AsyncTask<String, String, Boolean> {
 
 
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
 
         public LoadPageTask(Context context) {
 
-            dialog = new AppProgressDialog(context);
-            dialog.setCancelable(false);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .cancelable(false)
+                    .build();
         }
 
         @Override
         protected void onProgressUpdate(String... progress) {
-            this.dialog.setMessage(progress[0]);
+            this.dialog.setContent(progress[0]);
         }
 
         private Throwable ex;
@@ -283,7 +287,7 @@ public class DevDbDeviceActivity extends BaseFragmentActivity {
 
         protected void onPreExecute() {
             try {
-                this.dialog.setMessage("Загрузка...");
+                this.dialog.setContent("Загрузка");
                 this.dialog.show();
             } catch (Exception ex) {
                 AppLog.e(null, ex);

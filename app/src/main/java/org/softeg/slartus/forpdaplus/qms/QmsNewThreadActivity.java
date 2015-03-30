@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaapi.ProfileApi;
 import org.softeg.slartus.forpdaapi.qms.QmsApi;
 import org.softeg.slartus.forpdaplus.BaseFragmentActivity;
@@ -204,7 +206,7 @@ public class QmsNewThreadActivity extends BaseFragmentActivity {
     }
 
     private class SendTask extends AsyncTask<String, Void, Boolean> {
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
         public String m_ChatBody;
         private String userId;
         private String userNick;
@@ -218,7 +220,9 @@ public class QmsNewThreadActivity extends BaseFragmentActivity {
             this.title = title;
             this.body = body;
 
-            dialog = new AppProgressDialog(context);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .build();
         }
 
         private Map<String, String> outParams;
@@ -238,7 +242,7 @@ public class QmsNewThreadActivity extends BaseFragmentActivity {
         }
 
         protected void onPreExecute() {
-            this.dialog.setMessage("Отправка сообщения...");
+            this.dialog.setContent("Отправка сообщения...");
             this.dialog.show();
         }
 

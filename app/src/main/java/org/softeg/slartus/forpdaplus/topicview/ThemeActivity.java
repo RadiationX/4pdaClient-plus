@@ -1154,10 +1154,11 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
     }
 
     private void deleteMessage(final String postId) {
-        final ProgressDialog dialog = new AppProgressDialog(this);
-        dialog.setCancelable(false);
-        dialog.setMessage("Удаление сообщения...");
-        dialog.show();
+        final MaterialDialog dialog = new MaterialDialog.Builder(this)
+                .progress(true,0)
+                .cancelable(false)
+                .content("Удаление сообщения...")
+                .show();
         new Thread(new Runnable() {
             public void run() {
                 Throwable ex = null;
@@ -1267,19 +1268,19 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
 
     private class GetThemeTask extends AsyncTask<String, String, Boolean> {
 
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
         private int scrollY = 0;
 
         public GetThemeTask(Context context) {
-            dialog = new AppProgressDialog(context);
-            dialog.setCancelable(true);
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialogInterface) {
-                    cancel(true);
-                }
-            });
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .cancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            cancel(true);
+                        }
+                    })
+                    .build();
         }
 
 
@@ -1332,7 +1333,7 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
         protected void onProgressUpdate(final String... progress) {
             mHandler.post(new Runnable() {
                 public void run() {
-                    dialog.setMessage(progress[0]);
+                    dialog.setContent(progress[0]);
                 }
             });
         }
@@ -1342,7 +1343,7 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
                 scrollY = m_ScrollY;
                 hideMessagePanel();
 
-                this.dialog.setMessage("Загрузка темы...");
+                this.dialog.setContent("Загрузка темы...");
                 this.dialog.show();
             } catch (Exception ex) {
                 AppLog.e(null, ex);

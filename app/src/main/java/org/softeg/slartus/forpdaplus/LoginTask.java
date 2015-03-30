@@ -23,12 +23,14 @@ import org.softeg.slartus.forpdaplus.common.AppLog;
 public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
     private Context mContext;
-    //private final MaterialDialog.Builder dialog;
+    private final MaterialDialog dialog;
 
     public LoginTask(Context context) {
         mContext = context;
-        //dialog = new MaterialDialog.Builder(context).progress(true, 0);
-        //dialog.cancelable(false);
+        dialog = new MaterialDialog.Builder(context)
+                .progress(true, 0)
+                .cancelable(false)
+                .build();
     }
 
     private String m_Login;
@@ -58,8 +60,8 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
     // can use UI thread here
     protected void onPreExecute() {
-        //this.dialog.content("Вход...");
-        //this.dialog.show();
+        this.dialog.setContent("Вход");
+        this.dialog.show();
     }
 
     protected void onCancelled() {
@@ -83,9 +85,9 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
     // can use UI thread here
     protected void onPostExecute(final Boolean success) {
-        //if (this.dialog.isShowing()) {
-        //    this.dialog.dismiss();
-        //}
+        if (this.dialog.isShowing()) {
+            this.dialog.dismiss();
+        }
         doOnUserChangedListener(m_Login, success);
         Client.getInstance().doOnUserChangedListener(m_Login, success);
         if (success) {

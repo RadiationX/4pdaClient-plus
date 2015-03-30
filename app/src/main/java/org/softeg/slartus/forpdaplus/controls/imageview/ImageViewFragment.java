@@ -1,6 +1,12 @@
 package org.softeg.slartus.forpdaplus.controls.imageview;
 
 import android.app.Activity;
+import android.support.v4.app.ShareCompat;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBar.OnNavigationListener;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -16,7 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ShareActionProvider;
+//import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -37,6 +43,7 @@ import org.softeg.slartus.forpdaplus.download.DownloadsService;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -295,9 +302,11 @@ public class ImageViewFragment extends BaseFragment {
         inflater.inflate(R.menu.image_view, menu);
 
         MenuItem item = menu.findItem(R.id.share_it);
-
+        mShareActionProvider = new ShareActionProvider(getActivity());
+        MenuItemCompat.setActionProvider(item, mShareActionProvider);
         // Fetch and store ShareActionProvider
-        mShareActionProvider = (ShareActionProvider) item.getActionProvider();
+
+
     }
 
     @Override

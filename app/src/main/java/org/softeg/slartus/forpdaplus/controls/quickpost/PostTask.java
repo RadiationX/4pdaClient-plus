@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaapi.post.PostApi;
 import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.App;
@@ -26,7 +28,7 @@ public class PostTask extends AsyncTask<String, Void, Boolean> {
         public String PostResultBody;// страница результата
     }
 
-    private final ProgressDialog dialog;
+    private final MaterialDialog dialog;
     private String mPost;
 
 
@@ -46,7 +48,11 @@ public class PostTask extends AsyncTask<String, Void, Boolean> {
         mEnableEmotics = enableEmotics;
         mEnableSign = enableSign;
 
-        dialog = new AppProgressDialog(context);
+        dialog = new MaterialDialog.Builder(context)
+                .progress(true,0)
+                .cancelable(false)
+                .content("Отправка сообщения...")
+                .build();
     }
 
 
@@ -82,8 +88,6 @@ public class PostTask extends AsyncTask<String, Void, Boolean> {
 
     // can use UI thread here
     protected void onPreExecute() {
-        this.dialog.setMessage("Отправка сообщения...");
-        this.dialog.setCanceledOnTouchOutside(false);
         this.dialog.show();
     }
 

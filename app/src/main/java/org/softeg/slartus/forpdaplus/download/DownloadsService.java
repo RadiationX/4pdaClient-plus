@@ -380,7 +380,7 @@ public class DownloadsService extends IntentService {
     private static class GetTempUrlTask extends AsyncTask<String, Void, Uri> {
 
 
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
 
         private Context m_Context;
         private onOpenUrlInterface openUrlAction;
@@ -393,7 +393,9 @@ public class DownloadsService extends IntentService {
             m_Context = context;
             this.openUrlAction = openUrlAction;
 
-            dialog = new AppProgressDialog(context);
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .build();
         }
 
         @Override
@@ -424,7 +426,7 @@ public class DownloadsService extends IntentService {
         // can use UI thread here
         protected void onPreExecute() {
             try {
-                this.dialog.setMessage("Запрос ссылки...");
+                this.dialog.setContent("Запрос ссылки...");
                 this.dialog.show();
             } catch (Throwable ignored) {
 

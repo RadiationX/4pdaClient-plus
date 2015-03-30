@@ -789,18 +789,18 @@ public class ForumFragment extends Fragment implements
 
     private class UpdateForumStructTask extends AsyncTask<String, String, ForumsData> {
 
-        private final ProgressDialog dialog;
+        private final MaterialDialog dialog;
 
         public UpdateForumStructTask(Context context) {
-            dialog = new AppProgressDialog(context);
-            dialog.setCancelable(true);
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialogInterface) {
-                    cancel(true);
-                }
-            });
+            dialog = new MaterialDialog.Builder(context)
+                    .progress(true,0)
+                    .cancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            cancel(true);
+                        }
+                    })
+                    .build();
         }
 
         protected void onCancelled() {
@@ -835,14 +835,14 @@ public class ForumFragment extends Fragment implements
         protected void onProgressUpdate(final String... progress) {
             mHandler.post(new Runnable() {
                 public void run() {
-                    dialog.setMessage(progress[0]);
+                    dialog.setContent(progress[0]);
                 }
             });
         }
 
         protected void onPreExecute() {
             try {
-                this.dialog.setMessage("Обновление структуры форума...");
+                this.dialog.setContent("Обновление структуры форума...");
                 this.dialog.show();
             } catch (Exception ex) {
                 AppLog.e(null, ex);

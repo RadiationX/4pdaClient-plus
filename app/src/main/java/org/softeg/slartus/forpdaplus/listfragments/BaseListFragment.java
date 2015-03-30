@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.softeg.slartus.forpdaapi.IListItem;
 import org.softeg.slartus.forpdaplus.R;
@@ -129,7 +131,7 @@ public abstract class BaseListFragment extends BaseBrickFragment implements
         return getActivity();
     }
 
-    protected uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout mPullToRefreshLayout;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
 
     protected void saveListViewScrollPosition() {
         if (getListView() == null)
@@ -161,29 +163,20 @@ public abstract class BaseListFragment extends BaseBrickFragment implements
         });
 
 
-        mPullToRefreshLayout = createPullToRefreshLayout(view);
+        mSwipeRefreshLayout = createPullToRefreshLayout(view);
     }
 
-    protected PullToRefreshLayout createPullToRefreshLayout(View view) {
+    protected SwipeRefreshLayout createPullToRefreshLayout(View view) {
         // We need to create a PullToRefreshLayout manually
-        PullToRefreshLayout pullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.ptr_layout);
+        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.ptr_layout);
 
-        // We can now setup the PullToRefreshLayout
-        // We can now setup the PullToRefreshLayout
-        ActionBarPullToRefresh.from(getActivity())
-                .options(Options.create().scrollDistance(0.3f).refreshOnUp(true).build())
-                        // We need to insert the PullToRefreshLayout into the Fragment's ViewGroup
-                .allChildrenArePullable()
-
-                        // We can now complete the setup as desired
-                .listener(new OnRefreshListener() {
-                    @Override
-                    public void onRefreshStarted(View view) {
-                        loadData(true);
-                    }
-                })
-                .setup(pullToRefreshLayout);
-        return pullToRefreshLayout;
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
+            @Override
+            public void onRefresh() {
+                loadData(true);
+            }
+        });
+        return swipeRefreshLayout;
     }
 
 
@@ -219,12 +212,13 @@ public abstract class BaseListFragment extends BaseBrickFragment implements
     protected void setLoading(Boolean loading) {
         try {
             if (getActivity() == null) return;
-
-            mPullToRefreshLayout.setRefreshing(loading);
+            mSwipeRefreshLayout.setRefreshing(loading);
             if (loading) {
                 setEmptyText("Загрузка..");
+                Toast.makeText(getContext(), "I you father, Luke", Toast.LENGTH_SHORT).show();
             } else {
                 setEmptyText("Нет данных");
+                Toast.makeText(getContext(), "NOOOOOOOOOOOOOOOOOOOO!", Toast.LENGTH_SHORT).show();
             }
         } catch (Throwable ignore) {
             android.util.Log.e("TAG", ignore.toString());
