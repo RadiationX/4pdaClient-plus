@@ -297,7 +297,7 @@ public class DownloadsService extends IntentService {
 
 
                 url = FileUtils.getDirPath(url) + "/" + URLEncoder.encode(FileUtils.getFileNameFromUrl(url));
-                HttpEntity entity = httpHelper.getDownloadResponse(url, total);
+                HttpEntity entity = httpHelper.getDownloadEntity(url, total);
 
                 long fileLength = entity.getContentLength() + total;
                 downloadTask.updateInfo(fileLength);
@@ -365,7 +365,7 @@ public class DownloadsService extends IntentService {
                 sendDownloadProgressState(receiver, notificationId);
             }
 
-            AppLog.e(null, ex);
+            ex.printStackTrace();
         }
 
 
