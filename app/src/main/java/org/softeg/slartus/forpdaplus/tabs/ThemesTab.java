@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -61,7 +62,7 @@ public abstract class ThemesTab extends BaseTab {
     private ImageView imgPullToLoadMore;
     protected Boolean m_UseVolumesScroll = false;
 
-    protected uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout mPullToRefreshLayout;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
     public ThemesTab(Context context, String tabTag, ITabParent tabParent) {
         super(context, tabParent);
 
@@ -73,7 +74,7 @@ public abstract class ThemesTab extends BaseTab {
         loadPreferences();
 
         lstTree = (ListView) findViewById(android.R.id.list);
-        mPullToRefreshLayout = App.createPullToRefreshLayout(getActivity(), findViewById(R.id.main_layout), new Runnable() {
+        mSwipeRefreshLayout = App.createSwipeRefreshLayout(getActivity(), findViewById(R.id.main_layout), new Runnable() {
             @Override
             public void run() {
                 refresh();
@@ -457,7 +458,7 @@ public abstract class ThemesTab extends BaseTab {
                     });
             }
 
-            mPullToRefreshLayout.setRefreshing(false);
+            mSwipeRefreshLayout.setRefreshing(false);
             super.onPostExecute(success);
         }
 

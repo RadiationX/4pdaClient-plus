@@ -4,7 +4,7 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="android:actionModeBackground">@color/actionbar_background_wh</item>
         <item name="android:windowActionModeOverlay">true</item>
-        <item name="colorAccent">@color/accent_wh</item>
+        <item name="colorAccent">@color/accent</item>
         <item name="actionOverflowButtonStyle">@style/overflow_button</item>
         <item name="actionBarStyle">@style/actionbar_wh</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
@@ -38,6 +38,7 @@
         <item name="news_text_second_color">@style/news_text_second_color_wh</item>
         <item name="edit_text">@style/edit_text_wh</item>
         <item name="divider_color">@style/divider_wh</item>
+        <item name="md_dark_theme">false</item>
     </style>
 
     <style name="Theme.Black" parent="Theme.AppCompat">
@@ -45,7 +46,7 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="android:actionModeBackground">@color/actionbar_background_bl</item>
         <item name="android:windowActionModeOverlay">true</item>
-        <item name="colorAccent">@color/accent_bl</item>
+        <item name="colorAccent">@color/accent</item>
         <item name="actionOverflowButtonStyle">@style/overflow_button</item>
         <item name="actionBarStyle">@style/actionbar_bl</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
@@ -79,6 +80,7 @@
         <item name="news_text_second_color">@style/news_text_second_color_bl</item>
         <item name="edit_text">@style/edit_text_bl</item>
         <item name="divider_color">@style/divider_bl</item>
+        <item name="md_dark_theme">true</item>
     </style>
 
 </resources>

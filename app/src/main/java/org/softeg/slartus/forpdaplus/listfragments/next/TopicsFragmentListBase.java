@@ -125,10 +125,7 @@ public abstract class TopicsFragmentListBase extends Fragment
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipe_container);
 
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.gplus_color_1,
-                R.color.gplus_color_2,
-                R.color.gplus_color_3,
-                R.color.gplus_color_4);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.refresh);
 
         return v;
     }

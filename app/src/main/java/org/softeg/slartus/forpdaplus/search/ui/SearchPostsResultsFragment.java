@@ -2,6 +2,7 @@ package org.softeg.slartus.forpdaplus.search.ui;/*
  * Created by slinkin on 29.04.2014.
  */
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
@@ -75,7 +76,7 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
     private AdvWebView mWvBody;
     private static final String SEARCH_URL_KEY = "SEARCH_URL_KEY";
     private WebViewExternals m_WebViewExternals;
-    protected uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout mPullToRefreshLayout;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public void onCreate(android.os.Bundle savedInstanceState) {
@@ -210,36 +211,33 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPullToRefreshLayout = createPullToRefreshLayout(getView());
+        mSwipeRefreshLayout = createSwipeRefreshLayout(getView());
 
     }
 
-    protected PullToRefreshLayout createPullToRefreshLayout(View view) {
-        // We need to create a PullToRefreshLayout manually
-        PullToRefreshLayout pullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.ptr_layout);
-
-        // We can now setup the PullToRefreshLayout
-        ActionBarPullToRefresh.from(getActivity())
-                .options(Options.create().scrollDistance(0.3f).refreshOnUp(true).build())
-                        // We need to insert the PullToRefreshLayout into the Fragment's ViewGroup
-                .allChildrenArePullable()
-
-                        // We can now complete the setup as desired
-                .listener(new OnRefreshListener() {
-                    @Override
-                    public void onRefreshStarted(View view) {
-                        search(0);
-                    }
-                })
-                .setup(pullToRefreshLayout);
-        return pullToRefreshLayout;
+    protected SwipeRefreshLayout createSwipeRefreshLayout(View view) {
+        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.ptr_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                search(0);
+            }
+        });
+        swipeRefreshLayout.setColorSchemeResources(R.color.refresh);
+        return swipeRefreshLayout;
     }
 
-    protected void setLoading(Boolean loading) {
+    protected void setLoading(final Boolean loading) {
         try {
             if (getActivity() == null) return;
 
-            mPullToRefreshLayout.setRefreshing(loading);
+            //mSwipeRefreshLayout.setRefreshing(loading);
+            mSwipeRefreshLayout.post(new Runnable() {
+                @Override
+                public void run() {
+                    mSwipeRefreshLayout.setRefreshing(loading);
+                }
+            });
 
         } catch (Throwable ignore) {
             android.util.Log.e("TAG", ignore.toString());

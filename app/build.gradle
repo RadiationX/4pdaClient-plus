@@ -9,7 +9,7 @@ android {
 
         targetSdkVersion 21
         versionCode 522
-        versionName "2.5.2_Coba[0.8D2]"
+        versionName "2.5.2_Coba[0.8D3]"
     }
     buildTypes {
         release {

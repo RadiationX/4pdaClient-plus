@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.ActionMode;
@@ -63,7 +64,7 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
     private ListView m_ListView;
     private static final String MID_KEY = "mid";
     private static final String NICK_KEY = "nick";
-    protected uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout mPullToRefreshLayout;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
     private String m_Id;
     private String m_Nick;
 
@@ -81,7 +82,7 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
         createActionMenu();
 
         m_ListView = (ListView) findViewById(android.R.id.list);
-        mPullToRefreshLayout = App.createPullToRefreshLayout(this, findViewById(R.id.main_layout), new Runnable() {
+        mSwipeRefreshLayout = App.createSwipeRefreshLayout(this, findViewById(R.id.main_layout), new Runnable() {
             @Override
             public void run() {
                 refreshData();
@@ -148,9 +149,14 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
     }
 
 
-    private void setState(boolean loading) {
-        mPullToRefreshLayout.setRefreshing(loading);
-
+    private void setState(final boolean loading) {
+        //mSwipeRefreshLayout.setRefreshing(loading);
+        mSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(loading);
+            }
+        });
     }
 
     public void onLoadComplete(Loader<QmsUserThemes> qmsUsersLoader, QmsUserThemes data) {

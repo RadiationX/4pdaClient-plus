@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 
@@ -364,21 +365,17 @@ public class App extends android.app.Application {
         return (0 != (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE));
     }
 
-    public static PullToRefreshLayout createPullToRefreshLayout(Activity activity, View view,
+    public static SwipeRefreshLayout createSwipeRefreshLayout(Activity activity, View view,
                                                                 final Runnable refreshAction) {
-        PullToRefreshLayout pullToRefreshLayout = (PullToRefreshLayout) view.findViewById(R.id.ptr_layout);
-        ActionBarPullToRefresh.from(activity)
-                .options(Options.create().scrollDistance(0.3f).refreshOnUp(true).build())
-                .allChildrenArePullable()
-                .listener(new OnRefreshListener() {
-                    @Override
-                    public void onRefreshStarted(View view) {
-                        refreshAction.run();
-
-                    }
-                })
-                .setup(pullToRefreshLayout);
-        return pullToRefreshLayout;
+        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.ptr_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshAction.run();
+            }
+        });
+        swipeRefreshLayout.setColorSchemeResources(R.color.refresh);
+        return swipeRefreshLayout;
     }
 
 

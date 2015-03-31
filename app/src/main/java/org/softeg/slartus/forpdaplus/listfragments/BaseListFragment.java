@@ -163,19 +163,18 @@ public abstract class BaseListFragment extends BaseBrickFragment implements
         });
 
 
-        mSwipeRefreshLayout = createPullToRefreshLayout(view);
+        mSwipeRefreshLayout = createSwipeRefreshLayout(view);
     }
 
-    protected SwipeRefreshLayout createPullToRefreshLayout(View view) {
-        // We need to create a PullToRefreshLayout manually
+    protected SwipeRefreshLayout createSwipeRefreshLayout(View view) {
         final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.ptr_layout);
-
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
             @Override
             public void onRefresh() {
                 loadData(true);
             }
         });
+        swipeRefreshLayout.setColorSchemeResources(R.color.refresh);
         return swipeRefreshLayout;
     }
 
@@ -209,16 +208,20 @@ public abstract class BaseListFragment extends BaseBrickFragment implements
         return new ListAdapter(getActivity(), mData);
     }
 
-    protected void setLoading(Boolean loading) {
+    protected void setLoading(final Boolean loading) {
         try {
             if (getActivity() == null) return;
-            mSwipeRefreshLayout.setRefreshing(loading);
+            //mSwipeRefreshLayout.setRefreshing(loading);
+            mSwipeRefreshLayout.post(new Runnable() {
+                @Override
+                public void run() {
+                    mSwipeRefreshLayout.setRefreshing(loading);
+                }
+            });
             if (loading) {
                 setEmptyText("Загрузка..");
-                Toast.makeText(getContext(), "I you father, Luke", Toast.LENGTH_SHORT).show();
             } else {
                 setEmptyText("Нет данных");
-                Toast.makeText(getContext(), "NOOOOOOOOOOOOOOOOOOOO!", Toast.LENGTH_SHORT).show();
             }
         } catch (Throwable ignore) {
             android.util.Log.e("TAG", ignore.toString());
