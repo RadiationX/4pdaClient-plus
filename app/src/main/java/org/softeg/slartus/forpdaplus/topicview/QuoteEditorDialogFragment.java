@@ -15,6 +15,8 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.common.HtmlUtils;
@@ -85,24 +87,17 @@ public class QuoteEditorDialogFragment extends DialogFragment implements View.On
         v.findViewById(R.id.btnClear).setOnClickListener(this);
 
 
-        Dialog dialog = new AlertDialog.Builder(getActivity())
-                .setView(v)
-                .setPositiveButton("Вставить",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.dismiss();
-                                ((ThemeActivity) getActivity()).insertTextToPost(txtBody.getText().toString());
-                            }
-                        }
-                )
-                .setNegativeButton("Отмена",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.dismiss();
-                            }
-                        }
-                )
-                .create();
+        MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
+                .customView(v)
+                .positiveText("Вставить")
+                .callback(new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        ((ThemeActivity) getActivity()).insertTextToPost(txtBody.getText().toString());
+                    }
+                })
+                .negativeText("Отмена")
+                .build();
 
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         return dialog;

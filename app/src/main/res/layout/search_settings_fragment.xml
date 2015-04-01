@@ -7,25 +7,22 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="2dp">
-
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/query_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="2dip"
-            android:hint="Ключевые слова"
-            android:inputType="textAutoComplete" />
+            android:inputType="textAutoComplete"
+            android:hint="Ключевые слова"/>
 
         <EditText
             android:id="@+id/username_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="2dip"
-            android:hint="Логин автора (дополнительно)"
-            android:inputType="textAutoComplete" />
+            android:layout_marginTop="4dp"
+            android:inputType="textAutoComplete"
+            android:hint="Логин автора (дополнительно)"/>
 
         <RelativeLayout
             android:id="@+id/topics_group"
@@ -53,15 +50,14 @@
             android:id="@+id/forums_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="4dp">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="2dip">
-
+                android:orientation="horizontal">
                 <Button
                     android:id="@+id/forums_button"
                     android:layout_width="wrap_content"
@@ -82,26 +78,22 @@
                     <Spinner
                         android:id="@+id/forums_spinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="4dp"
                         android:layout_centerVertical="true" />
                 </RelativeLayout>
 
 
             </LinearLayout>
 
-            <CheckBox
-                android:id="@+id/subforums_check"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/Subforums" />
+
         </LinearLayout>
 
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:stretchColumns="1"
-            android:padding="4dp">
+            android:layout_marginTop="4dp">
 
             <TableRow
                 android:id="@+id/source_group"
@@ -120,8 +112,7 @@
                 <Spinner
                     android:id="@+id/source_spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
+                    android:layout_height="36dp"
                     android:entries="@array/SearchSourceArray"
                     android:entryValues="@array/SearchSourceValues" />
             </TableRow>
@@ -142,8 +133,7 @@
                 <Spinner
                     android:id="@+id/sort_spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
+                    android:layout_height="36dp"
                     android:entries="@array/SearchSortArray"
                     android:entryValues="@array/SearchSortValues" />
             </TableRow>
@@ -164,11 +154,18 @@
                 <Spinner
                     android:id="@+id/result_spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="36dp"
                     android:entries="@array/SearchResultTitles"
                     android:entryValues="@array/SearchResultValues" />
 
             </TableRow>
         </TableLayout>
+        <CheckBox
+            android:id="@+id/subforums_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/Subforums"
+            android:layout_marginTop="4dp"/>
     </LinearLayout>
 </ScrollView>

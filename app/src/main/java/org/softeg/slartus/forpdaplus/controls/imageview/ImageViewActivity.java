@@ -49,6 +49,7 @@ public class ImageViewActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.setTheme( App.getInstance().getThemeStyleResID() );
         if(Integer.valueOf(android.os.Build.VERSION.SDK) >= 19 ) {
             if(Integer.valueOf(android.os.Build.VERSION.SDK) >= 21 ){
                 getWindow().getDecorView().setSystemUiVisibility(

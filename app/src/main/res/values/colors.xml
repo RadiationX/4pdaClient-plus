@@ -38,9 +38,6 @@
     <color name="holo_blue_dark">#ff0099cc</color>
 
     <!-- Mod -->
-    <color name="default_progress_bar_color">#ffffffff</color>
-    <color name="spb_default_color">#ffffffff</color>
-
     <color name="app_background_wh">#fffafafa</color>
     <color name="app_background_bl">#ff242424</color>
 
@@ -51,9 +48,9 @@
     <color name="right_separator_color_wh">#ffd9d9d9</color>
     <color name="right_separator_color_bl">#ff494949</color>
 
-    <color name="btnsend_color_wh">#ff47aee5</color>
+    <color name="btnsend_color_wh">#ff03a9f4</color>
     <color name="btnsend_color_bl">#ff28627f</color>
-    <color name="btnsend_color_pressed_wh">#ff43A0CC</color>
+    <color name="btnsend_color_pressed_wh">#ff0288d1</color>
     <color name="btnsend_color_pressed_bl">#ff205066</color>
 
     <color name="panel_background_wh">#ffffffff</color>
@@ -68,11 +65,12 @@
     <color name="news_image_corner_wh">@color/app_background_wh</color>
     <color name="news_image_corner_bl">@color/app_background_bl</color>
 
-    <color name="actionbar_background_wh">#ff47aee5</color>
+    <color name="actionbar_background_wh">#ff03a9f4</color>
     <color name="actionbar_background_bl">#ff1C4556</color>
 
-    <color name="sb_l_wh">#ff3B91BF</color>
-    <color name="sb_kk_wh">#ff47aee5</color>
+    <color name="sb_l_wh">#ff0288d1</color>
+    <color name="sb_kk_wh">#ff03a9f4</color>
+
     <color name="sb_l_bl">#ff163542</color>
     <color name="sb_kk_bl">#ff1C4556</color>
 
@@ -85,14 +83,6 @@
 
     <color name="divider_wh">#ffe0e0e0</color>
     <color name="divider_bl">#ff333333</color>
-
-    <color name="text_color_0">#ffffffff</color>
-    <color name="text_color_1">#fff2f2f2</color>
-    <color name="text_color_2">#ff999999</color>
-    <color name="text_color_3">#ff696969</color>
-    <color name="text_color_4">#ff606060</color>
-    <color name="text_color_5">#ff333333</color>
-    <color name="text_color_6">#ff000000</color>
 
     <color name="list_text_general_color_wh">#ff212121</color>
     <color name="list_text_minor_color_wh">#ff757575</color>
@@ -112,8 +102,6 @@
     <color name="edit_text_wh">@color/panel_background_wh</color>
     <color name="edit_text_bl">@color/panel_background_bl</color>
 
-    <color name="popup_menu_background_wh">#ff28627F</color>
-    <color name="popup_menu_background_bl">#ff163644</color>
 
     <color name="accent">#ffE91E63</color>
 

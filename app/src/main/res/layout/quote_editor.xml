@@ -51,7 +51,7 @@
 
         <ImageButton
             android:id="@+id/btnClear"
-            style="?android:attr/buttonStyleSmall"
+            style="?android:attr/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"

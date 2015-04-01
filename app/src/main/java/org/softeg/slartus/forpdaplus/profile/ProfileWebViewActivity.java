@@ -132,7 +132,7 @@ public class ProfileWebViewActivity extends BaseFragmentActivity {
             item = menu.add(getString(R.string.Reputation));
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
-                    CharSequence[] items = {"+1", "Посмотреть", "-1", "Кому изменял репутацию"};
+                    CharSequence[] items = {"Поднять", "Опустить", "Посмотреть", "Кому изменял репутацию"};
                     new MaterialDialog.Builder(getActivity())
                             .title("Репутация")
                             .items(items)
@@ -144,10 +144,10 @@ public class ProfileWebViewActivity extends BaseFragmentActivity {
                                             UserReputationFragment.plusRep(getActivity(), new Handler(), userId, userNick);
                                             break;
                                         case 1:
-                                            UserReputationFragment.showActivity(getActivity(), userId, false);
+                                            UserReputationFragment.minusRep(getActivity(), new Handler(), userId, userNick);
                                             break;
                                         case 2:
-                                            UserReputationFragment.minusRep(getActivity(), new Handler(), userId, userNick);
+                                            UserReputationFragment.showActivity(getActivity(), userId, false);
                                             break;
                                         case 3:
                                             UserReputationFragment.showActivity(getActivity(), userId, true);
