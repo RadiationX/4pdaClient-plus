@@ -97,7 +97,7 @@ public final class AppLog {
                 builder.negativeText("Повторить")
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override
-                    public void onPositive(MaterialDialog dialog) {
+                    public void onNegative(MaterialDialog dialog) {
                         netExceptionAction.run();
                     }
                 });

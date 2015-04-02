@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
 import org.softeg.slartus.forpdaplus.App;
+import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.post.EditPostActivity;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 
@@ -56,6 +57,7 @@ public class SettingsQuickView extends BaseQuickView {
         extendedFormButton = new Button(getContext());
         extendedFormButton.setText("Расширенная форма");
         extendedFormButton.setLayoutParams(params);
+        extendedFormButton.setTextColor(getResources().getColor(R.color.black));
         extendedFormButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

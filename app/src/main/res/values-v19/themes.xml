@@ -10,7 +10,6 @@
         <item name="actionBarStyle">@style/actionbar_wh</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:fitsSystemWindows">true</item>
         <item name="android:windowBackground">@color/app_background_wh</item>
         <item name="ptrHeaderStyle">@style/Ptr.Style_wh</item>
         <item name="forum_header_text_color">@color/holo_blue_light</item>
@@ -40,6 +39,7 @@
         <item name="edit_text">@style/edit_text_wh</item>
         <item name="divider_color">@style/divider_wh</item>
         <item name="md_dark_theme">false</item>
+        <item name="Divider">@style/Divider_wh</item>
     </style>
     <style name="Theme.Black" parent="Theme.AppCompat">
         <item name="actionModeBackground">@color/actionbar_background_bl</item>
@@ -83,6 +83,7 @@
         <item name="edit_text">@style/edit_text_bl</item>
         <item name="divider_color">@style/divider_bl</item>
         <item name="md_dark_theme">true</item>
+        <item name="Divider">@style/Divider_bl</item>
     </style>
 
     <style name="Theme.Transluent.White" parent="Theme.White">

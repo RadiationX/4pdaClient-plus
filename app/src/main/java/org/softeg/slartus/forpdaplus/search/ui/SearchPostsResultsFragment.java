@@ -203,7 +203,7 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
         }
         mWvBody.addJavascriptInterface(this, "HTMLOUT");
         mWvBody.loadDataWithBaseURL("http://4pda.ru/forum/","<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\">" +
-                "</head><body bgcolor=" + App.getInstance().getCurrentThemeName() + "></body></html>", "text/html", "UTF-8",null);
+                "</head><body bgcolor=" + App.getInstance().getCurrentBackgroundColorHtml() + "></body></html>", "text/html", "UTF-8",null);
         registerForContextMenu(mWvBody);
         return v;
     }

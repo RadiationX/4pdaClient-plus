@@ -104,6 +104,8 @@
 
 
     <color name="accent">#ffE91E63</color>
+    <color name="plusrep">#ff4caf50</color>
+    <color name="minusrep">@color/accent</color>
 
     <color name="refresh">@color/accent</color>
 

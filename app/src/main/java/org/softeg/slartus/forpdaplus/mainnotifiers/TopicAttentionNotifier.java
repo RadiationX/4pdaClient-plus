@@ -85,6 +85,7 @@ public class TopicAttentionNotifier extends MainNotifier {
                             MaterialDialog alertDialog =
                                     new MaterialDialog.Builder(context)
                                             .title("Объявление клиента")
+                                            .cancelable(false)
                                             .customView(webView)
                                             .positiveText("Я прочитал").showListener(new DialogInterface.OnShowListener() {
                                         @Override
@@ -95,7 +96,7 @@ public class TopicAttentionNotifier extends MainNotifier {
                                             body.append("<meta http-equiv=\"content-type\" content=\"text/html; charset=windows-1251\" />\n");
                                             body.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\">\n");
                                             body.append("</head>");
-                                            body.append("<body>");
+                                            body.append("<body style=\"background-color:#f5f5f5\">");
                                             body.append(topicAttention);
                                             body.append("</body>");
                                             body.append("</html>");

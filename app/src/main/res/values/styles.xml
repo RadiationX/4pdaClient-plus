@@ -57,6 +57,25 @@
         <item name="android:paddingLeft">-2dp</item>
     </style>
 
+    <style name="QmsNew">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="QmsOld">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Divider_wh">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/divider_wh</item>
+    </style>
+    <style name="Divider_bl">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/divider_bl</item>
+    </style>
+
     <style name="btnsend_wh">
         <item name="android:background">@drawable/action_btnsend_wh</item>
     </style>

@@ -79,7 +79,7 @@ public class WebViewExternals {
         webView.setBackgroundColor(App.getInstance().getThemeStyleWebViewBackground());
         if (!App.getInstance().isWhiteTheme()) {
             webView.setBackgroundColor(App.getInstance().getThemeStyleWebViewBackground());
-            webView.loadData("<html><head></head><body bgcolor=" + App.getInstance().getCurrentThemeName() + "></body></html>", "text/html", "UTF-8");
+            webView.loadData("<html><head></head><body bgcolor=" + App.getInstance().getCurrentBackgroundColorHtml() + "></body></html>", "text/html", "UTF-8");
         }
 
 

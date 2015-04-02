@@ -130,7 +130,7 @@ public class App extends android.app.Application {
     }
 
     public int getThemeBackgroundColorRes() {
-        return isWhiteTheme() ? R.color.pda__background_light : R.color.pda__background_dark;
+        return isWhiteTheme() ? R.color.app_background_wh : R.color.app_background_bl;
     }
 
     public boolean isWhiteTheme() {
@@ -154,7 +154,7 @@ public class App extends android.app.Application {
     }
 
     public String getCurrentBackgroundColorHtml() {
-        return isWhiteTheme() ? "#fff" : "#000";
+        return isWhiteTheme() ? "#fafafa" : "#242424";
     }
 
     private String checkThemeFile(String themePath) {

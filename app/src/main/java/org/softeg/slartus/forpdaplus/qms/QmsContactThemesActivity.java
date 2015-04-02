@@ -376,8 +376,9 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
                 convertView = m_Inflater.inflate(R.layout.qms_contact_theme_item, parent, false);
 
                 holder = new ViewHolder();
-                holder.txtIsNew = (ImageView) convertView.findViewById(R.id.txtIsNew);
+                //holder.txtIsNew = (ImageView) convertView.findViewById(R.id.txtIsNew);
                 holder.txtCount = (TextView) convertView.findViewById(R.id.txtMessagesCount);
+                holder.txtAllCount = (TextView) convertView.findViewById(R.id.txtAllMessagesCount);
 
                 holder.txtNick = (TextView) convertView.findViewById(R.id.txtNick);
 
@@ -411,21 +412,29 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
             holder.txtDateTime.setText(user.Date);
 
             if (!TextUtils.isEmpty(user.NewCount)) {
-                holder.txtCount.setText(user.NewCount + "/" + user.Count);
-                holder.txtIsNew.setImageResource(R.drawable.new_flag);
+                holder.txtCount.setText(user.NewCount);
+                holder.txtAllCount.setText(user.Count);
+                holder.txtCount.setBackgroundResource(R.drawable.qmsnew);
+                //holder.txtIsNew.setImageResource(R.drawable.new_flag);
+                holder.txtNick.setTextAppearance(getContext(), R.style.QmsNew);
+                holder.txtCount.setTextAppearance(getContext(), R.style.QmsNew);
             } else {
-                holder.txtCount.setText(user.Count);
-                holder.txtIsNew.setImageBitmap(null);
+                holder.txtAllCount.setText(user.Count);
+                holder.txtCount.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                //holder.txtIsNew.setImageBitmap(null);
+                holder.txtNick.setTextAppearance(getContext(), R.style.QmsOld);
+                holder.txtCount.setTextAppearance(getContext(), R.style.QmsOld);
             }
             holder.checkbox.setChecked(user.isSelected());
             return convertView;
         }
 
         public class ViewHolder {
-            ImageView txtIsNew;
+            //ImageView txtIsNew;
             TextView txtNick;
             TextView txtDateTime;
             TextView txtCount;
+            TextView txtAllCount;
             CheckBox checkbox;
         }
     }

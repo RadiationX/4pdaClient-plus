@@ -316,7 +316,7 @@ public class UserReputationFragment extends BrickFragmentListBase {
             if (view == null) {
                 view = mInflater.inflate(R.layout.list_item_reputation, parent, false);
                 holder = new ViewHolder();
-                holder.Flag = (ImageView) view.findViewById(R.id.imgFlag);
+                holder.Flag = (TextView) view.findViewById(R.id.imgFlag);
                 holder.TopLeft = (TextView) view.findViewById(R.id.txtTopLeft);
                 holder.TopRight = (TextView) view.findViewById(R.id.txtTopRight);
                 holder.Main = (TextView) view.findViewById(R.id.txtMain);
@@ -336,15 +336,19 @@ public class UserReputationFragment extends BrickFragmentListBase {
             switch (topic.getState()) {
                 case IListItem.STATE_GREEN:
                     setVisibility(holder.Flag,View.VISIBLE);
-                    holder.Flag.setImageResource(R.drawable.new_flag);
+                    holder.Flag.setText("+");
+                    holder.Flag.setBackgroundResource(R.drawable.plusrep);
+                    //holder.Flag.setImageResource(R.drawable.new_flag);
                     break;
                 case IListItem.STATE_RED:
                     setVisibility(holder.Flag,View.VISIBLE);
-                    holder.Flag.setImageResource(R.drawable.old_flag);
+                    holder.Flag.setBackgroundResource(R.drawable.minusrep);
+                    holder.Flag.setText("-");
+                    //holder.Flag.setImageResource(R.drawable.old_flag);
                     break;
                 default:
                     setVisibility(holder.Flag,View.INVISIBLE);
-                    holder.Flag.setImageBitmap(null);
+                   // holder.Flag.setImageBitmap(null);
             }
             return view;
         }
@@ -355,7 +359,7 @@ public class UserReputationFragment extends BrickFragmentListBase {
         }
 
         class ViewHolder {
-            ImageView Flag;
+            TextView Flag;
             View progress;
             TextView TopLeft;
             TextView TopRight;

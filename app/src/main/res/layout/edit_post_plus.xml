@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_parent"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
 
     <ProgressBar
         android:id="@+id/progress_search"
@@ -85,6 +86,7 @@
                 android:text="Отправить"
                 android:textColor="#ffffffff"
                 android:layout_alignTop="@+id/advanced_button"
+                android:layout_marginRight="6dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_toRightOf="@+id/btnAttachments"

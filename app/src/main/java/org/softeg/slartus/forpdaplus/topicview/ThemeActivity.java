@@ -611,7 +611,7 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
     public void clear(Boolean clearChache) {
         webView.setPictureListener(null);
         webView.setWebViewClient(null);
-        webView.loadData("<html><head></head><body bgcolor=" + App.getInstance().getCurrentThemeName() + "></body></html>", "text/html", "UTF-8");
+        webView.loadData("<html><head></head><body bgcolor=" + App.getInstance().getCurrentBackgroundColorHtml() + "></body></html>", "text/html", "UTF-8");
         if (clearChache)
             webView.clearCache(true);
         if (m_Topic != null)

@@ -116,7 +116,7 @@ public class ForumUser {
                                             QmsNewThreadActivity.showUserNewThread(context, userId, finalUserNick);
                                         }
                                         @Override
-                                        public void onNegative(MaterialDialog dialog) {
+                                        public void onNeutral(MaterialDialog dialog) {
                                             QmsContactThemesActivity.showThemes(context, userId, finalUserNick);
                                         }
                                     })
