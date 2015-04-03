@@ -1,6 +1,5 @@
 package org.softeg.slartus.forpdaplus.listfragments.next;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,8 +37,6 @@ import org.softeg.slartus.forpdaapi.classes.ForumsData;
 import org.softeg.slartus.forpdaplus.App;
 import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.R;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
-import org.softeg.slartus.forpdaplus.classes.AppProgressDialog;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.db.ForumsTable;
 import org.softeg.slartus.forpdaplus.listfragments.ForumTopicsListFragment;

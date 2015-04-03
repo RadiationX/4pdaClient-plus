@@ -1,7 +1,5 @@
 package org.softeg.slartus.forpdaplus.listfragments;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -21,9 +19,11 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import org.softeg.slartus.forpdaplus.Client;
+import org.softeg.slartus.forpdaapi.AppItem;
+import org.softeg.slartus.forpdaapi.IListItem;
+import org.softeg.slartus.forpdaapi.ListInfo;
 import org.softeg.slartus.forpdaplus.App;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
+import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.classes.PdaApplication;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.db.ApplicationRelationsTable;
@@ -31,9 +31,6 @@ import org.softeg.slartus.forpdaplus.db.ApplicationsDbHelper;
 import org.softeg.slartus.forpdaplus.db.CacheDbHelper;
 import org.softeg.slartus.forpdaplus.db.DbHelper;
 import org.softeg.slartus.forpdaplus.listfragments.adapters.ListAdapter;
-import org.softeg.slartus.forpdaapi.AppItem;
-import org.softeg.slartus.forpdaapi.IListItem;
-import org.softeg.slartus.forpdaapi.ListInfo;
 import org.softeg.sqliteannotations.BaseDao;
 
 import java.io.IOException;

@@ -22,8 +22,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
-
 
 /*
  * Created by slartus on 18.10.2014.

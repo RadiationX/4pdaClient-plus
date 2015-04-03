@@ -4,13 +4,12 @@ package org.softeg.slartus.forpdaplus;/*
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,6 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.listtemplates.BrickInfo;
 import org.softeg.slartus.forpdaplus.listtemplates.ListCore;
@@ -42,20 +40,27 @@ public class MainDrawerMenu {
     private BaseExpandableListAdapter mAdapter;
     private Handler mHandler = new Handler();
 
+
     public interface SelectItemListener {
         void selectItem(BrickInfo brickInfo);
     }
 
     public MainDrawerMenu(Activity activity, SelectItemListener listener) {
+        DisplayMetrics displayMetrics = App.getContext().getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels;
+        if (dpWidth>displayMetrics.density*400) {
+            dpWidth = displayMetrics.density*400;
+        }
+        dpWidth -= 80*displayMetrics.density;
         mActivity = activity;
         mSelectItemListener = listener;
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 
         mDrawerList = (ExpandableListView) findViewById(R.id.left_drawer);
-
+        DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mDrawerList.getLayoutParams();
+        params.width = (int) dpWidth;
         if ("right".equals(Preferences.System.getDrawerMenuPosition())) {
-            DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mDrawerList.getLayoutParams();
 
             params.gravity = Gravity.RIGHT;
 
@@ -63,6 +68,7 @@ public class MainDrawerMenu {
             setDrawerLayoutArea(activity, false);
         } else {
             setDrawerLayoutArea(activity, true);
+            mDrawerList.setLayoutParams(params);
         }
 
         mDrawerList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {

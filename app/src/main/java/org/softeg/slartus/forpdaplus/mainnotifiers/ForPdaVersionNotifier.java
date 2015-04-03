@@ -4,7 +4,6 @@ package org.softeg.slartus.forpdaplus.mainnotifiers;/*
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Handler;
@@ -18,9 +17,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.softeg.slartus.forpdacommon.Http;
 import org.softeg.slartus.forpdacommon.NotReportException;
-import org.softeg.slartus.forpdaplus.IntentActivity;
 import org.softeg.slartus.forpdaplus.App;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
+import org.softeg.slartus.forpdaplus.IntentActivity;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 

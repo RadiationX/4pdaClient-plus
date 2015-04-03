@@ -1,20 +1,13 @@
 package org.softeg.slartus.forpdaplus.controls.imageview;
 
-import android.app.Activity;
-import android.support.v4.app.ShareCompat;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.OnNavigationListener;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.ShareActionProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
+import android.support.v7.widget.ShareActionProvider;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,10 +15,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-//import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
-import org.apache.http.HttpEntity;
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Downloader;
@@ -41,14 +32,12 @@ import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.download.DownloadsService;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import uk.co.senab.photoview.PhotoView;
+
+//import android.widget.ShareActionProvider;
 
 /*
  * Created by slinkin on 19.02.2015.

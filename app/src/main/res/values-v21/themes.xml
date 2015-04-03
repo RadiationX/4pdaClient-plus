@@ -10,7 +10,6 @@
         <item name="actionBarStyle">@style/actionbar_wh</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="android:windowBackground">@color/app_background_wh</item>
-        <item name="ptrHeaderStyle">@style/Ptr.Style_wh</item>
         <item name="forum_header_text_color">@color/holo_blue_light</item>
         <item name="theme_background">@android:color/white</item>
         <item name="theme_light_background">@color/theme_light_background_light</item>
@@ -50,7 +49,6 @@
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@color/app_background_bl</item>
-        <item name="ptrHeaderStyle">@style/Ptr.Style_bl</item>
         <item name="forum_header_text_color">@color/holo_blue_dark</item>
         <item name="theme_background">@android:color/black</item>
         <item name="theme_light_background">@color/theme_light_background_dark</item>

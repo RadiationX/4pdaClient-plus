@@ -1,6 +1,5 @@
 package org.softeg.slartus.forpdaplus.controls.quickpost;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.text.TextUtils;
@@ -8,11 +7,10 @@ import android.text.TextUtils;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.softeg.slartus.forpdaapi.post.PostApi;
-import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.App;
-import org.softeg.slartus.forpdaplus.classes.AppProgressDialog;
-import org.softeg.slartus.forpdaplus.classes.forum.ExtTopic;
+import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.classes.TopicBodyBuilder;
+import org.softeg.slartus.forpdaplus.classes.forum.ExtTopic;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 
 /**

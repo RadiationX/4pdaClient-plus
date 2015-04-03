@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
-    <style name="Ptr.Style_wh" parent="@android:style/Widget">
-        <item name="ptrProgressBarStyle">inside</item>
-        <item name="ptrHeaderBackground">@color/actionbar_background_wh</item>
-        <item name="ptrHeaderHeight">@dimen/ptr_height</item>
-        <item name="ptrHeaderTitleTextAppearance">@style/ptr_Text_wh</item>
-    </style>
-    <style name="Ptr.Style_bl" parent="@android:style/Widget">
-        <item name="ptrProgressBarStyle">inside</item>
-        <item name="ptrHeaderBackground">@color/actionbar_background_bl</item>
-        <item name="ptrHeaderHeight">@dimen/ptr_height</item>
-        <item name="ptrHeaderTitleTextAppearance">@style/ptr_Text_wh</item>
-    </style>
-    <style name="ptr_Text_wh">
-        <item name="android:textColor">#ffffffff</item>
-    </style>
-
-    <style name="SmoothProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
-        <item name="spb_color">@color/spb_default_color</item>
-    </style>
     <style name="actionMode_style" parent="@style/Base.Widget.AppCompat.ActionMode">
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:paddingTop">24dp</item>

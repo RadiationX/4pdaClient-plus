@@ -2,7 +2,6 @@ package org.softeg.slartus.forpdaplus.listfragments.users;/*
  * Created by slinkin on 10.04.2014.
  */
 
-import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -16,9 +15,8 @@ import org.softeg.slartus.forpdaapi.IListItem;
 import org.softeg.slartus.forpdaapi.users.LeadUser;
 import org.softeg.slartus.forpdaapi.users.User;
 import org.softeg.slartus.forpdaapi.users.UsersApi;
-import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.App;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
+import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.classes.ForumUser;
 import org.softeg.slartus.forpdaplus.db.CacheDbHelper;
 import org.softeg.slartus.forpdaplus.listfragments.BaseExpandableListFragment;

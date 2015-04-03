@@ -1,6 +1,5 @@
 package org.softeg.slartus.forpdaplus.common;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
@@ -9,7 +8,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.softeg.slartus.forpdaplus.App;
 import org.softeg.slartus.forpdaplus.R;
-import org.softeg.slartus.forpdaplus.classes.AppProgressDialog;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

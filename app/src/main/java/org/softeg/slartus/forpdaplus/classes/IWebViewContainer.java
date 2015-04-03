@@ -1,7 +1,6 @@
 package org.softeg.slartus.forpdaplus.classes;
 
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.webkit.WebView;

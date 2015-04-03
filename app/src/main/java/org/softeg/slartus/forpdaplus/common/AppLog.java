@@ -1,9 +1,7 @@
 package org.softeg.slartus.forpdaplus.common;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,7 +16,6 @@ import org.apache.http.conn.HttpHostConnectException;
 import org.softeg.slartus.forpdacommon.NotReportException;
 import org.softeg.slartus.forpdacommon.ShowInBrowserException;
 import org.softeg.slartus.forpdaplus.App;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.classes.Exceptions.MessageInfoException;
 import org.softeg.slartus.forpdaplus.classes.ShowInBrowserDialog;
 

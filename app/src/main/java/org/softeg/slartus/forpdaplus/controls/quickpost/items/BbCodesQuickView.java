@@ -1,6 +1,5 @@
 package org.softeg.slartus.forpdaplus.controls.quickpost.items;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Service;
 import android.content.Context;
@@ -26,7 +25,6 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.softeg.slartus.forpdaplus.App;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.classes.BbImage;
 import org.softeg.slartus.forpdaplus.classes.common.ArrayUtils;
 import org.softeg.slartus.forpdaplus.common.AppLog;

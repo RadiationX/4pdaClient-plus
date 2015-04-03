@@ -1,6 +1,5 @@
 package org.softeg.slartus.forpdaplus;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -24,7 +23,6 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import org.softeg.slartus.forpdaplus.classes.AppProgressDialog;
 import org.softeg.slartus.forpdaplus.classes.DevDbDevice;
 import org.softeg.slartus.forpdaplus.classes.LazyGallery.LazyAdapter;
 import org.softeg.slartus.forpdaplus.classes.common.ExtUrl;

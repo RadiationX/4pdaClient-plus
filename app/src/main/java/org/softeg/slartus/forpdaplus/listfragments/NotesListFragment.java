@@ -3,7 +3,6 @@ package org.softeg.slartus.forpdaplus.listfragments;/*
  */
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.ContextMenu;
@@ -13,16 +12,15 @@ import android.widget.AdapterView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import org.softeg.slartus.forpdaapi.IListItem;
+import org.softeg.slartus.forpdaapi.ListInfo;
 import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.IntentActivity;
-import org.softeg.slartus.forpdaplus.tabs.ListViewMethodsBridge;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.db.NotesTable;
 import org.softeg.slartus.forpdaplus.notes.Note;
 import org.softeg.slartus.forpdaplus.notes.NoteActivity;
-import org.softeg.slartus.forpdaapi.IListItem;
-import org.softeg.slartus.forpdaapi.ListInfo;
+import org.softeg.slartus.forpdaplus.tabs.ListViewMethodsBridge;
 
 import java.io.IOException;
 import java.text.ParseException;

@@ -1,7 +1,6 @@
 package org.softeg.slartus.forpdaplus.mainnotifiers;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Handler;
 import android.text.TextUtils;
 
@@ -11,7 +10,6 @@ import org.json.JSONObject;
 import org.softeg.slartus.forpdacommon.Http;
 import org.softeg.slartus.forpdacommon.NotReportException;
 import org.softeg.slartus.forpdaplus.App;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.classes.common.ExtUrl;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 

@@ -4,7 +4,6 @@ package org.softeg.slartus.forpdaplus.topicview;/*
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -25,7 +24,6 @@ import net.londatiga.android3d.QuickAction;
 
 import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.R;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.classes.ForumUser;
 import org.softeg.slartus.forpdaplus.classes.TopicAttaches;
 import org.softeg.slartus.forpdaplus.common.AppLog;
@@ -443,7 +441,6 @@ public class HtmloutWebInterface {
             public void run() {
                 final QuickAction mQuickAction = new QuickAction(getContext());
                 ActionItem actionItem;
-
 
                 int plusRepPosition = -1;
                 if ("1".equals(canPlus)) {

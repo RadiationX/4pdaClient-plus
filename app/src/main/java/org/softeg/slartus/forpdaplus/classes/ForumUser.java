@@ -1,7 +1,6 @@
 package org.softeg.slartus.forpdaplus.classes;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;

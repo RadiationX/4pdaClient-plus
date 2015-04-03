@@ -1,7 +1,6 @@
 package org.softeg.slartus.forpdaplus.classes;
 
 import android.R;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Service;
 import android.content.Context;

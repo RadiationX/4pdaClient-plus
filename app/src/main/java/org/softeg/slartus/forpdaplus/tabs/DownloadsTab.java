@@ -2,7 +2,6 @@ package org.softeg.slartus.forpdaplus.tabs;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,10 +25,11 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import org.softeg.slartus.forpdaplus.Client;
+import org.softeg.slartus.forpdacommon.FileUtils;
+import org.softeg.slartus.forpdacommon.NotReportException;
 import org.softeg.slartus.forpdaplus.App;
+import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.R;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.classes.DownloadTask;
 import org.softeg.slartus.forpdaplus.classes.DownloadTasks;
 import org.softeg.slartus.forpdaplus.classes.common.Functions;
@@ -38,8 +38,6 @@ import org.softeg.slartus.forpdaplus.db.BaseTable;
 import org.softeg.slartus.forpdaplus.db.DbHelper;
 import org.softeg.slartus.forpdaplus.db.DownloadsTable;
 import org.softeg.slartus.forpdaplus.download.DownloadsService;
-import org.softeg.slartus.forpdacommon.FileUtils;
-import org.softeg.slartus.forpdacommon.NotReportException;
 
 import java.util.ArrayList;
 import java.util.Date;

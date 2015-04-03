@@ -20,8 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.softeg.slartus.forpdaapi.IListItem;
-import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.App;
+import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.db.CacheDbHelper;
@@ -31,11 +31,6 @@ import org.softeg.sqliteannotations.BaseDao;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
-import uk.co.senab.actionbarpulltorefresh.library.Options;
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
-import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
 public abstract class BaseExpandableListFragment extends BaseBrickFragment implements
         ExpandableListView.OnChildClickListener {

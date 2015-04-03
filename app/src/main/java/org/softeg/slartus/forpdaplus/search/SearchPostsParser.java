@@ -8,6 +8,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.softeg.slartus.forpdacommon.NotReportException;
 import org.softeg.slartus.forpdaplus.App;
 import org.softeg.slartus.forpdaplus.classes.Exceptions.MessageInfoException;
 import org.softeg.slartus.forpdaplus.classes.HtmlBuilder;
@@ -15,7 +16,6 @@ import org.softeg.slartus.forpdaplus.classes.Post;
 import org.softeg.slartus.forpdaplus.classes.TopicBodyBuilder;
 import org.softeg.slartus.forpdaplus.classes.common.Functions;
 import org.softeg.slartus.forpdaplus.emotic.Smiles;
-import org.softeg.slartus.forpdacommon.NotReportException;
 
 import java.util.Hashtable;
 import java.util.regex.Matcher;

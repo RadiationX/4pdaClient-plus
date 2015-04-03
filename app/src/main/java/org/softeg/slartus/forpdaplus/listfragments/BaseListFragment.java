@@ -16,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.softeg.slartus.forpdaapi.IListItem;
 import org.softeg.slartus.forpdaplus.R;
@@ -26,11 +25,6 @@ import org.softeg.slartus.forpdaplus.prefs.ListPreferencesActivity;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 
 import java.util.ArrayList;
-
-import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
-import uk.co.senab.actionbarpulltorefresh.library.Options;
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
-import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
 
 public abstract class BaseListFragment extends BaseBrickFragment implements
         AdapterView.OnItemClickListener {

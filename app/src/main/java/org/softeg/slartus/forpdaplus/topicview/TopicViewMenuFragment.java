@@ -1,9 +1,7 @@
 package org.softeg.slartus.forpdaplus.topicview;
 
-import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -28,7 +26,6 @@ import org.softeg.slartus.forpdaapi.TopicApi;
 import org.softeg.slartus.forpdaplus.App;
 import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.R;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.classes.ProfileMenuFragment;
 import org.softeg.slartus.forpdaplus.classes.common.ExtUrl;
 import org.softeg.slartus.forpdaplus.classes.forum.ExtTopic;
@@ -418,10 +415,10 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
             final String currentValue = App.getInstance().getCurrentTheme();
 
             ArrayList<CharSequence> newStyleNames = new ArrayList<CharSequence>();
-            final ArrayList<CharSequence> newstyleValues = new ArrayList<CharSequence>();
+            final ArrayList<CharSequence> newStyleValues = new ArrayList<CharSequence>();
 
-            PreferencesActivity.getStylesList(getInterface(), newStyleNames, newstyleValues);
-            final int selected = newstyleValues.indexOf(currentValue);
+            PreferencesActivity.getStylesList(getInterface(), newStyleNames, newStyleValues);
+            final int selected = newStyleValues.indexOf(currentValue);
 
 
             LayoutInflater inflater = (LayoutInflater) getInterface()
@@ -430,9 +427,8 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
             final ListView listView = (ListView) view.findViewById(R.id.listView);
 
             listView.setAdapter(new ArrayAdapter<CharSequence>(getInterface(),
-                    android.R.layout.simple_list_item_single_choice, newStyleNames));
+                    R.layout.simple_list_item_single_choice, newStyleNames));
             listView.setItemChecked(selected, true);
-
 
             final CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBox);
             checkBox.setChecked(prefs.getBoolean("theme.BrowserStyle", false));
@@ -451,7 +447,7 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                                 return;
                             }
                             SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString("appstyle", newstyleValues.get(selected).toString());
+                            editor.putString("appstyle", newStyleValues.get(selected).toString());
                             editor.putBoolean("theme.BrowserStyle", checkBox.isChecked());
                             editor.commit();
 

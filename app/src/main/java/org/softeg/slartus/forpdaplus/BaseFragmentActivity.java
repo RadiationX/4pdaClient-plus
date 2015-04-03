@@ -1,21 +1,18 @@
 package org.softeg.slartus.forpdaplus;
 
-import android.graphics.Color;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import org.softeg.slartus.forpdaapi.search.SearchSettings;
 import org.softeg.slartus.forpdacommon.ExtPreferences;
 import org.softeg.slartus.forpdaplus.search.ui.SearchActivity;
 import org.softeg.slartus.forpdaplus.search.ui.SearchSettingsDialogFragment;
-
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 /**
  * User: slinkin

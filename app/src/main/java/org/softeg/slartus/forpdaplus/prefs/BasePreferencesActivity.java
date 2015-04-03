@@ -1,7 +1,5 @@
 package org.softeg.slartus.forpdaplus.prefs;
 
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceActivity;

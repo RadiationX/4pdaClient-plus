@@ -2,7 +2,6 @@ package org.softeg.slartus.forpdaplus.classes;
 
 import android.text.TextUtils;
 
-
 import org.softeg.slartus.forpdaplus.App;
 import org.softeg.slartus.forpdaplus.prefs.HtmlPreferences;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
