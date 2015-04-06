@@ -8,7 +8,7 @@ android {
         minSdkVersion 15
 
         targetSdkVersion 21
-        versionCode 522
+        versionCode 524
         versionName "2.5.2_Coba[0.8D3]"
     }
     buildTypes {
