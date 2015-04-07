@@ -2,7 +2,6 @@ package org.softeg.slartus.forpdaplus.search.ui;/*
  * Created by slinkin on 24.04.2014.
  */
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -205,6 +205,7 @@ public class SearchSettingsDialogFragment extends DialogFragment {
                 .cancelable(true)
                 .title("Поиск")
                 .positiveText("Найти")
+                .negativeText("Отмена")
                 .showListener(new DialogInterface.OnShowListener() {
                     @Override
                     public void onShow(DialogInterface dialog) {
@@ -228,9 +229,9 @@ public class SearchSettingsDialogFragment extends DialogFragment {
                 });
         // в поиске по теме не показываем "запомнить настройки"
         if (SearchSettings.SEARCH_TYPE_FORUM.equals(getSearchSettings().getSearchType()))
-            adb.neutralText("Запомнить настройки");
+            adb.neutralText("Запомнить");
 
-        final AlertDialog d = adb.build();
+        final MaterialDialog d = adb.build();
         return d;
     }
 

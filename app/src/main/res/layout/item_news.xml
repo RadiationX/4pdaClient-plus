@@ -66,7 +66,11 @@
                     android:paddingLeft="8.0dip"
                     android:paddingRight="8.0dip"
                     android:paddingTop="4.0dip"
-                    android:textSize="24.0sp" />
+                    android:textSize="24.0sp"
+                    android:shadowColor="#AA000000"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="5"/>
 
                 <LinearLayout
                     android:id="@+id/mProgressBar"

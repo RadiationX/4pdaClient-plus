@@ -139,6 +139,7 @@ public class PlayerActivity extends BaseFragmentActivity {
                         return true; // allow selection
                     }
                 })
+                .alwaysCallSingleChoiceCallback()
                 .positiveText("Всегда")
                 .neutralText("Только сейчас")
                 .callback(new MaterialDialog.ButtonCallback() {

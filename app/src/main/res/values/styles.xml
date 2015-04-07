@@ -56,6 +56,22 @@
         <item name="android:background">@color/divider_bl</item>
     </style>
 
+    <style name="prefs_title_background_bl">
+        <item name="android:background">@color/actionbar_background_bl</item>
+    </style>
+    <style name="prefs_title_background_wh">
+        <item name="android:background">@color/actionbar_background_wh</item>
+    </style>
+    <style name="prefs_title_style">
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="prefs_title_style_kitkat" parent="prefs_title_style">
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:fitsSystemWindows">false</item>
+    </style>
+
     <style name="btnsend_wh">
         <item name="android:background">@drawable/action_btnsend_wh</item>
     </style>

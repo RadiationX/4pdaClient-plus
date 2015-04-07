@@ -1,10 +1,8 @@
 package org.softeg.slartus.forpdaplus.prefs;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -29,12 +27,13 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdacommon.FileUtils;
 import org.softeg.slartus.forpdacommon.NotReportException;
 import org.softeg.slartus.forpdaplus.App;
 import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.R;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.classes.ForumUser;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.download.DownloadsService;
@@ -234,30 +233,34 @@ public class PreferencesActivity extends BasePreferencesActivity {
 
 
                 final int[] selected = {newstyleValues.indexOf(currentValue)};
-                new AlertDialogBuilder(getActivity())
-                        .setTitle("Стиль")
-                        .setCancelable(true)
-                        .setSingleChoiceItems(newStyleNames.toArray(new CharSequence[newStyleNames.size()]), newstyleValues.indexOf(currentValue), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                new MaterialDialog.Builder(getActivity())
+                        .title("Стиль")
+                        .cancelable(true)
+                        .items(newStyleNames.toArray(new CharSequence[newStyleNames.size()]))
+                        .itemsCallbackSingleChoice(newstyleValues.indexOf(currentValue), new MaterialDialog.ListCallbackSingleChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, View view, int i, CharSequence text) {
                                 selected[0] = i;
+                                return true; // allow selection
                             }
                         })
-                        .setPositiveButton(getString(R.string.AcceptStyle), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                        .alwaysCallSingleChoiceCallback()
+                        .positiveText(getString(R.string.AcceptStyle))
+                        .neutralText(getString(R.string.Information))
+                        .callback(new MaterialDialog.ButtonCallback() {
+                            @Override
+                            public void onPositive(MaterialDialog dialog) {
                                 if (selected[0] == -1) {
                                     Toast.makeText(getActivity(), getString(R.string.ChooseStyle), Toast.LENGTH_LONG).show();
                                     return;
                                 }
-                                dialogInterface.dismiss();
                                 PreferenceManager.getDefaultSharedPreferences(getActivity())
                                         .edit()
                                         .putString("appstyle", newstyleValues.get(selected[0]).toString())
                                         .commit();
-
                             }
-                        })
-                        .setNeutralButton(getString(R.string.Information), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                            @Override
+                            public void onNeutral(MaterialDialog dialog) {
                                 if (selected[0] == -1) {
                                     Toast.makeText(getActivity(), getString(R.string.ChooseStyle), Toast.LENGTH_LONG).show();
                                     return;
@@ -276,7 +279,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
                                 StyleInfoActivity.showStyleInfo(getActivity(), newstyleValues.get(selected[0]).toString());
                             }
                         })
-                        .create().show();
+                        .show();
             } catch (Exception ex) {
                 AppLog.e(getActivity(), ex);
             }
@@ -285,33 +288,34 @@ public class PreferencesActivity extends BasePreferencesActivity {
 
         private void showAbout() {
 
-            String text = "Неофициальный клиент для сайта <a href=\"http://www.4pda.ru\">4pda.ru</a><br/><br/>\n" +
+            String text = "<b>Неофициальный клиент для сайта <a href=\"http://www.4pda.ru\">4pda.ru</a></b><br/><br/>\n" +
                     "<b>Автор: </b> Артём Слинкин aka slartus<br/>\n" +
                     "<b>E-mail:</b> <a href=\"mailto:slartus+4pda@gmail.com\">slartus+4pda@gmail.com</a><br/><br/>\n" +
                     "<b>Автор мода: </b> Евгений Низамиев aka <a href=\"http://4pda.ru/forum/index.php?showuser=2556269\">Radiation15</a><br/>\n" +
                     "<b>E-mail:</b> <a href=\"mailto:radiationx@yandex.ru\">radiationx@yandex.ru</a><br/><br/>\n" +
                     "<b>Дизайнер стилей: </b> <a href=\"http://4pda.ru/forum/index.php?showuser=96664\">Морфий</a> и <a href=\"http://4pda.ru/forum/index.php?showuser=2556269\">Radiation15</a><br/>\n" +
                     "<b>Благодарности: </b> <br/>\n" +
-                    "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=474658\">zlodey.82</a></b> иконка программы<br/>\n" +
+                    /* "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=474658\">zlodey.82</a></b> иконка программы<br/>\n" +
                     "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=1429916\">sbarrofff</a></b> иконка программы<br/>\n" +
                     "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=680839\">SPIDER3220</a></b> (иконки, баннеры)<br/>\n" +
                     "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=1392892\">ssmax2015</a></b> (иконки, баннеры)<br/>\n" +
                     "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=2523\">e202</a></b> (иконки сообщения для черной темы)<br/>\n" +
-                    "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=2040700\">Remie-l</a></b> (новые стили для топиков)<br/>\n" +
-                    "* <b><a href=\"http://www.4pda.ru\">пользователям 4pda</a></b> (тестирование, идеи, поддержка)\n" +
+                    "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=2040700\">Remie-l</a></b> (новые стили для топиков)<br/>\n" + */
+                    "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=1657987\">__KoSyAk__</a></b> Иконка программы<br/>\n" +
+                    "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=96664\">Морфий</a></b> Material стили<br/>\n" +
+                    "* <b><a href=\"http://www.4pda.ru\">Пользователям 4pda</a></b> (тестирование, идеи, поддержка)\n" +
                     "<br/>" +
                     "Copyright 2014 Artem Slinkin <slartus@gmail.com>";
 
-            AlertDialog dialog = new AlertDialogBuilder(getActivity())
-                    .setTitle(getProgramFullName(getActivity()))
-                    .setMessage(Html.fromHtml(text))
-                    .setPositiveButton(android.R.string.ok, null)
-                    .create();
-            dialog.show();
-            TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-            textView.setTextSize(12);
+            MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
+                    .title(getProgramFullName(getActivity()))
+                    .content(Html.fromHtml(text))
+                    .positiveText(android.R.string.ok)
+                    .show();
+            //TextView textView = (TextView) dialog.findViewById(android.R.id.message);
+            //textView.setTextSize(12);
 
-            textView.setMovementMethod(LinkMovementMethod.getInstance());
+            //textView.setMovementMethod(LinkMovementMethod.getInstance());
         }
 
         private void pickRingtone(int requestCode, Uri defaultSound) {
@@ -380,25 +384,26 @@ public class PreferencesActivity extends BasePreferencesActivity {
             } catch (IOException e) {
                 AppLog.e(getActivity(), e);
             }
-            AlertDialog dialog = new AlertDialogBuilder(getActivity())
-                    .setTitle(getString(R.string.ChangesHistory))
-                    .setMessage(sb)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .create();
-            dialog.show();
-            TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-            textView.setTextSize(12);
+            MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
+                    .title(getString(R.string.ChangesHistory))
+                    .content(sb)
+                    .positiveText(android.R.string.ok)
+                    .show();
+            //TextView textView = (TextView) dialog.findViewById(android.R.id.message);
+            //textView.setTextSize(12);
         }
 
         private void showCookiesDeleteDialog() {
-            new AlertDialogBuilder(getActivity())
-                    .setTitle(getString(R.string.ConfirmTheAction))
-                    .setMessage(getString(R.string.SureDeleteFile))
-                    .setCancelable(true)
-                    .setPositiveButton(getString(R.string.Delete), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
+            new MaterialDialog.Builder(getActivity())
+                    .title(getString(R.string.ConfirmTheAction))
+                    .content(getString(R.string.SureDeleteFile))
+                    .cancelable(true)
+                    .positiveText(getString(R.string.Delete))
+                    .negativeText(getString(android.R.string.no))
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
                             try {
-                                dialogInterface.dismiss();
                                 File f = new File(getCookieFilePath(getActivity()));
                                 if (!f.exists()) {
                                     Toast.makeText(getActivity(), getString(R.string.CookiesFileNotFound) +
@@ -414,12 +419,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
                                 AppLog.e(getActivity(), ex);
                             }
                         }
-                    })
-                    .setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    }).create().show();
+                    }).show();
         }
 
         private void showSelectDirDialog() {
@@ -454,28 +454,26 @@ public class PreferencesActivity extends BasePreferencesActivity {
             rbInternal.setOnCheckedChangeListener(checkedChangeListener);
             rbExternal.setOnCheckedChangeListener(checkedChangeListener);
             rbCustom.setOnCheckedChangeListener(checkedChangeListener);
-            new AlertDialogBuilder(getActivity())
-                    .setTitle("Путь к папке с данными")
-                    .setView(view)
-                    .setCancelable(true)
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
+            new MaterialDialog.Builder(getActivity())
+                    .title("Путь к папке с данными")
+                    .customView(view)
+                    .cancelable(true)
+                    .positiveText(android.R.string.ok)
+                    .negativeText(android.R.string.cancel)
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
                             try {
                                 String dir = txtPath.getText().toString();
                                 dir = dir.replace("/", File.separator);
                                 FileUtils.checkDirPath(dir);
                                 Preferences.System.setSystemDir(dir);
-                                dialogInterface.dismiss();
                             } catch (Throwable ex) {
                                 AppLog.e(getActivity(), ex);
                             }
                         }
                     })
-                    .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    }).create().show();
+                    .show();
         }
 
 

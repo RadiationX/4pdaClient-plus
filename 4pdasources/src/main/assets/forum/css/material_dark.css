@@ -44,6 +44,21 @@
 *[style*="color:#000"] *[style*="background-color:white"] {
   color: #000!important;
 }
+.post_header SPAN[style*="color:#BC33FF"],
+.post_header SPAN[style*="color:purple"],
+.post_header SPAN[style*="color:#9A60FF"],
+.post_header SPAN[style*="color:#B100BF"] {
+  color: #c875c8 !important;
+}
+.post_header SPAN[style*="color:green"] {
+  color: #089208 !important;
+}
+.post_header SPAN[style*="color:#32CD32"] {
+  color: #4bb44b !important;
+}
+.post_header SPAN[style*="color:#0099FF"] {
+  color: #2093df !important;
+}
 @font-face {
   font-family: 'fontello';
   src: url('material_src/fontello.ttf') format('truetype');
@@ -364,7 +379,9 @@ HTML body {
 #bottom_navi .last .href_button {
   display: inline-block;
   text-align: center;
-  padding: 0.2rem 0.9rem;
+  padding: 0.3rem;
+  width: 2rem;
+  min-width: 40px;
   text-decoration: none!important;
   font-weight: bold;
   color: rgba(255, 255, 255, 0.7);
@@ -380,7 +397,7 @@ HTML body {
   #bottom_navi .next .href_button,
   #top_navi .last .href_button,
   #bottom_navi .last .href_button {
-    padding: 0.2rem 0.7rem;
+    min-width: 35px;
   }
 }
 #top_navi .first .href_button_disable,
@@ -395,7 +412,9 @@ HTML body {
 #bottom_navi .last .href_button_disable {
   display: inline-block;
   text-align: center;
-  padding: 0.2rem 0.9rem;
+  padding: 0.3rem;
+  width: 2rem;
+  min-width: 40px;
   text-decoration: none!important;
   font-weight: bold;
   color: #4b4b4b;
@@ -411,8 +430,15 @@ HTML body {
   #bottom_navi .next .href_button_disable,
   #top_navi .last .href_button_disable,
   #bottom_navi .last .href_button_disable {
-    padding: 0.2rem 0.7rem;
+    min-width: 35px;
   }
+}
+#top_navi .page .href_button,
+#bottom_navi .page .href_button,
+#top_navi .page .href_button_disable,
+#bottom_navi .page .href_button_disable {
+  width: 4rem;
+  min-width: 70px;
 }
 /*
 *	TOPIC_TITLE_POST
@@ -469,6 +495,9 @@ br + .topic_title_post {
   z-index: 10;
   border-radius: 0.15rem;
   -webkit-box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
+}
+.poll .hidemain form {
+  overflow-x: scroll;
 }
 .poll .hidemain form > .ipbtable {
   display: table-block;
@@ -559,7 +588,7 @@ br + .topic_title_post {
   top: 0.15rem;
 }
 /*
-*	POST HEADER CLI 
+*	POST HEADER
 */
 .post_header {
   position: relative;
@@ -591,6 +620,21 @@ br + .topic_title_post {
   .post_header ~ .post_header {
     margin-top: .6rem;
   }
+}
+.post_header.curator *[class*="nick"] a:after {
+  content: 'K';
+  margin-left: 0.2rem;
+  display: inline-block;
+  position: relative;
+  top: -0.4em;
+  font-weight: 900;
+  font-size: 0.5rem;
+  text-align: center;
+  border-radius: 1rem;
+  width: 1.8em;
+  line-height: 1.8em;
+  color: #2d2d2d;
+  background: #6c6c6c;
 }
 .post_header[title*="Просмотреть репутацию"] {
   color: #000 !important;
@@ -1169,23 +1213,38 @@ div[name*="msg"] > .hidetop B:before {
   }
 }
 .post_body a[href*="act=findpost&pid="][title="Перейти к сообщению"] {
-  position: relative;
   display: inline-block;
   margin: 0;
   text-decoration: none;
+  /*		&:after {
+			content: '\f137';
+			font-family: 'fontello';
+			display: inline-block;
+			font-size: 1rem;
+			text-align: center;
+			width: 1em;
+			color: @color;
+			opacity: 0.3;
+		}
+*/
 }
 .post_body a[href*="act=findpost&pid="][title="Перейти к сообщению"] > img {
   display: none;
 }
 .post_body a[href*="act=findpost&pid="][title="Перейти к сообщению"]:after {
-  content: '\f137';
-  font-family: 'fontello';
+  content: '';
   display: inline-block;
-  font-size: 1rem;
+  position: relative;
+  top: -0.1em;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  line-height: 1.4rem;
   text-align: center;
-  width: 1em;
-  color: white;
-  opacity: 0.3;
+  background-image: url('material_src/snap.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
 }
 .post_body table[id*="ipb-attach"] * {
   display: inline-block;
@@ -1200,7 +1259,14 @@ div[name*="msg"] > .hidetop B:before {
   color: #aaddff;
 }
 .post_body font {
-  font-size: 0.9rem !important;
+  font-size: 0.8rem !important;
+}
+.post_body font > * {
+  opacity: 0.7 !important;
+}
+.post_body font * {
+  font-size: 0.8rem !important;
+  color: #c0c0c0;
 }
 .post_body .edit {
   display: block;
@@ -2495,11 +2561,11 @@ h3 a {
   width: 3rem;
   height: 2.5rem;
   color: transparent;
-  background: url(material_src/ic_home_grey600_48dp.png) no-repeat center;
+  background: url(material_src/home.png) no-repeat center;
   background-size: 2.5rem;
 }
 .table4site tbody TR .links p strong a[href="https://play.google.com/store/apps/details?id=com.clamotty"] {
-  background: url(material_src/ic_play_shopping_bag_grey600_48dp.png) no-repeat center;
+  background: url(material_src/play_shopping.png) no-repeat center;
   background-size: 2.5rem;
 }
 .mb_source {
@@ -2639,36 +2705,7 @@ h3 a {
   margin: 0;
 }
 .comment-box > .heading a {
-  z-index: 99;
-  position: fixed;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 3.5rem;
-  background: #1e1e1e;
-  right: 1.4rem;
-  bottom: 1.4rem;
   display: none;
-  padding: 0 !important;
-  margin: 0 0 0 -4rem !important;
-  text-align: center;
-  padding: 0;
-  text-decoration: none;
-  font-weight: bold;
-  color: transparent !important;
-  background-color: #282828 !important;
-  vertical-align: bottom;
-  -webkit-box-shadow: 0 0.2rem 0.5rem 0.1rem rgba(0, 0, 0, 0.2);
-}
-.comment-box > .heading a:before {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  content: '';
-  width: 3.5rem;
-  height: 3.2rem;
-  display: inline-block;
-  background: url(material_src/ic_border_color_white_48dp.png) no-repeat center;
-  background-size: 1.6rem;
 }
 .comment-box .comment-list,
 .comment-box li {
@@ -2837,7 +2874,4 @@ h3 a {
 ::-webkit-scrollbar-thumb {
   border-radius: 0.1rem;
   background: rgba(255, 255, 255, 0.3);
-}
-div[style*="margin-top:54pt"] {
-margin-top:80px!important;
 }

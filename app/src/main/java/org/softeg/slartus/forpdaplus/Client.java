@@ -1,6 +1,5 @@
 package org.softeg.slartus.forpdaplus;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -376,7 +375,7 @@ public class Client implements IHttpClient {
     public void showLoginForm(Context mContext, OnUserChangedListener onUserChangedListener) {
         try {
             // if (m_LoginDialog == null)
-            AlertDialog m_LoginDialog;
+            MaterialDialog m_LoginDialog;
             {
                 final Context context = mContext;
                 final OnUserChangedListener monUserChangedListener = onUserChangedListener;

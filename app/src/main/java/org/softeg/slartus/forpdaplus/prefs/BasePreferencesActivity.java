@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.preference.PreferenceActivity;
 
 import org.softeg.slartus.forpdaplus.App;
+import org.softeg.slartus.forpdaplus.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +18,8 @@ public class BasePreferencesActivity extends PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(App.getInstance().getThemeStyleResID());
+        setTheme(App.getInstance().getPrefsThemeStyleResID());
         super.onCreate(savedInstanceState);
-
-
     }
 
     private static List<String> fragments = new ArrayList<String>();

@@ -34,7 +34,7 @@ public class DonateNotifier extends MainNotifier {
                     .content("Ваша поддержка - единственный стимул к дальнейшей разработке и развитию программы\n" +
                             "\n" +
                             "Вы можете сделать это позже через меню>>настройки>>Помочь проекту")
-                    .positiveText("Помочь проекту..")
+                    .positiveText("Помочь проекту")
                     .callback(new MaterialDialog.ButtonCallback() {
                         @Override
                         public void onPositive(MaterialDialog dialog) {

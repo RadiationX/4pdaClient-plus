@@ -38,7 +38,7 @@
     <color name="holo_blue_dark">#ff0099cc</color>
 
     <!-- Mod -->
-    <color name="app_background_wh">#fffafafa</color>
+    <color name="app_background_wh">#ffeeeeee</color>
     <color name="app_background_bl">#ff242424</color>
 
     <color name="left_separator_color_wh">#ffd9d9d9</color>

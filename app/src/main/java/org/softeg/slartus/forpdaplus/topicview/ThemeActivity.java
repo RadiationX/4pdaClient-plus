@@ -1338,6 +1338,7 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
                 hideMessagePanel();
 
                 this.dialog.setContent("Загрузка темы...");
+                this.dialog.setCanceledOnTouchOutside(false);
                 this.dialog.show();
             } catch (Exception ex) {
                 AppLog.e(null, ex);

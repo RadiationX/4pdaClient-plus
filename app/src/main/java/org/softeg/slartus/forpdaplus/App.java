@@ -119,6 +119,9 @@ public class App extends android.app.Application {
     public int getThemeStyleResID() {
         return isWhiteTheme() ? R.style.Theme_White : R.style.Theme_Black;
     }
+    public int getPrefsThemeStyleResID() {
+        return isWhiteTheme() ? R.style.Theme_Prefs_White : R.style.Theme_Prefs_Black;
+    }
 
     public int getTransluentThemeStyleResID() {
         return isWhiteTheme() ? R.style.Theme_Transluent_White : R.style.Theme_Transluent_Black;
