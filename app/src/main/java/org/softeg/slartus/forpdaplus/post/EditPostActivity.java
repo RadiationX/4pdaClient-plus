@@ -20,6 +20,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NavUtils;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -132,6 +133,7 @@ public class EditPostActivity extends BaseFragmentActivity {
     public void onCreate(Bundle saveInstance) {
         super.onCreate(saveInstance);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getContext());
 
@@ -188,7 +190,30 @@ public class EditPostActivity extends BaseFragmentActivity {
         }
         createActionMenu();
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (!TextUtils.isEmpty(txtPost.getText())) {
+                    new MaterialDialog.Builder(this)
+                            .title("Подтвердите действие")
+                            .content("Имеется введенный текст сообщения! Закрыть?")
+                            .positiveText("Да")
+                            .callback(new MaterialDialog.ButtonCallback() {
+                                @Override
+                                public void onPositive(MaterialDialog dialog) {
+                                    finish();
+                                }
+                            })
+                            .negativeText("Отмена")
+                            .show();
+                }else{
+                    finish();
+                }
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private boolean sendMail() {
         final String body = getPostText();
@@ -323,7 +348,6 @@ public class EditPostActivity extends BaseFragmentActivity {
     private void startAddAttachment() {
         CharSequence[] items = new CharSequence[]{"Файл", "Изображение"};
         new MaterialDialog.Builder(getContext())
-                .title("Загрузить")
                 .items(items)
                 .itemsCallback(new MaterialDialog.ListCallback() {
                     @Override

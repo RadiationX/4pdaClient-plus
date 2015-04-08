@@ -222,7 +222,6 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
     protected void setLoading(final Boolean loading) {
         try {
             if (getActivity() == null) return;
-
             //mSwipeRefreshLayout.setRefreshing(loading);
             mSwipeRefreshLayout.post(new Runnable() {
                 @Override

@@ -1932,16 +1932,6 @@ a {
 .post_body [attach_id][title*="Скачать"]:not(.linked-image)[href*=".txt"][title*=".txt"]:before {
   content: "\e00b";
 }
-.signature {
-  background: #333333;
-  margin: 0.5em;
-  box-shadow: 0 0 5px -3px #000000;
-  -webkit-box-shadow: 0 0 5px -3px #000000;
-  margin: 0 0.8em;
-  padding: 0.6em;
-  font-size: 0.8em;
-  line-height: 1.3em;
-}
 .s_post_footer {
   background: #333333;
   margin: 0.5em;
@@ -2087,6 +2077,9 @@ a {
   bottom: 6px;
   display: none;
 }
+.search-results ~ br {
+  display: block!important;
+}
 /*--- END FORUM TOPIC ---*/
 .post_body a[href*=findpost][title="Перейти к сообщению"] {
   color: #ededed;
@@ -2171,7 +2164,6 @@ a {
   width: 100%;
   height: 100%;
   display: block;
-  background: red;
   z-index: 10;
 }
 .post-block.quote > .block-title {
@@ -2266,7 +2258,7 @@ a {
     display: block;
   }
 }
-div[style*="margin-top:54pt"] > .navi + br + br ~ .between_messages + .topic_title_post ~ #bottom_navi {
+div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_title_post ~ #bottom_navi {
   margin-bottom: 54pt;
 }
 @media screen and (max-width: 24em) {
@@ -2496,8 +2488,8 @@ div[style*="margin-top:54pt"] > .navi + br + br ~ .between_messages + .topic_tit
   div[name*="msg"]:first-child {
     background: red;
   }
-  div[style*="margin-top:54pt"] > .navi + .topic_title_post + div[name*="entry"] + div + .post_header,
-  div[style*="margin-top:54pt"] > .navi + .topic_title_post ~ .poll + div[name*="entry"] + div + .post_header {
+  div[style*="margin-top:80px"] > .navi + .topic_title_post + div[name*="entry"] + div + .post_header,
+  div[style*="margin-top:80px"] > .navi + .topic_title_post ~ .poll + div[name*="entry"] + div + .post_header {
     border-right: 1px solid #585858;
   }
   .post_body {
@@ -2543,7 +2535,7 @@ div[style*="margin-top:54pt"] > .navi + br + br ~ .between_messages + .topic_tit
     -webkit-border-radius: 0 0 2px 2px;
     border-radius: 0 0 2px 2px;
   }
-  div[style*="margin-top:54pt"] > .navi + br + br ~ .between_messages + .topic_title_post + .post_header {
+  div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_title_post + .post_header {
     background: #333333;
     margin: 0.5em;
     box-shadow: 0 0 5px -3px #000000;
@@ -2556,11 +2548,11 @@ div[style*="margin-top:54pt"] > .navi + br + br ~ .between_messages + .topic_tit
     min-width: none;
     float: none;
   }
-  div[style*="margin-top:54pt"] > .navi + br + br ~ .between_messages + .topic_title_post + .post_header table tbody tr:first-child {
+  div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_title_post + .post_header table tbody tr:first-child {
     -webkit-border-radius: 2px 2px 0 0;
     border-radius: 2px 2px 0 0;
   }
-  div[style*="margin-top:54pt"] > .navi + br + br ~ .between_messages + .topic_title_post + .post_header + .post_body {
+  div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_title_post + .post_header + .post_body {
     background: #333333;
     margin: 0.5em;
     box-shadow: 0 0 5px -3px #000000;
@@ -2568,4 +2560,7 @@ div[style*="margin-top:54pt"] > .navi + br + br ~ .between_messages + .topic_tit
     margin: 0 0.6em;
     border: none;
   }
+}
+.search-web-view {
+  margin-top: 0!important;
 }

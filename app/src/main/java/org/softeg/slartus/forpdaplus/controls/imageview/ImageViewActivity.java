@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import org.softeg.slartus.forpdaplus.App;
@@ -48,6 +51,7 @@ public class ImageViewActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setTheme( App.getInstance().getThemeStyleResID() );
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if(Integer.valueOf(android.os.Build.VERSION.SDK) >= 19 ) {
             if(Integer.valueOf(android.os.Build.VERSION.SDK) >= 21 ){
                 getWindow().getDecorView().setSystemUiVisibility(
@@ -84,6 +88,15 @@ public class ImageViewActivity extends ActionBarActivity {
             index = getIntent().getExtras().getInt(SELECTED_INDEX_KEY);
 
         fragment.showImage(urls, index);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
