@@ -334,10 +334,51 @@ public class EditPostActivity extends BaseFragmentActivity {
                     }
                 })
                 .positiveText("Добавить")
+                .neutralText("В спойлер")
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override
                     public void onPositive(MaterialDialog dialog) {
                         startAddAttachment();
+                    }
+                    @Override
+                    public void onNeutral(MaterialDialog dialog) {
+                        List<String> listItems = new ArrayList<String>();
+                        int i = 0;
+                        while (i <= (m_EditPost.getAttaches().size()-1)) {
+                            listItems.add(m_EditPost.getAttaches().get(i).getName());
+                            i++;
+                        }
+                        final CharSequence[] items = listItems.toArray(new CharSequence[listItems.size()]);
+                        final StringBuilder str = new StringBuilder();
+                        new MaterialDialog.Builder(getContext())
+                                .title("Добавить в спойлер")
+                                .positiveText("Добавить")
+                                .negativeText("Отмена")
+                                .callback(new MaterialDialog.ButtonCallback() {
+                                    @Override
+                                    public void onPositive(MaterialDialog dialog) {
+                                        int selectionStart = txtPost.getSelectionStart();
+                                        if (selectionStart == -1)
+                                            selectionStart = 0;
+                                        if (txtPost.getText() != null)
+                                            //txtPost.getText().insert(selectionStart, "[attachment=" + attach.getId() + ":" + attach.getName() + "]");
+                                            txtPost.getText().insert(selectionStart, "[spoiler]"+str.toString()+"[/spoiler]");
+
+                                    }
+                                })
+                                .items(items)
+                                .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
+                                    @Override
+                                    public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                                        str.setLength(0);
+                                        for (int i = 0; i < which.length; i++) {
+                                            str.append("[attachment=" + m_EditPost.getAttaches().get(which[i]).getId() + ":" + m_EditPost.getAttaches().get(which[i]).getName() + "]");
+                                        }
+                                        return true; // allow selection
+                                    }
+                                })
+                                .alwaysCallMultiChoiceCallback()
+                                .show();
                     }
                 })
                 .negativeText("Закрыть")
