@@ -187,6 +187,9 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         s_NewsUrl = m_NewsUrl;
 
         fabComment = (FloatingActionButton) findViewById(R.id.fab);
+        fabComment.setColorNormal(App.getInstance().getColorAccent("Accent"));
+        fabComment.setColorPressed(App.getInstance().getColorAccent("Pressed"));
+        fabComment.setColorRipple(App.getInstance().getColorAccent("Pressed"));
         if(Client.getInstance().getLogined()){
             fabComment.setOnClickListener(new View.OnClickListener() {
                 @Override

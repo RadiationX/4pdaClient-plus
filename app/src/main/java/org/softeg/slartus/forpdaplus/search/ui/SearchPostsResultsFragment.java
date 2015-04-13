@@ -135,6 +135,9 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
             return;
         ActionBar actionBar = ((ActionBarActivity)getActivity()).getSupportActionBar();
         FloatingActionButton fab = (FloatingActionButton) ((ActionBarActivity)getActivity()).findViewById(R.id.fab);
+        fab.setColorNormal(App.getInstance().getColorAccent("Accent"));
+        fab.setColorPressed(App.getInstance().getColorAccent("Pressed"));
+        fab.setColorRipple(App.getInstance().getColorAccent("Pressed"));
         if (fab == null) return;
         if (actionBar == null) return;
         BrowserViewsFragmentActivity.setHideActionBar(mWvBody, actionBar, fab);

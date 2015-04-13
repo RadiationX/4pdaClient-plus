@@ -52,20 +52,18 @@ public class ImageViewActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         super.setTheme( App.getInstance().getThemeStyleResID() );
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        if(Integer.valueOf(android.os.Build.VERSION.SDK) >= 19 ) {
-            if(Integer.valueOf(android.os.Build.VERSION.SDK) >= 21 ){
-                getWindow().getDecorView().setSystemUiVisibility(
-                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            }else {
-                SystemBarTintManager tintManager = new SystemBarTintManager(this);
-                tintManager.setStatusBarTintEnabled(true);
-                if (App.getInstance().getCurrentThemeName().equals("white")) {
-                    tintManager.setTintColor(getResources().getColor(R.color.sb_kk_wh));
-                } else if (App.getInstance().getCurrentThemeName().equals("black")) {
-                    tintManager.setTintColor(getResources().getColor(R.color.sb_kk_bl));
-                }
+        if (Integer.valueOf(android.os.Build.VERSION.SDK) == 19) {
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+            if (App.getInstance().getCurrentThemeName().equals("white")) {
+                tintManager.setTintColor(getResources().getColor(R.color.sb_kk_wh));
+            } else if (App.getInstance().getCurrentThemeName().equals("black")) {
+                tintManager.setTintColor(getResources().getColor(R.color.sb_kk_bl));
             }
+        } else {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
         setContentView(R.layout.image_view_activity);
 

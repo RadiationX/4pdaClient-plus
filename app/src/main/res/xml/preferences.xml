@@ -27,6 +27,11 @@
             android:summary="Сообщать о версиях для тестирования"
             android:title="Сообщать о бета-версиях" />
 
+        <Preference
+            android:key="accentColor"
+            android:summary="Цвет Float Action Button"
+            android:title="Accent color"/>
+
     </PreferenceScreen>
 
     <PreferenceScreen

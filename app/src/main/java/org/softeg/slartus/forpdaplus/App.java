@@ -116,6 +116,20 @@ public class App extends android.app.Application {
         return m_AtomicInteger.incrementAndGet();
     }
 
+    public int getColorAccent(String type) {
+        int color = 0;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        switch(type) {
+            case "Accent":
+                color = prefs.getInt("accentColor", Color.rgb(233, 30, 99));
+                break;
+            case "Pressed":
+                color = prefs.getInt("accentColorPressed", Color.rgb(233, 30, 99));
+                break;
+        }
+        return color;
+    }
+
     public int getThemeStyleResID() {
         return isWhiteTheme() ? R.style.Theme_White : R.style.Theme_Black;
     }

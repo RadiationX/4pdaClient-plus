@@ -228,6 +228,9 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
             }
         });
         btnShowHideEditPost = (FloatingActionButton) findViewById(R.id.fab);
+        btnShowHideEditPost.setColorNormal(App.getInstance().getColorAccent("Accent"));
+        btnShowHideEditPost.setColorPressed(App.getInstance().getColorAccent("Pressed"));
+        btnShowHideEditPost.setColorRipple(App.getInstance().getColorAccent("Pressed"));
 
         btnShowHideEditPost.setOnClickListener(new View.OnClickListener() {
             @Override

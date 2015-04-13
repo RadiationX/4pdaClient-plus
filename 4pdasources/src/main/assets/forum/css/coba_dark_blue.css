@@ -399,12 +399,10 @@ a {
   -webkit-box-shadow: 0 0 5px -3px #000000;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  margin-left: 0.75em;
-  margin-right: 0.75em;
 }
 #main .container .product-detail {
   position: relative;
-  margin-bottom: 1.4em;
+  margin-bottom: 1.2em;
 }
 #main .container .product-detail .photo {
   position: relative;
@@ -451,6 +449,7 @@ a {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.7)));
   background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.66);
 }
 #main .container .product-detail .description .info-holder {
   padding: 0px 1em;
@@ -491,6 +490,7 @@ a {
 }
 #main .container .content .content-box {
   padding: 1em;
+  padding-bottom: 0.5em;
 }
 #main .container .content .content-box p {
   margin-top: 0;
@@ -753,7 +753,7 @@ a {
 #main .container .content .content-box .mb_source {
   margin: 0;
   border-top: 1px solid #585858;
-  padding: 5px 5px 0px 5px;
+  padding: 0.4em 0 0 0;
 }
 #main .container .content .content-box .mb_source + br {
   display: none;
@@ -841,7 +841,10 @@ a {
   font-weight: 400;
   font-size: 1.2em;
   padding: 0.3em;
-  line-height: 1.2em;
+  line-height: 1.4em;
+  max-height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.7)));
   background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
@@ -911,8 +914,8 @@ a {
   border-radius: 2px 2px 0 0;
   position: relative;
   margin: 0;
-  line-height: 2.6em;
-  padding-left: 0.6em;
+  line-height: 2.5em;
+  padding-left: 0.5em;
 }
 #main .comment-box > .heading h2 {
   margin: 0;
@@ -929,6 +932,7 @@ a {
   top: 0;
   right: 0;
   z-index: 10;
+  display: none;
 }
 #main .comment-box > .heading:after {
   font-family: 'fontello';
@@ -939,6 +943,7 @@ a {
   width: 2.2em;
   height: 2.2em;
   text-align: center;
+  display: none;
 }
 #main .comment-box .comment-list {
   margin: 0;
@@ -1236,7 +1241,7 @@ a {
   box-shadow: none;
   display: table;
   width: 100%;
-  line-height: 2.5em;
+  line-height: 3em;
 }
 .navi > div {
   display: table-cell;
@@ -1248,15 +1253,18 @@ a {
   width: 100%;
   height: 100%;
   position: relative;
-  padding: 0 5px;
+  padding: 0 0.5em;
+  color: #e91e63;
+  font-size: 0.875em;
+  font-weight: bold;
 }
 .navi > div .href_button:after,
 .navi > div .href_button_disable:after {
   content: "";
   position: absolute;
   right: 0;
-  top: 6px;
-  bottom: 6px;
+  top: 0.5em;
+  bottom: 0.5em;
   border-right: 1px solid #585858;
 }
 .navi > div .href_button_disable {
@@ -1284,7 +1292,7 @@ a {
   margin-bottom: 3em;
 }
 .topic_title_post a {
-  padding: 0.5em;
+  padding: 0.75em;
   display: inline-block;
 }
 .poll .hidetop {
@@ -1297,7 +1305,7 @@ a {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   margin-bottom: 0;
-  line-height: 2em;
+  line-height: 2.25em;
   padding: 0 0.5em;
   position: relative;
   text-align: left;
@@ -1307,6 +1315,8 @@ a {
 }
 .poll .hidetop b {
   display: inline;
+  text-transform: uppercase;
+  font-size: 0.875em;
 }
 .poll .hidemain {
   background: #333333;
@@ -1350,12 +1360,12 @@ a {
   border-top: 1px solid #585858;
   background: #3d3d3d;
   text-align: center;
-  padding: 0 0.5em!important;
-  line-height: 1.8em;
+  padding: 0.5em!important;
+  line-height: 1.4em;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable {
   width: 100%;
-  padding-bottom: 1em;
+  padding-bottom: 0em;
   position: relative;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr {
@@ -1363,7 +1373,7 @@ a {
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td {
   display: table-cell;
-  line-height: 2em;
+  line-height: 3em;
   padding: 0 0.5em;
   position: relative;
   white-space: nowrap;
@@ -1380,13 +1390,13 @@ a {
   outline: none;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input + b {
-  line-height: 2em;
-  min-height: 2em;
+  line-height: 3em;
+  min-height: 3em;
   display: inline-block;
   vertical-align: middle;
   white-space: normal;
   position: relative;
-  padding-left: 1.5em;
+  padding-left: 2em;
   font-weight: normal;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input + b:before {
@@ -1397,6 +1407,7 @@ a {
   height: 1em;
   width: 1em;
   border: 1px solid #585858;
+  border-width: 2px;
   background: #333333;
   position: absolute;
   left: 0;
@@ -1406,22 +1417,24 @@ a {
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input + b:after {
   content: "";
   display: block;
-  height: 0.65em;
-  width: 0.65em;
+  height: 0.625em;
+  width: 0.625em;
   border-radius: 100%;
   background: #28627f;
   position: absolute;
-  left: 0.25em;
+  left: 0.3em;
   top: 50%;
-  margin-top: -0.25em;
+  margin-top: -0.2em;
   -webkit-transform: scale(0);
   transform: scale(0);
   -webkit-transition: 0.35s;
   transition: 0.35s;
+  opacity: 0;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input:checked + b:after {
   -webkit-transform: scale(1);
   transform: scale(1);
+  opacity: 1;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input:checked + b:before {
   border-color: #28627f;
@@ -1465,7 +1478,7 @@ a {
 .poll .hidemain form > .ipbtable > tbody > tr:nth-last-child(3) td {
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  margin: 0.5em 0.5em 0.5em 0.5em;
+  margin: 0.5em;
   padding: 0 0.5em;
   line-height: 2em;
   border: 1px solid #585858;
@@ -1476,19 +1489,26 @@ a {
 .poll .hidemain form > .ipbtable > tbody > tr:nth-last-child(2) .formbuttonrow {
   display: block;
   border-top: 1px solid #585858;
-  line-height: 2em;
-  padding: 0 0.5em;
+  line-height: 3em;
+  padding: 0 0.25em 0 0.5em;
+  text-align: right;
 }
 .poll .hidemain form > .ipbtable > tbody > tr:nth-last-child(2) .formbuttonrow .button {
-  color: #ededed;
-  background: #28627f;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  font-size: 1em;
-  line-height: 2em;
-  padding: 0 0.5em;
-  margin: 0.5em 0.5em 0.5em 0;
+  background: none;
+  color: #e91e63;
+  display: inline-block;
+  font-size: 0.875em;
+  font-weight: bold;
+  line-height: 2.39em;
+  padding: 0 0.643em;
+  margin: 0.643em 0em 0.643em 0;
   border: none;
+  text-transform: uppercase;
+}
+.poll .hidemain form > .ipbtable > tbody > tr:nth-last-child(2) .formbuttonrow .button:last-child {
+  float: left;
 }
 .poll .hidemain form > .ipbtable > tbody > tr:nth-last-child(1) {
   display: none;
@@ -1642,10 +1662,10 @@ a {
   -webkit-box-shadow: 0 0 5px -3px #000000;
   -webkit-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
-  line-height: 2em;
-  margin-top: 2em;
+  line-height: 2.25em;
+  margin-top: 2.25em;
   margin-bottom: 0;
-  min-height: 6em;
+  min-height: 6.75em;
 }
 .post_header table {
   display: block;
@@ -1656,17 +1676,17 @@ a {
   display: block;
 }
 .post_header table tbody tr {
-  height: 2em;
+  height: 2.25em;
   padding: 0 0.5em;
 }
 .post_header table tbody tr td {
   padding: 0;
 }
 .post_header table tbody tr td .post_nick_cli a {
-  color: #cb5242;
+  color: #a8a8a8;
 }
 .post_header table tbody tr td .post_nick_online_cli a {
-  color: #309f5e;
+  color: #a8a8a8;
 }
 .post_header table tbody tr td div[align*=right] .post_date_cli {
   font-size: 0.9em;
@@ -1674,6 +1694,7 @@ a {
   text-align: left;
   display: block;
   position: relative;
+  line-height: 2.571em;
 }
 .post_header table tbody tr td div[align*=right] .post_date_cli a {
   float: right;
@@ -1684,6 +1705,7 @@ a {
   right: 0;
   top: 0;
   text-align: right;
+  font-weight: bold;
 }
 .post_header table tbody tr:first-child {
   color: #ededed;
@@ -1692,11 +1714,11 @@ a {
   border-radius: 2px 2px 0 0;
   display: block;
   width: 100%;
-  padding-left: 5em;
+  padding-left: 5.5em;
 }
 .post_header table tbody tr:first-child td:first-child {
   position: absolute;
-  top: 4em;
+  top: 4.5em;
   left: 0;
   padding-left: 0.5em;
   z-index: 10;
@@ -1705,16 +1727,16 @@ a {
   white-space: nowrap;
 }
 .post_header table tbody tr:first-child td:first-child span {
-  font-size: 0.9em;
+  font-size: 0.875em;
   font-weight: bold;
 }
 .post_header table tbody tr:first-child td:first-child span a:after {
   position: absolute;
   content: "";
-  width: 4.8em;
-  height: 4.8em;
-  top: -4.8em;
-  left: 0.2em;
+  width: 4.5em;
+  height: 4.5em;
+  top: -5em;
+  left: 0.5em;
 }
 .post_header table tbody tr:first-child td:last-child {
   display: block;
@@ -1724,11 +1746,11 @@ a {
 }
 .post_header table tbody tr:nth-child(2) td {
   display: block;
-  height: 4.4em;
-  width: 4.4em;
+  height: 4.5em;
+  width: 4.5em;
   position: absolute;
   top: -0.5em;
-  left: 0.3em;
+  left: 0.5em;
   z-index: 9;
   padding: 0;
 }
@@ -1736,11 +1758,11 @@ a {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   display: block;
-  height: 4.4em;
-  width: 4.4em;
+  height: 4.5em;
+  width: 4.5em;
   position: absolute;
   top: -0.5em;
-  left: 0.3em;
+  left: 0.5em;
   border: 2px solid #28627f;
   background-color: #ffffff;
   background-image: url(../LESS/profile/logo.png);
@@ -1757,7 +1779,7 @@ a {
   position: relative;
   height: 100%;
   border: 2px solid #28627f;
-  background: #ffffff;
+  background: #1a1a1a;
 }
 .post_header table tbody tr:nth-child(2) td .avatar_parent_container:after {
   position: relative;
@@ -1785,14 +1807,15 @@ a {
 }
 .post_header table tbody tr:nth-child(3),
 .post_header table tbody tr:nth-child(4) {
+  top: 2.25em;
   display: block;
-  padding-left: 5em;
+  padding-left: 5.5em;
   position: absolute;
   width: 100%;
   left: 0;
 }
 .post_header table tbody tr:nth-child(3) {
-  top: 4em;
+  top: 4.5em;
   border-top: 1px solid #585858;
   border-bottom: 1px solid #585858;
   left: 0.5em;
@@ -1802,7 +1825,7 @@ a {
   text-align: right;
 }
 .post_header table tbody tr:nth-child(3) td {
-  font-size: 0.9em;
+  font-size: 0.875em;
   display: block;
   float: right;
   max-width: 50%;
@@ -1811,12 +1834,18 @@ a {
   white-space: nowrap;
 }
 .post_header table tbody tr:nth-child(4) {
-  top: 2em;
+  top: 2.25em;
+  text-transform: uppercase;
 }
 .post_header table tbody tr:nth-child(4):after {
   content: "";
   display: table;
   clear: both;
+}
+.post_header table tbody tr:nth-child(4) td a {
+  color: #e91e63;
+  font-size: 0.875em;
+  font-weight: bold;
 }
 .post_header table tbody tr:nth-child(4) td:first-child {
   float: left;
@@ -1837,11 +1866,11 @@ a {
   margin-top: 0;
   margin-bottom: 0;
   text-align: center;
-  line-height: 2em;
+  line-height: 3em;
 }
 .hidetop:after {
   content: ">>ШАПКА ТЕМЫ<<";
-  color: #3c93b9;
+  color: #e91e63;
 }
 .hidetop b {
   display: none;
@@ -1851,7 +1880,7 @@ a {
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
-  padding: 0.5em;
+  padding: 1em 1em;
   margin-top: 0;
   margin-bottom: 0;
   position: relative;
@@ -1869,19 +1898,19 @@ a {
   display: block;
   background: #3d3d3d;
   border: 1px solid #585858;
-  padding: 0.4em;
-  font-size: 0.9em;
+  padding: 0.571em;
+  font-size: 0.875em;
 }
 .post_body .post-edit-reason {
   -webkit-border-radius: 2px;
   border-radius: 2px;
+  font-size: 0.875em;
   text-align: right;
   background: #3d3d3d;
   border: 1px solid #585858;
   border-top: none;
-  padding: 0 0.4em 0.4em 0.4em;
+  padding: 0 0.571em 0.571em 0.571em;
   margin-top: -2px;
-  font-size: 0.9em;
 }
 .post_body [attach_id][title*="Скачать"]:not(.linked-image) img {
   display: none;
@@ -1997,17 +2026,26 @@ a {
 }
 .post_footer .system_link {
   display: inline-block;
-  margin: 7px;
+  margin: 0.375em;
 }
 .post_footer .system_link > * {
   color: #ededed;
   background: #28627f;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  line-height: 1.9em;
-  min-width: 2em;
-  padding: 0 5px;
+  line-height: 2.25em;
+  height: 2.25em;
+  min-width: 4em;
+  padding: 0 0.5em;
+  text-align: center;
   display: inline-block;
+  text-transform: uppercase;
+  background: none;
+  color: #e91e63;
+}
+.post_footer .system_link > *:after {
+  font-size: 0.875em;
+  font-weight: bold;
 }
 .post_footer .system_link .send_claim_button:after {
   content: "Жалоба";
@@ -2019,16 +2057,18 @@ a {
   content: "Цитата";
 }
 .post_footer .system_link .post_vote_bad {
-  background: #a54336;
+  color: #a54336;
 }
 .post_footer .system_link .post_vote_bad:after {
   content: "-";
+  content: "Плохо";
 }
 .post_footer .system_link .post_vote_good {
-  background: #249151;
+  color: #249151;
 }
 .post_footer .system_link .post_vote_good:after {
   content: "+";
+  content: "Хорошо";
 }
 .post_footer .system_link .edit_post_button:after {
   content: "Редакт";
@@ -2087,21 +2127,24 @@ a {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   background: #0977b2;
-  line-height: 0.9em;
-  width: 1em;
-  height: 1em;
+  line-height: 1.4em;
+  width: 1.25em;
+  height: 1.25em;
   display: inline-block;
   text-align: center;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 .post_body a[href*=findpost][title="Перейти к сообщению"] img {
   display: none;
 }
 .post_body a[href*=findpost][title="Перейти к сообщению"]:before {
+  display: block;
+  text-align: center;
   content: "\2039";
+  line-height: 1.25em;
 }
 .post-block {
-  margin: 0.7em 0;
+  margin: 0.5em 0;
   position: relative;
   overflow: hidden;
 }
@@ -2110,11 +2153,20 @@ a {
   background: #28627f;
   -webkit-border-radius: 2px 2px 0 0;
   border-radius: 2px 2px 0 0;
-  line-height: 2em;
-  min-height: 2em;
-  padding: 0 0.4em;
+  line-height: 2.25em;
+  min-height: 2.25em;
+  padding: 0 0.5em;
   position: relative;
   z-index: 2;
+  font-weight: bold;
+}
+.post-block .block-title span {
+  color: #ededed !important;
+  line-height: 2.25em!important;
+  font-size: 1em!important;
+}
+.post-block .block-title span span {
+  color: #ededed !important;
 }
 .post-block .block-body {
   -webkit-border-radius: 0 0 2px 2px;
@@ -2144,6 +2196,8 @@ a {
   content: "Спойлер (+)";
 }
 .post-block.spoil.close > .block-title:before {
+  display: inline-block;
+  min-width: 1.5em;
   content: "(+) ";
 }
 .post-block.spoil.close > .block-body {
@@ -2153,6 +2207,8 @@ a {
   content: "Спойлер (\2013)";
 }
 .post-block.spoil.open > .block-title:before {
+  display: inline-block;
+  min-width: 1.5em;
   content: "(\2013) ";
 }
 .post-block.spoil.open > .block-body {

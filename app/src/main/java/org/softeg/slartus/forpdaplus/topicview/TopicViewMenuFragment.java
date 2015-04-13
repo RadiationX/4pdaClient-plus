@@ -219,11 +219,7 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                         }
                     });
 
-
-            subMenu = menu.addSubMenu(R.string.FindOnPage).setIcon(R.drawable.ic_menu_search);
-            subMenu.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-
-            subMenu.add(R.string.FindOnPage)
+            item = menu.add(R.string.FindOnPage)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
                         public boolean onMenuItemClick(MenuItem item) {
@@ -232,7 +228,7 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                             return true;
                         }
                     });
-            subMenu.add(R.string.FindInTopic)
+            item = menu.add(R.string.FindInTopic)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
                         public boolean onMenuItemClick(MenuItem item) {

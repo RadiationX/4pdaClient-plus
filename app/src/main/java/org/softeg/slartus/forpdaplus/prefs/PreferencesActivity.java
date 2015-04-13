@@ -23,7 +23,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -96,6 +98,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
 
             findPreference("path.system_path").setOnPreferenceClickListener(this);
             findPreference("appstyle").setOnPreferenceClickListener(this);
+            findPreference("accentColor").setOnPreferenceClickListener(this);
             findPreference("About.AppVersion").setOnPreferenceClickListener(this);
             findPreference("cookies.path.SetSystemPath").setOnPreferenceClickListener(this);
             findPreference("cookies.path.SetAppPath").setOnPreferenceClickListener(this);
@@ -195,6 +198,9 @@ public class PreferencesActivity extends BasePreferencesActivity {
                 case "appstyle":
                     showStylesDialog();
                     return true;
+                case "accentColor":
+                    showAccentColorDialog();
+                    return true;
                 case "notifiers.service.sound":
                     pickRingtone(NOTIFIERS_SERVICE_SOUND_REQUEST_CODE, Preferences.Notifications.getSound());
                     return true;
@@ -223,6 +229,100 @@ public class PreferencesActivity extends BasePreferencesActivity {
             return false;
         }
 
+        private void showAccentColorDialog() {
+
+            try {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+                int prefColor = (int)Long.parseLong(String.valueOf(prefs.getInt("accentColor", Color.rgb(233, 30, 99))), 10);
+                final int[] colors = {(prefColor >> 16) & 0xFF, (prefColor >> 8) & 0xFF, (prefColor >> 0) & 0xFF};
+
+                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View view = inflater.inflate(R.layout.color_editor, null);
+                final TextView redTxt = (TextView) view.findViewById(R.id.redText);
+                final TextView greenTxt = (TextView) view.findViewById(R.id.greenText);
+                final TextView blueTxt = (TextView) view.findViewById(R.id.blueText);
+
+                final LinearLayout preview = (LinearLayout) view.findViewById(R.id.preview);
+
+                final SeekBar red = (SeekBar) view.findViewById(R.id.red);
+                final SeekBar green = (SeekBar) view.findViewById(R.id.green);
+                final SeekBar blue = (SeekBar) view.findViewById(R.id.blue);
+
+                redTxt.setText(String.valueOf(colors[0]));
+                greenTxt.setText(String.valueOf(colors[1]));
+                blueTxt.setText(String.valueOf(colors[2]));
+
+                red.setProgress(colors[0]);
+                green.setProgress(colors[1]);
+                blue.setProgress(colors[2]);
+
+                preview.setBackgroundColor(Color.rgb(colors[0],colors[1],colors[2]));
+
+                red.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        redTxt.setText(String.valueOf(progress));
+                        preview.setBackgroundColor(Color.rgb(progress,colors[1],colors[2]));
+                    }
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {}
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        colors[0] = seekBar.getProgress();
+                    }
+                });
+                green.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        greenTxt.setText(String.valueOf(progress));
+                        preview.setBackgroundColor(Color.rgb(colors[0],progress,colors[2]));
+                    }
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {}
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        colors[1] = seekBar.getProgress();
+                    }
+                });
+                blue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        blueTxt.setText(String.valueOf(progress));
+                        preview.setBackgroundColor(Color.rgb(colors[0],colors[1],progress));
+                    }
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {}
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        colors[2] = seekBar.getProgress();
+                    }
+                });
+                new MaterialDialog.Builder(getActivity())
+                        .title("Цвет")
+                        .customView(view)
+                        .positiveText("Применить")
+                        .negativeText("Отмена")
+                        .callback(new MaterialDialog.ButtonCallback() {
+                            @Override
+                            public void onPositive(MaterialDialog dialog) {
+                                int[] colorPressed = {colors[0]-30,colors[1]-30,colors[2]-30};
+                                if(colorPressed[0]<0) colorPressed[0]=0;
+                                if(colorPressed[1]<0) colorPressed[1]=0;
+                                if(colorPressed[2]<0) colorPressed[2]=0;
+                                PreferenceManager.getDefaultSharedPreferences(getActivity())
+                                        .edit()
+                                        .putInt("accentColor",Color.rgb(colors[0],colors[1],colors[2]))
+                                        .putInt("accentColorPressed",Color.rgb(colorPressed[0],colorPressed[1],colorPressed[2]))
+                                        .commit();
+                            }
+                        })
+                        .show();
+            } catch (Exception ex) {
+                AppLog.e(getActivity(), ex);
+            }
+
+        }
         private void showStylesDialog() {
 
             try {
