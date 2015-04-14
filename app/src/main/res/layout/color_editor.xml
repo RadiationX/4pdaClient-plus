@@ -35,16 +35,17 @@
             android:layout_toRightOf="@+id/textView1"
             android:layout_toEndOf="@+id/textView1"
             android:max="255" />
-        <TextView
+        <EditText
             android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:text="200"
             android:id="@+id/redText"
+            android:textSize="14sp"
+            android:inputType="number"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignBottom="@+id/textView1"
-            android:gravity="center_vertical|right" />
+            android:gravity="center" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -70,12 +71,13 @@
             android:layout_toLeftOf="@+id/greenText"
             android:layout_toStartOf="@+id/greenText"
             android:max="255"/>
-        <TextView
+        <EditText
             android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:text="200"
             android:id="@+id/greenText"
-            android:gravity="center|center_vertical|right"
+            android:textSize="14sp"
+            android:inputType="number"
+            android:gravity="center"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -105,12 +107,13 @@
             android:layout_toLeftOf="@+id/blueText"
             android:layout_toStartOf="@+id/blueText"
             android:max="255"/>
-        <TextView
+        <EditText
             android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:text="200"
+            android:inputType="number"
             android:id="@+id/blueText"
-            android:gravity="center_vertical|right"
+            android:textSize="14sp"
+            android:gravity="center"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"

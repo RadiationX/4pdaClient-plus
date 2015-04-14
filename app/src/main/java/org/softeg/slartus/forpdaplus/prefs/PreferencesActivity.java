@@ -16,9 +16,13 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.text.Editable;
 import android.text.Html;
+import android.text.InputFilter;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -39,6 +43,7 @@ import org.softeg.slartus.forpdaplus.App;
 import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.classes.ForumUser;
+import org.softeg.slartus.forpdaplus.classes.InputFilterMinMax;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.download.DownloadsService;
 import org.softeg.slartus.forpdaplus.styles.CssStyle;
@@ -234,20 +239,24 @@ public class PreferencesActivity extends BasePreferencesActivity {
             try {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-                int prefColor = (int)Long.parseLong(String.valueOf(prefs.getInt("accentColor", Color.rgb(233, 30, 99))), 10);
+                int prefColor = (int) Long.parseLong(String.valueOf(prefs.getInt("accentColor", Color.rgb(233, 30, 99))), 10);
                 final int[] colors = {(prefColor >> 16) & 0xFF, (prefColor >> 8) & 0xFF, (prefColor >> 0) & 0xFF};
 
                 LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View view = inflater.inflate(R.layout.color_editor, null);
-                final TextView redTxt = (TextView) view.findViewById(R.id.redText);
-                final TextView greenTxt = (TextView) view.findViewById(R.id.greenText);
-                final TextView blueTxt = (TextView) view.findViewById(R.id.blueText);
+                final EditText redTxt = (EditText) view.findViewById(R.id.redText);
+                final EditText greenTxt = (EditText) view.findViewById(R.id.greenText);
+                final EditText blueTxt = (EditText) view.findViewById(R.id.blueText);
 
                 final LinearLayout preview = (LinearLayout) view.findViewById(R.id.preview);
 
                 final SeekBar red = (SeekBar) view.findViewById(R.id.red);
                 final SeekBar green = (SeekBar) view.findViewById(R.id.green);
                 final SeekBar blue = (SeekBar) view.findViewById(R.id.blue);
+
+                redTxt.setFilters(new InputFilter[]{new InputFilterMinMax("0", "255")});
+                greenTxt.setFilters(new InputFilter[]{new InputFilterMinMax("0", "255")});
+                blueTxt.setFilters(new InputFilter[]{new InputFilterMinMax("0", "255")});
 
                 redTxt.setText(String.valueOf(colors[0]));
                 greenTxt.setText(String.valueOf(colors[1]));
@@ -257,16 +266,74 @@ public class PreferencesActivity extends BasePreferencesActivity {
                 green.setProgress(colors[1]);
                 blue.setProgress(colors[2]);
 
-                preview.setBackgroundColor(Color.rgb(colors[0],colors[1],colors[2]));
+                preview.setBackgroundColor(Color.rgb(colors[0], colors[1], colors[2]));
+
+                redTxt.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void afterTextChanged(Editable s) {}
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(redTxt.getText().toString().equals("")){
+                            colors[0] = 0;
+                        }else{
+                            colors[0] = Integer.parseInt(redTxt.getText().toString());
+                        }
+                        preview.setBackgroundColor(Color.rgb(colors[0], colors[1], colors[2]));
+                        red.setProgress(colors[0]);
+                        redTxt.setSelection(redTxt.getText().length());
+                    }
+                });
+                greenTxt.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void afterTextChanged(Editable s) {}
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(greenTxt.getText().toString().equals("")){
+                            colors[1] = 0;
+                        }else{
+                            colors[1] = Integer.parseInt(greenTxt.getText().toString());
+                        }
+                        preview.setBackgroundColor(Color.rgb(colors[0], colors[1], colors[2]));
+                        green.setProgress(colors[1]);
+                        greenTxt.setSelection(greenTxt.getText().length());
+                    }
+                });
+                blueTxt.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void afterTextChanged(Editable s) {}
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(blueTxt.getText().toString().equals("")){
+                            colors[2] = 0;
+                        }else{
+                            colors[2] = Integer.parseInt(blueTxt.getText().toString());
+                        }
+                        preview.setBackgroundColor(Color.rgb(colors[0], colors[1], colors[2]));
+                        blue.setProgress(colors[2]);
+                        blueTxt.setSelection(blueTxt.getText().length());
+                    }
+                });
 
                 red.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         redTxt.setText(String.valueOf(progress));
-                        preview.setBackgroundColor(Color.rgb(progress,colors[1],colors[2]));
+                        preview.setBackgroundColor(Color.rgb(progress, colors[1], colors[2]));
                     }
+
                     @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {}
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         colors[0] = seekBar.getProgress();
@@ -276,10 +343,13 @@ public class PreferencesActivity extends BasePreferencesActivity {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         greenTxt.setText(String.valueOf(progress));
-                        preview.setBackgroundColor(Color.rgb(colors[0],progress,colors[2]));
+                        preview.setBackgroundColor(Color.rgb(colors[0], progress, colors[2]));
                     }
+
                     @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {}
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         colors[1] = seekBar.getProgress();
@@ -289,10 +359,13 @@ public class PreferencesActivity extends BasePreferencesActivity {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         blueTxt.setText(String.valueOf(progress));
-                        preview.setBackgroundColor(Color.rgb(colors[0],colors[1],progress));
+                        preview.setBackgroundColor(Color.rgb(colors[0], colors[1], progress));
                     }
+
                     @Override
-                    public void onStartTrackingTouch(SeekBar seekBar) {}
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
+
                     @Override
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         colors[2] = seekBar.getProgress();
@@ -303,17 +376,27 @@ public class PreferencesActivity extends BasePreferencesActivity {
                         .customView(view)
                         .positiveText("Применить")
                         .negativeText("Отмена")
+                        .neutralText("Сброс")
                         .callback(new MaterialDialog.ButtonCallback() {
                             @Override
                             public void onPositive(MaterialDialog dialog) {
-                                int[] colorPressed = {colors[0]-30,colors[1]-30,colors[2]-30};
-                                if(colorPressed[0]<0) colorPressed[0]=0;
-                                if(colorPressed[1]<0) colorPressed[1]=0;
-                                if(colorPressed[2]<0) colorPressed[2]=0;
+                                int[] colorPressed = {colors[0] - 30, colors[1] - 30, colors[2] - 30};
+                                if (colorPressed[0] < 0) colorPressed[0] = 0;
+                                if (colorPressed[1] < 0) colorPressed[1] = 0;
+                                if (colorPressed[2] < 0) colorPressed[2] = 0;
                                 PreferenceManager.getDefaultSharedPreferences(getActivity())
                                         .edit()
-                                        .putInt("accentColor",Color.rgb(colors[0],colors[1],colors[2]))
-                                        .putInt("accentColorPressed",Color.rgb(colorPressed[0],colorPressed[1],colorPressed[2]))
+                                        .putInt("accentColor", Color.rgb(colors[0], colors[1], colors[2]))
+                                        .putInt("accentColorPressed", Color.rgb(colorPressed[0], colorPressed[1], colorPressed[2]))
+                                        .commit();
+                            }
+
+                            @Override
+                            public void onNeutral(MaterialDialog dialog) {
+                                PreferenceManager.getDefaultSharedPreferences(getActivity())
+                                        .edit()
+                                        .putInt("accentColor", Color.rgb(233, 30, 99))
+                                        .putInt("accentColorPressed", Color.rgb(203, 0, 69))
                                         .commit();
                             }
                         })
@@ -323,6 +406,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
             }
 
         }
+
         private void showStylesDialog() {
 
             try {
@@ -361,6 +445,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
                                         .putString("appstyle", newstyleValues.get(selected[0]).toString())
                                         .commit();
                             }
+
                             @Override
                             public void onNeutral(MaterialDialog dialog) {
                                 if (selected[0] == -1) {
