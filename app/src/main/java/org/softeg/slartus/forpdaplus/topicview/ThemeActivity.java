@@ -931,6 +931,7 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
 
             setSupportProgressBarIndeterminateVisibility(true);
             //ThemeActivity.this.setProgressBarIndeterminateVisibility(true);
+
         }
 
         @Override

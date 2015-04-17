@@ -160,8 +160,8 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
         if (TextUtils.isEmpty(m_Nick))
             setTitle("QMS");
         else
-            setTitle(m_Nick + ":QMS:" + m_ThemeTitle);
-
+            setTitle(m_ThemeTitle);
+            getSupportActionBar().setSubtitle(m_Nick);
         if (!TextUtils.isEmpty(m_PageBody[0])) {
             m_LastBodyLength = m_PageBody[0].length();
             new Thread(new Runnable() {
@@ -356,7 +356,8 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
         m_Nick = outState.getString(NICK_KEY);
         m_TId = outState.getString(TID_KEY);
         m_ThemeTitle = outState.getString(THEME_TITLE_KEY);
-        setTitle(m_Nick + "-QMS-" + m_ThemeTitle);
+        setTitle(m_ThemeTitle);
+        getSupportActionBar().setSubtitle(m_Nick);
         edMessage.setText(outState.getString(POST_TEXT_KEY));
 
     }
@@ -489,7 +490,8 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
 
                 if (finalEx == null) {
                     if (finalUpdateTitle)
-                        setTitle(m_Nick + "-QMS-" + m_ThemeTitle);
+                        setTitle(m_ThemeTitle);
+                        getSupportActionBar().setSubtitle(m_Nick);
                     wvChat.loadDataWithBaseURL("\"file:///android_asset/\"", finalChatBody, "text/html", "UTF-8", null);
                 } else {
                     if ("Такого диалога не существует.".equals(finalEx.getMessage())) {

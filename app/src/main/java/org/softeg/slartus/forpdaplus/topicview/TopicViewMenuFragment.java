@@ -373,7 +373,6 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
 
 
     }
-
     private void addCloseMenuItem(Menu menu) {
         MenuItem item;
         item = menu.add("Закрыть")

@@ -1042,28 +1042,13 @@ a {
 .our-message .check-item .checkbox {
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  width: 100%;
-  height: 100%;
+  width: 1.125em;
+  height: 1.125em;
   display: block;
   border: 1px solid #585858;
-  border-width: 0.1em;
-}
-.list-group-item .check-item .checkbox .icon-check,
-.our-message .check-item .checkbox .icon-check {
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 111, 165, 0.18);
-  -webkit-transition: 0.45s;
-  transition: 0.45s;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-  -webkit-transform-origin: top right;
-  transform-origin: top right;
+  border-width: 0.125em;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
 }
 .list-group-item .check-item .checkbox .icon-check:before,
 .our-message .check-item .checkbox .icon-check:before {
@@ -1072,37 +1057,30 @@ a {
 .list-group-item .check-item .checkbox .icon-uncheck,
 .our-message .check-item .checkbox .icon-uncheck {
   display: block;
-  width: 50%;
-  height: 100%;
-  margin: 0 auto;
-  position: relative;
+  width: 0.4375em;
+  height: 0.75em;
+  right: 0.8125em;
+  top: 0.4375em;
+  position: absolute;
+  border: 2px solid white;
+  border-left: none;
+  border-top: none;
+  -webkit-transform: rotate(45deg) scale(0);
+  transform: rotate(45deg) scale(0);
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
 }
 .list-group-item .check-item .checkbox .icon-uncheck:before,
 .our-message .check-item .checkbox .icon-uncheck:before {
-  content: "";
-  border-right: 2px solid #28627f;
-  border-bottom: 2px solid #28627f;
-  -webkit-transition: 0.35s ease;
-  transition: 0.35s ease;
-  -webkit-transform: rotate(0deg) scale(0);
-  transform: rotate(0deg) scale(0);
-  opacity: 0.3;
-  position: absolute;
-  width: 0.5em;
-  height: 1em;
-  box-sizing: border-box;
+  display: none;
 }
 .list-group-item .check-item input:checked + .checkbox,
 .our-message .check-item input:checked + .checkbox {
-  border-color: transparent;
+  border-color: #e91e63;
+  background: #e91e63;
 }
-.list-group-item .check-item input:checked + .checkbox .icon-check,
-.our-message .check-item input:checked + .checkbox .icon-check {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
-.list-group-item .check-item input:checked + .checkbox .icon-uncheck:before,
-.our-message .check-item input:checked + .checkbox .icon-uncheck:before {
+.list-group-item .check-item input:checked + .checkbox .icon-uncheck,
+.our-message .check-item input:checked + .checkbox .icon-uncheck {
   -webkit-transform: rotate(45deg) scale(1);
   transform: rotate(45deg) scale(1);
   opacity: 1;
@@ -1116,10 +1094,10 @@ a {
 .list-group-item .time,
 .our-message .time {
   position: absolute;
-  width: 2.5em;
   bottom: -0.25em;
   left: -3.75em;
   font-size: 0.9em;
+  white-space: nowrap;
 }
 .list-group-item .time .read-status,
 .our-message .time .read-status {
@@ -1187,15 +1165,9 @@ a {
 .our-message .check-item {
   float: left;
 }
-.our-message .check-item .checkbox:before {
+.our-message .check-item .checkbox .icon-uncheck {
   right: auto;
-  left: -1em;
-}
-.our-message .check-item .checkbox .icon-check {
-  right: auto;
-  left: 0;
-  -webkit-transform-origin: top left;
-  transform-origin: top left;
+  left: 0.75em;
 }
 .our-message .time {
   left: auto;
@@ -1389,7 +1361,7 @@ a {
   z-index: 1;
   outline: none;
 }
-.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input + b {
+.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.checkbox + b {
   line-height: 3em;
   min-height: 3em;
   display: inline-block;
@@ -1399,13 +1371,68 @@ a {
   padding-left: 2em;
   font-weight: normal;
 }
-.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input + b:before {
+.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.checkbox + b:before {
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  content: "";
+  display: block;
+  height: 1.125em;
+  width: 1.125em;
+  border: 1px solid #585858;
+  border-width: 0.125em;
+  background: #333333;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -0.5em;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  box-sizing: border-box;
+}
+.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.checkbox + b:after {
+  content: "";
+  display: block;
+  height: 0.75em;
+  width: 0.4375em;
+  border: 0.125em solid white;
+  box-sizing: border-box;
+  border-left: none;
+  border-top: none;
+  position: absolute;
+  left: 0.375em;
+  bottom: 1.2em;
+  -webkit-transform: rotate(45deg) scale(0);
+  transform: rotate(45deg) scale(0);
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  opacity: 0;
+}
+.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.checkbox:checked + b:before {
+  border-color: #e91e63;
+  background: #e91e63;
+}
+.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.checkbox:checked + b:after {
+  -webkit-transform: rotate(45deg) scale(1);
+  transform: rotate(45deg) scale(1);
+  opacity: 1;
+}
+.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.radiobutton + b {
+  line-height: 3em;
+  min-height: 3em;
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  position: relative;
+  padding-left: 2em;
+  font-weight: normal;
+}
+.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.radiobutton + b:before {
   -webkit-border-radius: 100%;
   border-radius: 100%;
   content: "";
   display: block;
-  height: 1em;
-  width: 1em;
+  height: 1.125em;
+  width: 1.125em;
   border: 1px solid #585858;
   border-width: 2px;
   background: #333333;
@@ -1413,31 +1440,34 @@ a {
   left: 0;
   top: 50%;
   margin-top: -0.5em;
+  box-sizing: border-box;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
 }
-.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input + b:after {
+.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.radiobutton + b:after {
   content: "";
   display: block;
   height: 0.625em;
   width: 0.625em;
   border-radius: 100%;
-  background: #28627f;
+  background: #e91e63;
   position: absolute;
-  left: 0.3em;
+  left: 0.25em;
   top: 50%;
-  margin-top: -0.2em;
+  margin-top: -0.25em;
   -webkit-transform: scale(0);
   transform: scale(0);
-  -webkit-transition: 0.35s;
-  transition: 0.35s;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
   opacity: 0;
 }
-.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input:checked + b:after {
+.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.radiobutton:checked + b:after {
   -webkit-transform: scale(1);
   transform: scale(1);
   opacity: 1;
 }
-.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input:checked + b:before {
-  border-color: #28627f;
+.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.radiobutton:checked + b:before {
+  border-color: #e91e63;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td.post2 {
   position: relative;

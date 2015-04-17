@@ -98,7 +98,7 @@ public class TopicBodyBuilder extends HtmlBuilder {
 
     public void addPost(Post post, Boolean spoil) {
 
-        m_Body.append("<div name=\"entry").append(post.getId()).append("\" id=\"entry").append(post.getId()).append("\"></div>\n");
+        m_Body.append("<div name=\"entry").append(post.getId()).append("\" style=\"position: absolute; width: 100%; margin-top:-4em;\" id=\"entry").append(post.getId()).append("\"></div>\n");
 
         addPostHeader(m_Body, post);
 

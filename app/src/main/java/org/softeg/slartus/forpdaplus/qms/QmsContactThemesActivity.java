@@ -96,7 +96,8 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
 
         m_Id = extras.getString(MID_KEY);
         m_Nick = extras.getString(NICK_KEY);
-        setTitle(m_Nick + "-QMS-Темы");
+        setTitle("QMS-Темы");
+        getSupportActionBar().setSubtitle(m_Nick);
     }
 
     private void createActionMenu() {
@@ -163,7 +164,8 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
             }
             if (!TextUtils.isEmpty(data.Nick)) {
                 m_Nick = data.Nick;
-                setTitle(m_Nick + " - QMS-Темы");
+                setTitle("QMS-Темы");
+                getSupportActionBar().setSubtitle(m_Nick);
             }
             for (QmsUserTheme item : data) {
                 m_QmsUsers.add(item);
