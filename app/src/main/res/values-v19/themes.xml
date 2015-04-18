@@ -39,6 +39,7 @@
         <item name="divider_color">@style/divider_wh</item>
         <item name="md_dark_theme">false</item>
         <item name="Divider">@style/Divider_wh</item>
+        <item name="actbar">@color/actionbar_background_wh</item>
     </style>
     <style name="Theme.Black" parent="Theme.AppCompat">
         <item name="actionModeBackground">@color/actionbar_background_bl</item>
@@ -80,6 +81,7 @@
         <item name="divider_color">@style/divider_bl</item>
         <item name="md_dark_theme">true</item>
         <item name="Divider">@style/Divider_bl</item>
+        <item name="actbar">@color/actionbar_background_bl</item>
     </style>
 
     <style name="Theme.Transluent.White" parent="Theme.White">

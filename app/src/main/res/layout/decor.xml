@@ -34,17 +34,19 @@
         android:layout_gravity="start">
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/topInform">
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="150dp"
-                android:scaleType="center"
-                android:src="@drawable/drawabla"/>
+            android:layout_height="144dp"
+            android:id="@+id/topInform"
+            android:clickable="true"
+            android:background="?actbar">
             <TextView
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textViewa"/>
+                android:layout_height="fill_parent"
+                android:text="Soon..."
+                android:textColor="@color/white"
+                android:textSize="34sp"
+                android:gravity="center_vertical"
+                android:paddingLeft="36dp"
+                android:paddingTop="24dp"/>
         </RelativeLayout>
 
         <ExpandableListView

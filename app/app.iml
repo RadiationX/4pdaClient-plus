@@ -108,7 +108,6 @@
     <orderEntry type="module" module-name="newquickaction" exported="" />
     <orderEntry type="module" module-name="forpdacommon" exported="" />
     <orderEntry type="module" module-name="4pdasources" exported="" />
-    <orderEntry type="module" module-name="forpdaapi" />
   </component>
 </module>
 

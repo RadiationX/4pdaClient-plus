@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:gravity="center_vertical"
         android:layout_height="56dp"
-        android:paddingLeft="16dp"
+        android:paddingLeft="32dp"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:textSize="14sp"
         style="?drawer_menu_text" />

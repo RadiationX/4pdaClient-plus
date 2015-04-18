@@ -485,7 +485,7 @@ a {
 }
 #main .container .product-detail .description .more-box .meta {
   padding: 5px;
-  border-top: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
   display: none;
 }
 #main .container .content .content-box {
@@ -511,7 +511,7 @@ a {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  border: 1px solid #585858;
+  border: 0.0625em solid #585858;
   display: block;
   overflow: hidden;
   background: #3d3d3d;
@@ -528,7 +528,7 @@ a {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   display: block;
-  border: 1px solid #585858;
+  border: 0.0625em solid #585858;
   margin: 0.5em;
 }
 #main .container .content .content-box .table4site tbody tr p {
@@ -555,8 +555,8 @@ a {
 }
 #main .container .content .content-box .mlinks {
   background: #3d3d3d;
-  border-top: 1px solid #585858;
-  border-bottom: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
+  border-bottom: 0.0625em solid #585858;
   margin: 0.5em -0.8em;
 }
 #main .container .content .content-box .mlinks .mlhead {
@@ -651,7 +651,7 @@ a {
 }
 #main .container .content .content-box .mlinks .mlscreenshots {
   width: 100%;
-  border-top: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
 }
 #main .container .content .content-box .mlinks .mlscreenshots .screenshots .sc-btn {
   display: none!important;
@@ -680,7 +680,7 @@ a {
 #main .container .content .content-box .mlinks.desc .mlright .mltbl {
   display: table;
   width: 100%;
-  border-top: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
 }
 #main .container .content .content-box .mlinks.desc .mlright .mltbl .mlrow {
   position: relative;
@@ -691,7 +691,7 @@ a {
   display: table-cell;
   position: relative;
   padding: 0 10px;
-  border: 1px solid #585858;
+  border: 0.0625em solid #585858;
   border-width: 0 1px 1px 0;
 }
 #main .container .content .content-box .mlinks.desc .mlright .mltbl .mlrow .mlcell:last-of-type {
@@ -729,14 +729,14 @@ a {
   border-left: 5px solid #28627f;
 }
 #main .container .content .content-box .review-bottom-informer {
-  border: 1px solid #585858;
+  border: 0.0625em solid #585858;
   padding: 0 0.3em;
   background: #3d3d3d;
 }
 #main .container .content .content-box .review-bottom-informer .item {
   text-align: center;
   display: block;
-  border: 1px solid #585858;
+  border: 0.0625em solid #585858;
   margin: 0.3em 0;
   box-sizing: border-box;
   padding: 0.35em;
@@ -752,7 +752,7 @@ a {
 }
 #main .container .content .content-box .mb_source {
   margin: 0;
-  border-top: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
   padding: 0.4em 0 0 0;
 }
 #main .container .content .content-box .mb_source + br {
@@ -785,7 +785,7 @@ a {
 }
 #main .materials-box .materials-list li {
   min-height: 2em;
-  border-bottom: 1px solid #585858;
+  border-bottom: 0.0625em solid #585858;
 }
 #main .materials-box .materials-list li:after {
   content: "";
@@ -894,7 +894,7 @@ a {
   top: 0;
   left: 50%;
   margin-left: -1px;
-  border-left: 1px solid #585858;
+  border-left: 0.0625em solid #585858;
   height: 100%;
 }
 #main .comment-box {
@@ -968,8 +968,8 @@ a {
 #main .comment-box .comment-list li .heading {
   line-height: 1.8em;
   padding: 0 0.35em;
-  border-top: 1px solid #585858;
-  border-bottom: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
+  border-bottom: 0.0625em solid #585858;
 }
 #main .comment-box .comment-list li .heading:after {
   clear: both;
@@ -991,7 +991,7 @@ a {
 #main .comment-box .comment-list li .content {
   padding: 5px;
   margin: 0;
-  border-bottom: 1px solid #585858;
+  border-bottom: 0.0625em solid #585858;
 }
 #main .comment-box .comment-list li div[id*=form-reply] {
   text-align: right;
@@ -1045,8 +1045,7 @@ a {
   width: 1.125em;
   height: 1.125em;
   display: block;
-  border: 1px solid #585858;
-  border-width: 0.125em;
+  border: 0.125em solid #737373;
   -webkit-transition: 0.25s;
   transition: 0.25s;
 }
@@ -1062,7 +1061,8 @@ a {
   right: 0.8125em;
   top: 0.4375em;
   position: absolute;
-  border: 2px solid white;
+  border: 0.125em solid #737373;
+  border-color: white;
   border-left: none;
   border-top: none;
   -webkit-transform: rotate(45deg) scale(0);
@@ -1153,7 +1153,7 @@ a {
 }
 .list-group-item .msg-content,
 .our-message .msg-content {
-  border-top: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
   padding: 0.25em 0.4em;
   width: 100%;
   overflow: hidden;
@@ -1237,7 +1237,7 @@ a {
   right: 0;
   top: 0.5em;
   bottom: 0.5em;
-  border-right: 1px solid #585858;
+  border-right: 0.0625em solid #585858;
 }
 .navi > div .href_button_disable {
   color: #999999;
@@ -1258,8 +1258,8 @@ a {
   -webkit-box-shadow: 0 0 5px -3px #000000;
   margin: 0;
   box-shadow: none;
-  border-top: 1px solid #585858;
-  border-bottom: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
+  border-bottom: 0.0625em solid #585858;
   text-align: center;
   margin-bottom: 3em;
 }
@@ -1316,7 +1316,7 @@ a {
 }
 .poll .hidemain form > .ipbtable > tbody > tr:first-child th {
   background: #3d3d3d;
-  border-bottom: 1px solid #585858;
+  border-bottom: 0.0625em solid #585858;
   display: none;
 }
 .poll .hidemain form > .ipbtable > tbody > tr:first-child th b {
@@ -1328,8 +1328,8 @@ a {
   display: block;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap .row1 {
-  border-bottom: 1px solid #585858;
-  border-top: 1px solid #585858;
+  border-bottom: 0.0625em solid #585858;
+  border-top: 0.0625em solid #585858;
   background: #3d3d3d;
   text-align: center;
   padding: 0.5em!important;
@@ -1378,13 +1378,12 @@ a {
   display: block;
   height: 1.125em;
   width: 1.125em;
-  border: 1px solid #585858;
-  border-width: 0.125em;
+  border: 0.125em solid #737373;
   background: #333333;
   position: absolute;
   left: 0;
   top: 50%;
-  margin-top: -0.5em;
+  margin-top: -0.5625em;
   -webkit-transition: 0.25s;
   transition: 0.25s;
   box-sizing: border-box;
@@ -1394,13 +1393,14 @@ a {
   display: block;
   height: 0.75em;
   width: 0.4375em;
-  border: 0.125em solid white;
+  border: 0.125em solid #737373;
+  border-color: white;
   box-sizing: border-box;
   border-left: none;
   border-top: none;
   position: absolute;
   left: 0.375em;
-  bottom: 1.2em;
+  bottom: 1.2625em;
   -webkit-transform: rotate(45deg) scale(0);
   transform: rotate(45deg) scale(0);
   -webkit-transition: 0.25s;
@@ -1431,15 +1431,14 @@ a {
   border-radius: 100%;
   content: "";
   display: block;
-  height: 1.125em;
-  width: 1.125em;
-  border: 1px solid #585858;
-  border-width: 2px;
+  height: 1.25em;
+  width: 1.25em;
+  border: 0.125em solid #737373;
   background: #333333;
   position: absolute;
   left: 0;
   top: 50%;
-  margin-top: -0.5em;
+  margin-top: -0.625em;
   box-sizing: border-box;
   -webkit-transition: 0.25s;
   transition: 0.25s;
@@ -1452,9 +1451,9 @@ a {
   border-radius: 100%;
   background: #e91e63;
   position: absolute;
-  left: 0.25em;
+  left: 0.3125em;
   top: 50%;
-  margin-top: -0.25em;
+  margin-top: -0.3125em;
   -webkit-transform: scale(0);
   transform: scale(0);
   -webkit-transition: 0.25s;
@@ -1474,6 +1473,9 @@ a {
   width: auto!important;
   display: block;
   float: left;
+}
+.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td.post2[colspan*="3"] {
+  width: 100%!important;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td.post2[width*="70%"] {
   width: auto;
@@ -1511,14 +1513,14 @@ a {
   margin: 0.5em;
   padding: 0 0.5em;
   line-height: 2em;
-  border: 1px solid #585858;
+  border: 0.0625em solid #585858;
   background: #3d3d3d;
   display: block;
   text-align: left;
 }
 .poll .hidemain form > .ipbtable > tbody > tr:nth-last-child(2) .formbuttonrow {
   display: block;
-  border-top: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
   line-height: 3em;
   padding: 0 0.25em 0 0.5em;
   text-align: right;
@@ -1569,7 +1571,7 @@ a {
   top: 6em;
   left: 0.5em;
   right: 0.5em;
-  border-top: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
 }
 .post_header_container .post_header br {
   display: none;
@@ -1679,7 +1681,7 @@ a {
   top: 4em;
   left: 0.5em;
   right: 0.5em;
-  border-top: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
 }
 .post_header_container + .post_body {
   -webkit-border-radius: 0 0 2px 2px;
@@ -1846,8 +1848,8 @@ a {
 }
 .post_header table tbody tr:nth-child(3) {
   top: 4.5em;
-  border-top: 1px solid #585858;
-  border-bottom: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
+  border-bottom: 0.0625em solid #585858;
   left: 0.5em;
   right: 0.5em;
   padding: 0;
@@ -1927,7 +1929,7 @@ a {
   text-align: right;
   display: block;
   background: #3d3d3d;
-  border: 1px solid #585858;
+  border: 0.0625em solid #585858;
   padding: 0.571em;
   font-size: 0.875em;
 }
@@ -1937,7 +1939,7 @@ a {
   font-size: 0.875em;
   text-align: right;
   background: #3d3d3d;
-  border: 1px solid #585858;
+  border: 0.0625em solid #585858;
   border-top: none;
   padding: 0 0.571em 0.571em 0.571em;
   margin-top: -2px;
@@ -1999,7 +2001,7 @@ a {
   -webkit-border-radius: 0 0 2px 2px;
   border-radius: 0 0 2px 2px;
   margin-top: 0;
-  border-top: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
   text-align: center;
   padding: 0.5em;
 }
@@ -2044,7 +2046,7 @@ a {
   -webkit-border-radius: 0 0 2px 2px;
   border-radius: 0 0 2px 2px;
   margin-top: 0;
-  border-top: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
   text-align: center;
   position: relative;
   z-index: 1;
@@ -2130,7 +2132,7 @@ a {
   box-shadow: none;
   display: block;
   text-align: center;
-  border-top: 1px solid #585858;
+  border-top: 0.0625em solid #585858;
   position: relative;
 }
 #viewers .href_button,
@@ -2140,7 +2142,7 @@ a {
 }
 #writers:before {
   content: "";
-  border-left: 1px solid #585858;
+  border-left: 0.0625em solid #585858;
   position: absolute;
   left: 0;
   top: 6px;
@@ -2157,21 +2159,33 @@ a {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   background: #0977b2;
-  line-height: 1.4em;
   width: 1.25em;
   height: 1.25em;
   display: inline-block;
   text-align: center;
-  font-size: 1em;
+  vertical-align: text-bottom;
+  position: relative;
 }
 .post_body a[href*=findpost][title="Перейти к сообщению"] img {
   display: none;
 }
 .post_body a[href*=findpost][title="Перейти к сообщению"]:before {
+  content: "";
   display: block;
-  text-align: center;
-  content: "\2039";
-  line-height: 1.25em;
+  height: 0.4375em;
+  width: 0.4375em;
+  box-sizing: border-box;
+  border: 0.125em solid #737373;
+  border-color: white;
+  border-top: none;
+  border-right: none;
+  top: 50%;
+  margin-top: -0.1875em;
+  left: 50%;
+  margin-left: -0.125em;
+  position: relative;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
 .post-block {
   margin: 0.5em 0;
@@ -2202,7 +2216,7 @@ a {
   -webkit-border-radius: 0 0 2px 2px;
   border-radius: 0 0 2px 2px;
   background: #3d3d3d;
-  border: 1px solid #585858;
+  border: 0.0625em solid #585858;
   border-top: none;
   padding: 0.5em;
   position: relative;
@@ -2306,7 +2320,7 @@ a {
 .post-block.tbl > .block-body {
   -webkit-border-radius: 0 2px 2px 0;
   border-radius: 0 2px 2px 0;
-  border: 1px solid #585858;
+  border: 0.0625em solid #585858;
   border-left: none;
 }
 .post-block.tbl.ex > .block-title {
@@ -2338,7 +2352,7 @@ a {
   #writers {
     width: 50%;
     float: left;
-    border-bottom: 1px solid #585858;
+    border-bottom: 0.0625em solid #585858;
   }
   #writers:before {
     display: block;
@@ -2364,7 +2378,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
   #main .container .product-detail {
     text-align: left;
     background: #3d3d3d;
-    border-bottom: 1px solid #585858;
+    border-bottom: 0.0625em solid #585858;
   }
   #main .container .product-detail .photo {
     padding-bottom: 37.5%;
@@ -2409,7 +2423,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     -webkit-border-radius: 0;
     border-radius: 0;
     display: table-row;
-    border: 1px solid #585858;
+    border: 0.0625em solid #585858;
     margin: 0.5em;
   }
   #main .container .content .content-box .table4site tbody tr p {
@@ -2421,7 +2435,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     width: 100%;
     padding: 0.2em 0.4em;
     padding-left: 0.6em;
-    border-right: 1px solid #585858;
+    border-right: 0.0625em solid #585858;
   }
   #main .container .content .content-box .table4site tbody tr td:first-child {
     width: auto;
@@ -2516,20 +2530,20 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     margin: 0;
     margin-top: 2.6em;
     overflow: hidden;
-    border-bottom: 1px solid #585858;
-    height: 2em;
+    border-bottom: 0.0625em solid #585858;
+    height: 2.25em;
+    line-height: 2.25em;
     box-sizing: border-box;
   }
   .hidemain {
     overflow: hidden;
     position: relative;
-    left: -1px;
   }
   .hidemain .post_body {
     margin-top: 0;
   }
   .poll .hidetop {
-    margin: 0.6em;
+    margin: 0.5em;
     margin-bottom: 0;
     overflow: visible;
     border-bottom: none;
@@ -2544,10 +2558,10 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     box-shadow: none;
     -webkit-border-radius: 2px 0 0 0;
     border-radius: 2px 0 0 0;
-    margin: 2.6em 0 0 0.6em;
+    margin: 2.6em 0 0 0.5em;
     width: 25%;
-    min-width: 260px;
-    max-width: 300px;
+    min-width: 16.25em;
+    max-width: 18.75em;
     position: relative;
     z-index: 3;
     float: left;
@@ -2569,14 +2583,11 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     border-radius: 2px 2px 0 0;
     position: relative;
     z-index: 2;
-    min-height: 6em;
-  }
-  div[name*="msg"]:first-child {
-    background: red;
+    min-height: 6.75em;
   }
   div[style*="margin-top:80px"] > .navi + .topic_title_post + div[name*="entry"] + div + .post_header,
   div[style*="margin-top:80px"] > .navi + .topic_title_post ~ .poll + div[name*="entry"] + div + .post_header {
-    border-right: 1px solid #585858;
+    border-right: 0.0625em solid #585858;
   }
   .post_body {
     box-shadow: none;
@@ -2584,8 +2595,8 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     margin-top: 2.6em;
     overflow: hidden;
     margin-right: 0;
-    min-height: 6em;
-    border-left: 1px solid #585858;
+    min-height: 6.75em;
+    border-left: 0.0625em solid #585858;
     -webkit-border-radius: 0 2px 0 0;
     border-radius: 0 2px 0 0;
     z-index: 4;
