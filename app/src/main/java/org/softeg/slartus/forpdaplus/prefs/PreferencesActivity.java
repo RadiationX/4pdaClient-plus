@@ -373,7 +373,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
                 });
                 new MaterialDialog.Builder(getActivity())
                         .title("Цвет")
-                        .customView(view)
+                        .customView(view,true)
                         .positiveText("Применить")
                         .negativeText("Отмена")
                         .neutralText("Сброс")
@@ -643,7 +643,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
             rbCustom.setOnCheckedChangeListener(checkedChangeListener);
             new MaterialDialog.Builder(getActivity())
                     .title("Путь к папке с данными")
-                    .customView(view)
+                    .customView(view,true)
                     .cancelable(true)
                     .positiveText(android.R.string.ok)
                     .negativeText(android.R.string.cancel)

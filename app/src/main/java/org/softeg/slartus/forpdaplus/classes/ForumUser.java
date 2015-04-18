@@ -226,7 +226,7 @@ public class ForumUser {
         username_view.setText(userNick);
         new MaterialDialog.Builder(context)
                 .title(title)
-                .customView(layout)
+                .customView(layout,true)
                 .positiveText(context.getString(R.string.Change))
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override

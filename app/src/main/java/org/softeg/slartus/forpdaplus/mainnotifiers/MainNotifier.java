@@ -7,6 +7,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdacommon.DateExtensions;
 import org.softeg.slartus.forpdacommon.ExtPreferences;
 import org.softeg.slartus.forpdaplus.App;
@@ -37,8 +39,8 @@ public abstract class MainNotifier {
         return "";
     }
 
-    public void addToStack(AlertDialog alertDialog){
-        notifiersManager.addNotifyDialog(alertDialog);
+    public void addToStack(MaterialDialog materialDialog){
+        notifiersManager.addNotifyDialog(materialDialog);
     }
 
     public MainNotifier(NotifiersManager notifiersManager, String name, int period) {

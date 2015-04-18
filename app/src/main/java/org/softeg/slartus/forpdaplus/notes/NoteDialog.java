@@ -54,7 +54,7 @@ public class NoteDialog {
 
         final MaterialDialog dialog = new MaterialDialog.Builder(context)
                 .title(context.getString(R.string.NewNote))
-                .customView(view)
+                .customView(view,true)
                 .positiveText(context.getString(R.string.Save))
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override

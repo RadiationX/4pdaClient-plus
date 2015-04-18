@@ -399,7 +399,7 @@ public class Client implements IHttpClient {
 
                 m_LoginDialog = new MaterialDialog.Builder(context)
                         .title("Вход")
-                        .customView(layout)
+                        .customView(layout,true)
                         .positiveText("Вход")
                         .callback(new MaterialDialog.ButtonCallback() {
                             @Override

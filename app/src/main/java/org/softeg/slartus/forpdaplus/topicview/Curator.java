@@ -103,7 +103,7 @@ public class Curator {
 
         new MaterialDialog.Builder(mTopicActivity)
                 .title("Мультимодерация")
-                .customView(view)
+                .customView(view,true)
                 .cancelable(true)
 
                 .positiveText("Открыть")

@@ -384,7 +384,7 @@ public class HtmloutWebInterface {
 
                     new MaterialDialog.Builder(getContext())
                             .title("Перейти к странице")
-                            .customView(view)
+                            .customView(view,true)
                             .positiveText("Перейти")
                             .callback(new MaterialDialog.ButtonCallback() {
                                 @Override

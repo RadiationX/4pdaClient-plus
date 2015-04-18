@@ -83,7 +83,7 @@ public class ImageViewDialogFragment extends DialogFragment {
         m_PhotoView=(PhotoView)v.findViewById(R.id.iv_photo);
         m_PhotoView.setMaximumScale(10f);
         m_ProgressView=v.findViewById(R.id.progressBar);
-        builder.customView(v);
+        builder.customView(v,true);
 
         return builder.build();
 

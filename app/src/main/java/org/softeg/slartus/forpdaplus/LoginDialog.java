@@ -69,7 +69,7 @@ public class LoginDialog {
 
         new MaterialDialog.Builder(context)
                 .title("Вход")
-                .customView(loginDialog.getView())
+                .customView(loginDialog.getView(),true)
                 .positiveText("Вход")
                 .negativeText("Отмена")
                 .callback(new MaterialDialog.ButtonCallback() {

@@ -16,23 +16,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+
+import org.softeg.slartus.forpdaapi.ProfileApi;
+import org.softeg.slartus.forpdaapi.qms.QmsApi;
+import org.softeg.slartus.forpdaapi.qms.QmsUser;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.listtemplates.BrickInfo;
 import org.softeg.slartus.forpdaplus.listtemplates.ListCore;
 import org.softeg.slartus.forpdaplus.listtemplates.NewsPagerBrickInfo;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 import org.softeg.slartus.forpdaplus.prefs.PreferencesActivity;
+import org.softeg.slartus.forpdaplus.profile.ProfileWebViewActivity;
+import org.softeg.slartus.forpdaplus.qms.QmsContactsListFragment;
 import org.softeg.slartus.forpdaplus.tabs.Tabs;
 
 import java.util.ArrayList;
 
 public class MainDrawerMenu {
     private DrawerLayout mDrawerLayout;
+    private RelativeLayout mDrawer;
     private ExpandableListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     private Activity mActivity;
@@ -57,18 +67,22 @@ public class MainDrawerMenu {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 
-        mDrawerList = (ExpandableListView) findViewById(R.id.left_drawer);
-        DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mDrawerList.getLayoutParams();
+
+        mDrawerList = (ExpandableListView) findViewById(R.id.left_drawer_list);
+        mDrawer = (RelativeLayout) findViewById(R.id.left_drawer);
+
+
+        DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mDrawer.getLayoutParams();
         params.width = (int) dpWidth;
         if ("right".equals(Preferences.System.getDrawerMenuPosition())) {
 
             params.gravity = Gravity.RIGHT;
 
-            mDrawerList.setLayoutParams(params);
+            mDrawer.setLayoutParams(params);
             setDrawerLayoutArea(activity, false);
         } else {
             setDrawerLayoutArea(activity, true);
-            mDrawerList.setLayoutParams(params);
+            mDrawer.setLayoutParams(params);
         }
 
         mDrawerList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
@@ -115,7 +129,11 @@ public class MainDrawerMenu {
             brickInfo = new NewsPagerBrickInfo();
         selectItem(brickInfo);
     }
-
+    public void setInform(){
+        //RelativeLayout inform = (RelativeLayout) findViewById(R.id.topInform);
+        //TextView textView = (TextView) findViewById(R.id.textViewa);
+        //textView.setText(Client.getInstance().getUser());
+    }
     /*
     Область вытягивания
      */
@@ -140,19 +158,19 @@ public class MainDrawerMenu {
     }
 
     public void toggleOpenState() {
-        if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
-            mDrawerLayout.closeDrawer(mDrawerList);
+        if (mDrawerLayout.isDrawerOpen(mDrawer)) {
+            mDrawerLayout.closeDrawer(mDrawer);
         } else {
-            mDrawerLayout.openDrawer(mDrawerList);
+            mDrawerLayout.openDrawer(mDrawer);
         }
     }
 
     public void close() {
-        mDrawerLayout.closeDrawer(mDrawerList);
+        mDrawerLayout.closeDrawer(mDrawer);
     }
 
     public Boolean isOpen() {
-        return mDrawerLayout.isDrawerOpen(mDrawerList);
+        return mDrawerLayout.isDrawerOpen(mDrawer);
     }
 
     private void selectItem(BrickInfo brickIinfo) {

@@ -166,7 +166,7 @@ public abstract class BrowserViewsFragmentActivity extends BaseFragmentActivity 
         });
         new MaterialDialog.Builder(this)
                 .title("Размер шрифта")
-                .customView(v)
+                .customView(v,true)
                 .positiveText("OK")
                 .negativeText("Отмена")
                 .callback(new MaterialDialog.ButtonCallback() {

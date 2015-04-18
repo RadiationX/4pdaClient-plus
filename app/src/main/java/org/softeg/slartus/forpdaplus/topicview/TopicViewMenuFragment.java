@@ -431,7 +431,7 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
             new MaterialDialog.Builder(getActivity())
                     .title("Стиль")
                     .cancelable(true)
-                    .customView(view)
+                    .customView(view,true)
                     .positiveText("Применить")
                     .callback(new MaterialDialog.ButtonCallback() {
                         @Override

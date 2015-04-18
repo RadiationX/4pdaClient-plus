@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import org.apache.http.cookie.Cookie;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.softeg.slartus.forpdacommon.HttpHelper;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ public class ProfileApi {
      * @return если залогинен - true
      */
     public static void checkLogin(String pageBody, LoginResult loginResult) {
+
         Matcher m = Pattern.compile("showuser=(\\d+)\">([^<]*)</a></b>.*?k=([a-z0-9]{32})", Pattern.CASE_INSENSITIVE)
                 .matcher(pageBody);
 
@@ -45,7 +47,22 @@ public class ProfileApi {
             }
         }
     }
+    public static String getAvatar(String pageBody) {
+        Matcher m = Pattern.compile("showuser=(\\d+)\">([^<]*)</a></b>.*?k=([a-z0-9]{32})", Pattern.CASE_INSENSITIVE)
+                .matcher(pageBody);
 
+        if (m.find()) {
+            String[] avatarPatterns = {"(?:'|\")([^'\"]*4pda.(?:to|ru)/*?forum/*?uploads/*?av-[^?'\"]*)",
+                    "(?:'|\")([^'\"]*4pda.(?:to|ru)/*?forum/*?style_avatars/[^?'\"]*)"};
+            for (String avatarPattern : avatarPatterns) {
+                m = Pattern.compile(avatarPattern, Pattern.CASE_INSENSITIVE).matcher(pageBody);
+                if (m.find()) {
+                    return m.group(1);
+                }
+            }
+        }
+        return m.group(1);
+    }
     /**
      * @param httpClient
      * @param login

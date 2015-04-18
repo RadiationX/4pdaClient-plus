@@ -155,7 +155,7 @@ public class QuickPostFragment extends Fragment {
             final CheckBox checkBox = (CheckBox) view.findViewById(R.id.chkConfirmationSend);
             new MaterialDialog.Builder(getActivity())
                     .title("Подтвердите действие")
-                    .customView(view)
+                    .customView(view,true)
                     .positiveText("Отправить")
                     .callback(new MaterialDialog.ButtonCallback() {
                         @Override

@@ -86,7 +86,7 @@ public class QuoteEditorDialogFragment extends DialogFragment implements View.On
 
 
         MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
-                .customView(v)
+                .customView(v,true)
                 .positiveText("Вставить")
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override

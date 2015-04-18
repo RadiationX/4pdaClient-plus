@@ -260,7 +260,7 @@ public class BbCodesQuickView extends BaseQuickView {
         scrollView.addView(tl, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         m_ColorsDialog = new MaterialDialog.Builder(getContext())
                 .cancelable(true)
-                .customView(scrollView)
+                .customView(scrollView,true)
                 .show();
     }
 
@@ -342,7 +342,7 @@ public class BbCodesQuickView extends BaseQuickView {
         final int[] selectionEnd = {getSelectionEnd()};
 
         new MaterialDialog.Builder(getContext())
-                .customView(layout)
+                .customView(layout,true)
                 .cancelable(false)
                 .positiveText("OK")
                 .negativeText("Отмена")
@@ -441,7 +441,7 @@ public class BbCodesQuickView extends BaseQuickView {
         final int[] selectionEnd = {getSelectionEnd()};
         new MaterialDialog.Builder(getContext())
                 .cancelable(false)
-                .customView(layout)
+                .customView(layout,true)
                 .positiveText("OK")
                 .negativeText(android.R.string.cancel)
                 .callback(new MaterialDialog.ButtonCallback() {
@@ -513,7 +513,7 @@ public class BbCodesQuickView extends BaseQuickView {
 
         new MaterialDialog.Builder(getContext())
                 .cancelable(false)
-                .customView(layout)
+                .customView(layout,true)
                 .positiveText("OK")
                 .negativeText(android.R.string.cancel)
                 .callback(new MaterialDialog.ButtonCallback() {

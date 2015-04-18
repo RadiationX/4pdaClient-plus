@@ -197,7 +197,7 @@ public class BbCodesPanel extends BbCodesBasePanel {
         scrollView.addView(tl, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         m_ColorsDialog = new MaterialDialog.Builder(mContext)
                 .cancelable(true)
-                .customView(scrollView)
+                .customView(scrollView,true)
                 .show();
     }
 
@@ -279,7 +279,7 @@ public class BbCodesPanel extends BbCodesBasePanel {
         final int[] selectionEnd = {txtPost.getSelectionEnd()};
 
         new MaterialDialog.Builder(mContext)
-                .customView(layout)
+                .customView(layout,true)
                 .cancelable(false)
                 .positiveText("OK")
                 .negativeText("Отмена")
@@ -382,7 +382,7 @@ public class BbCodesPanel extends BbCodesBasePanel {
         final int[] selectionEnd = {txtPost.getSelectionEnd()};
         new MaterialDialog.Builder(mContext)
                 .cancelable(false)
-                .customView(layout)
+                .customView(layout,true)
                 .positiveText("OK")
                 .negativeText(R.string.cancel)
                 .callback(new MaterialDialog.ButtonCallback() {
@@ -463,7 +463,7 @@ public class BbCodesPanel extends BbCodesBasePanel {
 
         new MaterialDialog.Builder(mContext)
                 .cancelable(false)
-                .customView(layout)
+                .customView(layout,true)
                 .positiveText("OK")
                 .negativeText(R.string.cancel)
                 .callback(new MaterialDialog.ButtonCallback() {

@@ -603,7 +603,7 @@ public class IntentActivity extends BaseFragmentActivity implements BricksListDi
             checkBox.setText("Подтверждать скачивание");
             new MaterialDialog.Builder(activity)
                     .title("Подтвердите действие")
-                    .customView(view)
+                    .customView(view,true)
                     .positiveText("ОК")
                     .negativeText("Отмена")
                     .callback(new MaterialDialog.ButtonCallback() {

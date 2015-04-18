@@ -308,7 +308,7 @@ public class AppsListFragment extends TopicsListFragment {
 
                     input.setInputType(InputType.TYPE_CLASS_TEXT);
                     input.setText(appItem.getId());
-                    builder.customView(input);
+                    builder.customView(input,true);
 
                     builder.positiveText(android.R.string.ok);
                     builder.negativeText(android.R.string.cancel);

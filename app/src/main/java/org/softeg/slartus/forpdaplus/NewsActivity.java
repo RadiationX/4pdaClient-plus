@@ -913,7 +913,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             message_edit.setText("<b>" + URLDecoder.decode(user) + ",</b>");
         new MaterialDialog.Builder(this)
                 .title(R.string.LeaveComment)
-                .customView(layout)
+                .customView(layout,true)
                 .positiveText(R.string.Send)
                 .negativeText("Отмена")
                 .callback(new MaterialDialog.ButtonCallback() {

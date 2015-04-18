@@ -201,7 +201,7 @@ public class SearchSettingsDialogFragment extends DialogFragment {
             initSpinner(view);
         }
         MaterialDialog.Builder adb = new MaterialDialog.Builder(getActivity())
-                .customView(view)
+                .customView(view,true)
                 .cancelable(true)
                 .title("Поиск")
                 .positiveText("Найти")

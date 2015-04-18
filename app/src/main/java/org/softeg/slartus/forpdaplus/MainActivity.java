@@ -1,5 +1,6 @@
 package org.softeg.slartus.forpdaplus;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,14 +10,20 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.util.Pair;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.softeg.slartus.forpdacommon.NotReportException;
@@ -104,7 +111,17 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
 
             createMenu();
 
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            DrawerLayout drawer = (DrawerLayout) inflater.inflate(R.layout.decor, null); // "null" is important.
+            ViewGroup decor = (ViewGroup) getWindow().getDecorView();
+            View child = decor.getChildAt(0);
+            decor.removeView(child);
+            FrameLayout container = (FrameLayout) drawer.findViewById(R.id.ab_cont); // This is the container we defined just now.
+            container.addView(child,0);
+            decor.addView(drawer);
+
             mMainDrawerMenu = new MainDrawerMenu(this, this);
+            mMainDrawerMenu.setInform();
             NotifiersManager notifiersManager = new NotifiersManager(this);
             new DonateNotifier(notifiersManager).start(this);
             new TopicAttentionNotifier(notifiersManager).start(this);

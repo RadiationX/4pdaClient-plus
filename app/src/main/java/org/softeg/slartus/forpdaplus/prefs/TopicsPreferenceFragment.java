@@ -108,7 +108,7 @@ public class TopicsPreferenceFragment extends PreferenceFragment implements Pref
 
         new MaterialDialog.Builder(getActivity())
                 .title("Сортировка")
-                .customView(v)
+                .customView(v,true)
                 .positiveText("По убыванию")
                 .neutralText("По возрастанию")
                 .callback(new MaterialDialog.ButtonCallback() {
