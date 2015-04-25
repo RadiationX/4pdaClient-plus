@@ -47,22 +47,6 @@ public class ProfileApi {
             }
         }
     }
-    public static String getAvatar(String pageBody) {
-        Matcher m = Pattern.compile("showuser=(\\d+)\">([^<]*)</a></b>.*?k=([a-z0-9]{32})", Pattern.CASE_INSENSITIVE)
-                .matcher(pageBody);
-
-        if (m.find()) {
-            String[] avatarPatterns = {"(?:'|\")([^'\"]*4pda.(?:to|ru)/*?forum/*?uploads/*?av-[^?'\"]*)",
-                    "(?:'|\")([^'\"]*4pda.(?:to|ru)/*?forum/*?style_avatars/[^?'\"]*)"};
-            for (String avatarPattern : avatarPatterns) {
-                m = Pattern.compile(avatarPattern, Pattern.CASE_INSENSITIVE).matcher(pageBody);
-                if (m.find()) {
-                    return m.group(1);
-                }
-            }
-        }
-        return m.group(1);
-    }
     /**
      * @param httpClient
      * @param login
@@ -173,5 +157,12 @@ public class ProfileApi {
         org.jsoup.nodes.Element element = doc.select("div#main").first();
         org.jsoup.nodes.Element userNickElement = element.select("div.user-box > h1").first();
         return userNickElement.text();
+    }
+    public static String getUserAvatar(IHttpClient httpClient, CharSequence userID) throws IOException {
+        String page = httpClient.performGet("http://4pda.ru/forum/index.php?showuser=" + userID);
+        Document doc = Jsoup.parse(page);
+        org.jsoup.nodes.Element element = doc.select("div#main").first();
+        org.jsoup.nodes.Element userAvatar = element.select("div.user-box > div.photo > img").first();
+        return userAvatar.absUrl("src");
     }
 }

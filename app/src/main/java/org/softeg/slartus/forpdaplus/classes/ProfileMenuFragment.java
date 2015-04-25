@@ -12,6 +12,8 @@ import android.view.SubMenu;
 
 import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.LoginDialog;
+import org.softeg.slartus.forpdaplus.MainActivity;
+import org.softeg.slartus.forpdaplus.MainDrawerMenu;
 import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.listfragments.ListFragmentActivity;
 import org.softeg.slartus.forpdaplus.listfragments.next.UserReputationFragment;

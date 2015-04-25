@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.util.Pair;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -26,6 +27,12 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import org.softeg.slartus.forpdaapi.LoginResult;
+import org.softeg.slartus.forpdaapi.Profile;
+import org.softeg.slartus.forpdaapi.ProfileApi;
+import org.softeg.slartus.forpdaapi.qms.QmsApi;
+import org.softeg.slartus.forpdaapi.qms.QmsUser;
+import org.softeg.slartus.forpdaapi.qms.QmsUsers;
 import org.softeg.slartus.forpdacommon.NotReportException;
 import org.softeg.slartus.forpdaplus.classes.BrowserViewsFragmentActivity;
 import org.softeg.slartus.forpdaplus.classes.ProfileMenuFragment;
@@ -39,8 +46,11 @@ import org.softeg.slartus.forpdaplus.mainnotifiers.DonateNotifier;
 import org.softeg.slartus.forpdaplus.mainnotifiers.ForPdaVersionNotifier;
 import org.softeg.slartus.forpdaplus.mainnotifiers.NotifiersManager;
 import org.softeg.slartus.forpdaplus.mainnotifiers.TopicAttentionNotifier;
+import org.softeg.slartus.forpdaplus.prefs.Preferences;
 import org.softeg.slartus.forpdaplus.search.ui.SearchSettingsDialogFragment;
 import org.softeg.slartus.forpdaplus.tabs.Tabs;
+
+import java.io.IOException;
 
 /**
  * Created by IntelliJ IDEA.
@@ -121,7 +131,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             decor.addView(drawer);
 
             mMainDrawerMenu = new MainDrawerMenu(this, this);
-            mMainDrawerMenu.setInform();
+
             NotifiersManager notifiersManager = new NotifiersManager(this);
             new DonateNotifier(notifiersManager).start(this);
             new TopicAttentionNotifier(notifiersManager).start(this);
@@ -145,8 +155,11 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        if (mMainDrawerMenu != null)
+        if (mMainDrawerMenu != null) {
             mMainDrawerMenu.syncState();
+        }
+        new ShortUserInfo(this);
+
     }
 
     private void createMenu() {

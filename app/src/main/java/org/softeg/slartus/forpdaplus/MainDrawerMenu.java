@@ -129,11 +129,6 @@ public class MainDrawerMenu {
             brickInfo = new NewsPagerBrickInfo();
         selectItem(brickInfo);
     }
-    public void setInform(){
-        //RelativeLayout inform = (RelativeLayout) findViewById(R.id.topInform);
-        //TextView textView = (TextView) findViewById(R.id.textViewa);
-        //textView.setText(Client.getInstance().getUser());
-    }
     /*
     Область вытягивания
      */
@@ -289,6 +284,7 @@ public class MainDrawerMenu {
                 case DownloadsBrickInfo.NAME:
                     try {
                         QuickStartActivity.showTab(mActivity, Tabs.TAB_DOWNLOADS);
+                        //Toast.makeText(mActivity, Client.getInstance().getUser(), Toast.LENGTH_SHORT).show();
                     } catch (Exception ex) {
                         AppLog.e(mActivity, ex);
                     }

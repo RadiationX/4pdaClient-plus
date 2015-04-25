@@ -1,6 +1,7 @@
 package org.softeg.slartus.forpdaplus.prefs;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -24,6 +25,12 @@ import java.util.Set;
  * Created by slartus on 23.02.14.
  */
 public class Preferences {
+    public static Boolean isLoadShortUserInfo() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+        boolean isLoadShortUserInfo = (boolean) prefs.getBoolean("isLoadShortUserInfo", false);
+        return isLoadShortUserInfo;
+    }
+
     public static Boolean isLoadImagesFromWeb(String listName) {
         return isLoadImages(listName + ".LoadsImages");
     }
