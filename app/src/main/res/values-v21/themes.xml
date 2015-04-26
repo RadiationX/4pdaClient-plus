@@ -40,6 +40,7 @@
         <item name="md_dark_theme">false</item>
         <item name="Divider">@style/Divider_wh</item>
         <item name="actbar">@color/actionbar_background_wh</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="Theme.Black" parent="Theme.AppCompat">
