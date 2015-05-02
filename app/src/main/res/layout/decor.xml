@@ -17,7 +17,6 @@
         <FrameLayout
             android:id="@+id/content_frame"
             android:paddingTop="80dp"
-            android:paddingBottom="48dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </RelativeLayout>

@@ -113,7 +113,6 @@ public class MainDrawerMenu {
                 mDrawerList.expandGroup(i);
         }
 
-
         mDrawerToggle = new ActionBarDrawerToggle(mActivity, mDrawerLayout,
                 R.drawable.ic_drawer, R.string.menu, R.string.app_name) {
             public void onDrawerClosed(View view) {

@@ -3,44 +3,29 @@ package org.softeg.slartus.forpdaplus;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.StrictMode;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Downloader;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpResponse;
-import org.softeg.slartus.forpdaapi.IHttpClient;
-import org.softeg.slartus.forpdaapi.LoginResult;
 import org.softeg.slartus.forpdaapi.ProfileApi;
-import org.softeg.slartus.forpdacommon.*;
-import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.listfragments.ListFragmentActivity;
 import org.softeg.slartus.forpdaplus.listtemplates.QmsContactsBrickInfo;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -54,10 +39,10 @@ public class ShortUserInfo {
     private TextView loginButton;
     private TextView userRep;
     private RelativeLayout textWrapper;
-    private Handler mHandler=new Handler();
+    private Handler mHandler = new Handler();
 
     public ShortUserInfo(Activity activity) {
-        enableStrictMode();
+        //enableStrictMode();
         prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
 
         mActivity = activity;
@@ -69,36 +54,52 @@ public class ShortUserInfo {
         imgAvatar = (CircleImageView) findViewById(R.id.imgAvatara);
         infoRefresh = (ImageView) findViewById(R.id.infoRefresh);
 
-        updateInfo();
-        Client.getInstance().addOnUserChangedListener(new Client.OnUserChangedListener() {
-            @Override
-            public void onUserChanged(String user, Boolean success) {
-                mHandler.post(new Runnable() {
+        if(isOnline()){
+            if(Client.getInstance().getLogined()) {
+                new updateAsyncTask().execute();
+
+                Client.getInstance().addOnUserChangedListener(new Client.OnUserChangedListener() {
                     @Override
-                    public void run() {
-                        refreshQms();
+                    public void onUserChanged(String user, Boolean success) {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                refreshQms();
+                            }
+                        });
+                    }
+                });
+                Client.getInstance().addOnMailListener(new Client.OnMailListener() {
+                    @Override
+                    public void onMail(int count) {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                refreshQms();
+                            }
+                        });
+                    }
+                });
+            }else {
+                loginButton.setVisibility(View.VISIBLE);
+                loginButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LoginDialog.showDialog(getContext(), null);
                     }
                 });
             }
-        });
-        Client.getInstance().addOnMailListener(new Client.OnMailListener() {
-            @Override
-            public void onMail(int count) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        refreshQms();
-                    }
-                });
-            }
-        });
+        }else {
+            loginButton.setText("Проверьте соединение");
+        }
         infoRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateInfo();
+                if(isOnline() & Client.getInstance().getLogined()){
+                    new updateAsyncTask().execute();
+                }
             }
         });
-
     }
 
     private Context getContext() {
@@ -109,15 +110,38 @@ public class ShortUserInfo {
         return mActivity.findViewById(id);
     }
 
-    public void enableStrictMode() {
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+    private void refreshQms() {
+        int qmsCount = Client.getInstance().getQmsCount();
+        if (qmsCount != 0) {
+            qmsMessages.setText("Новые сообщения QMS: " + qmsCount);
+        } else {
+            qmsMessages.setText("Нет новых сообщений QMS");
+        }
     }
 
-    private void updateInfo(){
-        try {
-            if(Client.getInstance().getLogined()){
-                String[] strings = ProfileApi.getUserInfo(Client.getInstance(), Client.getInstance().UserId);
+    private class updateAsyncTask extends AsyncTask<String, Void, Void> {
+        String[] strings;
+
+        @Override
+        protected Void doInBackground(String... urls) {
+            try {
+                strings = ProfileApi.getUserInfo(Client.getInstance(), Client.getInstance().UserId);
+                if ((strings[0] != null) & (strings[1] != null)) {
+
+                } else {
+                    strings[1] = prefs.getString("shortUserInfoRep", "-100500");
+                    strings[0] = "http://s.4pda.to/img/qms/logo.png";
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+
+            if (Client.getInstance().getLogined()) {
                 loginButton.setVisibility(View.GONE);
                 textWrapper.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -126,11 +150,12 @@ public class ShortUserInfo {
                     }
                 });
                 userNick.setText(Client.getInstance().getUser());
-                userRep.setText("Репутация:"+strings[1]);
+                userRep.setText("Репутация: " + strings[1]);
+                prefs.edit().putString("shortUserInfoRep", strings[1]).apply();
                 int qmsCount = Client.getInstance().getQmsCount();
-                if(qmsCount!=0){
-                    qmsMessages.setText("Новые сообщения QMS: "+qmsCount);
-                }else {
+                if (qmsCount != 0) {
+                    qmsMessages.setText("Новые сообщения QMS: " + qmsCount);
+                } else {
                     qmsMessages.setText("Нет новых сообщений QMS");
                 }
                 if (Preferences.isLoadShortUserInfo()) {
@@ -159,28 +184,19 @@ public class ShortUserInfo {
                     prefs.edit().putBoolean("isLoadShortUserInfo", true).apply();
                     prefs.edit().putString("shortAvatarUrl", strings[0]).apply();
                 }
-            }else {
-                loginButton.setVisibility(View.VISIBLE);
-                loginButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        LoginDialog.showDialog(getContext(),null);
-                    }
-                });
+            } else {
+
             }
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
-    private void refreshQms(){
-        int qmsCount = Client.getInstance().getQmsCount();
-        if(qmsCount!=0){
-            qmsMessages.setText("Новые сообщения QMS: "+qmsCount);
-        }else {
-            qmsMessages.setText("Нет новых сообщений QMS");
+    public boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) mActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()
+                && cm.getActiveNetworkInfo().isAvailable()
+                && cm.getActiveNetworkInfo().isConnected()) {
+            return true;
         }
+        return false;
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -114,7 +115,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
-
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer);
             if (checkIntent())
                 return;
             setContentView(R.layout.main);
@@ -129,6 +130,17 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             FrameLayout container = (FrameLayout) drawer.findViewById(R.id.ab_cont); // This is the container we defined just now.
             container.addView(child,0);
             decor.addView(drawer);
+            if(Integer.valueOf(android.os.Build.VERSION.SDK) > 19){
+                FrameLayout contentFrame = (FrameLayout) drawer.findViewById(R.id.content_frame);
+                if ((getResources().getConfiguration().screenLayout &
+                        Configuration.SCREENLAYOUT_SIZE_MASK) ==
+                        Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+                    contentFrame.setPadding(0,88,0,48);
+
+                }else {
+                    contentFrame.setPadding(0,80,0,48);
+                }
+            }
 
             mMainDrawerMenu = new MainDrawerMenu(this, this);
 

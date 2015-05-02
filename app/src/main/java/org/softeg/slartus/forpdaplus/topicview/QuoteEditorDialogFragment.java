@@ -81,12 +81,13 @@ public class QuoteEditorDialogFragment extends DialogFragment implements View.On
         progressBar = v.findViewById(R.id.progressBar);
         v.findViewById(R.id.btnAll).setOnClickListener(this);
         v.findViewById(R.id.btnAuthor).setOnClickListener(this);
+        v.findViewById(R.id.btnAuthor).setOnClickListener(this);
         v.findViewById(R.id.btnText).setOnClickListener(this);
         v.findViewById(R.id.btnClear).setOnClickListener(this);
 
 
         MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
-                .customView(v,true)
+                .customView(v,false)
                 .positiveText("Вставить")
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override

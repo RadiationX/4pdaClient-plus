@@ -2,6 +2,13 @@ package org.softeg.slartus.forpdaplus.controls.quickpost.items;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.AppCompatCheckedTextView;
+import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatRadioButton;
+import android.support.v7.widget.AppCompatSpinner;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -30,7 +37,7 @@ public class SettingsQuickView extends BaseQuickView {
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        enableEmotics = new CheckBox(getContext());
+        enableEmotics = new AppCompatCheckBox(getContext());
         enableEmotics.setText("Включить смайлики");
         enableEmotics.setChecked(Preferences.Topic.Post.getEnableEmotics());
         enableEmotics.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -42,7 +49,7 @@ public class SettingsQuickView extends BaseQuickView {
         enableEmotics.setLayoutParams(params);
         linearLayout.addView(enableEmotics);
 
-        enableSign = new CheckBox(getContext());
+        enableSign = new AppCompatCheckBox(getContext());
         enableSign.setText("Добавить подпись");
         enableSign.setChecked(Preferences.Topic.Post.getEnableSign());
         enableSign.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -54,7 +61,7 @@ public class SettingsQuickView extends BaseQuickView {
         enableSign.setLayoutParams(params);
         linearLayout.addView(enableSign);
 
-        extendedFormButton = new Button(getContext());
+        extendedFormButton = new AppCompatButton(getContext());
         extendedFormButton.setText("Расширенная форма");
         extendedFormButton.setLayoutParams(params);
         extendedFormButton.setTextColor(getResources().getColor(R.color.black));

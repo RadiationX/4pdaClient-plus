@@ -37,6 +37,9 @@
         <item name="divider_color">@style/divider_wh</item>
         <item name="md_dark_theme">false</item>
         <item name="actbar">@color/actionbar_background_wh</item>
+        <item name="md_content_color">#FF757575</item>
+        <item name="md_title_color">#FF212121</item>
+        <item name="md_item_color">#FF212121</item>
     </style>
 
     <style name="Theme.Black" parent="Theme.AppCompat">

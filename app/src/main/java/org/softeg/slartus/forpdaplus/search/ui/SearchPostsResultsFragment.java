@@ -69,11 +69,13 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
     private static final String SEARCH_URL_KEY = "SEARCH_URL_KEY";
     private WebViewExternals m_WebViewExternals;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
+    private MaterialDialog progressDialog;
 
     @Override
     public void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        progressDialog = new MaterialDialog.Builder(getContext()).progress(true,0).content("Загрузка...").build();
     }
 
     public static Fragment newFragment(String searchUrl) {
@@ -133,8 +135,8 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
     public void setHideActionBar() {
         if (getWebView() == null || !(getWebView() instanceof AdvWebView))
             return;
-        ActionBar actionBar = ((ActionBarActivity)getActivity()).getSupportActionBar();
-        FloatingActionButton fab = (FloatingActionButton) ((ActionBarActivity)getActivity()).findViewById(R.id.fab);
+        ActionBar actionBar = ((ActionBarActivity) getActivity()).getSupportActionBar();
+        FloatingActionButton fab = (FloatingActionButton) ((ActionBarActivity) getActivity()).findViewById(R.id.fab);
         if (fab == null) return;
         if (actionBar == null) return;
         BrowserViewsFragmentActivity.setHideActionBar(mWvBody, actionBar, fab);
@@ -194,8 +196,8 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
             }
         }
         mWvBody.addJavascriptInterface(this, "HTMLOUT");
-        mWvBody.loadDataWithBaseURL("http://4pda.ru/forum/","<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\">" +
-                "</head><body bgcolor=" + App.getInstance().getCurrentBackgroundColorHtml() + "></body></html>", "text/html", "UTF-8",null);
+        mWvBody.loadDataWithBaseURL("http://4pda.ru/forum/", "<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\">" +
+                "</head><body bgcolor=" + App.getInstance().getCurrentBackgroundColorHtml() + "></body></html>", "text/html", "UTF-8", null);
         registerForContextMenu(mWvBody);
         return v;
     }
@@ -222,13 +224,7 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
     protected void setLoading(final Boolean loading) {
         try {
             if (getActivity() == null) return;
-            //mSwipeRefreshLayout.setRefreshing(loading);
-            mSwipeRefreshLayout.post(new Runnable() {
-                @Override
-                public void run() {
-                    mSwipeRefreshLayout.setRefreshing(loading);
-                }
-            });
+            Toast.makeText(getContext(), loading.toString(), Toast.LENGTH_SHORT).show();
 
         } catch (Throwable ignore) {
             android.util.Log.e("TAG", ignore.toString());
@@ -574,7 +570,7 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+progressDialog.show();
             setLoading(true);
         }
 
@@ -586,14 +582,12 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
 
         protected void onPostExecute(final Boolean success) {
             setLoading(false);
+            progressDialog.dismiss();
+            showHtmlBody(pageBody);
 
-                showHtmlBody(pageBody);
 
-
-            {
-                if (ex != null)
-                    AppLog.e(getContext(), ex);
-            }
+            if (ex != null)
+                AppLog.e(getContext(), ex);
 
             super.onPostExecute(success);
         }

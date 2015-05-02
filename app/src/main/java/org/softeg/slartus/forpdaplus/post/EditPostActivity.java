@@ -333,7 +333,7 @@ public class EditPostActivity extends BaseFragmentActivity {
                     public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
                     }
                 })
-                .positiveText("Добавить")
+                .positiveText("Загрузить")
                 .neutralText("В спойлер")
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override
@@ -381,7 +381,7 @@ public class EditPostActivity extends BaseFragmentActivity {
                                 .show();
                     }
                 })
-                .negativeText("Закрыть")
+                .negativeText("Отмена")
                 .build();
         mAttachesListDialog.show();
     }
@@ -522,7 +522,7 @@ public class EditPostActivity extends BaseFragmentActivity {
 
             this.attachFilePaths = attachFilePaths;
             dialog = new MaterialDialog.Builder(context)
-                    .progress(false, 150)
+                    .progress(false, 100, false)
                     .build();
         }
 

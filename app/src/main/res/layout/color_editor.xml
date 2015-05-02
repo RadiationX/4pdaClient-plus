@@ -40,12 +40,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/redText"
             android:textSize="14sp"
+            android:paddingTop="0dp"
             android:inputType="number"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignBottom="@+id/textView1"
-            android:gravity="center" />
+            android:gravity="center_horizontal" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -76,8 +77,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/greenText"
             android:textSize="14sp"
+            android:paddingTop="0dp"
             android:inputType="number"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -113,7 +115,8 @@
             android:inputType="number"
             android:id="@+id/blueText"
             android:textSize="14sp"
-            android:gravity="center"
+            android:paddingTop="0dp"
+            android:gravity="center_horizontal"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"

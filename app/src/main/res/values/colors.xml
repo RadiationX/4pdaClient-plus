@@ -68,7 +68,7 @@
     <color name="actionbar_background_wh">#ff03a9f4</color>
     <color name="actionbar_background_bl">#ff1C4556</color>
 
-    <color name="sb_l_wh">#33000000</color>
+    <color name="sb_l_wh">#ff0288d1</color>
     <color name="sb_kk_wh">#ff03a9f4</color>
 
     <color name="sb_l_bl">#ff163542</color>

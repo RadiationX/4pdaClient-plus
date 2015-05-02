@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="actionMode_style" parent="@style/Base.Widget.AppCompat.ActionMode">
+    <style name="actionMode_style" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:paddingTop">24dp</item>
         <item name="android:background">?attr/actionModeBackground</item>
         <item name="android:height">@dimen/ptr_height_bug</item>
         <item name="height">@dimen/ptr_height_bug</item>
     </style>
-
     <style name="actionbar_wh" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="background">@color/actionbar_background_wh</item>
         <item name="elevation">2dp</item>
