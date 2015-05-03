@@ -31,7 +31,12 @@
             android:key="accentColor"
             android:summary="Цвет Float Action Button"
             android:title="Accent color"/>
-
+        <!--
+        <Preference
+            android:key="userBackground"
+            android:summary="..."
+            android:title="MiniProfile Background"/>
+        -->
     </PreferenceScreen>
 
     <PreferenceScreen

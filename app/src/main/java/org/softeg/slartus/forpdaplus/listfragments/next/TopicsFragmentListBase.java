@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import org.softeg.slartus.forpdaapi.Topic;
 import org.softeg.slartus.forpdaapi.classes.TopicsListData;
+import org.softeg.slartus.forpdaplus.App;
 import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.listfragments.IBrickFragment;

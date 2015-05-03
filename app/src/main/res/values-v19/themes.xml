@@ -43,6 +43,7 @@
         <item name="md_content_color">#FF757575</item>
         <item name="md_title_color">#FF212121</item>
         <item name="md_item_color">#FF212121</item>
+        <item name="md_background_color">@color/dialog_background_wh</item>
     </style>
     <style name="Theme.Black" parent="Theme.AppCompat">
         <item name="actionModeBackground">@color/actionbar_background_bl</item>
@@ -85,8 +86,7 @@
         <item name="md_dark_theme">true</item>
         <item name="Divider">@style/Divider_bl</item>
         <item name="actbar">@color/actionbar_background_bl</item>
-
-
+        <item name="md_background_color">@color/dialog_background_bl</item>
     </style>
 
     <style name="Theme.Transluent.White" parent="Theme.White">

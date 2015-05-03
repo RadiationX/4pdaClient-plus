@@ -224,8 +224,6 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
     protected void setLoading(final Boolean loading) {
         try {
             if (getActivity() == null) return;
-            Toast.makeText(getContext(), loading.toString(), Toast.LENGTH_SHORT).show();
-
         } catch (Throwable ignore) {
             android.util.Log.e("TAG", ignore.toString());
         }

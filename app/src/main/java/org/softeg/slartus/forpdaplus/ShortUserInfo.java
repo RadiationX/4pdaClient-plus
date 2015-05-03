@@ -2,7 +2,11 @@ package org.softeg.slartus.forpdaplus;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -10,12 +14,14 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dmitriy.tarasov.android.intents.IntentUtils;
 import com.squareup.picasso.Downloader;
 import com.squareup.picasso.Picasso;
 
@@ -26,6 +32,9 @@ import org.softeg.slartus.forpdaplus.listtemplates.QmsContactsBrickInfo;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -34,6 +43,7 @@ public class ShortUserInfo {
     private SharedPreferences prefs;
     private CircleImageView imgAvatar;
     private ImageView infoRefresh;
+    private ImageView userBackground;
     private TextView userNick;
     private TextView qmsMessages;
     private TextView loginButton;
@@ -53,6 +63,8 @@ public class ShortUserInfo {
         textWrapper = (RelativeLayout) findViewById(R.id.textWrapper);
         imgAvatar = (CircleImageView) findViewById(R.id.imgAvatara);
         infoRefresh = (ImageView) findViewById(R.id.infoRefresh);
+        userBackground = (ImageView) findViewById(R.id.userBackground);
+        userBackground.setImageResource(R.drawable.drawabla);
 
         if(isOnline()){
             if(Client.getInstance().getLogined()) {
@@ -198,5 +210,19 @@ public class ShortUserInfo {
             return true;
         }
         return false;
+    }
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
 }

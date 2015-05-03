@@ -39,7 +39,10 @@
 
     <!-- Mod -->
     <color name="app_background_wh">#ffeeeeee</color>
-    <color name="app_background_bl">#ff242424</color>
+    <color name="app_background_bl">#ff212121</color>
+
+    <color name="dialog_background_wh">#fffafafa</color>
+    <color name="dialog_background_bl">#ff303030</color>
 
     <color name="left_separator_color_wh">#ffd9d9d9</color>
     <color name="left_separator_color_bl">#ff494949</color>

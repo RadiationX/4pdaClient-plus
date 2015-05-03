@@ -40,7 +40,17 @@
             android:id="@+id/topInform"
             android:clickable="true"
             android:background="?actbar"
-            android:paddingTop="24dp">
+            >
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:src="@drawable/avatar_blank"
+                android:id="@+id/userBackground"
+                android:scaleType="centerCrop"/>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#33000000"/>
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
@@ -57,7 +67,7 @@
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="40dp"
                 app:border_width="0dp"
                 app:border_color="@android:color/transparent"/>
             <RelativeLayout

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputFilter;
@@ -27,6 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
@@ -104,6 +107,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
             findPreference("path.system_path").setOnPreferenceClickListener(this);
             findPreference("appstyle").setOnPreferenceClickListener(this);
             findPreference("accentColor").setOnPreferenceClickListener(this);
+            /*findPreference("userBackground").setOnPreferenceClickListener(this);*/
             findPreference("About.AppVersion").setOnPreferenceClickListener(this);
             findPreference("cookies.path.SetSystemPath").setOnPreferenceClickListener(this);
             findPreference("cookies.path.SetAppPath").setOnPreferenceClickListener(this);
@@ -206,6 +210,9 @@ public class PreferencesActivity extends BasePreferencesActivity {
                 case "accentColor":
                     showAccentColorDialog();
                     return true;
+                /*case "userBackground":
+                    pickUserBackground();
+                    return true;*/
                 case "notifiers.service.sound":
                     pickRingtone(NOTIFIERS_SERVICE_SOUND_REQUEST_CODE, Preferences.Notifications.getSound());
                     return true;
@@ -406,7 +413,34 @@ public class PreferencesActivity extends BasePreferencesActivity {
             }
 
         }
+        /*private int PICK_IMAGE_REQUEST = 1;
+        private void pickUserBackground() {
 
+            try {
+                Intent intent = new Intent();
+// Show only images, no videos or anything else
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+// Always show the chooser (if there are multiple options available)
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
+
+            } catch (Exception ex) {
+                AppLog.e(getActivity(), ex);
+            }
+
+        }
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+                Uri uri = data.getData();
+                PreferenceManager.getDefaultSharedPreferences(getActivity())
+                        .edit()
+                        .putString("userBackground", uri.toString())
+                        .commit();
+            }
+        }*/
         private void showStylesDialog() {
 
             try {
