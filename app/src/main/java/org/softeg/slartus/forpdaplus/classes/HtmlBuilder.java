@@ -1,8 +1,10 @@
 package org.softeg.slartus.forpdaplus.classes;
 
+import android.content.res.Configuration;
 import android.text.TextUtils;
 
 import org.softeg.slartus.forpdaplus.App;
+import org.softeg.slartus.forpdaplus.MainActivity;
 import org.softeg.slartus.forpdaplus.prefs.HtmlPreferences;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 
@@ -10,7 +12,7 @@ import org.softeg.slartus.forpdaplus.prefs.Preferences;
  * Created by slinkin on 25.12.13.
  */
 public class HtmlBuilder {
-    public final String ACTIONBAR_TOP_MARGIN="80px";
+    public final String ACTIONBAR_TOP_MARGIN= getMarginTop()+"px";
     protected StringBuilder m_Body;
 
     public void beginHtml(String title) {
@@ -28,7 +30,15 @@ public class HtmlBuilder {
         m_Body.append("<title>" + title + "</title>\n");
         m_Body.append("</head>\n");
     }
-
+    public int getMarginTop(){
+        int margin = 80;
+        if ((App.getContext().getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK) ==
+                Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+            margin = 88;
+        }
+        return margin;
+    }
     public void addScripts() {
         m_Body.append("<script type=\"text/javascript\" src=\"file:///android_asset/forum/js/z_forum_helpers.js\"></script>\n");
         m_Body.append("<script type=\"text/javascript\" src=\"file:///android_asset/theme.js\"></script>\n");

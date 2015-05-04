@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -71,7 +72,7 @@ public class MainDrawerMenu {
         mDrawerList = (ExpandableListView) findViewById(R.id.left_drawer_list);
         mDrawer = (RelativeLayout) findViewById(R.id.left_drawer);
 
-
+        mDrawerLayout.setDrawerShadow(R.drawable.navdrawer, GravityCompat.START);
         DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mDrawer.getLayoutParams();
         params.width = (int) dpWidth;
         if ("right".equals(Preferences.System.getDrawerMenuPosition())) {

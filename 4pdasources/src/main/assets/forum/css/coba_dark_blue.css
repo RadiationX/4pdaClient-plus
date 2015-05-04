@@ -21,7 +21,7 @@ Edited by: RadiationX|*or you nick*
   color: #a11!important;
 }
 .mainBox {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -372,10 +372,10 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
-  background: #1a1a1a;
+  background: #212121;
   font-family: "roboto";
   font-size: 100%;
-  color: #a8a8a8;
+  color: #cccccc;
   line-height: 1.4em;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -393,7 +393,7 @@ a {
   margin: 0 auto;
 }
 #main .container {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -537,7 +537,7 @@ a {
 #main .container .content .content-box .table4site tbody tr td {
   display: block;
   width: 100%;
-  background: #333333;
+  background: #303030;
   padding: 0.2em 0.4em;
   padding-left: 0.6em;
 }
@@ -759,7 +759,7 @@ a {
   display: none;
 }
 #main .materials-box {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -858,7 +858,7 @@ a {
   clear: both;
 }
 #main .page-nav {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -898,7 +898,7 @@ a {
   height: 100%;
 }
 #main .comment-box {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -1007,23 +1007,27 @@ a {
 }
 /*--- END NEWS ---*/
 /*--- QMS ---*/
+.date {
+  clear: both;
+}
 .date .text {
   text-align: center;
   font-style: italic;
-  padding: 5px 0;
+  padding: 0.5em 0;
 }
 .list-group-item,
 .our-message {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
   -webkit-border-radius: 2px;
   border-radius: 2px;
+  float: left;
+  max-width: 80%;
   position: relative;
-  margin-left: 4.5em;
-  min-height: 4em;
-  margin-right: 1em;
+  margin-left: 1em;
+  clear: both;
 }
 .list-group-item .check-item,
 .our-message .check-item {
@@ -1033,6 +1037,7 @@ a {
   line-height: 2em;
   display: block;
   padding: 0.4em;
+  display: none;
 }
 .list-group-item .check-item input,
 .our-message .check-item input {
@@ -1094,9 +1099,10 @@ a {
 .list-group-item .time,
 .our-message .time {
   position: absolute;
-  bottom: -0.25em;
-  left: -3.75em;
-  font-size: 0.9em;
+  bottom: 0em;
+  font-style: italic;
+  right: -3.25em;
+  font-size: 0.75em;
   white-space: nowrap;
 }
 .list-group-item .time .read-status,
@@ -1105,8 +1111,8 @@ a {
   width: 0.6em;
   border-radius: 50%;
   position: absolute;
-  right: -1.3em;
-  bottom: 0;
+  right: -1em;
+  bottom: 0.675em;
   padding-bottom: 25%;
 }
 .list-group-item .time .read-status.unread,
@@ -1115,7 +1121,8 @@ a {
 }
 .list-group-item .avatar-wrap,
 .our-message .avatar-wrap {
-  background: #333333;
+  display: none;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -1127,7 +1134,7 @@ a {
   left: -3.5em;
   width: 2.5em;
   height: 2.5em;
-  background: #ffffff;
+  background: #212121;
   line-height: 2.5em;
   overflow: hidden;
 }
@@ -1142,6 +1149,7 @@ a {
 .list-group-item > strong,
 .our-message > strong {
   display: inline-block;
+  display: none;
   float: left;
   line-height: 2em;
   height: 2em;
@@ -1153,14 +1161,28 @@ a {
 }
 .list-group-item .msg-content,
 .our-message .msg-content {
-  border-top: 0.0625em solid #585858;
-  padding: 0.25em 0.4em;
-  width: 100%;
-  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  padding: 0.5em;
+}
+.list-group-item:after,
+.our-message:after {
+  content: "";
+  height: 0.75em;
+  width: 0.75em;
+  background: #303030;
+  position: absolute;
+  bottom: 0.25em;
+  left: -0.25em;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-box-shadow: -1px -1px 3px -3px #000000;
+  box-shadow: -1px -1px 3px -3px #000000;
 }
 .our-message {
-  margin-left: 1em;
-  margin-right: 4.5em;
+  float: right;
+  margin-right: 1em;
+  background: #2e393e;
 }
 .our-message .check-item {
   float: left;
@@ -1170,12 +1192,12 @@ a {
   left: 0.75em;
 }
 .our-message .time {
-  left: auto;
-  right: -3.75em;
+  right: auto;
+  left: -3.25em;
 }
 .our-message .time .read-status {
   right: auto;
-  left: -1.3em;
+  left: -1em;
 }
 .our-message .avatar-wrap {
   left: auto;
@@ -1184,20 +1206,30 @@ a {
 .our-message > strong {
   float: right;
 }
+.our-message .msg-content {
+  float: right;
+}
+.our-message:after {
+  left: auto;
+  right: -0.25em;
+  background: #2e393e;
+  -webkit-box-shadow: 1px 1px 3px -3px #000000;
+  box-shadow: 1px 1px 3px -3px #000000;
+}
+#bottom_element {
+  clear: both;
+  height: 1.5em;
+}
 .list-group-item + .list-group-item .avatar-wrap {
   display: none;
 }
-.list-group-item + .our-message {
-  margin-top: 1.5em;
-}
 .list-group-item + .our-message .avatar-wrap {
   display: block;
-}
-.our-message + .list-group-item {
-  margin-top: 1.5em;
+  display: none;
 }
 .our-message + .list-group-item .avatar-wrap {
   display: block;
+  display: none;
 }
 .our-message + .our-message .avatar-wrap {
   display: none;
@@ -1205,7 +1237,7 @@ a {
 /*--- END QMS ---*/
 /*--- FORUM TOPIC ---*/
 .navi {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -1252,23 +1284,21 @@ a {
   margin-top: 3em;
 }
 .topic_title_post {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
-  box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
   margin: 0;
-  box-shadow: none;
-  border-top: 0.0625em solid #585858;
-  border-bottom: 0.0625em solid #585858;
   text-align: center;
   margin-bottom: 3em;
+  box-shadow: 0 0 5px -3px #000000;
+  -webkit-box-shadow: 0 2px 4px -4px #000000;
 }
 .topic_title_post a {
   padding: 0.75em;
   display: inline-block;
 }
 .poll .hidetop {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -1291,7 +1321,7 @@ a {
   font-size: 0.875em;
 }
 .poll .hidemain {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -1379,7 +1409,7 @@ a {
   height: 1.125em;
   width: 1.125em;
   border: 0.125em solid #737373;
-  background: #333333;
+  background: #303030;
   position: absolute;
   left: 0;
   top: 50%;
@@ -1434,7 +1464,7 @@ a {
   height: 1.25em;
   width: 1.25em;
   border: 0.125em solid #737373;
-  background: #333333;
+  background: #303030;
   position: absolute;
   left: 0;
   top: 50%;
@@ -1482,8 +1512,8 @@ a {
   text-align: right;
   position: absolute;
   right: 0;
-  background: rgba(51, 51, 51, 0.9);
-  box-shadow: -20px 0 20px -7px #333333;
+  background: rgba(48, 48, 48, 0.9);
+  box-shadow: -20px 0 20px -7px #303030;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td.post2[width*="10%"] {
   padding: 0;
@@ -1638,7 +1668,7 @@ a {
   display: inline-block;
   height: 2em;
   vertical-align: top;
-  background: #333333;
+  background: #303030;
 }
 .post_header_container .post_header [onclick*="rep_change"] img {
   display: none;
@@ -1688,7 +1718,7 @@ a {
   border-radius: 0 0 2px 2px;
 }
 .post_header {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -1715,10 +1745,10 @@ a {
   padding: 0;
 }
 .post_header table tbody tr td .post_nick_cli a {
-  color: #a8a8a8;
+  color: #cccccc;
 }
 .post_header table tbody tr td .post_nick_online_cli a {
-  color: #a8a8a8;
+  color: #cccccc;
 }
 .post_header table tbody tr td div[align*=right] .post_date_cli {
   font-size: 0.9em;
@@ -1785,6 +1815,8 @@ a {
   left: 0.5em;
   z-index: 9;
   padding: 0;
+  -webkit-box-shadow: 0 3px 10px -3px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 10px -3px rgba(0, 0, 0, 0.25);
 }
 .post_header table tbody tr:nth-child(2) td:empty {
   -webkit-border-radius: 2px;
@@ -1796,7 +1828,7 @@ a {
   top: -0.5em;
   left: 0.5em;
   border: 2px solid #28627f;
-  background-color: #ffffff;
+  background-color: #212121;
   background-image: url(../LESS/profile/logo.png);
   background-image: url(coba_src/logo.png);
   background-position: center;
@@ -1811,7 +1843,7 @@ a {
   position: relative;
   height: 100%;
   border: 2px solid #28627f;
-  background: #1a1a1a;
+  background: #212121;
 }
 .post_header table tbody tr:nth-child(2) td .avatar_parent_container:after {
   position: relative;
@@ -1828,7 +1860,7 @@ a {
   text-align: center;
   overflow: hidden;
   vertical-align: middle;
-  background: #ffffff;
+  background: #212121;
 }
 .post_header table tbody tr:nth-child(2) td .avatar_parent_container .avatar_container img {
   width: 100%;
@@ -1890,7 +1922,7 @@ a {
 .hidetop {
   position: relative;
   z-index: 3;
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -1908,7 +1940,7 @@ a {
   display: none;
 }
 .post_body {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -1994,7 +2026,7 @@ a {
   content: "\e00b";
 }
 .s_post_footer {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -2039,7 +2071,7 @@ a {
   top: 0;
 }
 .post_footer {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -2067,9 +2099,7 @@ a {
   border-radius: 2px;
   line-height: 2.25em;
   height: 2.25em;
-  min-width: 4em;
   padding: 0 0.5em;
-  text-align: center;
   display: inline-block;
   text-transform: uppercase;
   background: none;
@@ -2088,15 +2118,9 @@ a {
 .post_footer .system_link .quote_button:after {
   content: "Цитата";
 }
-.post_footer .system_link .post_vote_bad {
-  color: #a54336;
-}
 .post_footer .system_link .post_vote_bad:after {
   content: "-";
   content: "Плохо";
-}
-.post_footer .system_link .post_vote_good {
-  color: #249151;
 }
 .post_footer .system_link .post_vote_good:after {
   content: "+";
@@ -2117,6 +2141,12 @@ a {
   float: right;
 }
 .post_footer .system_link[onclick*=quote] {
+  float: right;
+}
+.post_footer .system_link[onclick*=postVoteBad] {
+  float: left;
+}
+.post_footer .system_link[onclick*=postVoteGood] {
   float: left;
 }
 #entryEnd ~ br {
@@ -2124,7 +2154,7 @@ a {
 }
 #viewers,
 #writers {
-  background: #333333;
+  background: #303030;
   margin: 0.5em;
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -2132,17 +2162,16 @@ a {
   box-shadow: none;
   display: block;
   text-align: center;
-  border-top: 0.0625em solid #585858;
   position: relative;
 }
 #viewers .href_button,
 #writers .href_button {
   padding: 0.7em;
   display: block;
+  color: #e91e63;
 }
 #writers:before {
   content: "";
-  border-left: 0.0625em solid #585858;
   position: absolute;
   left: 0;
   top: 6px;
@@ -2158,13 +2187,14 @@ a {
   background: #28627f;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  background: #0977b2;
+  background: #004f79;
   width: 1.25em;
   height: 1.25em;
   display: inline-block;
   text-align: center;
   vertical-align: text-bottom;
   position: relative;
+  margin: 0 0.1875em;
 }
 .post_body a[href*=findpost][title="Перейти к сообщению"] img {
   display: none;
@@ -2187,10 +2217,19 @@ a {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
+.post_body a[href*=findpost][title="Перейти к сообщению"]:after {
+  content: "";
+  position: absolute;
+  height: 2.25em;
+  width: 2.25em;
+  top: -0.5em;
+  left: -0.5em;
+}
 .post-block {
   margin: 0.5em 0;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 3px 10px -3px rgba(0, 0, 0, 0.15);
 }
 .post-block .block-title {
   color: #ededed;
@@ -2211,6 +2250,9 @@ a {
 }
 .post-block .block-title span span {
   color: #ededed !important;
+}
+.post-block .block-title a[href*=findpost][title="Перейти к сообщению"] {
+  background: #1b6e9b;
 }
 .post-block .block-body {
   -webkit-border-radius: 0 0 2px 2px;
@@ -2267,7 +2309,7 @@ a {
   z-index: 10;
 }
 .post-block.quote > .block-title {
-  background: #3f80a3;
+  background: #235671;
 }
 .post-block.quote > .block-title:empty:before {
   content: "Цитата";
@@ -2352,14 +2394,28 @@ a {
   #writers {
     width: 50%;
     float: left;
-    border-bottom: 0.0625em solid #585858;
   }
   #writers:before {
     display: block;
   }
 }
 div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_title_post ~ #bottom_navi {
-  margin-bottom: 54pt;
+  margin-bottom: 80px;
+}
+@media screen and (max-width: 21em) {
+  .post_footer .system_link[onclick*=insertTextToPost] {
+    float: right;
+  }
+  .post_footer .system_link[onclick*=quote] {
+    float: right;
+  }
+  .post_footer .system_link[onclick*=postVoteBad] {
+    float: right;
+    clear: both;
+  }
+  .post_footer .system_link[onclick*=postVoteGood] {
+    float: right;
+  }
 }
 @media screen and (max-width: 24em) {
   #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl {
@@ -2396,7 +2452,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     width: 50%;
     right: 0;
     background: none;
-    color: #a8a8a8;
+    color: #cccccc;
   }
   #main .container .product-detail .description .info-holder {
     right: 0;
@@ -2440,7 +2496,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
   #main .container .content .content-box .table4site tbody tr td:first-child {
     width: auto;
     background: none;
-    color: #a8a8a8;
+    color: #cccccc;
   }
   #main .container .content .content-box .table4site tbody tr td:last-child {
     border-left: none;
@@ -2574,7 +2630,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     border-bottom: none;
   }
   div[name*="msg"] {
-    background: #333333;
+    background: #303030;
     margin: 0.5em;
     box-shadow: 0 0 5px -3px #000000;
     -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -2606,7 +2662,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     margin-bottom: 0;
   }
   .post_header_container .post_header {
-    background: #333333;
+    background: #303030;
     margin: 0.5em;
     box-shadow: 0 0 5px -3px #000000;
     -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -2623,7 +2679,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     float: none;
   }
   .post_header_container + .post_body {
-    background: #333333;
+    background: #303030;
     margin: 0.5em;
     box-shadow: 0 0 5px -3px #000000;
     -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -2633,7 +2689,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     border-radius: 0 0 2px 2px;
   }
   div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_title_post + .post_header {
-    background: #333333;
+    background: #303030;
     margin: 0.5em;
     box-shadow: 0 0 5px -3px #000000;
     -webkit-box-shadow: 0 0 5px -3px #000000;
@@ -2650,7 +2706,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     border-radius: 2px 2px 0 0;
   }
   div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_title_post + .post_header + .post_body {
-    background: #333333;
+    background: #303030;
     margin: 0.5em;
     box-shadow: 0 0 5px -3px #000000;
     -webkit-box-shadow: 0 0 5px -3px #000000;

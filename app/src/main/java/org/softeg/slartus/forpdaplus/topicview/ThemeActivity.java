@@ -269,6 +269,7 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
         if (getSupportActionBar() != null)
             webView.setActionBarheight(getSupportActionBar().getHeight());
         setHideActionBar();
+        setHideArrows(Preferences.isHideArrows());
         webView.addJavascriptInterface(new HtmloutWebInterface(this), HtmloutWebInterface.NAME);
         m_DeveloperWebInterface = new DeveloperWebInterface(this);
         webView.addJavascriptInterface(m_DeveloperWebInterface, DeveloperWebInterface.NAME);
