@@ -64,6 +64,17 @@ public class Preferences {
         prefs.edit().putBoolean("actionbar.hide", hide).apply();
     }
 
+    public static void setHideArrows(Boolean hide) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+
+        prefs.edit().putBoolean("hideArrows", hide).apply();
+    }
+    public static Boolean isHideArrows() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+
+        return prefs.getBoolean("hideArrows", false);
+    }
+
     public static int getFontSize(String prefix) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
         int res = ExtPreferences.parseInt(prefs, prefix + ".FontSize", 16);

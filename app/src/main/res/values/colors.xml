@@ -71,11 +71,11 @@
     <color name="actionbar_background_wh">#ff03a9f4</color>
     <color name="actionbar_background_bl">#ff1C4556</color>
 
-    <color name="sb_l_wh">#ff0288d1</color>
-    <color name="sb_kk_wh">#ff03a9f4</color>
+    <color name="statusBar_wh">#ff03a9f4</color>
+    <color name="statusBar_bl">#ff1C4556</color>
 
-    <color name="sb_l_bl">#ff163542</color>
-    <color name="sb_kk_bl">#ff1C4556</color>
+    <color name="statusBarPrefs_wh">#ff0288d1</color>
+    <color name="statusBarPrefs_bl">#ff163542</color>
 
     <color name="drawer_menu_background_wh">@color/app_background_wh</color>
     <color name="drawer_menu_background_bl">@color/app_background_bl</color>

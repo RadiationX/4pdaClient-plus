@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -130,15 +131,27 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             FrameLayout container = (FrameLayout) drawer.findViewById(R.id.ab_cont); // This is the container we defined just now.
             container.addView(child,0);
             decor.addView(drawer);
+
+
+            FrameLayout contentFrame = (FrameLayout) drawer.findViewById(R.id.content_frame);
+            final float scale = getResources().getDisplayMetrics().density;
+            int paddingTop = (int) (80 * scale + 0.5f);
+            int paddingTopTab = (int) (88 * scale + 0.5f);
+            int paddingBottom = (int) (48 * scale + 0.5f);
+
             if(Integer.valueOf(android.os.Build.VERSION.SDK) > 19){
-                FrameLayout contentFrame = (FrameLayout) drawer.findViewById(R.id.content_frame);
+                contentFrame.setPadding(0,paddingTop,0,paddingBottom);
                 if ((getResources().getConfiguration().screenLayout &
                         Configuration.SCREENLAYOUT_SIZE_MASK) ==
                         Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-                    contentFrame.setPadding(0,88,0,48);
-
-                }else {
-                    contentFrame.setPadding(0,80,0,48);
+                    contentFrame.setPadding(0,paddingTopTab,0,paddingBottom);
+                }
+            }else {
+                contentFrame.setPadding(0,paddingTop,0,0);
+                if ((getResources().getConfiguration().screenLayout &
+                        Configuration.SCREENLAYOUT_SIZE_MASK) ==
+                        Configuration.SCREENLAYOUT_SIZE_XLARGE) {
+                    contentFrame.setPadding(0,paddingTopTab,0,0);
                 }
             }
 

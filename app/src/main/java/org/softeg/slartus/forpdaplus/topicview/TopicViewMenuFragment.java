@@ -304,6 +304,16 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                 }
             }).setCheckable(true).setChecked(Preferences.isHideActionBar());
 
+            optionsMenu.add("Скрывать стрелки")
+                    .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            Preferences.setHideArrows(!Preferences.isHideArrows());
+                            getInterface().setHideArrows(Preferences.isHideArrows());
+                            menuItem.setChecked(Preferences.isHideArrows());
+                            return true;
+                        }
+                    }).setCheckable(true).setChecked(Preferences.isHideArrows());
+
             optionsMenu.add("Загр-ть изобр-я (для сессии)")
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {

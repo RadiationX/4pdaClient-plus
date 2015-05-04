@@ -4,8 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
@@ -103,14 +108,24 @@ public class BaseFragmentActivity extends ActionBarActivity
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
             if (App.getInstance().getCurrentThemeName().equals("white")) {
-                tintManager.setTintColor(getResources().getColor(R.color.sb_kk_wh));
+                tintManager.setTintColor(getResources().getColor(R.color.statusBar_wh));
             } else if (App.getInstance().getCurrentThemeName().equals("black")) {
-                tintManager.setTintColor(getResources().getColor(R.color.sb_kk_bl));
+                tintManager.setTintColor(getResources().getColor(R.color.statusBar_bl));
             }
         } else {
             getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LinearLayout statusBarLay = (LinearLayout) inflater.inflate(R.layout.statusbar, null);
+            LinearLayout statusBar = (LinearLayout) statusBarLay.findViewById(R.id.statusBar);
+            if (App.getInstance().getCurrentThemeName().equals("white")) {
+                statusBar.setBackgroundColor(getResources().getColor(R.color.statusBar_wh));
+            } else if (App.getInstance().getCurrentThemeName().equals("black")) {
+                statusBar.setBackgroundColor(getResources().getColor(R.color.statusBar_bl));
+            }
+            ViewGroup decor = (ViewGroup) getWindow().getDecorView();
+            decor.addView(statusBarLay);
         }
 
 

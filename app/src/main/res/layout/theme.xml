@@ -51,28 +51,27 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="56dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center_vertical">
-
-                <ImageButton
-                    android:id="@+id/btnDown"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="16dp"
-                    android:background="@null"
-                    android:onClick="onBtnDownClick"
-                    android:src="@drawable/ic_btn_down"/>
-
+                android:layout_gravity="center_vertical"
+                android:id="@+id/arrows">
                 <ImageButton
                     android:id="@+id/btnUp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="56dp"
                     android:background="@null"
+                    android:layout_marginRight="4dp"
                     android:layout_gravity="center"
                     android:onClick="onBtnUpClick"
                     android:src="@drawable/ic_btn_up"/>
+                <ImageButton
+                    android:id="@+id/btnDown"
+                    android:layout_width="48dp"
+                    android:layout_height="56dp"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:onClick="onBtnDownClick"
+                    android:src="@drawable/ic_btn_down"/>
             </LinearLayout>
 
         </FrameLayout>

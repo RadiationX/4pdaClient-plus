@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -57,6 +58,21 @@ public abstract class BrowserViewsFragmentActivity extends BaseFragmentActivity 
             mWebView = null;
         }
         super.onDestroy();
+    }
+
+    public void setHideArrows(boolean hide) {
+        if (getWebView() == null || !(getWebView() instanceof AdvWebView))
+            return;
+
+        LinearLayout arrows = (LinearLayout) findViewById(R.id.arrows);
+
+        if (arrows == null) return;
+        if(hide){
+            arrows.setVisibility(View.GONE);
+        }else {
+            arrows.setVisibility(View.VISIBLE);
+        }
+
     }
 
     public void setHideActionBar() {

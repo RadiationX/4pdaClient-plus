@@ -33,42 +33,26 @@
         android:layout_alignParentRight="true"
         android:background="@null"
         android:fitsSystemWindows="true"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:padding="16dp">
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
 
             <ImageButton
                 android:id="@+id/btnUp"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="2dp"
+                android:layout_width="48dp"
+                android:layout_height="56dp"
+                android:layout_marginRight="4dp"
                 android:background="@null"
                 android:contentDescription="Вверх"
-                android:src="@drawable/ic_btn_up"
-                android:text="вверх" />
+                android:src="@drawable/ic_btn_up" />
 
             <ImageButton
-
                 android:id="@+id/btnDown"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="2dp"
-                android:layout_toRightOf="@+id/btnUp"
+                android:layout_width="48dp"
+                android:layout_height="56dp"
                 android:background="@null"
                 android:contentDescription="Вниз"
-                android:src="@drawable/ic_btn_down"
-                android:text="вниз" />
-        </RelativeLayout>
+                android:src="@drawable/ic_btn_down" />
 
 
     </LinearLayout>

@@ -56,9 +56,9 @@ public class ImageViewActivity extends ActionBarActivity {
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
             if (App.getInstance().getCurrentThemeName().equals("white")) {
-                tintManager.setTintColor(getResources().getColor(R.color.sb_kk_wh));
+                tintManager.setTintColor(getResources().getColor(R.color.statusBar_wh));
             } else if (App.getInstance().getCurrentThemeName().equals("black")) {
-                tintManager.setTintColor(getResources().getColor(R.color.sb_kk_bl));
+                tintManager.setTintColor(getResources().getColor(R.color.statusBar_bl));
             }
         } else {
             getWindow().getDecorView().setSystemUiVisibility(
