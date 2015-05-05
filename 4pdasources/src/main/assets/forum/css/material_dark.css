@@ -2790,3 +2790,519 @@ h3 a {
   border-radius: 0.1rem;
   background: rgba(255, 255, 255, 0.3);
 }
+/*
+ *   Style Name: Profile for 4PDAClient
+ *   Autor: Морфий
+*/
+@font-face {
+  font-family: 'fontello';
+  src: url('material_src/fontello.eot?19600742');
+  src: url('material_src/fontello.eot?19600742#iefix') format('embedded-opentype'), url('material_src/fontello.woff?19600742') format('woff'), url('material_src/fontello.ttf?19600742') format('truetype'), url('material_src/fontello.svg?19600742#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'fontello';
+  src: url('forum/fonts/fontello/fontello.eot?66808348');
+  src: url('forum/fonts/fontello/fontello.eot?66808348#iefix') format('embedded-opentype'), url('forum/fonts/fontello/fontello.woff?66808348') format('woff'), url('forum/fonts/fontello/fontello.ttf?66808348') format('truetype'), url('forum/fonts/fontello/fontello.svg?66808348#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: fontello;
+  src: url("file:///android_asset/forum/fonts/fontello/fontello.eot");
+  src: url("file:///android_asset/forum/fonts/fontello/fontello.eot") format('embedded-opentype'), url("file:///android_asset/forum/fonts/fontello/fontello.woff") format('woff'), url("file:///android_asset/forum/fonts/fontello/fontello.ttf") format('truetype'), url("file:///android_asset/forum/fonts/fontello/fontello.svg") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  line-height: 1em;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  /* opacity: .8; */
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+}
+.icon-hash:before {
+  content: '\23';
+}
+/* '#' */
+.icon-karma-up:before {
+  content: '\2b';
+}
+/* '+' */
+.icon-hide-comment:before {
+  content: '\2d';
+}
+/* '-' */
+.icon-4PDA-plain:before {
+  content: '\34';
+}
+/* '4' */
+.icon-android:before {
+  content: '\41';
+}
+/* 'A' */
+.icon-comment-baloons:before {
+  content: '\43';
+}
+/* 'C' */
+.icon-engines:before {
+  content: '\44';
+}
+/* 'D' */
+.icon-pencil:before {
+  content: '\45';
+}
+/* 'E' */
+.icon-FB:before {
+  content: '\46';
+}
+/* 'F' */
+.icon-home:before {
+  content: '\48';
+}
+/* 'H' */
+.icon-apple:before {
+  content: '\49';
+}
+/* 'I' */
+.icon-rss:before {
+  content: '\52';
+}
+/* 'R' */
+.icon-search:before {
+  content: '\53';
+}
+/* 'S' */
+.icon-TWITTER:before {
+  content: '\54';
+}
+/* 'T' */
+.icon-VK:before {
+  content: '\56';
+}
+/* 'V' */
+.icon-windows:before {
+  content: '\57';
+}
+/* 'W' */
+.icon-close:hover:before {
+  content: '\58';
+}
+/* 'X' */
+.icon-YOUTUBE:before {
+  content: '\59';
+}
+/* 'Y' */
+.icon-up-open:before {
+  content: '\5e';
+}
+/* '^' */
+.icon-users:before {
+  content: '\75';
+}
+/* 'u' */
+.icon-link:before {
+  content: '\bb';
+}
+/* '»' */
+.icon-down-dir-1:before {
+  content: '\1d65';
+}
+/* 'ᵥ' */
+.icon-up-dir-1:before {
+  content: '\1dba';
+}
+/* 'ᶺ' */
+.icon-karma-down:before {
+  content: '\2013';
+}
+/* '–' */
+.icon-left-small:before {
+  content: '\2039';
+}
+/* '‹' */
+.icon-right-small:before {
+  content: '\203a';
+}
+/* '›' */
+.icon-4pda-logo:before {
+  content: '\2163';
+}
+/* 'Ⅳ' */
+.icon-up:before {
+  content: '\2191';
+}
+/* '↑' */
+.icon-down:before {
+  content: '\2193';
+}
+/* '↓' */
+.icon-back-up:before {
+  content: '\21b5';
+}
+/* '↵' */
+.icon-up-small:before {
+  content: '\21d1';
+}
+/* '⇑' */
+.icon-login:before {
+  content: '\23ce';
+}
+/* '⏎' */
+.icon-profile:before {
+  content: '\263a';
+}
+/* '✓' */
+/* '✔' */
+.icon-glyph:before {
+  content: '\272a';
+}
+/* '✪' */
+.icon-cog:before {
+  content: '\2731';
+}
+/* '✱' */
+.icon-del:before {
+  content: '\274e';
+}
+/* '❎' */
+.icon-warning-empty:before {
+  content: '\2755';
+}
+/* '❕' */
+.icon-attention:before {
+  content: '\2757';
+}
+/* '❗' */
+.icon-chart-bar:before {
+  content: '\2758';
+}
+/* '❘' */
+.icon-chart-bar-1:before {
+  content: '\2759';
+}
+/* '❙' */
+.icon-glyph-1:before {
+  content: '\275a';
+}
+/* '❚' */
+.icon-quote-left:before {
+  content: '\275d';
+}
+/* '❝' */
+.icon-heart-1:before {
+  content: '\2764';
+}
+/* '❤' */
+.icon-heart:before {
+  content: '\2765';
+}
+/* '❥' */
+.icon-close:before {
+  content: '\2a09';
+}
+/* '⨉' */
+.icon-mlinks-home:before {
+  content: '\e081';
+}
+/* '' */
+.icon-edit:before {
+  content: '\e80b';
+}
+/* '' */
+.icon-users-1:before {
+  content: '👥';
+}
+/* '\1f465' */
+.icon-emo-happy:before {
+  content: '😌';
+}
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  color: #838383;
+}
+/*
+ *	DARK-COLOR
+*/
+*[style*="color:royalblue"] {
+  color: #ced8f7 !important;
+}
+*[style*="color:blue"] {
+  color: #9999ff !important;
+}
+*[style*="color:darkblue"] {
+  color: #3f3fff !important;
+}
+*[style*="color:indigo"] {
+  color: #aa35ff !important;
+}
+*[style*="color:crimson"] {
+  color: #ee4062 !important;
+}
+*[style*="color:red"] {
+  color: #ff4242 !important;
+}
+*[style*="color:darkred"] {
+  color: #ff2525 !important;
+}
+*[style*="color:deeppink"] {
+  color: #ff61b6 !important;
+}
+*[style*="color:purple"] {
+  color: #ff3ae6 !important;
+}
+*[style*="color:Black"],
+*[style*="color:black"],
+*[style*="color:#000000"],
+*[style*="color:#000"] {
+  color: #fff!important;
+}
+*[style*="background-color:white"] *[style*="color:black"],
+*[style*="color:black"] *[style*="background-color:white"],
+*[style*="background-color:white"] *[style*="color:#000000"],
+*[style*="color:#000000"] *[style*="background-color:white"],
+*[style*="background-color:white"] *[style*="color:#000"],
+*[style*="color:#000"] *[style*="background-color:white"] {
+  color: #000!important;
+}
+html {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+}
+html body {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 826px;
+  font-size: 100%;
+  color: white;
+  background: #202020;
+}
+html body a {
+  color: #aacce6;
+}
+.holder.no-hidden {
+  margin: 0 auto;
+}
+.holder.no-hidden .user-profile-list {
+  display: block;
+  text-align: left;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.holder.no-hidden .user-profile-list .margin-block {
+  visibility: hidden;
+}
+.holder.no-hidden .user-profile-list > li {
+  display: block;
+  padding: 0.7rem;
+  margin: 0.7rem 0.5rem;
+  border-radius: 0.15rem;
+  -webkit-box-shadow: 0 0.15rem 0.3rem rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background: #303030;
+}
+.holder.no-hidden .user-profile-list > li .user-box {
+  display: block;
+  margin: -0.7rem -0.7rem 0.7rem;
+  min-height: 3.8rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #4f4f4f;
+  background: #303030;
+}
+.holder.no-hidden .user-profile-list > li .user-box .photo {
+  float: left;
+  width: 3.8rem;
+  height: 3.8rem;
+  padding: 0;
+  margin: 0 0.5rem 0 0;
+  text-align: center;
+  line-height: 3.8rem;
+}
+.holder.no-hidden .user-profile-list > li .user-box .photo img {
+  display: block;
+  margin: auto;
+  width: auto !important;
+  height: auto !important;
+  max-width: 3.8rem;
+  max-height: 3.8rem;
+}
+.holder.no-hidden .user-profile-list > li .user-box h1 {
+  display: block;
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 1.4rem;
+}
+.holder.no-hidden .user-profile-list > li .user-box > .title {
+  display: none;
+}
+.holder.no-hidden .user-profile-list > li .user-box h2 {
+  display: block;
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0;
+  line-height: 1.4rem;
+}
+.holder.no-hidden .user-profile-list > li .user-box h2 span {
+  font-size: 1em;
+  font-weight: normal;
+}
+.holder.no-hidden .user-profile-list .info-list.black-link {
+  list-style-type: none;
+  padding: 0;
+}
+.holder.no-hidden .user-profile-list .info-list.black-link .title {
+  font-weight: bold;
+}
+.holder.no-hidden .user-profile-list .info-list.black-link .area {
+  display: inline-block;
+}
+.holder.no-hidden .user-profile-list .u-note {
+  margin-top: 0.7rem;
+}
+.holder.no-hidden .user-profile-list .u-note:before {
+  content: 'Подпись';
+  display: block;
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  padding-bottom: 0.3rem;
+  color: #6e6e6e;
+  border-bottom: 1px dashed #6e6e6e;
+}
+.holder.no-hidden li .heading {
+  position: relative;
+  line-height: 1.4rem;
+  padding: 0.7rem 0;
+  margin: -0.7rem 0 0.7rem;
+  border-bottom: 1px solid #4f4f4f;
+}
+.holder.no-hidden li .heading .ico {
+  position: absolute;
+  left: 0.3rem;
+  top: 1rem;
+  display: inline-block;
+  font-size: 1rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
+}
+.holder.no-hidden li .heading .ico .icon-glyph-1 {
+  position: relative;
+  top: 0.2rem;
+}
+.holder.no-hidden li .heading h2 {
+  display: inline-block;
+  margin: 0;
+  padding: 0 0 0 2rem;
+  display: block;
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: #d6d6d6;
+  line-height: 1.4rem;
+}
+.holder.no-hidden li h3 {
+  color: #989898;
+}
+.holder.no-hidden li .contact-social .social-link {
+  list-style-type: none;
+  padding: 0;
+  margin-left: -0.5rem;
+}
+.holder.no-hidden li .contact-social .social-link li {
+  display: inline-block;
+  line-height: 1.4rem;
+}
+.holder.no-hidden li .contact-social .social-link li:before {
+  content: '•';
+  position: relative;
+  top: 0.4rem;
+  display: inline-block;
+  font-size: 2rem;
+  margin: 0 0.7rem;
+  line-height: 1.4rem;
+  clor: blue;
+}
+.holder.no-hidden li .statistic-box .col {
+  float: left;
+  width: 49%;
+}
+.holder.no-hidden li .statistic-box .col h3 {
+  margin: 0 0 0.7rem;
+  padding: 0;
+}
+.holder.no-hidden li .statistic-box .col ul {
+  list-style-type: none;
+  padding: 0;
+}
+.holder.no-hidden li .statistic-box .col ul li .title {
+  margin-right: 0.3rem;
+}
+.holder.no-hidden li .statistic-box .col ul li .area {
+  display: inline-block;
+}
+.holder.no-hidden li .statistic-box .col ul li .area A[title="Просмотреть репутацию"] {
+  margin: 0;
+}
+.holder.no-hidden li .statistic-box .col ul li .area .warn-btn strong {
+  display: inline-block;
+  margin: 0;
+  width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  color: #303030;
+  border-radius: 0.15rem;
+}
+.holder.no-hidden li .statistic-box .col ul li .area .warn-btn[title="Опустить репутацию"] strong {
+  background: #fb6a6a;
+}
+.holder.no-hidden li .statistic-box .col ul li .area .warn-btn[title="Поднять репутацию"] strong {
+  background: #1ca11c;
+}
+.holder.no-hidden .no-min-size .alert-log-list {
+  list-style-type: none;
+  padding: 0;
+}
+.holder.no-hidden .no-min-size .alert-log-list li:last-child {
+  border: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.holder.no-hidden .no-min-size .alert-log-list .wlog-pos,
+.holder.no-hidden .no-min-size .alert-log-list .wlog-neg {
+  border-bottom: 1px solid #4f4f4f;
+  padding-bottom: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+.holder.no-hidden .no-min-size .alert-log-list .wlog-pos .a-heading,
+.holder.no-hidden .no-min-size .alert-log-list .wlog-neg .a-heading {
+  position: relative;
+}
+.holder.no-hidden .no-min-size .alert-log-list .wlog-pos .a-heading h4,
+.holder.no-hidden .no-min-size .alert-log-list .wlog-neg .a-heading h4 {
+  margin: 0 0 0.7rem;
+  line-height: 1.4rem;
+}
+.holder.no-hidden .no-min-size .alert-log-list .wlog-pos .a-heading span,
+.holder.no-hidden .no-min-size .alert-log-list .wlog-neg .a-heading span {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 0.8rem;
+  line-height: 1.4rem;
+  color: #acacac;
+}
+.holder.no-hidden .no-min-size .alert-log-list .wlog-pos .a-content .post-link,
+.holder.no-hidden .no-min-size .alert-log-list .wlog-neg .a-content .post-link {
+  margin-top: 0.7rem;
+}

@@ -334,7 +334,6 @@
     </PreferenceScreen>
 
     <PreferenceScreen
-        android:summary="Ваше осязаемое 'Спасибо'"
         android:title="Помочь проекту">
         <Preference
             android:key="Qiwi"

@@ -30,6 +30,7 @@ import org.softeg.slartus.forpdaapi.ProfileApi;
 import org.softeg.slartus.forpdaplus.listfragments.ListFragmentActivity;
 import org.softeg.slartus.forpdaplus.listtemplates.QmsContactsBrickInfo;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
+import org.softeg.slartus.forpdaplus.profile.ProfileWebViewActivity;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -69,6 +70,12 @@ public class ShortUserInfo {
         if(isOnline()){
             if(Client.getInstance().getLogined()) {
                 new updateAsyncTask().execute();
+                imgAvatar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ProfileWebViewActivity.startActivity(getContext(), Client.getInstance().UserId, Client.getInstance().getUser());
+                    }
+                });
 
                 Client.getInstance().addOnUserChangedListener(new Client.OnUserChangedListener() {
                     @Override

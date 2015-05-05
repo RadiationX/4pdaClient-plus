@@ -339,7 +339,7 @@ public final class TopicViewMenuFragment extends ProfileMenuFragment {
                 }
             });
 
-            menu.add("Быстрый доступ..").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            menu.add("Быстрый доступ").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem item) {
                     BricksListDialogFragment.showDialog((BricksListDialogFragment.IBricksListDialogCaller) getActivity(),
                             BricksListDialogFragment.QUICK_LIST_ID,

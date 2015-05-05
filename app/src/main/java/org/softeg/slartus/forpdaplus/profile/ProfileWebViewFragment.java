@@ -259,7 +259,8 @@ public class ProfileWebViewFragment extends DialogFragment
     private static class ProfileHtmlBuilder extends HtmlBuilder {
         @Override
         protected String getStyle() {
-            return "/android_asset/profile/css/" + (App.getInstance().isWhiteTheme() ? "profile_white.css" : "profile_black.css");
+            //return "/android_asset/profile/css/" + (App.getInstance().isWhiteTheme() ? "profile_white.css" : "profile_black.css");
+            return App.getInstance().getThemeCssFileName();
 
         }
     }

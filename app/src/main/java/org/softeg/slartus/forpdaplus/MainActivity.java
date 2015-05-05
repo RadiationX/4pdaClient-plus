@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.util.Pair;
 import android.view.ContextMenu;
+import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -134,13 +135,18 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
 
 
             FrameLayout contentFrame = (FrameLayout) drawer.findViewById(R.id.content_frame);
+            RelativeLayout leftDrawer = (RelativeLayout) drawer.findViewById(R.id.left_drawer);
             final float scale = getResources().getDisplayMetrics().density;
             int paddingTop = (int) (80 * scale + 0.5f);
             int paddingTopTab = (int) (88 * scale + 0.5f);
             int paddingBottom = (int) (48 * scale + 0.5f);
 
             if(Integer.valueOf(android.os.Build.VERSION.SDK) > 19){
+                if (!(KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK) && KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME))) {
+                    paddingBottom = 0;
+                }
                 contentFrame.setPadding(0,paddingTop,0,paddingBottom);
+                leftDrawer.setPadding(0,0,0,paddingBottom);
                 if ((getResources().getConfiguration().screenLayout &
                         Configuration.SCREENLAYOUT_SIZE_MASK) ==
                         Configuration.SCREENLAYOUT_SIZE_XLARGE) {
@@ -419,7 +425,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
 
 
         public void setOtherMenu() {
-            MenuItem miQuickStart = m_miOther.add("Быстрый доступ..");
+            MenuItem miQuickStart = m_miOther.add("Быстрый доступ");
             miQuickStart.setIcon(R.drawable.ic_menu_quickrun);
             miQuickStart.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem item) {

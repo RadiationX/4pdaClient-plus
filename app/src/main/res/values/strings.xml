@@ -85,7 +85,7 @@
     <string name="ChangeReputationRequest">Запрос на изменение репутации отправлен</string>
     <string name="ChangeReputationError">Ошибка изменения репутации</string>
     <string name="Reputation">Репутация</string>
-    <string name="Logout">Выход (Logout)</string>
+    <string name="Logout">Выход</string>
     <string name="Login">Вход</string>
     <string name="Registration">Регистрация</string>
     <string name="SendBy_">Отправить через..</string>
