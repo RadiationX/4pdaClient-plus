@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -140,12 +141,13 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             final float scale = getResources().getDisplayMetrics().density;
             int paddingTop = (int) (80 * scale + 0.5f);
             int paddingTopTab = (int) (88 * scale + 0.5f);
-            int paddingBottom = (int) (48 * scale + 0.5f);
+            int paddingBottom = 0;
 
             if(Integer.valueOf(android.os.Build.VERSION.SDK) > 19){
-                if (ViewConfiguration.get(this).hasPermanentMenuKey()) {
-                    paddingBottom = 0;
+                if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
+                    paddingBottom = (int) (48 * scale + 0.5f);
                 }
+
                 contentFrame.setPadding(0,paddingTop,0,paddingBottom);
                 leftDrawer.setPadding(0,0,0,paddingBottom);
                 if ((getResources().getConfiguration().screenLayout &

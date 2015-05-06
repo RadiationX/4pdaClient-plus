@@ -1081,8 +1081,8 @@ a {
 }
 .list-group-item .check-item input:checked + .checkbox,
 .our-message .check-item input:checked + .checkbox {
-  border-color: #607d8b;
-  background: #607d8b;
+  border-color: #e91e63;
+  background: #e91e63;
 }
 .list-group-item .check-item input:checked + .checkbox .icon-uncheck,
 .our-message .check-item input:checked + .checkbox .icon-uncheck {
@@ -1258,7 +1258,7 @@ a {
   height: 100%;
   position: relative;
   padding: 0 0.5em;
-  color: #607d8b;
+  color: #e91e63;
   font-size: 0.875em;
   font-weight: bold;
 }
@@ -1436,8 +1436,8 @@ a {
   opacity: 0;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.checkbox:checked + b:before {
-  border-color: #607d8b;
-  background: #607d8b;
+  border-color: #e91e63;
+  background: #e91e63;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.checkbox:checked + b:after {
   -webkit-transform: rotate(45deg) scale(1);
@@ -1477,7 +1477,7 @@ a {
   height: 0.625em;
   width: 0.625em;
   border-radius: 100%;
-  background: #607d8b;
+  background: #e91e63;
   position: absolute;
   left: 0.3125em;
   top: 50%;
@@ -1494,7 +1494,7 @@ a {
   opacity: 1;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td input.radiobutton:checked + b:before {
-  border-color: #607d8b;
+  border-color: #e91e63;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td.post2 {
   position: relative;
@@ -1552,7 +1552,7 @@ a {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   background: none;
-  color: #607d8b;
+  color: #e91e63;
   display: inline-block;
   font-size: 0.875em;
   font-weight: bold;
@@ -1906,7 +1906,7 @@ a {
   clear: both;
 }
 .post_header table tbody tr:nth-child(4) td a {
-  color: #607d8b;
+  color: #e91e63;
   font-size: 0.875em;
   font-weight: bold;
 }
@@ -1933,7 +1933,7 @@ a {
 }
 .hidetop:after {
   content: ">>ШАПКА ТЕМЫ<<";
-  color: #607d8b;
+  color: #e91e63;
 }
 .hidetop b {
   display: none;
@@ -2099,7 +2099,7 @@ a {
   display: inline-block;
   text-transform: uppercase;
   background: none;
-  color: #607d8b;
+  color: #e91e63;
 }
 .post_footer .system_link > *:after {
   font-size: 0.875em;
@@ -2164,7 +2164,7 @@ a {
 #writers .href_button {
   padding: 0.7em;
   display: block;
-  color: #607d8b;
+  color: #e91e63;
 }
 #writers:before {
   content: "";
@@ -2904,7 +2904,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
   padding: 0.5em;
 }
 .user-profile-list > li:nth-child(2) .contact-social .social-link > li a strong {
-  color: #607d8b;
+  color: #e91e63;
 }
 .user-profile-list > li:nth-child(2) a[href*="act=UserCP"] {
   line-height: 2.25em;
@@ -2922,7 +2922,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
 }
 .user-profile-list > li:nth-child(3) .statistic-box .col:nth-child(2) .info-list > li .area a,
 .user-profile-list > li:nth-child(4) .statistic-box .col:nth-child(2) .info-list > li .area a {
-  color: #607d8b;
+  color: #e91e63;
   font-weight: bold;
 }
 .user-profile-list > li:nth-child(4) .alert-log-list,

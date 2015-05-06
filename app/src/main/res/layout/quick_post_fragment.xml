@@ -51,7 +51,7 @@
             android:contentDescription="Отправить"
             android:src="@drawable/btn_send"
             android:layout_alignBottom="@+id/post_text"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
 
     <LinearLayout
