@@ -9,7 +9,7 @@ android {
 
         targetSdkVersion 21
         versionCode 526
-        versionName "2.5.6_Coba[0.8D7]"
+        versionName "2.5.6_Coba[0.9]"
     }
     buildTypes {
         release {

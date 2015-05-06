@@ -65,12 +65,15 @@ public abstract class BrowserViewsFragmentActivity extends BaseFragmentActivity 
             return;
 
         LinearLayout arrows = (LinearLayout) findViewById(R.id.arrows);
+        LinearLayout arrowsShadow = (LinearLayout) findViewById(R.id.arrows_shadow);
 
         if (arrows == null) return;
         if(hide){
             arrows.setVisibility(View.GONE);
+            arrowsShadow.setVisibility(View.GONE);
         }else {
             arrows.setVisibility(View.VISIBLE);
+            arrowsShadow.setVisibility(View.VISIBLE);
         }
 
     }

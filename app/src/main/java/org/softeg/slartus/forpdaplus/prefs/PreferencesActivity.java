@@ -247,6 +247,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
                 int prefColor = (int) Long.parseLong(String.valueOf(prefs.getInt("accentColor", Color.rgb(233, 30, 99))), 10);
+                //int prefColor = (int) Long.parseLong(String.valueOf(prefs.getInt("accentColor", Color.rgb(96, 125, 139))), 10);
                 final int[] colors = {(prefColor >> 16) & 0xFF, (prefColor >> 8) & 0xFF, (prefColor >> 0) & 0xFF};
 
                 LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -404,6 +405,8 @@ public class PreferencesActivity extends BasePreferencesActivity {
                                         .edit()
                                         .putInt("accentColor", Color.rgb(233, 30, 99))
                                         .putInt("accentColorPressed", Color.rgb(203, 0, 69))
+                                        //.putInt("accentColor", Color.rgb(96, 125, 139))
+                                        //.putInt("accentColorPressed", Color.rgb(76, 95, 109))
                                         .commit();
                             }
                         })

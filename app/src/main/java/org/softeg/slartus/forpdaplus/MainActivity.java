@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
@@ -142,7 +143,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             int paddingBottom = (int) (48 * scale + 0.5f);
 
             if(Integer.valueOf(android.os.Build.VERSION.SDK) > 19){
-                if (!(KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK) && KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME))) {
+                if (ViewConfiguration.get(this).hasPermanentMenuKey()) {
                     paddingBottom = 0;
                 }
                 contentFrame.setPadding(0,paddingTop,0,paddingBottom);

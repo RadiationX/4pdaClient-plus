@@ -15,7 +15,7 @@ HTML {
 }
 HTML body {
   font-family: 'Roboto';
-  background: #0398db;
+  background: #1495d4;
   color: black;
   font-size: 1em;
   line-height: 1.4em;
@@ -202,8 +202,8 @@ div[style*="margin-top"] {
   font-weight: bold;
   margin: 0;
   padding: 0.2rem 0.5rem;
-  color: #ffffff;
-  background: #0398db;
+  color: white;
+  background: #1495d4;
   -webkit-box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
 }
 .post-block.spoil > .block-title * {
@@ -345,7 +345,7 @@ div[style*="margin-top"] {
   min-width: 40px;
   text-decoration: none!important;
   font-weight: bold;
-  color: #0279af;
+  color: #1077a9;
 }
 @media screen and (max-width: 310px) {
   #top_navi .first .href_button_disable,
@@ -500,12 +500,12 @@ br + .topic_title_post {
   width: 1rem;
   height: 1rem;
   margin: 0 0 0 -0.1rem;
-  border-radius: 2em;
+  border-radius: 2rem;
   border: 0.15rem solid #5f7aa3;
   background: white;
   transition: all 0.3s ease-out;
   overflow: hidden;
-  -webkit-box-shadow: inset 0 0 0 0.15em white;
+  -webkit-box-shadow: inset 0 0 0 0.2em white;
 }
 .poll .hidemain FORM > .ipbtable[cellspacing="1"] TD.row1 .borderwrap .ipbtable .post2 .checkbox:before {
   border-radius: 0.15rem;
@@ -641,7 +641,7 @@ br + .topic_title_post {
   color: #4d4d4d;
 }
 .post_header table tbody tr td .post_nick_online_cli a {
-  color: #0288c5;
+  color: #1286be;
 }
 .post_header table tbody tr td div .post_date_cli {
   position: absolute;
@@ -1093,13 +1093,12 @@ br + .topic_title_post {
 div[name*="msg"] > .hidetop {
   position: relative;
   display: block;
-  margin: 0 -1px;
-  z-index: 10;
+  margin: 0 ;
+  z-index: 11;
   text-align: center;
   line-height: 1.4rem;
   font-size: 1.1rem;
-  border-left: 1px solid #0391d1;
-  border-right: 1px solid #0391d1;
+  -webkit-box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
   background: white;
 }
 @media screen and (min-width: 800px) {
@@ -1155,13 +1154,12 @@ div[name*="msg"] > .hidetop B:before {
   position: relative;
   display: block;
   padding: 0.5rem 0.8rem 0.7rem;
-  margin: 0 -1px;
+  margin: 0 ;
   z-index: 11;
   text-align: left;
-  border-left: 1px solid #0391d1;
-  border-right: 1px solid #0391d1;
   background-clip: padding-box;
   background: white;
+  -webkit-box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
 }
 @media screen and (min-width: 800px) {
   .post_body {
@@ -1227,7 +1225,7 @@ div[name*="msg"] > .hidetop B:before {
   margin-bottom: 0.3rem;
 }
 .post_body a {
-  color: #026a99;
+  color: #0e6894;
 }
 .post_body font {
   font-size: 0.8rem !important;
@@ -1264,6 +1262,10 @@ div[name*="msg"] > .hidetop B:before {
 .searchlite {
   color: #FF6A00;
 }
+.postcolor {
+  height: auto !important;
+  max-height: 20rem;
+}
 .signature {
   position: relative;
   font-size: 0.85rem;
@@ -1282,7 +1284,7 @@ div[name*="msg"] > .hidetop B:before {
   display: block;
   min-height: 1.6em;
   position: relative;
-  z-index: 9;
+  z-index: 12;
   font-size: 0.9rem;
   font-weight: bold;
   padding: 0.3rem;
@@ -1303,7 +1305,7 @@ div[name*="msg"] > .hidetop B:before {
   }
 }
 .s_post_footer a {
-  color: #026a99;
+  color: #0e6894;
 }
 .s_post_footer ~ .between_messages ~ .topic_title_post ~ .post_header {
   margin-top: 0 !important;
@@ -1350,7 +1352,7 @@ img[src*="style_emoticons"] {
   display: block;
   min-height: 1.6em;
   position: relative;
-  z-index: 9;
+  z-index: 12;
   font-size: 0.9rem;
   font-weight: bold;
   padding: 0.3rem;
@@ -1491,7 +1493,7 @@ img[src*="style_emoticons"] {
   padding: 0 0.2rem 5rem;
 }
 #thread_form a {
-  color: #026a99;
+  color: #0e6894;
 }
 #thread_form .date {
   display: block;
@@ -1602,7 +1604,7 @@ img[src*="style_emoticons"] {
   z-index: 40;
   border-radius: 0.15rem;
   overflow: hidden;
-  background: #0398db;
+  background: #1495d4;
 }
 #thread_form .list-group-item strong {
   display: none;
@@ -1610,7 +1612,7 @@ img[src*="style_emoticons"] {
   padding-bottom: 1.2rem;
 }
 #thread_form .list-group-item strong span {
-  color: #b3e0f4 !important;
+  color: #b9dff2 !important;
 }
 #thread_form .list-group-item .msg-content {
   display: inline-block;
@@ -1645,7 +1647,7 @@ img[src*="style_emoticons"] {
 }
 #thread_form .list-group-item.our-message strong {
   margin-left: 4.3rem;
-  color: #81cbed;
+  color: #8acae9;
 }
 #thread_form .list-group-item.our-message .msg-content {
   text-align: left;
@@ -1738,7 +1740,7 @@ img[src*="style_emoticons"] {
   padding: 0.5rem 0.7rem 0.7rem;
 }
 .container .content a {
-  color: #026a99;
+  color: #0e6894;
 }
 .container .content .content-box P[style="text-align: justify;"] {
   text-align: left !important;
@@ -1794,7 +1796,7 @@ img[src*="style_emoticons"] {
   display: block;
   margin: 0;
   padding: 1px 1rem;
-  border-top: 1px solid #0398db;
+  border-top: 1px solid #1495d4;
 }
 @media screen and (min-width: 800px) {
   .product-detail .description {
@@ -1822,7 +1824,7 @@ img[src*="style_emoticons"] {
   padding: 0 0.5rem 0 0.4rem;
   text-align: center;
   color: white;
-  background: #0398db;
+  background: #1495d4;
 }
 @media screen and (min-width: 800px) {
   .product-detail .description .info-holder .date {
@@ -1836,7 +1838,7 @@ img[src*="style_emoticons"] {
   display: inline-block;
   content: '';
   border: 0.7em solid transparent;
-  border-right: 0.7em solid #0398db;
+  border-right: 0.7em solid #1495d4;
 }
 .product-detail .description .info-holder .name {
   position: absolute;
@@ -1869,7 +1871,7 @@ img[src*="style_emoticons"] {
   font-size: 1.2rem;
   text-decoration: none;
   color: white !important;
-  background: #0398db;
+  background: #1495d4;
   -webkit-box-shadow: 0 0.15rem 0.3rem rgba(0, 0, 0, 0.25);
 }
 @media screen and (min-width: 800px) {
@@ -2080,7 +2082,7 @@ h3 a {
 .mlinks .mlhead .do-vam div .mltbl.platforms .mlrow .mlcell a,
 .mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow .mlcell a {
   text-decoration: none;
-  color: #026a99 !important;
+  color: #0e6894 !important;
 }
 .mlinks .mlscreenshots.mlbody {
   display: block;
@@ -2349,7 +2351,7 @@ h3 a {
 }
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  color: #026a99;
+  color: #0e6894;
 }
 .table4site {
   display: block;
@@ -2490,7 +2492,7 @@ h3 a {
 .materials-box .materials-slider .slider-item > a img {
   width: 100%;
   height: 75%;
-  border-bottom: 1px solid #0398db;
+  border-bottom: 1px solid #1495d4;
 }
 .materials-box .materials-slider .slider-item h3 {
   display: block;
@@ -2734,264 +2736,11 @@ h3 a {
   background: rgba(0, 0, 0, 0.2);
 }
 /*
- *   Style Name: Profile for 4PDAClient
- *   Autor: Морфий
+*	PROFILE
 */
-@font-face {
-  font-family: 'fontello';
-  src: url('material_src/fontello.eot?19600742');
-  src: url('material_src/fontello.eot?19600742#iefix') format('embedded-opentype'), url('material_src/fontello.woff?19600742') format('woff'), url('material_src/fontello.ttf?19600742') format('truetype'), url('material_src/fontello.svg?19600742#fontello') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'fontello';
-  src: url('forum/fonts/fontello/fontello.eot?66808348');
-  src: url('forum/fonts/fontello/fontello.eot?66808348#iefix') format('embedded-opentype'), url('forum/fonts/fontello/fontello.woff?66808348') format('woff'), url('forum/fonts/fontello/fontello.ttf?66808348') format('truetype'), url('forum/fonts/fontello/fontello.svg?66808348#fontello') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: fontello;
-  src: url("file:///android_asset/forum/fonts/fontello/fontello.eot");
-  src: url("file:///android_asset/forum/fonts/fontello/fontello.eot") format('embedded-opentype'), url("file:///android_asset/forum/fonts/fontello/fontello.woff") format('woff'), url("file:///android_asset/forum/fonts/fontello/fontello.ttf") format('truetype'), url("file:///android_asset/forum/fonts/fontello/fontello.svg") format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-[class^="icon-"]:before,
-[class*=" icon-"]:before {
-  font-family: "fontello";
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
-  line-height: 1em;
-  display: inline-block;
-  text-decoration: inherit;
-  width: 1em;
-  text-align: center;
-  /* opacity: .8; */
-  /* For safety - reset parent styles, that can break glyph codes*/
-  font-variant: normal;
-  text-transform: none;
-}
-.icon-hash:before {
-  content: '\23';
-}
-/* '#' */
-.icon-karma-up:before {
-  content: '\2b';
-}
-/* '+' */
-.icon-hide-comment:before {
-  content: '\2d';
-}
-/* '-' */
-.icon-4PDA-plain:before {
-  content: '\34';
-}
-/* '4' */
-.icon-android:before {
-  content: '\41';
-}
-/* 'A' */
-.icon-comment-baloons:before {
-  content: '\43';
-}
-/* 'C' */
-.icon-engines:before {
-  content: '\44';
-}
-/* 'D' */
-.icon-pencil:before {
-  content: '\45';
-}
-/* 'E' */
-.icon-FB:before {
-  content: '\46';
-}
-/* 'F' */
-.icon-home:before {
-  content: '\48';
-}
-/* 'H' */
-.icon-apple:before {
-  content: '\49';
-}
-/* 'I' */
-.icon-rss:before {
-  content: '\52';
-}
-/* 'R' */
-.icon-search:before {
-  content: '\53';
-}
-/* 'S' */
-.icon-TWITTER:before {
-  content: '\54';
-}
-/* 'T' */
-.icon-VK:before {
-  content: '\56';
-}
-/* 'V' */
-.icon-windows:before {
-  content: '\57';
-}
-/* 'W' */
-.icon-close:hover:before {
-  content: '\58';
-}
-/* 'X' */
-.icon-YOUTUBE:before {
-  content: '\59';
-}
-/* 'Y' */
-.icon-up-open:before {
-  content: '\5e';
-}
-/* '^' */
-.icon-users:before {
-  content: '\75';
-}
-/* 'u' */
-.icon-link:before {
-  content: '\bb';
-}
-/* '»' */
-.icon-down-dir-1:before {
-  content: '\1d65';
-}
-/* 'ᵥ' */
-.icon-up-dir-1:before {
-  content: '\1dba';
-}
-/* 'ᶺ' */
-.icon-karma-down:before {
-  content: '\2013';
-}
-/* '–' */
-.icon-left-small:before {
-  content: '\2039';
-}
-/* '‹' */
-.icon-right-small:before {
-  content: '\203a';
-}
-/* '›' */
-.icon-4pda-logo:before {
-  content: '\2163';
-}
-/* 'Ⅳ' */
-.icon-up:before {
-  content: '\2191';
-}
-/* '↑' */
-.icon-down:before {
-  content: '\2193';
-}
-/* '↓' */
-.icon-back-up:before {
-  content: '\21b5';
-}
-/* '↵' */
-.icon-up-small:before {
-  content: '\21d1';
-}
-/* '⇑' */
-.icon-login:before {
-  content: '\23ce';
-}
-/* '⏎' */
-.icon-profile:before {
-  content: '\263a';
-}
-/* '✓' */
-/* '✔' */
-.icon-glyph:before {
-  content: '\272a';
-}
-/* '✪' */
-.icon-cog:before {
-  content: '\2731';
-}
-/* '✱' */
-.icon-del:before {
-  content: '\274e';
-}
-/* '❎' */
-.icon-warning-empty:before {
-  content: '\2755';
-}
-/* '❕' */
-.icon-attention:before {
-  content: '\2757';
-}
-/* '❗' */
-.icon-chart-bar:before {
-  content: '\2758';
-}
-/* '❘' */
-.icon-chart-bar-1:before {
-  content: '\2759';
-}
-/* '❙' */
-.icon-glyph-1:before {
-  content: '\275a';
-}
-/* '❚' */
-.icon-quote-left:before {
-  content: '\275d';
-}
-/* '❝' */
-.icon-heart-1:before {
-  content: '\2764';
-}
-/* '❤' */
-.icon-heart:before {
-  content: '\2765';
-}
-/* '❥' */
-.icon-close:before {
-  content: '\2a09';
-}
-/* '⨉' */
-.icon-mlinks-home:before {
-  content: '\e081';
-}
-/* '' */
-.icon-edit:before {
-  content: '\e80b';
-}
-/* '' */
-.icon-users-1:before {
-  content: '👥';
-}
-/* '\1f465' */
-.icon-emo-happy:before {
-  content: '😌';
-}
-[class^="icon-"]:before,
-[class*=" icon-"]:before {
-  color: #999999;
-}
-html {
-  margin: 0;
-  padding: 0;
-  font-size: 1rem;
-}
-html body {
-  margin: 0 auto;
-  padding: 0;
-  max-width: 826px;
-  font-size: 100%;
-  color: black;
-  background: #999999;
-}
-html body a {
-  color: #2b4d66;
-}
 .holder.no-hidden {
   margin: 0 auto;
+  max-width: 800px;
 }
 .holder.no-hidden .user-profile-list {
   display: block;
@@ -3008,9 +2757,12 @@ html body a {
   padding: 0.7rem;
   margin: 0.7rem 0.5rem;
   border-radius: 0.15rem;
-  -webkit-box-shadow: 0 0.15rem 0.3rem rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
   overflow: hidden;
   background: white;
+}
+.holder.no-hidden .user-profile-list > li a {
+  color: #0e6894;
 }
 .holder.no-hidden .user-profile-list > li .user-box {
   display: block;
@@ -3097,7 +2849,7 @@ html body a {
 }
 .holder.no-hidden li .heading .ico .icon-glyph-1 {
   position: relative;
-  top: 0.2rem;
+  top: 0.1rem;
 }
 .holder.no-hidden li .heading h2 {
   display: inline-block;
@@ -3110,7 +2862,9 @@ html body a {
   line-height: 1.4rem;
 }
 .holder.no-hidden li h3 {
+  display: block;
   color: #808080;
+  text-align: left;
 }
 .holder.no-hidden li .contact-social .social-link {
   list-style-type: none;
