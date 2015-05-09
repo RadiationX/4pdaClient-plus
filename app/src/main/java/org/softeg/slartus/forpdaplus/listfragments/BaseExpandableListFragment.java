@@ -173,7 +173,7 @@ super();
                 loadData(true);
             }
         });
-        swipeRefreshLayout.setColorSchemeResources(R.color.refresh);
+        swipeRefreshLayout.setColorSchemeResources(App.getInstance().getMainAccentColor());
         return swipeRefreshLayout;
     }
 

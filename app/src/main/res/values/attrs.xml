@@ -28,6 +28,8 @@
     <attr name="fab_pressed" format="reference"/>
     <attr name="fab_ripple" format="reference"/>
     <attr name="actbar" format="reference"/>
+    <attr name="arrow_up" format="reference"/>
+    <attr name="arrow_down" format="reference"/>
     <!-- Default -->
     <attr name="theme_background" format="reference" />
     <attr name="theme_light_background" format="reference" />

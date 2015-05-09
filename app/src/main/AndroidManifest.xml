@@ -21,7 +21,7 @@
         android:icon="@drawable/icon_mat"
         android:hardwareAccelerated="true"
         android:name=".App"
-        android:theme="@style/Theme.Black">
+        android:theme="@style/MainPinkBL">
 
         <activity
             android:name="org.softeg.slartus.forpdaplus.MainActivity"
@@ -129,7 +129,7 @@
         </receiver>
 
         <activity
-            android:theme="@style/Theme.Transluent.White"
+            android:theme="@style/Theme.Transluent.WhitePink"
             android:name=".TestActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
 

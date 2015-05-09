@@ -107,6 +107,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
             findPreference("path.system_path").setOnPreferenceClickListener(this);
             findPreference("appstyle").setOnPreferenceClickListener(this);
             findPreference("accentColor").setOnPreferenceClickListener(this);
+            findPreference("mainAccentColor").setOnPreferenceClickListener(this);
             /*findPreference("userBackground").setOnPreferenceClickListener(this);*/
             findPreference("About.AppVersion").setOnPreferenceClickListener(this);
             findPreference("cookies.path.SetSystemPath").setOnPreferenceClickListener(this);
@@ -210,6 +211,9 @@ public class PreferencesActivity extends BasePreferencesActivity {
                 case "accentColor":
                     showAccentColorDialog();
                     return true;
+                case "mainAccentColor":
+                    showMainAccentColorDialog();
+                    return true;
                 /*case "userBackground":
                     pickUserBackground();
                     return true;*/
@@ -240,7 +244,47 @@ public class PreferencesActivity extends BasePreferencesActivity {
 
             return false;
         }
+        private void showMainAccentColorDialog(){
+            try{
+                final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                String string = prefs.getString("mainAccentColor","pink");
+                int position = -1;
+                if(string.equals("pink")){
+                    position = 0;
+                }else {
+                    position = 1;
+                }
+                final int[] selected = {0};
+                new MaterialDialog.Builder(getActivity())
+                        .title("Выберите цвет акцента")
+                        .items(new String[]{"Розовый", "Голубой"})
+                        .itemsCallbackSingleChoice(position, new MaterialDialog.ListCallbackSingleChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                selected[0] = which;
+                                return true;
+                            }
+                        })
+                        .alwaysCallSingleChoiceCallback()
+                        .positiveText("Применить")
+                        .negativeText("Отмена")
+                        .callback(new MaterialDialog.ButtonCallback() {
+                            @Override
+                            public void onPositive(MaterialDialog dialog) {
+                                if (selected[0] == 0) {
+                                    prefs.edit().putString("mainAccentColor", "pink").apply();
+                                } else {
+                                    prefs.edit().putString("mainAccentColor", "blue").apply();
+                                }
+                            }
+                        })
+                        .show();
 
+            }catch (Exception ex) {
+                AppLog.e(getActivity(), ex);
+            }
+
+        }
         private void showAccentColorDialog() {
 
             try {

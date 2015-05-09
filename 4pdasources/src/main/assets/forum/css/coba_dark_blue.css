@@ -1236,6 +1236,12 @@ a {
 }
 /*--- END QMS ---*/
 /*--- FORUM TOPIC ---*/
+[data-post] > a[name*="entry"] {
+  position: absolute;
+  margin-top: -4em;
+  left: 0;
+  width: 100%;
+}
 .navi {
   background: #303030;
   margin: 0.5em;
@@ -1243,6 +1249,7 @@ a {
   -webkit-box-shadow: 0 0 5px -3px #000000;
   margin: 0;
   box-shadow: none;
+  -webkit-box-shadow: none;
   display: table;
   width: 100%;
   line-height: 3em;
@@ -1286,11 +1293,12 @@ a {
 .topic_title_post {
   background: #303030;
   margin: 0.5em;
+  box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
   margin: 0;
   text-align: center;
   margin-bottom: 3em;
-  box-shadow: 0 0 5px -3px #000000;
+  box-shadow: 0 0 4px -3px #000000;
   -webkit-box-shadow: 0 2px 4px -4px #000000;
 }
 .topic_title_post a {
@@ -1512,6 +1520,7 @@ a {
   right: 0;
   background: rgba(48, 48, 48, 0.9);
   box-shadow: -20px 0 20px -7px #303030;
+  -webkit-box-shadow: -20px 0 20px -7px #303030;
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td.post2[width*="10%"] {
   padding: 0;
@@ -1926,6 +1935,7 @@ a {
   box-shadow: 0 0 5px -3px #000000;
   -webkit-box-shadow: 0 0 5px -3px #000000;
   box-shadow: none;
+  -webkit-box-shadow: none;
   margin-top: 0;
   margin-bottom: 0;
   text-align: center;
@@ -2156,6 +2166,7 @@ a {
   -webkit-box-shadow: 0 0 5px -3px #000000;
   margin: 0;
   box-shadow: none;
+  -webkit-box-shadow: none;
   display: block;
   text-align: center;
   position: relative;
@@ -2178,7 +2189,7 @@ a {
   display: block!important;
 }
 /*--- END FORUM TOPIC ---*/
-.post_body a[href*=findpost][title="Перейти к сообщению"] {
+a[href*=findpost][title="Перейти к сообщению"] {
   color: #ededed;
   background: #28627f;
   -webkit-border-radius: 2px;
@@ -2192,10 +2203,10 @@ a {
   position: relative;
   margin: 0 0.1875em;
 }
-.post_body a[href*=findpost][title="Перейти к сообщению"] img {
+a[href*=findpost][title="Перейти к сообщению"] img {
   display: none;
 }
-.post_body a[href*=findpost][title="Перейти к сообщению"]:before {
+a[href*=findpost][title="Перейти к сообщению"]:before {
   content: "";
   display: block;
   height: 0.4375em;
@@ -2213,7 +2224,7 @@ a {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
-.post_body a[href*=findpost][title="Перейти к сообщению"]:after {
+a[href*=findpost][title="Перейти к сообщению"]:after {
   content: "";
   position: absolute;
   height: 2.25em;
@@ -2226,6 +2237,7 @@ a {
   position: relative;
   overflow: hidden;
   box-shadow: 0 3px 10px -3px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 3px 10px -3px rgba(0, 0, 0, 0.15);
 }
 .post-block .block-title {
   color: #ededed;
@@ -2313,12 +2325,6 @@ a {
 .post-block.quote > .block-title:empty:after {
   content: "";
 }
-.post-block.quote > .block-title:before {
-  content: "Цитата ( ";
-}
-.post-block.quote > .block-title:after {
-  content: " )";
-}
 .post-block.code > .block-title {
   background: #1a9b43;
 }
@@ -2326,8 +2332,20 @@ a {
   content: "Код (+)";
 }
 .post-block.code.box > .block-body {
-  max-height: 10.4em;
+  max-height: 11em;
   overflow: hidden;
+  position: relative;
+}
+.post-block.code.box > .block-body:after {
+  position: absolute;
+  content: "";
+  bottom: -1em;
+  height: 1em;
+  left: 0;
+  right: 0;
+  width: 100%;
+  -webkit-box-shadow: 0 0 20px black;
+  box-shadow: 0 -0.5em 1em #f4f4f4;
 }
 .post-block.code.unbox > .block-title:before {
   content: "Код (\2013)";
@@ -2608,6 +2626,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
   }
   .post_header {
     box-shadow: none;
+    -webkit-box-shadow: none;
     -webkit-border-radius: 2px 0 0 0;
     border-radius: 2px 0 0 0;
     margin: 2.6em 0 0 0.5em;
@@ -2643,6 +2662,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
   }
   .post_body {
     box-shadow: none;
+    -webkit-box-shadow: none;
     margin: 0;
     margin-top: 2.6em;
     overflow: hidden;
@@ -2845,6 +2865,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
   font-size: 1em;
   background: #28627f;
   box-shadow: -20px 0 10px -7px #28627f;
+  -webkit-box-shadow: -20px 0 10px -7px #28627f;
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;

@@ -217,7 +217,7 @@ public class SearchPostsResultsFragment extends BaseFragment implements IWebView
                 search(0);
             }
         });
-        swipeRefreshLayout.setColorSchemeResources(R.color.refresh);
+        swipeRefreshLayout.setColorSchemeResources(App.getInstance().getMainAccentColor());
         return swipeRefreshLayout;
     }
 

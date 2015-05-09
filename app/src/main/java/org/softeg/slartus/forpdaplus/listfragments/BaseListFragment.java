@@ -169,7 +169,7 @@ public abstract class BaseListFragment extends BaseBrickFragment implements
                 loadData(true);
             }
         });
-        swipeRefreshLayout.setColorSchemeResources(R.color.refresh);
+        swipeRefreshLayout.setColorSchemeResources(App.getInstance().getMainAccentColor());
         return swipeRefreshLayout;
     }
 

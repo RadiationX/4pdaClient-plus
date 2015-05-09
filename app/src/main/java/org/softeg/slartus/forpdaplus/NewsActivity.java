@@ -44,6 +44,8 @@ import android.widget.VideoView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.melnykov.fab.FloatingActionButton;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.softeg.slartus.forpdacommon.FileUtils;
 import org.softeg.slartus.forpdacommon.PatternExtensions;
 import org.softeg.slartus.forpdaplus.classes.AdvWebView;
@@ -768,7 +770,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
                 if (isCancelled()) return false;
                 Client client = Client.getInstance();
                 if (TextUtils.isEmpty(Comment))
-                    m_ThemeBody = transformBody(client.performGet(m_NewsUrl));
+                    m_ThemeBody = transformBody(Jsoup.connect(m_NewsUrl).get());
                 else {
                     Map<String, String> additionalHeaders = new HashMap<>();
                     additionalHeaders.put("comment", Comment);
@@ -776,7 +778,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
                     additionalHeaders.put("submit", "Отправить комментарий");
                     additionalHeaders.put("comment_reply_ID", ReplyId);
                     additionalHeaders.put("comment_reply_dp", Dp);
-                    m_ThemeBody = transformBody(client.performPost("http://4pda.ru/wp-comments-post.php", additionalHeaders, "UTF-8"));
+                    m_ThemeBody = transformBody(Jsoup.connect(client.performPost("http://4pda.ru/wp-comments-post.php", additionalHeaders, "UTF-8")).get());
 
 
                 }
@@ -788,13 +790,14 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             }
         }
 
-        private String transformBody(String body) {
+        private String transformBody(Document body) {
+
             NewsHtmlBuilder builder = new NewsHtmlBuilder();
-            Matcher matcher = PatternExtensions.compile("<title>([^<>]*)</title>").matcher(body);
+            //Matcher matcher = PatternExtensions.compile("<title>([^<>]*)</title>").matcher(body);
             m_Title = "Новости";
-            if (matcher.find()) {
-                m_Title = Html.fromHtml(matcher.group(1)).toString();
-            }
+            //if (matcher.find()) {
+                m_Title = body.title();
+            //}
             builder.beginHtml(m_Title);
             builder.beginBody();
             builder.append("<div style=\"margin-top:72pt\"/>\n");
@@ -808,8 +811,8 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             return builder.getHtml().toString();
         }
 
-        private String parseBody(String body) {
-            Matcher m = PatternExtensions.compile("<article id=\"content\" class=\"\">([\\s\\S]*?)<aside id=\"sidebar\">").matcher(body);
+        private String parseBody(Document body) {
+            /*Matcher m = PatternExtensions.compile("<article id=\"content\" class=\"\" >([\\s\\S]*?)<aside id=\"sidebar\">").matcher(body);
             if (m.find()) {
                 return normalizeCommentUrls(m.group(1)).replaceAll("<form[\\s\\S]*?/form>", "");
             }
@@ -820,9 +823,11 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             m = PatternExtensions.compile("<div id=\"main\">([\\s\\S]*?)<div id=\"categories\">").matcher(body);
             if (m.find()) {
                 return normalizeCommentUrls(m.group(1)) + getNavi(body);
-            }
+            }*/
+            body.getElementById("commentform").remove();
+            String main = body.getElementById("content").html();
 
-            return normalizeCommentUrls(body);
+            return normalizeCommentUrls(main);
         }
 
 

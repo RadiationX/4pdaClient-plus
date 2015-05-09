@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -61,8 +63,14 @@ public class ImageViewDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        MaterialDialog.Builder builder= new MaterialDialog.Builder(getActivity())
+        View v = getActivity().getLayoutInflater().inflate(R.layout.image_view_dialog, null);
+        m_PhotoView=(PhotoView)v.findViewById(R.id.iv_photo);
+        //m_PhotoView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        m_PhotoView.setMaximumScale(10f);
+        m_ProgressView=v.findViewById(R.id.progressBar);
+        MaterialDialog builder= new MaterialDialog.Builder(getActivity())
                 .title(mTitle)
+                .customView(v,false)
                 .negativeText("Закрыть")
                 .positiveText("Полная версия")
                 .callback(new MaterialDialog.ButtonCallback() {
@@ -78,14 +86,10 @@ public class ImageViewDialogFragment extends DialogFragment {
                         }
                         ImageViewActivity.startActivity(getActivity(), url);
                     }
-                });
-        View v = getActivity().getLayoutInflater().inflate(R.layout.image_view_dialog, null);
-        m_PhotoView=(PhotoView)v.findViewById(R.id.iv_photo);
-        m_PhotoView.setMaximumScale(10f);
-        m_ProgressView=v.findViewById(R.id.progressBar);
-        builder.customView(v,true);
+                }).build();
 
-        return builder.build();
+        builder.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        return builder;
 
     }
 

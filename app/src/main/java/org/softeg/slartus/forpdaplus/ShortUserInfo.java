@@ -177,7 +177,7 @@ public class ShortUserInfo {
                 } else {
                     qmsMessages.setText("Нет новых сообщений QMS");
                 }
-                if (Preferences.isLoadShortUserInfo()) {
+                if (Preferences.isLoadShortUserInfo() & prefs.getString("shortAvatarUrl", "http://s.4pda.to/img/qms/logo.png").equals(strings[0])) {
                     new Picasso.Builder(App.getInstance()).build()
                             .load(prefs.getString("shortAvatarUrl", "http://s.4pda.to/img/qms/logo.png"))
                             .error(R.drawable.no_image)

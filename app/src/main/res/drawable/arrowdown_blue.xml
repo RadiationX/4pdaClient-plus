@@ -12,7 +12,7 @@
             android:fromDegrees="-45"
             android:toDegrees="45">
             <shape android:shape="rectangle">
-                <solid android:color="@color/accentPink"/>
+                <solid android:color="@color/accentBlue"/>
             </shape>
         </rotate>
     </item>
@@ -22,7 +22,7 @@
             android:fromDegrees="45"
             android:toDegrees="45">
             <shape android:shape="rectangle">
-                <solid android:color="@color/accentPink"/>
+                <solid android:color="@color/accentBlue"/>
             </shape>
         </rotate>
     </item>

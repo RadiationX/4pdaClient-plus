@@ -129,16 +129,73 @@ public class App extends android.app.Application {
         }
         return color;
     }
-
+    public int getMainAccentColor() {
+        int color = R.color.accentPink;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.getString("mainAccentColor","pink").equals("pink")){
+            color  = R.color.accentPink;
+        }else {
+            color = R.color.accentBlue;
+        }
+        return color;
+    }
     public int getThemeStyleResID() {
-        return isWhiteTheme() ? R.style.Theme_White : R.style.Theme_Black;
+        int theme = R.style.Theme_White;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String color = prefs.getString("mainAccentColor","pink");
+        if (isWhiteTheme()){
+            if(color.equals("pink")) {
+                theme = R.style.MainPinkWH;
+            }else {
+                theme = R.style.MainBlueWH;
+            }
+        }else{
+            if(color.equals("pink")) {
+                theme = R.style.MainPinkBL;
+            }else {
+                theme = R.style.MainBlueBL;
+            }
+        }
+        return theme;
     }
     public int getPrefsThemeStyleResID() {
-        return isWhiteTheme() ? R.style.Theme_Prefs_White : R.style.Theme_Prefs_Black;
+        int theme = R.style.Theme_Prefs_WhitePink;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String color = prefs.getString("mainAccentColor","pink");
+        if (isWhiteTheme()){
+            if(color.equals("pink")) {
+                theme = R.style.Theme_Prefs_WhitePink;
+            }else {
+                theme = R.style.Theme_Prefs_WhiteBlue;
+            }
+        }else{
+            if(color.equals("pink")) {
+                theme = R.style.Theme_Prefs_BlackPink;
+            }else {
+                theme = R.style.Theme_Prefs_BlackBlue;
+            }
+        }
+        return theme;
     }
 
     public int getTransluentThemeStyleResID() {
-        return isWhiteTheme() ? R.style.Theme_Transluent_White : R.style.Theme_Transluent_Black;
+        int theme = R.style.Theme_Transluent_WhitePink;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String color = prefs.getString("mainAccentColor","pink");
+        if (isWhiteTheme()){
+            if(color.equals("pink")) {
+                theme = R.style.Theme_Transluent_WhitePink;
+            }else {
+                theme = R.style.Theme_Transluent_WhiteBlue;
+            }
+        }else{
+            if(color.equals("pink")) {
+                theme = R.style.Theme_Transluent_BlackPink;
+            }else {
+                theme = R.style.Theme_Transluent_BlackBlue;
+            }
+        }
+        return theme;
     }
 
     public int getThemeBackgroundColorRes() {
@@ -386,7 +443,7 @@ public class App extends android.app.Application {
                 refreshAction.run();
             }
         });
-        swipeRefreshLayout.setColorSchemeResources(R.color.refresh);
+        swipeRefreshLayout.setColorSchemeResources(App.getInstance().getMainAccentColor());
         return swipeRefreshLayout;
     }
 
