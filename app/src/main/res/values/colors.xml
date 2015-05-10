@@ -91,7 +91,7 @@
 
     <color name="list_text_general_color_wh">#ff212121</color>
     <color name="list_text_minor_color_wh">#ff757575</color>
-    <color name="list_text_second_color_wh">#ffBCBCBC</color>
+    <color name="list_text_second_color_wh">#ffbdbdbd</color>
 
     <color name="list_text_general_color_bl">#ffdedede</color>
     <color name="list_text_minor_color_bl">#ff8a8a8a</color>
@@ -99,10 +99,10 @@
 
     <color name="news_text_general_color_wh">#ffffffff</color>
     <color name="news_text_general_color_bl">#ffffffff</color>
-    <color name="news_text_minor_color_wh">#ff696969</color>
-    <color name="news_text_minor_color_bl">#ffb7b7b7</color>
-    <color name="news_text_second_color_wh">#ff999999</color>
-    <color name="news_text_second_color_bl">#ff606060</color>
+    <color name="news_text_minor_color_wh">@color/list_text_general_color_wh</color>
+    <color name="news_text_minor_color_bl">@color/list_text_general_color_bl</color>
+    <color name="news_text_second_color_wh">@color/list_text_minor_color_wh</color>
+    <color name="news_text_second_color_bl">@color/list_text_minor_color_bl</color>
 
     <color name="edit_text_wh">@color/panel_background_wh</color>
     <color name="edit_text_bl">@color/panel_background_bl</color>
@@ -112,6 +112,7 @@
     <color name="accent">#ffE91E63</color>
     <color name="accentPink">@color/accent</color>
     <color name="accentBlue">@color/actionbar_background_wh</color>
+    <color name="accentGray">#ff757575</color>
 
     <color name="plusrep">#ff4caf50</color>
     <color name="minusrep">#ffE91E63</color>

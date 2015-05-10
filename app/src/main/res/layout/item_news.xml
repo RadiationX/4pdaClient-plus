@@ -61,12 +61,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:background="@drawable/gradient"
-                    android:lineSpacingExtra="-5.0dip"
-                    android:paddingBottom="10.0dip"
-                    android:paddingLeft="8.0dip"
-                    android:paddingRight="8.0dip"
-                    android:paddingTop="4.0dip"
-                    android:textSize="24.0sp"
+                    android:lineSpacingExtra="-5dp"
+                    android:paddingBottom="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="24dp"
+                    android:textSize="24sp"
+                    android:text="asdhasjkgfkafjkhLKKLJKJKf \nsdfsdf"
                     android:shadowColor="#AA000000"
                     android:shadowDx="0"
                     android:shadowDy="0"
@@ -92,13 +93,16 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12.0dip">
+                android:paddingTop="8dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp">
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingBottom="4.0dip">
+                    android:paddingBottom="8dp">
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -110,25 +114,28 @@
                             style="?news_text_second_color"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingRight="8.0dip"
-                            android:textSize="14.0sp" />
+                            android:text="1.08.14"
+                            android:paddingRight="8dp"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/textAvtor"
                             style="?news_text_second_color"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="News"
                             android:paddingRight="8.0dip"
-                            android:textSize="14.0sp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/textComments"
                             style="?news_text_second_color"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+                            android:text="1"
                             android:layout_gravity="right"
                             android:gravity="right"
-                            android:textSize="14.0sp" />
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -138,7 +145,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5.0dip"
-                    android:textSize="16.0sp" />
+                    android:text="jdgkfllsakj ah lkshfkl sadjh sajklsg hklk hslakj hkja ghkalh kls;aig oaie hfkhdlshg ldk"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textSource"

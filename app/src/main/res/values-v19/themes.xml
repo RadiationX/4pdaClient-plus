@@ -5,12 +5,10 @@
         <item name="md_content_color">#FF757575</item>
         <item name="md_title_color">#FF212121</item>
         <item name="md_item_color">#FF212121</item>
-        <item name="md_background_color">@color/dialog_background_wh</item>
     </style>
     <style name="Theme.Black" parent="MainThemeBL">
         <item name="android:actionModeStyle">@style/actionMode_style</item>
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="md_background_color">@color/dialog_background_bl</item>
     </style>
 
     <style name="MainPinkWH" parent="Theme.White">
@@ -23,6 +21,11 @@
         <item name="arrow_up">@drawable/arrowup_blue</item>
         <item name="arrow_down">@drawable/arrowdown_blue</item>
     </style>
+    <style name="MainGrayWH" parent="Theme.White">
+        <item name="colorAccent">@color/accentGray</item>
+        <item name="arrow_up">@drawable/arrowup_gray</item>
+        <item name="arrow_down">@drawable/arrowdown_gray</item>
+    </style>
 
     <style name="MainPinkBL" parent="Theme.Black">
         <item name="colorAccent">@color/accentPink</item>
@@ -33,6 +36,11 @@
         <item name="colorAccent">@color/accentBlue</item>
         <item name="arrow_up">@drawable/arrowup_blue</item>
         <item name="arrow_down">@drawable/arrowdown_blue</item>
+    </style>
+    <style name="MainGrayBL" parent="Theme.Black">
+        <item name="colorAccent">@color/accentGray</item>
+        <item name="arrow_up">@drawable/arrowup_gray</item>
+        <item name="arrow_down">@drawable/arrowdown_gray</item>
     </style>
 
     <style name="Theme.Transluent.WhitePink" parent="MainPinkWH">
@@ -54,6 +62,15 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="Theme.Transluent.WhiteGray" parent="MainGrayWH">
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+    <style name="Theme.Transluent.BlackGray" parent="MainGrayBL">
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
     <style name="Theme.Prefs.WhitePink" parent="MainPinkWH">
         <item name="android:textColor">@color/list_text_general_color_wh</item>
         <item name="android:windowNoTitle">false</item>
@@ -64,6 +81,24 @@
     </style>
 
     <style name="Theme.Prefs.BlackPink" parent="MainPinkBL">
+        <item name="android:textColor">@color/list_text_general_color_bl</item>
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowTitleSize">80dp</item>
+        <item name="android:windowTitleStyle">@style/prefs_title_style_kitkat</item>
+        <item name="android:windowTitleBackgroundStyle">@style/prefs_title_background_bl</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="Theme.Prefs.WhiteGray" parent="MainGrayWH">
+        <item name="android:textColor">@color/list_text_general_color_wh</item>
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowTitleSize">80dp</item>
+        <item name="android:windowTitleStyle">@style/prefs_title_style_kitkat</item>
+        <item name="android:windowTitleBackgroundStyle">@style/prefs_title_background_wh</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="Theme.Prefs.BlackGray" parent="MainGrayBL">
         <item name="android:textColor">@color/list_text_general_color_bl</item>
         <item name="android:windowNoTitle">false</item>
         <item name="android:windowTitleSize">80dp</item>

@@ -249,15 +249,21 @@ public class PreferencesActivity extends BasePreferencesActivity {
                 final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 String string = prefs.getString("mainAccentColor","pink");
                 int position = -1;
-                if(string.equals("pink")){
-                    position = 0;
-                }else {
-                    position = 1;
+                switch (string) {
+                    case "pink":
+                        position = 0;
+                        break;
+                    case "blue":
+                        position = 1;
+                        break;
+                    case "gray":
+                        position = 2;
+                        break;
                 }
                 final int[] selected = {0};
                 new MaterialDialog.Builder(getActivity())
                         .title("Выберите цвет акцента")
-                        .items(new String[]{"Розовый", "Голубой"})
+                        .items(new String[]{"Розовый", "Голубой", "Серый"})
                         .itemsCallbackSingleChoice(position, new MaterialDialog.ListCallbackSingleChoice() {
                             @Override
                             public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
@@ -271,10 +277,34 @@ public class PreferencesActivity extends BasePreferencesActivity {
                         .callback(new MaterialDialog.ButtonCallback() {
                             @Override
                             public void onPositive(MaterialDialog dialog) {
-                                if (selected[0] == 0) {
-                                    prefs.edit().putString("mainAccentColor", "pink").apply();
-                                } else {
-                                    prefs.edit().putString("mainAccentColor", "blue").apply();
+                                switch (selected[0]) {
+                                    case 0:
+                                        prefs.edit().putString("mainAccentColor", "pink").apply();
+                                        if(!prefs.getBoolean("accentColorEdited",false)){
+                                            prefs.edit()
+                                                    .putInt("accentColor", Color.rgb(233, 30, 99))
+                                                    .putInt("accentColorPressed", Color.rgb(203, 0, 69))
+                                                    .apply();
+                                        }
+                                        break;
+                                    case 1:
+                                        prefs.edit().putString("mainAccentColor", "blue").apply();
+                                        if(!prefs.getBoolean("accentColorEdited",false)){
+                                            prefs.edit()
+                                                    .putInt("accentColor", Color.rgb(3, 169, 244))
+                                                    .putInt("accentColorPressed", Color.rgb(0, 139, 214))
+                                                    .apply();
+                                        }
+                                        break;
+                                    case 2:
+                                        prefs.edit().putString("mainAccentColor", "gray").apply();
+                                        if(!prefs.getBoolean("accentColorEdited",false)){
+                                            prefs.edit()
+                                                    .putInt("accentColor", Color.rgb(117, 117, 117))
+                                                    .putInt("accentColorPressed", Color.rgb(87, 87, 87))
+                                                    .apply();
+                                        }
+                                        break;
                                 }
                             }
                         })
@@ -288,7 +318,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
         private void showAccentColorDialog() {
 
             try {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
                 int prefColor = (int) Long.parseLong(String.valueOf(prefs.getInt("accentColor", Color.rgb(233, 30, 99))), 10);
                 //int prefColor = (int) Long.parseLong(String.valueOf(prefs.getInt("accentColor", Color.rgb(96, 125, 139))), 10);
@@ -423,6 +453,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
                         colors[2] = seekBar.getProgress();
                     }
                 });
+
                 new MaterialDialog.Builder(getActivity())
                         .title("Цвет")
                         .customView(view,true)
@@ -436,22 +467,24 @@ public class PreferencesActivity extends BasePreferencesActivity {
                                 if (colorPressed[0] < 0) colorPressed[0] = 0;
                                 if (colorPressed[1] < 0) colorPressed[1] = 0;
                                 if (colorPressed[2] < 0) colorPressed[2] = 0;
-                                PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                        .edit()
+                                if(Color.rgb(colors[0], colors[1], colors[2])!=prefs.getInt("accentColor", Color.rgb(233, 30, 99))){
+                                    prefs.edit().putBoolean("accentColorEdited",true).apply();
+                                }
+                                prefs.edit()
                                         .putInt("accentColor", Color.rgb(colors[0], colors[1], colors[2]))
                                         .putInt("accentColorPressed", Color.rgb(colorPressed[0], colorPressed[1], colorPressed[2]))
-                                        .commit();
+                                        .apply();
                             }
 
                             @Override
                             public void onNeutral(MaterialDialog dialog) {
-                                PreferenceManager.getDefaultSharedPreferences(getActivity())
-                                        .edit()
+                                prefs.edit()
                                         .putInt("accentColor", Color.rgb(233, 30, 99))
                                         .putInt("accentColorPressed", Color.rgb(203, 0, 69))
+                                        .putBoolean("accentColorEdited",false)
                                         //.putInt("accentColor", Color.rgb(96, 125, 139))
                                         //.putInt("accentColorPressed", Color.rgb(76, 95, 109))
-                                        .commit();
+                                        .apply();
                             }
                         })
                         .show();

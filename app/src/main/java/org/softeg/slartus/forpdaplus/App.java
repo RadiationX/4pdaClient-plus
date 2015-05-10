@@ -131,11 +131,16 @@ public class App extends android.app.Application {
     }
     public int getMainAccentColor() {
         int color = R.color.accentPink;
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (prefs.getString("mainAccentColor","pink").equals("pink")){
-            color  = R.color.accentPink;
-        }else {
-            color = R.color.accentBlue;
+        switch (PreferenceManager.getDefaultSharedPreferences(this).getString("mainAccentColor", "pink")) {
+            case "pink":
+                color  = R.color.accentPink;
+                break;
+            case "blue":
+                color = R.color.accentBlue;
+                break;
+            case "gray":
+                color = R.color.accentGray;
+                break;
         }
         return color;
     }
@@ -144,16 +149,28 @@ public class App extends android.app.Application {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String color = prefs.getString("mainAccentColor","pink");
         if (isWhiteTheme()){
-            if(color.equals("pink")) {
-                theme = R.style.MainPinkWH;
-            }else {
-                theme = R.style.MainBlueWH;
+            switch (color) {
+                case "pink":
+                    theme = R.style.MainPinkWH;
+                    break;
+                case "blue":
+                    theme = R.style.MainBlueWH;
+                    break;
+                case "gray":
+                    theme = R.style.MainGrayWH;
+                    break;
             }
         }else{
-            if(color.equals("pink")) {
-                theme = R.style.MainPinkBL;
-            }else {
-                theme = R.style.MainBlueBL;
+            switch (color) {
+                case "pink":
+                    theme = R.style.MainPinkBL;
+                    break;
+                case "blue":
+                    theme = R.style.MainBlueBL;
+                    break;
+                case "gray":
+                    theme = R.style.MainGrayBL;
+                    break;
             }
         }
         return theme;
@@ -163,16 +180,28 @@ public class App extends android.app.Application {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String color = prefs.getString("mainAccentColor","pink");
         if (isWhiteTheme()){
-            if(color.equals("pink")) {
-                theme = R.style.Theme_Prefs_WhitePink;
-            }else {
-                theme = R.style.Theme_Prefs_WhiteBlue;
+            switch (color) {
+                case "pink":
+                    theme = R.style.Theme_Prefs_WhitePink;
+                    break;
+                case "blue":
+                    theme = R.style.Theme_Prefs_WhiteBlue;
+                    break;
+                case "gray":
+                    theme = R.style.Theme_Prefs_WhiteGray;
+                    break;
             }
         }else{
-            if(color.equals("pink")) {
-                theme = R.style.Theme_Prefs_BlackPink;
-            }else {
-                theme = R.style.Theme_Prefs_BlackBlue;
+            switch (color) {
+                case "pink":
+                    theme = R.style.Theme_Prefs_BlackPink;
+                    break;
+                case "blue":
+                    theme = R.style.Theme_Prefs_BlackBlue;
+                    break;
+                case "gray":
+                    theme = R.style.Theme_Prefs_BlackGray;
+                    break;
             }
         }
         return theme;
@@ -183,16 +212,28 @@ public class App extends android.app.Application {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String color = prefs.getString("mainAccentColor","pink");
         if (isWhiteTheme()){
-            if(color.equals("pink")) {
-                theme = R.style.Theme_Transluent_WhitePink;
-            }else {
-                theme = R.style.Theme_Transluent_WhiteBlue;
+            switch (color) {
+                case "pink":
+                    theme = R.style.Theme_Transluent_WhitePink;
+                    break;
+                case "blue":
+                    theme = R.style.Theme_Transluent_WhiteBlue;
+                    break;
+                case "gray":
+                    theme = R.style.Theme_Transluent_WhiteGray;
+                    break;
             }
         }else{
-            if(color.equals("pink")) {
-                theme = R.style.Theme_Transluent_BlackPink;
-            }else {
-                theme = R.style.Theme_Transluent_BlackBlue;
+            switch (color) {
+                case "pink":
+                    theme = R.style.Theme_Transluent_BlackPink;
+                    break;
+                case "blue":
+                    theme = R.style.Theme_Transluent_BlackBlue;
+                    break;
+                case "gray":
+                    theme = R.style.Theme_Transluent_BlackGray;
+                    break;
             }
         }
         return theme;

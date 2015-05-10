@@ -3,8 +3,8 @@
 /*---
 Name: Coba
 Type: Dark
-Color: Blue[#255c74]
-Version: 0.9
+Color: Blue[#28627f]
+Version: 1.1
 Author: RadiationX|Radiation15
 Edited by: RadiationX|*or you nick*
 ---*/
@@ -375,7 +375,7 @@ body {
   background: #212121;
   font-family: "roboto";
   font-size: 100%;
-  color: #cccccc;
+  color: #dedede;
   line-height: 1.4em;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -391,6 +391,7 @@ a {
 #main {
   max-width: 60em;
   margin: 0 auto;
+  margin-top: 0.5em;
 }
 #main .container {
   background: #303030;
@@ -402,7 +403,6 @@ a {
 }
 #main .container .product-detail {
   position: relative;
-  margin-bottom: 1.2em;
 }
 #main .container .product-detail .photo {
   position: relative;
@@ -420,13 +420,13 @@ a {
   display: block;
   text-decoration: none;
   text-align: center;
-  line-height: 2em;
+  line-height: 2.25em;
   position: absolute;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   top: 0;
-  height: 2em;
+  height: 2.25em;
   width: 100%;
   z-index: 1;
   -webkit-border-radius: 2px 2px 0 0;
@@ -439,7 +439,7 @@ a {
 #main .container .product-detail .description h1 {
   color: #ededed;
   background: #28627f;
-  padding: 0.3em;
+  padding: 1em 0.6666em 0.6666em 0.6666em;
   font-size: 1.5em;
   margin: 0;
   position: absolute;
@@ -454,46 +454,43 @@ a {
 #main .container .product-detail .description .info-holder {
   padding: 0px 1em;
   position: absolute;
-  bottom: -2.2em;
+  bottom: -2.25em;
   width: 100%;
   box-sizing: border-box;
-  line-height: 2em;
-  height: 2em;
-  color: #999999;
+  line-height: 2.25em;
+  height: 2.25em;
+  color: #8a8a8a;
 }
 #main .container .product-detail .description .info-holder .date {
   font-style: normal;
-  font-size: 0.9em;
+  font-size: 0.875em;
 }
 #main .container .product-detail .description .info-holder .name {
-  font-size: 0.9em;
+  font-size: 0.875em;
 }
 #main .container .product-detail .description .info-holder .name a {
-  color: #999999;
+  color: #8a8a8a;
+}
+#main .container .product-detail .description .more-box {
+  position: absolute;
+  bottom: -2.25em;
+  right: 0;
+  line-height: 2.25em;
+  height: 2.25em;
+  min-width: 2.25em;
+  text-align: center;
 }
 #main .container .product-detail .description .more-box .number {
-  float: right;
-  position: absolute;
-  bottom: -2.2em;
-  right: 0;
-  line-height: 2em;
-  min-width: 2em;
-  padding: 0 1.1em;
-  text-align: center;
   font-size: 0.9em;
-  color: #999999;
+  color: #8a8a8a;
 }
 #main .container .product-detail .description .more-box .meta {
-  padding: 5px;
-  border-top: 0.0625em solid #474747;
   display: none;
 }
 #main .container .content .content-box {
   padding: 1em;
+  padding-top: 1em;
   padding-bottom: 0.5em;
-}
-#main .container .content .content-box p {
-  margin-top: 0;
 }
 #main .container .content .content-box img {
   max-width: 100%;
@@ -557,11 +554,11 @@ a {
   background: #3d3d3d;
   border-top: 0.0625em solid #474747;
   border-bottom: 0.0625em solid #474747;
-  margin: 0.5em -0.8em;
+  margin: 0.5em -1em;
 }
 #main .container .content .content-box .mlinks .mlhead {
   background: #3d3d3d;
-  padding-top: 0.5em;
+  padding-top: 1em;
   min-height: 128px;
 }
 #main .container .content .content-box .mlinks .mlhead:after {
@@ -571,9 +568,9 @@ a {
 }
 #main .container .content .content-box .mlinks .mlhead .do-vam > div .mlicon {
   float: left;
-  margin: 0 1em 0.5em 0.5em;
+  margin: 0em 1em 1em 1em;
   display: block;
-  width: 8em;
+  width: 3.5em;
   -webkit-border-radius: 2px;
   border-radius: 2px;
 }
@@ -584,11 +581,17 @@ a {
 }
 #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltitle {
   margin: 0;
+  padding: 0.2em 0;
+  font-size: 1.25em;
 }
 #main .container .content .content-box .mlinks .mlhead .do-vam > div .mlauthor {
-  margin: 0.1em 0 0 0;
+  margin: 0;
+  font-size: 1em;
+  padding-bottom: 0.25em;
+  color: #8a8a8a;
 }
 #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl {
+  padding-bottom: 0.25em;
   overflow: hidden;
 }
 #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow {
@@ -597,8 +600,11 @@ a {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   position: relative;
-  line-height: 2em;
-  margin: 0.5em 0.5em 0.5em 0;
+  line-height: 2.25em;
+  height: 2.25em;
+  margin: 0.25em 0.5em 0.25em 0.5em;
+  float: right;
+  clear: both;
 }
 #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow:first-child {
   display: none;
@@ -606,7 +612,20 @@ a {
 #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow .mlcell {
   display: inline-block;
   position: relative;
-  padding: 0 10px;
+}
+#main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow .mlcell:first-child {
+  min-width: 2.25em;
+  text-align: center;
+}
+#main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow .mlcell:nth-child(2) {
+  padding: 0 0.375em;
+}
+#main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow .mlcell:nth-child(2):first-letter {
+  text-transform: uppercase;
+}
+#main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow .mlcell:nth-child(3) {
+  min-width: 2.5em;
+  text-align: center;
 }
 #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow .mlcell:nth-child(3):after {
   display: none;
@@ -621,7 +640,7 @@ a {
 #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow .mlcell:last-child:after {
   display: none;
 }
-#main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow .mlcell a {
+#main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow .mlcell:last-child a {
   display: block;
   width: 100%;
   height: 100%;
@@ -630,24 +649,19 @@ a {
   top: 0;
   left: 0;
 }
-#main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow .mlcell i {
-  display: block;
-  text-align: center;
-}
-#main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow .mlcell i:before {
-  line-height: 2em;
-}
-#main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow .mlcell:after {
-  content: "";
-  background: #ededed;
-  position: absolute;
-  width: 1px;
-  bottom: 0.35em;
-  right: 0;
-  top: 0.35em;
-}
 #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow:last-child .mlcell {
   border-bottom: none;
+}
+#main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#main .container .content .content-box .mlinks .mlhead .do-vam > div .mldl {
+  margin: 0;
+  padding: 0.5em 1em;
+  font-weight: normal;
+  display: none;
 }
 #main .container .content .content-box .mlinks .mlscreenshots {
   width: 100%;
@@ -670,8 +684,8 @@ a {
   min-height: 80px;
 }
 #main .container .content .content-box .mlinks.desc .mlhead .do-vam div .mlicon {
-  width: 5em;
-  height: 5em;
+  width: 3.5em;
+  height: 3.5em;
 }
 #main .container .content .content-box .mlinks.desc .mlright {
   background: #3d3d3d;
@@ -718,28 +732,38 @@ a {
   max-width: 100%;
   width: auto!important;
   height: auto!important;
-  margin-bottom: 5px;
+  margin: 0.5em auto;
 }
 #main .container .content .content-box ul {
   margin-top: -0.9em;
 }
 #main .container .content .content-box blockquote {
-  margin: 0 0 0 0.6em;
-  padding: 0 0 0 1em;
-  border-left: 5px solid #28627f;
+  margin: 0.5em 0;
+  padding: 0.25em 0 0.25em 1em;
+  border-left: 0.5em solid #28627f;
+}
+#main .container .content .content-box blockquote p {
+  display: inline;
+}
+#main .container .content .content-box blockquote:after,
+#main .container .content .content-box blockquote:before {
+  content: '"';
 }
 #main .container .content .content-box .review-bottom-informer {
-  border: 0.0625em solid #474747;
-  padding: 0 0.3em;
+  margin: 0.5em -1em;
+  border-top: 0.0625em solid #474747;
+  border-bottom: 0.0625em solid #474747;
+  padding: 0 0.5em;
   background: #3d3d3d;
 }
 #main .container .content .content-box .review-bottom-informer .item {
   text-align: center;
   display: block;
   border: 0.0625em solid #474747;
-  margin: 0.3em 0;
+  margin: 0.5em 0;
   box-sizing: border-box;
-  padding: 0.35em;
+  padding: 0.5em;
+  min-height: 2.25em;
   background: #3d3d3d;
 }
 #main .container .content .content-box .review-bottom-informer .item .title {
@@ -750,10 +774,23 @@ a {
 #main .container .content .content-box .review-bottom-informer .item .desc br {
   display: nonxe;
 }
+#main .container .content .content-box .review-bottom-informer a.item .title {
+  display: inline-block;
+  font-size: 1.125em;
+  padding-right: 0.25em;
+}
+#main .container .content .content-box .review-bottom-informer a.item .title i {
+  display: none;
+}
+#main .container .content .content-box .review-bottom-informer a.item .title i:before {
+  display: block;
+  width: auto;
+}
 #main .container .content .content-box .mb_source {
   margin: 0;
-  border-top: 0.0625em solid #474747;
-  padding: 0.4em 0 0 0;
+  line-height: 2.25em;
+  height: 2.25em;
+  padding-top: 0.25em;
 }
 #main .container .content .content-box .mb_source + br {
   display: none;
@@ -765,17 +802,13 @@ a {
   -webkit-box-shadow: 0 0 5px -3px #000000;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  line-height: 2.6em;
 }
 #main .materials-box .box-title {
-  color: #ededed;
-  background: #28627f;
-  -webkit-border-radius: 2px 2px 0 0;
-  border-radius: 2px 2px 0 0;
   margin: 0;
-  padding-left: 0.6em;
-  font-size: 1.15em;
-  font-weight: normal;
+  padding-left: 0.8em;
+  padding-top: 0.4em;
+  font-size: 1.25em;
+  line-height: 1.9em;
 }
 #main .materials-box .materials-list {
   margin: 0;
@@ -821,36 +854,22 @@ a {
 }
 #main .materials-box .materials-slider .slider-item {
   display: block;
-  width: 100%;
-  position: relative;
-  float: left;
 }
 #main .materials-box .materials-slider .slider-item > a {
-  display: block;
+  display: none;
 }
 #main .materials-box .materials-slider .slider-item > a img {
   width: 100%;
   display: block;
 }
 #main .materials-box .materials-slider .slider-item h3 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   margin: 0;
   font-weight: 400;
-  font-size: 1.2em;
-  padding: 0.3em;
-  line-height: 1.4em;
-  max-height: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.7)));
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+  font-size: 1em;
 }
 #main .materials-box .materials-slider .slider-item h3 a {
-  color: white;
+  padding: 0.625em 1em;
+  display: block;
 }
 #main .materials-box .materials-slider:after {
   content: "";
@@ -876,9 +895,14 @@ a {
   box-sizing: border-box;
 }
 #main .page-nav li a {
-  line-height: 2.5em;
+  line-height: 3em;
   display: inline-block;
   width: 100%;
+  color: #e91e63;
+  font-weight: bold;
+}
+#main .page-nav li a i {
+  display: none;
 }
 #main .page-nav li:last-child {
   float: right;
@@ -889,7 +913,6 @@ a {
   display: table;
 }
 #main .page-nav:before {
-  content: "";
   position: absolute;
   top: 0;
   left: 50%;
@@ -908,20 +931,15 @@ a {
   padding-bottom: -10px;
 }
 #main .comment-box > .heading {
-  color: #ededed;
-  background: #28627f;
-  -webkit-border-radius: 2px 2px 0 0;
-  border-radius: 2px 2px 0 0;
   position: relative;
   margin: 0;
-  line-height: 2.5em;
-  padding-left: 0.5em;
 }
 #main .comment-box > .heading h2 {
   margin: 0;
-  display: inline-block;
-  font-size: 1.15em;
-  font-weight: normal;
+  padding-left: 0.8em;
+  padding-top: 0.4em;
+  font-size: 1.25em;
+  line-height: 1.9em;
 }
 #main .comment-box > .heading a {
   font-size: 0;
@@ -951,25 +969,29 @@ a {
   list-style: none;
   list-style-type: none;
   position: relative;
-  padding-left: 10px;
+  padding-left: 0.5em;
 }
 #main .comment-box .comment-list.level-0 {
-  padding-left: 0px;
+  padding-left: 0;
+}
+#main .comment-box .comment-list.level-0 > li {
+  padding-left: 1em;
+  border-bottom: 0.0625em solid #474747;
+}
+#main .comment-box .comment-list.level-0 > li > div[id*=comment]:not([id*=comment-form]) {
+  margin-top: 0;
 }
 #main .comment-box .comment-list li {
   position: relative;
 }
 #main .comment-box .comment-list li div[id*=comment]:not([id*=comment-form]) {
-  background: #3d3d3d;
   position: relative;
-  border-left: 3px solid #28627f;
-  margin-bottom: 0.8em;
+  margin-top: 1em;
 }
 #main .comment-box .comment-list li .heading {
-  line-height: 1.8em;
-  padding: 0 0.35em;
-  border-top: 0.0625em solid #474747;
-  border-bottom: 0.0625em solid #474747;
+  padding: 0.5em;
+  padding-left: 0;
+  padding-bottom: 0em;
 }
 #main .comment-box .comment-list li .heading:after {
   clear: both;
@@ -978,20 +1000,25 @@ a {
 }
 #main .comment-box .comment-list li .heading .nickname {
   float: left;
+  font-size: 0.875em;
+  color: #8a8a8a;
 }
 #main .comment-box .comment-list li .heading .karma {
   display: none;
 }
 #main .comment-box .comment-list li .heading .h-meta {
   float: right;
+  color: #8a8a8a;
+  font-size: 0.875em;
 }
 #main .comment-box .comment-list li .heading .h-meta .more-meta {
   display: none;
 }
 #main .comment-box .comment-list li .content {
-  padding: 5px;
+  padding: 0.5em;
+  padding-left: 0;
+  padding-top: 0.25em;
   margin: 0;
-  border-bottom: 0.0625em solid #474747;
 }
 #main .comment-box .comment-list li div[id*=form-reply] {
   text-align: right;
@@ -1367,7 +1394,7 @@ a {
 }
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap .row1 {
   border-top: 0.0625em solid #474747;
-  padding: 0.5em!important;
+  padding: 0.75em 1em 0 1em!important;
   padding-bottom: 0.25em!important;
   line-height: 1.4em;
 }
@@ -1379,10 +1406,13 @@ a {
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr {
   position: relative;
 }
+.poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr:last-child td {
+  padding-bottom: 0.5em;
+}
 .poll .hidemain form > .ipbtable > tbody > tr td .borderwrap > .ipbtable tr td {
   display: table-cell;
   line-height: 3em;
-  padding: 0 0.5em;
+  padding: 0 1em;
   position: relative;
   white-space: nowrap;
 }
@@ -1417,7 +1447,7 @@ a {
   border: 0.125em solid #737373;
   background: #303030;
   position: absolute;
-  left: 0;
+  left: -0.25em;
   top: 50%;
   margin-top: -0.5625em;
   -webkit-transition: 0.25s;
@@ -1435,7 +1465,7 @@ a {
   border-left: none;
   border-top: none;
   position: absolute;
-  left: 0.375em;
+  left: 0.125em;
   bottom: 1.2625em;
   -webkit-transform: rotate(45deg) scale(0);
   transform: rotate(45deg) scale(0);
@@ -1472,7 +1502,7 @@ a {
   border: 0.125em solid #737373;
   background: #303030;
   position: absolute;
-  left: 0;
+  left: -0.25em;
   top: 50%;
   margin-top: -0.625em;
   box-sizing: border-box;
@@ -1487,7 +1517,7 @@ a {
   border-radius: 100%;
   background: #e91e63;
   position: absolute;
-  left: 0.3125em;
+  left: 0.0625em;
   top: 50%;
   margin-top: -0.3125em;
   -webkit-transform: scale(0);
@@ -1747,10 +1777,10 @@ a {
   padding: 0;
 }
 .post_header table tbody tr td .post_nick_cli a {
-  color: #cccccc;
+  color: #dedede;
 }
 .post_header table tbody tr td .post_nick_online_cli a {
-  color: #cccccc;
+  color: #dedede;
 }
 .post_header table tbody tr td div[align*=right] .post_date_cli {
   font-size: 0.9em;
@@ -1775,7 +1805,7 @@ a {
   font-weight: bold;
 }
 .post_header table tbody tr td .user_group span {
-  color: #cccccc !important;
+  color: #dedede !important;
 }
 .post_header table tbody tr:first-child {
   color: #ededed;
@@ -2173,9 +2203,10 @@ a {
 }
 #viewers .href_button,
 #writers .href_button {
-  padding: 0.7em;
   display: block;
   color: #e91e63;
+  font-weight: bold;
+  line-height: 3em;
 }
 #writers:before {
   content: "";
@@ -2439,11 +2470,6 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     margin: 0.5em;
   }
 }
-@media screen and (min-width: 24em) {
-  #main .materials-box .materials-slider .slider-item {
-    width: 50%;
-  }
-}
 @media screen and (min-width: 50em) {
   #main .container .product-detail {
     text-align: left;
@@ -2466,7 +2492,8 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     width: 50%;
     right: 0;
     background: none;
-    color: #cccccc;
+    color: #dedede;
+    text-shadow: none;
   }
   #main .container .product-detail .description .info-holder {
     right: 0;
@@ -2474,7 +2501,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     bottom: auto;
     top: 0em;
   }
-  #main .container .product-detail .description .more-box .number {
+  #main .container .product-detail .description .more-box {
     bottom: auto;
     top: 0em;
   }
@@ -2510,7 +2537,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
   #main .container .content .content-box .table4site tbody tr td:first-child {
     width: auto;
     background: none;
-    color: #cccccc;
+    color: #dedede;
   }
   #main .container .content .content-box .table4site tbody tr td:last-child {
     border-left: none;
@@ -2519,17 +2546,12 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     position: relative;
   }
   #main .container .content .content-box .mlinks .mlhead .do-vam > div .mlicon {
-    float: left;
-    margin: 0 1em 0.5em 0.5em;
-    display: block;
-    width: 8em;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
+    width: 7em;
   }
   #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl {
     overflow: hidden;
     position: absolute;
-    top: 0;
+    top: 0.25em;
     right: 0;
   }
   #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow {
@@ -2539,7 +2561,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
     border-radius: 2px;
     position: relative;
     line-height: 2em;
-    margin: 0.5em 0.5em 0.5em 0;
+    margin: 0.25em 0.5em 0.25em 0.5em;
   }
   #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow:first-child {
     display: none;
@@ -2589,9 +2611,6 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
   }
   #main .container .content .content-box .mlinks .mlhead .do-vam > div .mltbl .mlrow:last-child .mlcell {
     border-bottom: none;
-  }
-  #main .materials-box .materials-slider .slider-item {
-    width: 25%;
   }
   .topic_title_post {
     margin-bottom: 0;
@@ -2758,7 +2777,7 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
   margin: 0;
   line-height: 1.9em;
   font-size: 1.25em;
-  padding-top: 0.5em;
+  padding-top: 0.4em;
   padding-left: 0.4em;
 }
 .user-profile-list > li .heading .ico {

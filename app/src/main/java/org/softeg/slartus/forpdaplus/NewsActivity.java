@@ -800,7 +800,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             //}
             builder.beginHtml(m_Title);
             builder.beginBody();
-            builder.append("<div style=\"margin-top:72pt\"/>\n");
+            builder.append("<div style=\"padding-top:"+builder.getMarginTop()+"px\"/>\n");
             builder.append("<div id=\"main\">");
 
             builder.append(parseBody(body));

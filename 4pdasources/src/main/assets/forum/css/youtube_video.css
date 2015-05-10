@@ -1,8 +1,9 @@
 .video-thumb-wrapper {
     display: inline-block!important;
     position: relative;
-    background: red;
+    background: black
 }
+
 .video-thumb {
     width: auto;
     height: auto;
@@ -12,6 +13,7 @@
     z-index: 1;
     margin-bottom: 0!important;
 }
+
 .video-thumb-wrapper:after {
     content: "";
     height: 100%;
@@ -22,6 +24,7 @@
     left: 0;
     z-index: 2;
 }
+
 .video-thumb-wrapper:before {
     content: "";
     border-left: 20px solid white;

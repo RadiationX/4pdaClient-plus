@@ -139,8 +139,8 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             FrameLayout contentFrame = (FrameLayout) drawer.findViewById(R.id.content_frame);
             RelativeLayout leftDrawer = (RelativeLayout) drawer.findViewById(R.id.left_drawer);
             final float scale = getResources().getDisplayMetrics().density;
-            int paddingTop = (int) (80 * scale + 0.5f);
-            int paddingTopTab = (int) (88 * scale + 0.5f);
+            int paddingTop = (int) (80.5 * scale + 0.5f);
+            int paddingTopTab = (int) (88.5 * scale + 0.5f);
             int paddingBottom = 0;
 
             if(Integer.valueOf(android.os.Build.VERSION.SDK) > 19){
