@@ -71,13 +71,21 @@
                 android:text="0"
                 android:paddingRight="8dp"
                 android:paddingLeft="4dp"
-                android:layout_marginRight="6dp"
                 android:textSize="14sp"
                 android:textColor="#ff9D9D9D"
                 android:layout_alignTop="@+id/btnSendPost"
                 android:layout_toRightOf="@+id/advanced_button"
                 android:layout_toEndOf="@+id/advanced_button" />
-
+            <ImageButton
+                android:id="@+id/btnUpload"
+                style="?right_separator"
+                android:layout_width="48dp"
+                android:layout_height="36dp"
+                android:layout_marginRight="6dp"
+                android:src="@drawable/btn_upload"
+                android:layout_alignTop="@+id/btnAttachments"
+                android:layout_toRightOf="@+id/btnAttachments"
+                android:layout_toEndOf="@+id/btnAttachments" />
             <Button
                 android:id="@+id/btnSendPost"
                 style="?btnsend"
@@ -89,8 +97,8 @@
                 android:layout_marginRight="6dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_toRightOf="@+id/btnAttachments"
-                android:layout_toEndOf="@+id/btnAttachments" />
+                android:layout_toRightOf="@+id/btnUpload"
+                android:layout_toEndOf="@+id/btnUpload" />
         </RelativeLayout>
 
         <LinearLayout

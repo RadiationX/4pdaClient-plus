@@ -5,6 +5,7 @@ package org.softeg.slartus.forpdaplus.qms;/*
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -220,8 +221,19 @@ public class QmsContactsListFragment extends BaseTaskListFragment {
             if (!TextUtils.isEmpty(user.getNewMessagesCount())) {
                 //holder.txtIsNew.setImageResource(R.drawable.new_flag);
                 holder.txtNick.setTextAppearance(getContext(), R.style.QmsNew);
-                holder.txtCount.setBackgroundResource(R.drawable.qmsnew);
                 holder.txtCount.setTextAppearance(getContext(), R.style.QmsNew);
+                switch (PreferenceManager.getDefaultSharedPreferences(getContext()).getString("mainAccentColor", "pink")) {
+                    case "pink":
+                        holder.txtCount.setBackgroundResource(R.drawable.qmsnew);
+                        break;
+                    case "blue":
+                        holder.txtCount.setBackgroundResource(R.drawable.qmsnewblue);
+                        break;
+                    case "gray":
+                        holder.txtCount.setBackgroundResource(R.drawable.qmsnewgray);
+                        break;
+                }
+
             } else {
                 //holder.txtIsNew.setImageBitmap(null);
                 holder.txtCount.setBackgroundColor(getResources().getColor(android.R.color.transparent));

@@ -1612,14 +1612,14 @@ a {
   border-radius: 2px 2px 0 0;
   text-align: left;
   position: relative;
-  padding-top: 2em;
+  padding-top: 2.25em;
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
 .post_header_container .post_header:before {
   content: "";
   position: absolute;
-  height: 2em;
+  height: 2.25em;
   width: 100%;
   top: 0;
   left: 0;
@@ -1630,7 +1630,7 @@ a {
 .post_header_container .post_header:after {
   content: "";
   position: absolute;
-  top: 6em;
+  top: 6.75em;
   left: 0.5em;
   right: 0.5em;
   border-top: 0.0625em solid #474747;
@@ -1641,7 +1641,8 @@ a {
 .post_header_container .post_header .post_date {
   position: absolute;
   top: 0;
-  right: 0.5em;
+  right: 0.571em;
+  font-size: 0.875em;
   color: #ededed;
   background: #28627f;
 }
@@ -1652,9 +1653,11 @@ a {
 .post_header_container .post_header .post_nick {
   position: absolute;
   top: 0;
-  left: 1.5em;
+  left: 1.75em;
 }
 .post_header_container .post_header .post_nick a {
+  font-size: 0.875em;
+  font-weight: bold;
   color: #ededed;
   background: #28627f;
 }
@@ -1668,17 +1671,17 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  height: 2em;
-  width: 2em;
+  height: 2.25em;
+  width: 2.25em;
   color: transparent;
 }
 .post_header_container .post_header .post_user_info font[color]:after {
   content: "";
   position: absolute;
-  top: 0.6em;
-  left: 0.4em;
-  right: 0.8em;
-  bottom: 0.6em;
+  width: 0.75em;
+  height: 0.75em;
+  top: 0.75em;
+  left: 0.75em;
   border-radius: 50%;
 }
 .post_header_container .post_header .post_user_info font[color][color=red]:after {
@@ -1687,12 +1690,21 @@ a {
 .post_header_container .post_header .post_user_info font[color][color=green]:after {
   background: #309f5e;
 }
+.post_header_container .post_header .post_user_info a {
+  color: #e91e63;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.875em;
+}
 .post_header_container .post_header .post_user_info a[href*="act=qms"] {
   float: right;
 }
 .post_header_container .post_header .post_user_info a[href*="showuser"] {
   float: right;
-  padding-right: 0.5em;
+  padding-right: 0.75em;
+}
+.post_header_container .post_header [id*="ajaxrep"] {
+  color: #e91e63;
 }
 .post_header_container .post_header [onclick*="rep_change"] {
   position: relative;
@@ -1736,11 +1748,15 @@ a {
 }
 .post_header_container .post_header .post_action a {
   display: table-cell;
+  color: #e91e63;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.875em;
 }
 .post_header_container .post_header .post_action:before {
   content: "";
   position: absolute;
-  top: 4em;
+  top: 4.5em;
   left: 0.5em;
   right: 0.5em;
   border-top: 0.0625em solid #474747;
@@ -2215,6 +2231,10 @@ a {
   top: 6px;
   bottom: 6px;
   display: none;
+}
+.search-results .postcolor {
+  height: auto!important;
+  overflow: auto!important;
 }
 .search-results ~ br {
   display: block!important;

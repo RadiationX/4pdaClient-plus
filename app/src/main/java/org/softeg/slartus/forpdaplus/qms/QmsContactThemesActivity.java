@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -411,7 +412,17 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
             if (!TextUtils.isEmpty(user.NewCount)) {
                 holder.txtCount.setText(user.NewCount);
                 holder.txtAllCount.setText(user.Count);
-                holder.txtCount.setBackgroundResource(R.drawable.qmsnew);
+                switch (PreferenceManager.getDefaultSharedPreferences(getContext()).getString("mainAccentColor", "pink")) {
+                    case "pink":
+                        holder.txtCount.setBackgroundResource(R.drawable.qmsnew);
+                        break;
+                    case "blue":
+                        holder.txtCount.setBackgroundResource(R.drawable.qmsnewblue);
+                        break;
+                    case "gray":
+                        holder.txtCount.setBackgroundResource(R.drawable.qmsnewgray);
+                        break;
+                }
                 //holder.txtIsNew.setImageResource(R.drawable.new_flag);
                 holder.txtNick.setTextAppearance(getContext(), R.style.QmsNew);
                 holder.txtCount.setTextAppearance(getContext(), R.style.QmsNew);

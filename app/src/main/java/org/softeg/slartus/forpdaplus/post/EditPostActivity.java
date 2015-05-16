@@ -81,6 +81,7 @@ public class EditPostActivity extends BaseFragmentActivity {
     private EditText txtPost, txtpost_edit_reason;
 
     private Button btnAttachments;
+    private ImageButton btnUpload;
     private ProgressBar progress_search;
     private EditPost m_EditPost;
 
@@ -159,6 +160,13 @@ public class EditPostActivity extends BaseFragmentActivity {
         btnAttachments.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 showAttachesListDialog();
+            }
+        });
+
+        btnUpload = (ImageButton) findViewById(R.id.btnUpload);
+        btnUpload.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                startAddAttachment();
             }
         });
 
@@ -320,7 +328,16 @@ public class EditPostActivity extends BaseFragmentActivity {
 
     private void showAttachesListDialog() {
         if (m_EditPost.getAttaches().size() == 0) {
-            startAddAttachment();
+            new MaterialDialog.Builder(this)
+                    .content("Нет ни одного вложения, загрузить?")
+                    .positiveText("Загрузить")
+                    .negativeText("Отмена")
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            startAddAttachment();
+                        }
+                    }).show();
             return;
         }
         AttachesAdapter adapter = new AttachesAdapter(m_EditPost.getAttaches(), this);
@@ -333,13 +350,8 @@ public class EditPostActivity extends BaseFragmentActivity {
                     public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
                     }
                 })
-                .positiveText("Загрузить")
                 .neutralText("В спойлер")
                 .callback(new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onPositive(MaterialDialog dialog) {
-                        startAddAttachment();
-                    }
                     @Override
                     public void onNeutral(MaterialDialog dialog) {
                         List<String> listItems = new ArrayList<String>();
@@ -523,7 +535,7 @@ public class EditPostActivity extends BaseFragmentActivity {
             this.attachFilePaths = attachFilePaths;
             dialog = new MaterialDialog.Builder(context)
                     .progress(false, 100, false)
-                    .build();
+                    .show();
         }
 
         public UpdateTask(Context context, String newAttachFilePath) {
