@@ -314,7 +314,7 @@ Edited by: RadiationX|*or you nick*
 }
 [style*="font-size:9px"] {
   line-height: 1.4em!important;
-  font-size: 0.5625em!important;
+  font-size: 0.75em!important;
 }
 [style*="font-size:8pt"] {
   font-size: 0.85em !important;
@@ -851,6 +851,7 @@ a {
   padding: 0;
   list-style: none;
   line-height: 1.4em;
+  padding-bottom: 0.5em;
 }
 #main .materials-box .materials-slider .slider-item {
   display: block;
@@ -900,6 +901,7 @@ a {
   width: 100%;
   color: #e91e63;
   font-weight: bold;
+  text-transform: uppercase;
 }
 #main .page-nav li a i {
   display: none;
@@ -1796,7 +1798,7 @@ a {
   color: #dedede;
 }
 .post_header table tbody tr td .post_nick_online_cli a {
-  color: #dedede;
+  color: #309f5e;
 }
 .post_header table tbody tr td div[align*=right] .post_date_cli {
   font-size: 0.9em;
@@ -2017,16 +2019,16 @@ a {
   padding: 0.571em;
   margin-top: 1em;
   font-size: 0.875em;
+  color: #8a8a8a;
 }
 .post_body .post-edit-reason {
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
   font-size: 0.875em;
   text-align: right;
   border: 0.0625em solid #474747;
   border-top: none;
   padding: 0 0.571em 0 0.571em;
   margin-top: -2px;
+  color: #8a8a8a;
 }
 .post_body [attach_id][title*="Скачать"]:not(.linked-image) img {
   display: none;
@@ -2337,24 +2339,28 @@ a[href*=findpost][title="Перейти к сообщению"]:after {
 .post-block.spoil.close > .block-title {
   border-radius: 2px;
 }
-.post-block.spoil.close > .block-title:empty:before {
+.post-block.spoil.close > .block-title:first-letter {
+  text-transform: uppercase;
+}
+.post-block.spoil.close > .block-title:empty:after {
   content: "Спойлер (+)";
 }
-.post-block.spoil.close > .block-title:before {
-  display: inline-block;
-  min-width: 1.5em;
-  content: "(+) ";
+.post-block.spoil.close > .block-title:after {
+  margin-left: 0.25em;
+  content: "(+)";
 }
 .post-block.spoil.close > .block-body {
   display: none;
 }
-.post-block.spoil.open > .block-title:empty:before {
+.post-block.spoil.open > .block-title:first-letter {
+  text-transform: uppercase;
+}
+.post-block.spoil.open > .block-title:empty:after {
   content: "Спойлер (\2013)";
 }
-.post-block.spoil.open > .block-title:before {
-  display: inline-block;
-  min-width: 1.5em;
-  content: "(\2013) ";
+.post-block.spoil.open > .block-title:after {
+  margin-left: 0.25em;
+  content: "(\2013)";
 }
 .post-block.spoil.open > .block-body {
   display: block;
@@ -3052,4 +3058,10 @@ div[style*="margin-top:80px"] > .navi + br + br ~ .between_messages + .topic_tit
 }
 .user-profile-list > li.margin-block {
   display: none;
+}
+.searchlite {
+  background: rgba(155, 0, 0, 0.1);
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  padding: 0 0.125em;
 }

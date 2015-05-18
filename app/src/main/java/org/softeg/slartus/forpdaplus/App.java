@@ -297,15 +297,36 @@ public class App extends android.app.Application {
         int theme = Integer.parseInt(themeStr);
         if (theme == -1)
             return themeStr;
+        String color = PreferenceManager.getDefaultSharedPreferences(this).getString("mainAccentColor", "pink");
         switch (theme) {
             case THEME_WHITE:
-                cssFile = "coba_white_blue.css";
+                switch (color) {
+                    case "pink":
+                        cssFile = "coba_white_blue.css";
+                        break;
+                    case "blue":
+                        cssFile = "coba_white_blue_blue.css";
+                        break;
+                    case "gray":
+                        cssFile = "coba_white_blue_gray.css";
+                        break;
+                }
                 break;
             /*case THEME_WHITE_OLD:
                 cssFile = "coba_white_blue.css";
                 break;*/
             case THEME_BLACK:
-                cssFile = "coba_dark_blue.css";
+                switch (color) {
+                    case "pink":
+                        cssFile = "coba_dark_blue.css";
+                        break;
+                    case "blue":
+                        cssFile = "coba_dark_blue_blue.css";
+                        break;
+                    case "gray":
+                        cssFile = "coba_dark_blue_gray.css";
+                        break;
+                }
                 break;
             case THEME_WHITE_MATERIAL_CYAN:
                 cssFile = "material_cyan.css";

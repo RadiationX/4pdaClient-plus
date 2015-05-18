@@ -154,7 +154,6 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
                     paddingBottom = (int) (48 * scale + 0.5f);
                     //Toast.makeText(getContext(),"TWO",Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(getContext(),Boolean.toString(hasNavBar(getContext().getResources())),Toast.LENGTH_SHORT).show();
                 leftDrawer.setPadding(0, 0, 0, paddingBottom);
                 if (isTablet()) {
                     contentFrame.setPadding(0,paddingTopTab,0,paddingBottom);

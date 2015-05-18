@@ -5,7 +5,7 @@
 
     <PreferenceScreen
         android:key="common"
-        android:title="Общее">
+        android:title="Внешний вид">
 
         <Preference
             android:key="appstyle"
@@ -14,18 +14,6 @@
 
         </Preference>
 
-        <org.softeg.slartus.forpdaplus.controls.SummaryValueListPreference
-            android:defaultValue="-1"
-            android:entries="@array/screenOrienationArray"
-            android:entryValues="@array/screenOrienationValues"
-            android:key="theme.ScreenOrientation"
-            android:title="Ориентация экрана" />
-
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="notify.beta_version"
-            android:summary="Сообщать о версиях для тестирования"
-            android:title="Сообщать о бета-версиях" />
 
         <Preference
             android:key="accentColor"
@@ -35,6 +23,14 @@
             android:key="mainAccentColor"
             android:title="Цвет акцента"
             android:summary="Требуется перезапуск приложения"/>
+
+        <org.softeg.slartus.forpdaplus.controls.SummaryValueListPreference
+            android:defaultValue="-1"
+            android:entries="@array/screenOrienationArray"
+            android:entryValues="@array/screenOrienationValues"
+            android:key="theme.ScreenOrientation"
+            android:title="Ориентация экрана" />
+
         <!--
         <Preference
             android:key="userBackground"
@@ -136,6 +132,12 @@
             android:key="system.curator"
             android:summary="Функции курирования"
             android:title="Я куратор" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="notify.beta_version"
+            android:summary="Сообщать о версиях для тестирования"
+            android:title="Сообщать о бета-версиях" />
     </PreferenceScreen>
 
     <PreferenceScreen android:title="Просмотр темы">

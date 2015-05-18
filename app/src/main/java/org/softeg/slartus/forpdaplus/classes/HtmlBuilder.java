@@ -68,9 +68,9 @@ public class HtmlBuilder {
 
     public void beginBody(CharSequence bodyScript) {
         if (bodyScript == null || TextUtils.isEmpty(bodyScript))
-            m_Body.append("<body>\n");
+            m_Body.append("<body class=\"mod\">\n");
         else
-            m_Body.append("<body " + bodyScript + ">\n");
+            m_Body.append("<body class=\"mod\" " + bodyScript + ">\n");
         if(Preferences.System.isDeveloper())
             m_Body.append("<script type=\"text/javascript\" src=\"file:///android_asset/forum/js/less-dev.js\"></script> <!-- DEVELOPER -->\n");
     }
