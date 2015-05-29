@@ -374,6 +374,7 @@ public abstract class ThemesTab extends BaseTab {
                             cancel(true);
                         }
                     })
+                    .content("Загрузка")
                     .build();
         }
 
@@ -421,7 +422,6 @@ public abstract class ThemesTab extends BaseTab {
         // can use UI thread here
         protected void onPreExecute() {
             try {
-                this.dialog.setContent(getContext().getResources().getString(R.string.loading));
                 this.dialog.show();
             } catch (Exception ex) {
                 AppLog.e(null, ex);

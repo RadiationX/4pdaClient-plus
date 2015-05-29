@@ -180,6 +180,7 @@ public class LoginDialog {
             dialog = new MaterialDialog.Builder(mContext)
                     .progress(true, 0)
                     .cancelable(true)
+                    .content("Выход")
                     .build();
         }
 
@@ -205,7 +206,6 @@ public class LoginDialog {
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setContent("Выход...");
             this.dialog.show();
         }
 

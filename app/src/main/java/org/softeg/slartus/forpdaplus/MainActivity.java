@@ -116,7 +116,6 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
         super.onCreate(saveInstance);
 
         try {
-
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer);
@@ -144,27 +143,19 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
 
             if(Integer.valueOf(android.os.Build.VERSION.SDK) > 19){
                 if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
-                    paddingBottom = (int) (48 * scale + 0.5f);
-                    //Toast.makeText(getContext(),"ONE",Toast.LENGTH_SHORT).show();
+                    if(needBottom()) {
+                        paddingBottom = (int) (48 * scale + 0.5f);
+                    }
                 }
-                boolean hasBackKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_BACK);
-                boolean hasHomeKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_HOME);
-
-                if (!(hasBackKey && hasHomeKey)) {
-                    paddingBottom = (int) (48 * scale + 0.5f);
-                    //Toast.makeText(getContext(),"TWO",Toast.LENGTH_SHORT).show();
-                }
-                leftDrawer.setPadding(0, 0, 0, paddingBottom);
+                contentFrame.setPadding(0,paddingTop,0,paddingBottom);
+                leftDrawer.setPadding(0,0,0,paddingBottom);
                 if (isTablet()) {
                     contentFrame.setPadding(0,paddingTopTab,0,paddingBottom);
-                }else {
-                    contentFrame.setPadding(0,paddingTop,0,paddingBottom);
                 }
-            } else {
+            }else {
+                contentFrame.setPadding(0, paddingTop, 0, 0);
                 if (isTablet()) {
                     contentFrame.setPadding(0,paddingTopTab,0,0);
-                }else {
-                    contentFrame.setPadding(0,paddingTop,0,0);
                 }
             }
 
@@ -182,13 +173,8 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
         int lil = getContext().getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
         return ((lil == 4) || (lil == Configuration.SCREENLAYOUT_SIZE_LARGE));
     }
-    public static boolean hasNavBar (Resources resources)
-    {
-        int id = resources.getIdentifier("config_showNavigationBar", "bool", "android");
-        if (id > 0)
-            return resources.getBoolean(id);
-        else
-            return false;
+    public boolean needBottom(){
+        return PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("paddingBottomMain", true);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

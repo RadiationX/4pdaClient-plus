@@ -219,6 +219,7 @@ public class QmsNewThreadActivity extends BaseFragmentActivity {
 
             dialog = new MaterialDialog.Builder(context)
                     .progress(true,0)
+                    .content("Отправка сообщения")
                     .build();
         }
 
@@ -239,7 +240,6 @@ public class QmsNewThreadActivity extends BaseFragmentActivity {
         }
 
         protected void onPreExecute() {
-            this.dialog.setContent("Отправка сообщения...");
             this.dialog.show();
         }
 

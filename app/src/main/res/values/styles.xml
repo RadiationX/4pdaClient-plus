@@ -31,6 +31,7 @@
         <item name="list_text_general_color">@style/list_text_general_color_wh</item>
         <item name="list_text_minor_color">@style/list_text_minor_color_wh</item>
         <item name="list_text_second_color">@style/list_text_second_color_wh</item>
+        <item name="list_text_special_color">@style/list_text_special_color_wh</item>
         <item name="news_text_general_color">@style/news_text_general_color_wh</item>
         <item name="news_text_minor_color">@style/news_text_minor_color_wh</item>
         <item name="news_text_second_color">@style/news_text_second_color_wh</item>
@@ -72,6 +73,7 @@
         <item name="list_text_general_color">@style/list_text_general_color_bl</item>
         <item name="list_text_minor_color">@style/list_text_minor_color_bl</item>
         <item name="list_text_second_color">@style/list_text_second_color_bl</item>
+        <item name="list_text_special_color">@style/list_text_special_color_bl</item>
         <item name="news_text_general_color">@style/news_text_general_color_bl</item>
         <item name="news_text_minor_color">@style/news_text_minor_color_bl</item>
         <item name="news_text_second_color">@style/news_text_second_color_bl</item>
@@ -80,7 +82,6 @@
         <item name="md_dark_theme">true</item>
         <item name="Divider">@style/Divider_bl</item>
         <item name="actbar">@color/actionbar_background_bl</item>
-
     </style>
 
     <style name="actionMode_style" parent="@style/Widget.AppCompat.Light.ActionMode.Inverse">
@@ -261,7 +262,6 @@
     <style name="popup_topic_wh">
         <item name="android:background">@drawable/abc_popup_background_wh</item>
     </style>
-
     <style name="popup_topic_bl">
         <item name="android:background">@drawable/abc_popup_background_bl</item>
     </style>
@@ -269,7 +269,6 @@
     <style name="popup_item_wh">
         <item name="android:background">@drawable/action_popup_item_wh</item>
     </style>
-
     <style name="popup_item_bl">
         <item name="android:background">@drawable/action_popup_item_bl</item>
     </style>
@@ -277,7 +276,6 @@
     <style name="popup_item_text_wh">
         <item name="android:textColor">@color/action_popup_item_text_wh</item>
     </style>
-
     <style name="popup_item_text_bl">
         <item name="android:textColor">@color/action_popup_item_text_bl</item>
     </style>
@@ -285,7 +283,6 @@
     <style name="list_text_general_color_wh">
         <item name="android:textColor">@color/list_text_general_color_wh</item>
     </style>
-
     <style name="list_text_general_color_bl">
         <item name="android:textColor">@color/list_text_general_color_bl</item>
     </style>
@@ -293,7 +290,6 @@
     <style name="list_text_minor_color_wh">
         <item name="android:textColor">@color/list_text_minor_color_wh</item>
     </style>
-
     <style name="list_text_minor_color_bl">
         <item name="android:textColor">@color/list_text_minor_color_bl</item>
     </style>
@@ -301,9 +297,15 @@
     <style name="list_text_second_color_wh">
         <item name="android:textColor">@color/list_text_second_color_wh</item>
     </style>
-
     <style name="list_text_second_color_bl">
         <item name="android:textColor">@color/list_text_second_color_bl</item>
+    </style>
+
+    <style name="list_text_special_color_wh">
+        <item name="android:textColor">@color/list_text_special_color_wh</item>
+    </style>
+    <style name="list_text_special_color_bl">
+        <item name="android:textColor">@color/list_text_special_color_bl</item>
     </style>
 
     <style name="news_text_general_color_wh">

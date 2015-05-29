@@ -31,11 +31,10 @@ public class HtmlBuilder {
         m_Body.append("</head>\n");
     }
     public int getMarginTop(){
-        int margin = 80;
-        if ((App.getContext().getResources().getConfiguration().screenLayout &
-                Configuration.SCREENLAYOUT_SIZE_MASK) ==
-                Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-            margin = 88;
+        int margin = 81;
+        int lil = App.getContext().getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+        if ((lil == 4) || (lil == Configuration.SCREENLAYOUT_SIZE_LARGE)) {
+            margin = 89;
         }
         return margin;
     }
@@ -67,10 +66,20 @@ public class HtmlBuilder {
     }
 
     public void beginBody(CharSequence bodyScript) {
-        if (bodyScript == null || TextUtils.isEmpty(bodyScript))
-            m_Body.append("<body class=\"mod\">\n");
-        else
-            m_Body.append("<body class=\"mod\" " + bodyScript + ">\n");
+        int font = App.getInstance().getWebViewFont();
+        if (bodyScript == null || TextUtils.isEmpty(bodyScript)) {
+            if(font==0){
+                m_Body.append("<body class=\"modification\">\n");
+            }else {
+                m_Body.append("<body class=\"modification\" style=\"font-family:inherit;\">\n");
+            }
+        }else {
+            if(font==0){
+                m_Body.append("<body class=\"modification\" " + bodyScript + ">\n");
+            }else {
+                m_Body.append("<body class=\"modification\" style=\"font-family:inherit;\" " + bodyScript + ">\n");
+            }
+        }
         if(Preferences.System.isDeveloper())
             m_Body.append("<script type=\"text/javascript\" src=\"file:///android_asset/forum/js/less-dev.js\"></script> <!-- DEVELOPER -->\n");
     }

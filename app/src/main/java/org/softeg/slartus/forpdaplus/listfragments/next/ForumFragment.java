@@ -797,6 +797,7 @@ public class ForumFragment extends Fragment implements
                             cancel(true);
                         }
                     })
+                    .content("Обновление структуры форума")
                     .build();
         }
 
@@ -839,7 +840,6 @@ public class ForumFragment extends Fragment implements
 
         protected void onPreExecute() {
             try {
-                this.dialog.setContent("Обновление структуры форума...");
                 this.dialog.show();
             } catch (Exception ex) {
                 AppLog.e(null, ex);

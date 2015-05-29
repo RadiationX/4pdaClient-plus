@@ -391,6 +391,7 @@ public class DownloadsService extends IntentService {
 
             dialog = new MaterialDialog.Builder(context)
                     .progress(true,0)
+                    .content("Запрос ссылки")
                     .build();
         }
 
@@ -422,7 +423,6 @@ public class DownloadsService extends IntentService {
         // can use UI thread here
         protected void onPreExecute() {
             try {
-                this.dialog.setContent("Запрос ссылки...");
                 this.dialog.show();
             } catch (Throwable ignored) {
 

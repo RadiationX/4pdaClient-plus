@@ -535,6 +535,7 @@ public class EditPostActivity extends BaseFragmentActivity {
             this.attachFilePaths = attachFilePaths;
             dialog = new MaterialDialog.Builder(context)
                     .progress(false, 100, false)
+                    .content("Отправка файла")
                     .show();
         }
 
@@ -578,7 +579,6 @@ public class EditPostActivity extends BaseFragmentActivity {
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setContent("Отправка файла..");
             this.dialog.setCancelable(true);
             this.dialog.setCanceledOnTouchOutside(false);
             this.dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -652,6 +652,7 @@ public class EditPostActivity extends BaseFragmentActivity {
 
             dialog = new MaterialDialog.Builder(context)
                     .progress(true,0)
+                    .content("Удаление файла")
                     .build();
         }
 
@@ -669,7 +670,6 @@ public class EditPostActivity extends BaseFragmentActivity {
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setContent("Удаление файла...");
             this.dialog.show();
         }
 
@@ -708,6 +708,7 @@ public class EditPostActivity extends BaseFragmentActivity {
             this.enableSign = enableSign;
             dialog = new MaterialDialog.Builder(context)
                     .progress(true,0)
+                    .content("Редактирование сообщения")
                     .build();
         }
 
@@ -725,7 +726,6 @@ public class EditPostActivity extends BaseFragmentActivity {
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setContent("Редактирование сообщения...");
             this.dialog.show();
         }
 
@@ -794,6 +794,7 @@ public class EditPostActivity extends BaseFragmentActivity {
                             cancel(true);
                         }
                     })
+                    .content("Загрузка сообщения")
                     .build();
         }
 
@@ -812,7 +813,6 @@ public class EditPostActivity extends BaseFragmentActivity {
         }
 
         protected void onPreExecute() {
-            this.dialog.setContent("Загрузка сообщения...");
             this.dialog.show();
         }
 
@@ -862,6 +862,7 @@ public class EditPostActivity extends BaseFragmentActivity {
             this.enableSign = enableSign;
             dialog = new MaterialDialog.Builder(context)
                     .progress(true,0)
+                    .content("Отправка сообщения")
                     .build();
         }
 
@@ -880,7 +881,6 @@ public class EditPostActivity extends BaseFragmentActivity {
         }
 
         protected void onPreExecute() {
-            this.dialog.setContent("Отправка сообщения...");
             this.dialog.show();
         }
 

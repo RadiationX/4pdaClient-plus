@@ -670,6 +670,7 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
         public SendTask(Context context) {
             dialog = new MaterialDialog.Builder(context)
                     .progress(true,0)
+                    .content("Отправка сообщения")
                     .build();
         }
 
@@ -689,7 +690,6 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setContent("Отправка сообщения...");
             this.dialog.show();
         }
 
@@ -718,6 +718,7 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
 
             dialog = new MaterialDialog.Builder(context)
                     .progress(true,0)
+                    .content("Удаление сообщений")
                     .build();
         }
 
@@ -737,7 +738,6 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setContent("Удаление сообщений...");
             this.dialog.show();
         }
 
@@ -764,6 +764,7 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
             m_Ids = ids;
             dialog = new MaterialDialog.Builder(context)
                     .progress(true,0)
+                    .content("Удаление диалогов")
                     .build();
         }
 
@@ -782,7 +783,6 @@ public class QmsChatActivity extends BaseFragmentActivity implements IWebViewCon
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setContent("Удаление диалогов...");
             this.dialog.show();
         }
 

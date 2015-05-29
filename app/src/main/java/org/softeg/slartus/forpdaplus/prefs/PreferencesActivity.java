@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.EditTextPreference;
@@ -38,17 +39,27 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.squareup.picasso.Downloader;
+import com.squareup.picasso.Picasso;
 
+import org.apache.http.HttpResponse;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.softeg.slartus.forpdaapi.ProfileApi;
 import org.softeg.slartus.forpdaapi.post.EditPost;
 import org.softeg.slartus.forpdacommon.FileUtils;
 import org.softeg.slartus.forpdacommon.NotReportException;
 import org.softeg.slartus.forpdaplus.App;
 import org.softeg.slartus.forpdaplus.Client;
+import org.softeg.slartus.forpdaplus.HttpHelper;
 import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.classes.ForumUser;
 import org.softeg.slartus.forpdaplus.classes.InputFilterMinMax;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.download.DownloadsService;
+import org.softeg.slartus.forpdaplus.listfragments.ListFragmentActivity;
+import org.softeg.slartus.forpdaplus.listtemplates.QmsContactsBrickInfo;
 import org.softeg.slartus.forpdaplus.styles.CssStyle;
 import org.softeg.slartus.forpdaplus.styles.StyleInfoActivity;
 import org.softeg.slartus.forpdaplus.topicview.ThemeActivity;
@@ -108,6 +119,8 @@ public class PreferencesActivity extends BasePreferencesActivity {
             findPreference("appstyle").setOnPreferenceClickListener(this);
             findPreference("accentColor").setOnPreferenceClickListener(this);
             findPreference("mainAccentColor").setOnPreferenceClickListener(this);
+            findPreference("webViewFont").setOnPreferenceClickListener(this);
+            findPreference("checkModNew").setOnPreferenceClickListener(this);
             /*findPreference("userBackground").setOnPreferenceClickListener(this);*/
             findPreference("About.AppVersion").setOnPreferenceClickListener(this);
             findPreference("cookies.path.SetSystemPath").setOnPreferenceClickListener(this);
@@ -214,6 +227,12 @@ public class PreferencesActivity extends BasePreferencesActivity {
                 case "mainAccentColor":
                     showMainAccentColorDialog();
                     return true;
+                case "webViewFont":
+                    webViewFontDialog();
+                    return true;
+                case "checkModNew":
+                    new checkModNew().execute();
+                    return true;
                 /*case "userBackground":
                     pickUserBackground();
                     return true;*/
@@ -243,6 +262,103 @@ public class PreferencesActivity extends BasePreferencesActivity {
             }
 
             return false;
+        }
+
+        private class checkModNew extends AsyncTask<String, Void, Void> {
+            String[] output = {""};
+            int nowVersion = 16;
+            MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
+                    .progress(true, 0)
+                    .content("Проверка обновления")
+                    .show();
+            @Override
+            protected void onPreExecute(){
+                dialog.show();
+            }
+
+            @Override
+            protected Void doInBackground(String... urls) {
+                try {
+                    Document doc = Jsoup.connect("http://obzorishe.ru/mod4pda/checkversion.html").get();
+                    org.jsoup.nodes.Element element = doc.select("body").first();
+
+                    output[0] = element.select("div.version").first().text();
+                } catch (IOException e) {
+                    AppLog.e(getActivity(), e);
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                dialog.dismiss();
+                if(nowVersion == Integer.parseInt(output[0])){
+                    Toast.makeText(getActivity(),"Вы используете последнюю версию мода",Toast.LENGTH_SHORT).show();
+                }else{
+                    String text = "Доступна новая версия 1.0, скачать?<br/><br/>"+
+                            "<b>Изменения</b><br/>\n" +
+                            "[Fix] Фон диалоговых окон<br/>\n" +
+                            "[Fix] Отступ у небольших планшетов<br/>\n" +
+                            "[Add] Выбор шрифта<br/>\n" +
+                            "[Add] Функция обновления мода<br/>\n" +
+                            "Диалоги загрузки файлов<br/>\n" +
+                            "Цвет текста непрочитанных тем<br/>\n" +
+                            "Полный список изменений доступен в теме<br/>\n"
+                            ;
+
+                    new MaterialDialog.Builder(getActivity())
+                            .title("Новая версия")
+                            .content(Html.fromHtml(text))
+                            .positiveText("Скачать")
+                            .negativeText("Отмена")
+                            .callback(new MaterialDialog.ButtonCallback() {
+                                @Override
+                                public void onPositive(MaterialDialog dialog) {
+                                    ThemeActivity.showTopicByUrl(getActivity(),"http://4pda.ru/forum/index.php?s=&showtopic=541046&view=findpost&p=35224872");
+                                }
+                            })
+                            .show();
+                }
+            }
+        }
+
+        public void webViewFontDialog(){
+            try{
+                final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                int type = prefs.getInt("webViewFont",0);
+
+                final int[] selected = {0};
+                new MaterialDialog.Builder(getActivity())
+                        .title("Выберите шрифт")
+                        .items(new String[]{"Шрифт из стиля", "Системный шрифт"})
+                        .itemsCallbackSingleChoice(type, new MaterialDialog.ListCallbackSingleChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                selected[0] = which;
+                                return true;
+                            }
+                        })
+                        .alwaysCallSingleChoiceCallback()
+                        .positiveText("Применить")
+                        .negativeText("Отмена")
+                        .callback(new MaterialDialog.ButtonCallback() {
+                            @Override
+                            public void onPositive(MaterialDialog dialog) {
+                                switch (selected[0]) {
+                                    case 0:
+                                        prefs.edit().putInt("webViewFont", 0).apply();
+                                        break;
+                                    case 1:
+                                        prefs.edit().putInt("webViewFont", 1).apply();
+                                        break;
+                                }
+                            }
+                        })
+                        .show();
+
+            }catch (Exception ex) {
+                AppLog.e(getActivity(), ex);
+            }
         }
         private void showMainAccentColorDialog(){
             try{

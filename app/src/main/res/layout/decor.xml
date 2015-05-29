@@ -43,7 +43,7 @@
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:src="@drawable/avatar_blank"
+                android:src="@drawable/drawablakaka"
                 android:id="@+id/userBackground"
                 android:scaleType="centerCrop"/>
             <RelativeLayout

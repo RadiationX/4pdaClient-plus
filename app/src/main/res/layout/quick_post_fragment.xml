@@ -35,11 +35,14 @@
             android:maxLines="6"
             android:minLines="1"
             android:singleLine="false"
-            android:padding="6dp"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/advanced_button"
             android:layout_toLeftOf="@+id/send_button"
-            android:layout_toStartOf="@+id/send_button" />
+            android:layout_toStartOf="@+id/send_button"
+            android:paddingLeft="12dp"
+            android:paddingTop="6dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="6dp" />
 
         <ImageButton
             android:id="@+id/send_button"

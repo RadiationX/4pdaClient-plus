@@ -27,6 +27,7 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
         dialog = new MaterialDialog.Builder(context)
                 .progress(true, 0)
                 .cancelable(false)
+                .content("Вход")
                 .build();
     }
 
@@ -57,7 +58,6 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
 
     // can use UI thread here
     protected void onPreExecute() {
-        this.dialog.setContent("Вход");
         this.dialog.show();
     }
 

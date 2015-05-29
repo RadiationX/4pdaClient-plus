@@ -96,7 +96,7 @@
     <orderEntry type="library" exported="" name="appcompat-v7-22.1.1" level="project" />
     <orderEntry type="library" exported="" name="sqliteassethelper-2.0.1" level="project" />
     <orderEntry type="library" exported="" name="floatingactionbutton-1.2.0" level="project" />
-    <orderEntry type="library" exported="" name="material-dialogs-0.7.4.1" level="project" />
+    <orderEntry type="library" exported="" name="material-dialogs-0.7.4.2" level="project" />
     <orderEntry type="library" exported="" name="acra-4.6.1" level="project" />
     <orderEntry type="library" exported="" name="httpcore-4.3.3" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-22.1.1" level="project" />

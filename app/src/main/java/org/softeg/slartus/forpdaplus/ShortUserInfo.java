@@ -27,6 +27,7 @@ import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpResponse;
 import org.softeg.slartus.forpdaapi.ProfileApi;
+import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.listfragments.ListFragmentActivity;
 import org.softeg.slartus.forpdaplus.listtemplates.QmsContactsBrickInfo;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
@@ -65,7 +66,7 @@ public class ShortUserInfo {
         imgAvatar = (CircleImageView) findViewById(R.id.imgAvatara);
         infoRefresh = (ImageView) findViewById(R.id.infoRefresh);
         userBackground = (ImageView) findViewById(R.id.userBackground);
-        userBackground.setImageResource(R.drawable.drawabla);
+        //userBackground.setImageResource(R.drawable.drawabla);
 
         if(isOnline()){
             if(Client.getInstance().getLogined()) {
@@ -152,7 +153,7 @@ public class ShortUserInfo {
                     strings[0] = "http://s.4pda.to/img/qms/logo.png";
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                AppLog.e(getContext(), e);
             }
             return null;
         }

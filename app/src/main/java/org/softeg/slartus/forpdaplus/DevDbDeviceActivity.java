@@ -259,6 +259,7 @@ public class DevDbDeviceActivity extends BaseFragmentActivity {
             dialog = new MaterialDialog.Builder(context)
                     .progress(true,0)
                     .cancelable(false)
+                    .content("Загрузка")
                     .build();
         }
 
@@ -285,7 +286,6 @@ public class DevDbDeviceActivity extends BaseFragmentActivity {
 
         protected void onPreExecute() {
             try {
-                this.dialog.setContent("Загрузка");
                 this.dialog.show();
             } catch (Exception ex) {
                 AppLog.e(null, ex);

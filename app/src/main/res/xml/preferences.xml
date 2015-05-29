@@ -23,6 +23,15 @@
             android:key="mainAccentColor"
             android:title="Цвет акцента"
             android:summary="Требуется перезапуск приложения"/>
+        <Preference
+            android:key="webViewFont"
+            android:title="Шрифт WebView"
+            android:summary="Шрифт в новостях, поиске, теме, профиле, QMS"/>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="paddingBottomMain"
+            android:title="Отступ снизу"
+            android:summary="Убрать галочку, если нет NavigationBar, но есть отступ снизу. Требуется перезапуск приложения"/>
 
         <org.softeg.slartus.forpdaplus.controls.SummaryValueListPreference
             android:defaultValue="-1"
@@ -320,6 +329,9 @@
     </PreferenceScreen>
 
     <PreferenceScreen android:title="О программе">
+        <Preference
+            android:key="checkModNew"
+            android:title="Проверить обновление мода" />
         <Preference
             android:key="About.AppVersion"
             android:title="О программе" />

@@ -1281,6 +1281,7 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
                             cancel(true);
                         }
                     })
+                    .content("Загрузка темы")
                     .build();
         }
 
@@ -1344,7 +1345,6 @@ public class ThemeActivity extends BrowserViewsFragmentActivity
                 scrollY = m_ScrollY;
                 hideMessagePanel();
 
-                this.dialog.setContent("Загрузка темы...");
                 this.dialog.setCanceledOnTouchOutside(false);
                 this.dialog.show();
             } catch (Exception ex) {

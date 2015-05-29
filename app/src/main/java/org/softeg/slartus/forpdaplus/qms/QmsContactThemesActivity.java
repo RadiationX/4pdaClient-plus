@@ -457,6 +457,7 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
             m_Ids = ids;
             dialog = new MaterialDialog.Builder(context)
                     .progress(true,0)
+                    .content("Удаление диалогов")
                     .build();
         }
 
@@ -475,7 +476,6 @@ public class QmsContactThemesActivity extends BaseFragmentActivity implements Ad
 
         // can use UI thread here
         protected void onPreExecute() {
-            this.dialog.setContent("Удаление диалогов...");
             this.dialog.show();
         }
 

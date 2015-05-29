@@ -83,15 +83,9 @@ HTML body {
   word-wrap: break-word;
   max-width: 1024px;
 }
-div[style*="margin-top"] {
-  margin-top: 68px !important;
-  border-top: 1px solid transparent;
-}
-@media screen and (orientation: landscape) {
-  div[style*="margin-top"] {
-    margin-top: 62px !important;
-  }
-}
+/*
+*	PICTURES SIZE
+*/
 .post_body img,
 #thread_form img,
 #main img {
@@ -217,7 +211,7 @@ div[style*="margin-top"] {
   padding: 0.5rem;
   font-family: Courier, Courier New, Verdana, Arial;
   background: #5e5e5d;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 .post-block.code > .block-body .post-block.spoil {
   -webkit-box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
@@ -493,7 +487,7 @@ br + .topic_title_post {
 .poll .hidemain FORM > .ipbtable[cellspacing="1"] .formbuttonrow {
   text-align: center;
   padding: 0.5rem 0 0.4rem;
-  border-top: 1px solid #575757;
+  border-top: 1px solid #4d4d4d;
 }
 .poll .hidemain FORM > .ipbtable[cellspacing="1"] .formbuttonrow .button {
   border-radius: 0.15rem;
@@ -506,7 +500,7 @@ br + .topic_title_post {
 }
 .poll .hidemain FORM > .ipbtable[cellspacing="1"] TD.row1[colspan="3"][align="center"] {
   padding: 0.5rem 0;
-  border-top: 1px solid #575757;
+  border-top: 1px solid #4d4d4d;
 }
 .poll .hidemain FORM > .ipbtable[cellspacing="1"] TD.row1 {
   padding: 0;
@@ -632,7 +626,7 @@ br + .topic_title_post {
   padding: 0 0 0.1rem 0;
   margin-bottom: 0;
   border-radius: 0.15rem 0.15rem 0 0;
-  border-bottom: 1px solid #575757;
+  border-bottom: 1px solid #4d4d4d;
   background: #2d2d2d;
   -webkit-box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
 }
@@ -713,7 +707,7 @@ br + .topic_title_post {
   line-height: 1.5rem;
   font-size: 0.8rem;
   color: #969696;
-  border-bottom: 1px solid #575757;
+  border-bottom: 1px solid #4d4d4d;
 }
 .post_header table tbody tr td div .post_date_cli a {
   float: right;
@@ -819,7 +813,7 @@ br + .topic_title_post {
 .post_header_container + .post_body {
   border-radius: 0 0 0.15rem 0.15rem;
   border: none;
-  border-top: 1px solid #575757;
+  border-top: 1px solid #4d4d4d;
   margin: 0;
   z-index: 10;
   -webkit-box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
@@ -866,7 +860,7 @@ br + .topic_title_post {
   font-size: 0.9rem;
   text-align: left;
   color: #ababab;
-  border-bottom: 1px solid #575757;
+  border-bottom: 1px solid #4d4d4d;
 }
 @media screen and (min-width: 800px) {
   .post_header_container > .post_header .post_date {
@@ -1244,17 +1238,6 @@ div[name*="msg"] > .hidetop B:before {
   display: inline-block;
   margin: 0;
   text-decoration: none;
-  /*		&:after {
-			content: '\f137';
-			font-family: 'fontello';
-			display: inline-block;
-			font-size: 1rem;
-			text-align: center;
-			width: 1em;
-			color: @color;
-			opacity: 0.3;
-		}
-*/
 }
 .post_body a[href*="act=findpost&pid="][title="Перейти к сообщению"] > img {
   display: none;
@@ -1323,6 +1306,8 @@ div[name*="msg"] > .hidetop B:before {
 }
 .postcolor {
   height: auto !important;
+  padding: 0.5rem;
+  margin: 0 -0.5rem;
   max-height: 20rem;
 }
 .signature {
@@ -1336,7 +1321,7 @@ div[name*="msg"] > .hidetop B:before {
     border-radius: 0;
     -webkit-box-shadow: none;
     background: #2d2d2d;
-    border-top: 1px solid #575757;
+    border-top: 1px solid #4d4d4d;
   }
 }
 .s_post_footer {
@@ -1351,7 +1336,7 @@ div[name*="msg"] > .hidetop B:before {
   border-radius: 0 0 0.15rem 0.15rem;
   text-align: center;
   background: #2d2d2d !important;
-  border-top: 1px solid #575757;
+  border-top: 1px solid #4d4d4d;
   -webkit-box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
   font-size: 0.85rem;
   font-weight: normal;
@@ -1404,6 +1389,9 @@ img[src*="style_emoticons"] {
 #writers + br {
   display: none;
 }
+#writers {
+  margin-bottom: 2.5rem;
+}
 /*
  *	POST_FOOTER
 */
@@ -1419,7 +1407,7 @@ img[src*="style_emoticons"] {
   border-radius: 0 0 0.15rem 0.15rem;
   text-align: center;
   background: #2d2d2d !important;
-  border-top: 1px solid #575757;
+  border-top: 1px solid #4d4d4d;
   -webkit-box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
 }
 @media screen and (min-width: 800px) {
@@ -2046,7 +2034,9 @@ h3 a {
 }
 .mlinks.desc .mlright .mlcell.th {
   position: relative;
-  right: -0.1rem;
+}
+.mlinks.desc .mlright .mlcell.th ~ p {
+  display: none;
 }
 .mlinks.desc .mlright br {
   display: none;
@@ -2056,92 +2046,93 @@ h3 a {
 }
 .mlinks .mlhead,
 .mlinks.desc .mlright {
-  border-radius: 0.15rem;
   background: #969696;
   border-bottom: 1px solid #424242;
 }
-.mlinks .mlhead .do-vam div,
-.mlinks.desc .mlright .do-vam div {
-  display: block;
-}
-.mlinks .mlhead .do-vam div .mlicon,
-.mlinks.desc .mlright .do-vam div .mlicon {
-  display: block;
+.mlinks .mlhead .do-vam > div .mlicon,
+.mlinks.desc .mlright .do-vam > div .mlicon {
   width: 4rem;
   float: left;
   margin: 0.3rem;
   margin-right: 0.5rem;
 }
-.mlinks .mlhead .do-vam div .mltitle,
-.mlinks.desc .mlright .do-vam div .mltitle {
+.mlinks .mlhead .do-vam > div .mltitle,
+.mlinks.desc .mlright .do-vam > div .mltitle {
   display: block;
   margin: 0;
-  padding: 0.3rem 0.5rem;
+  padding: 0.5rem;
   font-size: 1.2rem;
   color: #2d2d2d;
   text-align: left;
 }
-.mlinks .mlhead .do-vam div .mlauthor,
-.mlinks.desc .mlright .do-vam div .mlauthor {
+.mlinks .mlhead .do-vam > div .mlauthor,
+.mlinks.desc .mlright .do-vam > div .mlauthor {
   display: block;
   margin: 0;
-  padding: 0.3rem 0.5rem;
+  padding: 0.5rem;
   font-size: 1rem;
   font-weight: normal;
   color: #575757;
   text-align: left;
 }
-.mlinks .mlhead .do-vam div .mltbl.platforms,
-.mlinks.desc .mlright .do-vam div .mltbl.platforms {
+.mlinks .mlhead .do-vam > div .mltbl.platforms,
+.mlinks.desc .mlright .do-vam > div .mltbl.platforms {
   display: table;
-  width: 100%;
+  border-spacing: 0;
+  margin: 0;
+  width: 101%;
   background: #2d2d2d;
 }
-.mlinks .mlhead .do-vam div .mltbl.platforms .mlrow,
-.mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow {
-  display: table;
-  width: 100%;
-  border-spacing: 0;
+.mlinks .mlhead .do-vam > div .mltbl.platforms .mlrow,
+.mlinks.desc .mlright .do-vam > div .mltbl.platforms .mlrow {
+  display: table-row;
 }
-.mlinks .mlhead .do-vam div .mltbl.platforms .mlrow .mlcell.th,
-.mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow .mlcell.th {
-  border-right: none !important;
+.mlinks .mlhead .do-vam > div .mltbl.platforms .mlrow:first-child,
+.mlinks.desc .mlright .do-vam > div .mltbl.platforms .mlrow:first-child {
   background: #424242;
+}
+.mlinks .mlhead .do-vam > div .mltbl.platforms .mlrow .mlcell.th,
+.mlinks.desc .mlright .do-vam > div .mltbl.platforms .mlrow .mlcell.th {
   color: #b6b6b6;
 }
-.mlinks .mlhead .do-vam div .mltbl.platforms .mlrow .mlcell.th,
-.mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow .mlcell.th,
-.mlinks .mlhead .do-vam div .mltbl.platforms .mlrow .mlcell,
-.mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow .mlcell {
+.mlinks .mlhead .do-vam > div .mltbl.platforms .mlrow .mlcell.th,
+.mlinks.desc .mlright .do-vam > div .mltbl.platforms .mlrow .mlcell.th,
+.mlinks .mlhead .do-vam > div .mltbl.platforms .mlrow .mlcell,
+.mlinks.desc .mlright .do-vam > div .mltbl.platforms .mlrow .mlcell {
+  position: relative;
   display: table-cell;
   width: 34%;
   padding: 0.5rem 0;
   text-align: center;
 }
-.mlinks .mlhead .do-vam div .mltbl.platforms .mlrow .mlcell.th:first-child,
-.mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow .mlcell.th:first-child,
-.mlinks .mlhead .do-vam div .mltbl.platforms .mlrow .mlcell:first-child,
-.mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow .mlcell:first-child {
+.mlinks .mlhead .do-vam > div .mltbl.platforms .mlrow .mlcell.th:first-child,
+.mlinks.desc .mlright .do-vam > div .mltbl.platforms .mlrow .mlcell.th:first-child,
+.mlinks .mlhead .do-vam > div .mltbl.platforms .mlrow .mlcell:first-child,
+.mlinks.desc .mlright .do-vam > div .mltbl.platforms .mlrow .mlcell:first-child {
   width: 10%;
 }
-.mlinks .mlhead .do-vam div .mltbl.platforms .mlrow .mlcell.th:nth-child(3),
-.mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow .mlcell.th:nth-child(3),
-.mlinks .mlhead .do-vam div .mltbl.platforms .mlrow .mlcell:nth-child(3),
-.mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow .mlcell:nth-child(3) {
+.mlinks .mlhead .do-vam > div .mltbl.platforms .mlrow .mlcell.th:nth-child(3),
+.mlinks.desc .mlright .do-vam > div .mltbl.platforms .mlrow .mlcell.th:nth-child(3),
+.mlinks .mlhead .do-vam > div .mltbl.platforms .mlrow .mlcell:nth-child(3),
+.mlinks.desc .mlright .do-vam > div .mltbl.platforms .mlrow .mlcell:nth-child(3) {
   width: 22%;
 }
-.mlinks .mlhead .do-vam div .mltbl.platforms .mlrow .mlcell.th:last-child,
-.mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow .mlcell.th:last-child,
-.mlinks .mlhead .do-vam div .mltbl.platforms .mlrow .mlcell:last-child,
-.mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow .mlcell:last-child {
-  border-right: none;
-}
-.mlinks .mlhead .do-vam div .mltbl.platforms .mlrow .mlcell.th a,
-.mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow .mlcell.th a,
-.mlinks .mlhead .do-vam div .mltbl.platforms .mlrow .mlcell a,
-.mlinks.desc .mlright .do-vam div .mltbl.platforms .mlrow .mlcell a {
+.mlinks .mlhead .do-vam > div .mltbl.platforms .mlrow .mlcell.th a,
+.mlinks.desc .mlright .do-vam > div .mltbl.platforms .mlrow .mlcell.th a,
+.mlinks .mlhead .do-vam > div .mltbl.platforms .mlrow .mlcell a,
+.mlinks.desc .mlright .do-vam > div .mltbl.platforms .mlrow .mlcell a {
   text-decoration: none;
   color: #aaddff !important;
+}
+.mlinks .mlhead .do-vam > div .mldl,
+.mlinks.desc .mlright .do-vam > div .mldl {
+  display: block;
+  margin: 0;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #ababab;
+  background: #424242;
 }
 .mlinks .mlscreenshots.mlbody {
   display: block;
@@ -2692,7 +2683,7 @@ h3 a {
   display: block;
   margin: 0 0.3rem;
   padding: 0.2rem;
-  border-bottom: 1px solid #575757;
+  border-bottom: 1px solid #4d4d4d;
 }
 .comment-box li .heading .nickname {
   text-decoration: none;
@@ -2765,7 +2756,7 @@ h3 a {
   padding: 0 0.5rem;
   height: 1.4rem;
   line-height: 1.3rem;
-  border: 1px solid #575757;
+  border: 1px solid #4d4d4d;
   background: #424242;
   border-radius: 0.15rem;
 }
@@ -2814,7 +2805,7 @@ h3 a {
 .holder.no-hidden .user-profile-list > li {
   display: block;
   padding: 0.7rem;
-  margin: 0.7rem 0.5rem;
+  margin: 0.7rem 0;
   border-radius: 0.15rem;
   -webkit-box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -2822,6 +2813,16 @@ h3 a {
 }
 .holder.no-hidden .user-profile-list > li a {
   color: #aaddff;
+}
+.holder.no-hidden .user-profile-list > li a[title="Изменить данные о себе"] {
+  display: inline-block;
+  margin: 1rem 0.3rem 0.5rem;
+  padding: 0.2rem 0.5rem;
+  font-weight: bold;
+  color: #91bad5;
+  text-decoration: none;
+  border-radius: 0.15rem;
+  border: 1px solid #5f7381;
 }
 .holder.no-hidden .user-profile-list > li .user-box {
   display: block;
@@ -2884,11 +2885,11 @@ h3 a {
 .holder.no-hidden .user-profile-list .u-note:before {
   content: 'Подпись';
   display: block;
-  margin: 0 0 0.5rem;
-  font-size: 0.8rem;
-  padding-bottom: 0.3rem;
-  color: #6c6c6c;
-  border-bottom: 1px dashed #6c6c6c;
+  margin: 0 -0.7rem 0.5rem;
+  font-weight: bold;
+  padding: 0.7rem 0.7rem 0;
+  color: #969696;
+  border-top: 1px solid #4d4d4d;
 }
 .holder.no-hidden li .heading {
   position: relative;
@@ -2906,9 +2907,11 @@ h3 a {
   height: 1.4rem;
   line-height: 1.4rem;
 }
+.holder.no-hidden li .heading .ico i:before {
+  color: #818181 !important;
+}
 .holder.no-hidden li .heading .ico .icon-glyph-1 {
   position: relative;
-  top: 0.1rem;
 }
 .holder.no-hidden li .heading h2 {
   display: inline-block;
@@ -2942,7 +2945,6 @@ h3 a {
   font-size: 2rem;
   margin: 0 0.7rem;
   line-height: 1.4rem;
-  clor: blue;
 }
 .holder.no-hidden li .statistic-box .col {
   float: left;
@@ -3017,4 +3019,71 @@ h3 a {
 .holder.no-hidden .no-min-size .alert-log-list .wlog-pos .a-content .post-link,
 .holder.no-hidden .no-min-size .alert-log-list .wlog-neg .a-content .post-link {
   margin-top: 0.7rem;
+}
+/*
+*	MARGIN TOP
+*	Для мода от radiation15
+*	Что б этот код работал удалите код ниже для оригинального клиента от комментария - НАЧАЛО - до комментария - КОНЕЦ -
+*/
+div[style*="margin-top"]:not([name*="entry"]) {
+  margin-top: 81px !important;
+  border-top: 1px solid transparent;
+}
+div[name*="entry"] {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-top: -81px !important;
+}
+/*
+*	Верхний отступ
+*/
+div[style*="margin-top"]:not([name*="entry"]) {
+  border-top: 1px solid transparent;
+}
+div[name*="entry"] {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+#writers ~ div[style*="margin-top"] {
+  display: none;
+}
+@media screen and (orientation: portrait) {
+  div[style*="margin-top"]:not([name*="entry"]) {
+    margin-top: 81px !important;
+    /* отступ в портретной ориентации */
+  }
+  div[name*="entry"] {
+    margin-top: -81px !important;
+    /* ввести то же число, но с знаком минуса */
+  }
+  /* Для мода от radiation15 */
+  .modification div[style*="margin-top"]:not([name*="entry"]) {
+    margin-top: 87px !important;
+    /* отступ в портретной ориентации */
+  }
+  .modification div[name*="entry"] {
+    margin-top: -87px !important;
+    /* ввести то же число, но с знаком минуса */
+  }
+}
+@media screen and (orientation: landscape) {
+  div[style*="margin-top"]:not([name*="entry"]) {
+    margin-top: 0 !important;
+    /* отступ в альбомной ориентации */
+  }
+  div[name*="entry"] {
+    margin-top: 0 !important;
+    /* ввести то же число, но со знаком минуса */
+  }
+  /* Для мода от radiation15 */
+  .modification div[style*="margin-top"]:not([name*="entry"]) {
+    margin-top: 87px !important;
+    /* отступ в альбомной ориентации */
+  }
+  .modification div[name*="entry"] {
+    margin-top: -87px !important;
+    /* ввести то же число, но с знаком минуса */
+  }
 }
