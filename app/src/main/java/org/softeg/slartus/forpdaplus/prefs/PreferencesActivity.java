@@ -2,16 +2,19 @@ package org.softeg.slartus.forpdaplus.prefs;
 
 import android.app.Activity;
 import android.app.TimePickerDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.EditTextPreference;
@@ -46,6 +49,7 @@ import org.apache.http.HttpResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.softeg.slartus.forpdaapi.ProfileApi;
 import org.softeg.slartus.forpdaapi.post.EditPost;
 import org.softeg.slartus.forpdacommon.FileUtils;
@@ -98,7 +102,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
     public static final int NOTIFIERS_SERVICE_SOUND_REQUEST_CODE = App.getInstance().getUniqueIntValue();
 
 
-    public static class PrefsFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener {
+    public class PrefsFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener {
 
 
         @Override
@@ -121,7 +125,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
             findPreference("mainAccentColor").setOnPreferenceClickListener(this);
             findPreference("webViewFont").setOnPreferenceClickListener(this);
             findPreference("checkModNew").setOnPreferenceClickListener(this);
-            /*findPreference("userBackground").setOnPreferenceClickListener(this);*/
+            findPreference("userBackground").setOnPreferenceClickListener(this);
             findPreference("About.AppVersion").setOnPreferenceClickListener(this);
             findPreference("cookies.path.SetSystemPath").setOnPreferenceClickListener(this);
             findPreference("cookies.path.SetAppPath").setOnPreferenceClickListener(this);
@@ -233,9 +237,9 @@ public class PreferencesActivity extends BasePreferencesActivity {
                 case "checkModNew":
                     new checkModNew().execute();
                     return true;
-                /*case "userBackground":
+                case "userBackground":
                     pickUserBackground();
-                    return true;*/
+                    return true;
                 case "notifiers.service.sound":
                     pickRingtone(NOTIFIERS_SERVICE_SOUND_REQUEST_CODE, Preferences.Notifications.getSound());
                     return true;
@@ -264,8 +268,66 @@ public class PreferencesActivity extends BasePreferencesActivity {
             return false;
         }
 
+        private void pickUserBackground() {
+            new MaterialDialog.Builder(getContext())
+                    .content("Выберите изображение")
+                    .positiveText("Выбрать")
+                    .negativeText("Отмена")
+                    .neutralText("Сброс")
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            try {
+                                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                                intent.setType("image/*");
+                                startActivityForResult(intent, 0);
+                            } catch (ActivityNotFoundException ex) {
+                                Toast.makeText(getActivity(), "Ни одно приложение не установлено для выбора изображения!", Toast.LENGTH_LONG).show();
+                            } catch (Exception ex) {
+                                AppLog.e(getActivity(), ex);
+                            }
+                        }
+                        @Override
+                        public void onNeutral(MaterialDialog dialog) {
+                            PreferenceManager.getDefaultSharedPreferences(App.getContext())
+                                    .edit()
+                                    .putBoolean("isUserBackground", false)
+                                    .apply();
+                        }
+                    })
+                    .show();
+        }
+
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            try {
+                if (resultCode == RESULT_OK) {
+                    PreferenceManager.getDefaultSharedPreferences(App.getContext())
+                            .edit()
+                            .putString("userBackground", getPath(data.getData()))
+                            .putBoolean("isUserBackground", true)
+                            .apply();
+                }
+            } catch (Exception ex) {
+                AppLog.e(getActivity(), ex);
+            }
+
+        }
+        public String getPath(Uri uri) throws NotReportException {
+            if (uri == null)
+                throw new NotReportException("Выбран пустой путь!");
+            if (!uri.toString().startsWith("content://"))
+                return uri.getPath();
+            String[] projection = { MediaStore.Images.Media.DATA };
+            Cursor cursor = managedQuery(uri, projection, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        }
+
         private class checkModNew extends AsyncTask<String, Void, Void> {
-            String[] output = {""};
+            String[] output = {"","","",""};
             int nowVersion = 16;
             MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
                     .progress(true, 0)
@@ -280,9 +342,11 @@ public class PreferencesActivity extends BasePreferencesActivity {
             protected Void doInBackground(String... urls) {
                 try {
                     Document doc = Jsoup.connect("http://obzorishe.ru/mod4pda/checkversion.html").get();
-                    org.jsoup.nodes.Element element = doc.select("body").first();
-
+                    Element element = doc.select("body").first();
                     output[0] = element.select("div.version").first().text();
+                    output[1] = element.select("div.release").first().text();
+                    output[2] = element.select("div.important>.state").first().text();
+                    output[3] = element.select("div.important>.text").first().text();
                 } catch (IOException e) {
                     AppLog.e(getActivity(), e);
                 }
@@ -295,26 +359,20 @@ public class PreferencesActivity extends BasePreferencesActivity {
                 if(nowVersion == Integer.parseInt(output[0])){
                     Toast.makeText(getActivity(),"Вы используете последнюю версию мода",Toast.LENGTH_SHORT).show();
                 }else{
-                    String text = "Доступна новая версия 1.0, скачать?<br/><br/>"+
-                            "<b>Изменения</b><br/>\n" +
-                            "[Fix] Фон диалоговых окон<br/>\n" +
-                            "[Fix] Отступ у небольших планшетов<br/>\n" +
-                            "[Add] Выбор шрифта<br/>\n" +
-                            "[Add] Функция обновления мода<br/>\n" +
-                            "Диалоги загрузки файлов<br/>\n" +
-                            "Цвет текста непрочитанных тем<br/>\n" +
-                            "Полный список изменений доступен в теме<br/>\n"
-                            ;
-
+                    String text = "";
+                    if (output[2].equals("true")){
+                        text = "<b>"+output[3]+"</b><br/><br/>\"";
+                    }
+                    text += "Список всех изменений доступен в теме, в спойлере \"Изменения\"";
                     new MaterialDialog.Builder(getActivity())
-                            .title("Новая версия")
+                            .title("Доступна новая версия "+output[1])
                             .content(Html.fromHtml(text))
                             .positiveText("Скачать")
                             .negativeText("Отмена")
                             .callback(new MaterialDialog.ButtonCallback() {
                                 @Override
                                 public void onPositive(MaterialDialog dialog) {
-                                    ThemeActivity.showTopicByUrl(getActivity(),"http://4pda.ru/forum/index.php?s=&showtopic=541046&view=findpost&p=35224872");
+                                    ThemeActivity.showTopicByUrl(getActivity(), "http://4pda.ru/forum/index.php?s=&showtopic=541046&view=findpost&p=35224872");
                                 }
                             })
                             .show();

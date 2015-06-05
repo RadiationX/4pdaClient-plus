@@ -79,7 +79,7 @@
     <color name="statusBarPrefs_wh">#ff0288d1</color>
     <color name="statusBarPrefs_bl">#ff163542</color>
 
-    <color name="drawer_menu_background_wh">@color/app_background_wh</color>
+    <color name="drawer_menu_background_wh">#ffffffff</color>
     <color name="drawer_menu_background_bl">@color/app_background_bl</color>
     <color name="drawer_menu_text_wh">@color/list_text_general_color_wh</color>
     <color name="drawer_menu_text_bl">@color/list_text_general_color_bl</color>

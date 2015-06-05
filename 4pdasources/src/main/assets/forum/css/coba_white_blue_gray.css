@@ -662,10 +662,9 @@ a {
 #main .container .content .content-box .mlinks .mlscreenshots .screenshots .sc-content {
   white-space: nowrap;
   overflow-x: scroll!important;
-  font-size: 0;
 }
 #main .container .content .content-box .mlinks .mlscreenshots .screenshots .sc-content a {
-  padding: 0 5px;
+  padding: 0 0.375em;
   vertical-align: middle;
   display: inline-block;
 }
@@ -1366,6 +1365,7 @@ a {
   color: #757575;
   font-size: 0.875em;
   font-weight: bold;
+  text-transform: uppercase;
 }
 .navi > div .href_button:after,
 .navi > div .href_button_disable:after {
@@ -1398,6 +1398,7 @@ a {
   margin-bottom: 3em;
   box-shadow: 0 4px 10px -5px rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 4px 10px -5px rgba(0, 0, 0, 0.15);
+  clear: both;
 }
 .topic_title_post a {
   padding: 0.75em;
@@ -2038,15 +2039,14 @@ a {
 }
 .post_header table tbody tr:nth-child(4) td a {
   color: #757575;
-  font-size: 0.875em;
   font-weight: bold;
 }
 .post_header table tbody tr:nth-child(4) td:first-child {
   float: left;
-  font-size: 0.9em;
+  font-size: 0.875em;
 }
 .post_header table tbody tr:nth-child(4) td:last-child {
-  font-size: 0.9em;
+  font-size: 0.875em;
   float: right;
 }
 .hidetop {
@@ -2298,7 +2298,12 @@ a {
   display: block;
   color: #757575;
   font-weight: bold;
-  line-height: 3em;
+  text-transform: uppercase;
+  line-height: 3.4286em;
+  font-size: 0.875em;
+}
+#viewers {
+  margin-top: 3em;
 }
 #writers:before {
   content: "";
@@ -2307,6 +2312,10 @@ a {
   top: 6px;
   bottom: 6px;
   display: none;
+}
+#bottom_navi ~ #viewers,
+#bottom_navi ~ #writers {
+  margin-top: 0;
 }
 .search-results .postcolor {
   height: auto!important;
@@ -2539,6 +2548,9 @@ a[href*=findpost][title="Перейти к сообщению"]:after {
   #writers {
     width: 50%;
     float: left;
+  }
+  #writers {
+    margin-top: 3em;
   }
   #writers:before {
     display: block;

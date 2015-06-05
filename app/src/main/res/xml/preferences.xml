@@ -32,7 +32,10 @@
             android:key="paddingBottomMain"
             android:title="Отступ снизу"
             android:summary="Убрать галочку, если нет NavigationBar, но есть отступ снизу. Требуется перезапуск приложения"/>
-
+        <Preference
+            android:key="userBackground"
+            android:summary="Требуется перезапуск приложения"
+            android:title="Изображение в выезжающем меню"/>
         <org.softeg.slartus.forpdaplus.controls.SummaryValueListPreference
             android:defaultValue="-1"
             android:entries="@array/screenOrienationArray"
@@ -40,12 +43,6 @@
             android:key="theme.ScreenOrientation"
             android:title="Ориентация экрана" />
 
-        <!--
-        <Preference
-            android:key="userBackground"
-            android:summary="..."
-            android:title="MiniProfile Background"/>
-        -->
     </PreferenceScreen>
 
     <PreferenceScreen

@@ -33,6 +33,7 @@ import org.softeg.slartus.forpdaplus.listtemplates.QmsContactsBrickInfo;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 import org.softeg.slartus.forpdaplus.profile.ProfileWebViewActivity;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -66,7 +67,15 @@ public class ShortUserInfo {
         imgAvatar = (CircleImageView) findViewById(R.id.imgAvatara);
         infoRefresh = (ImageView) findViewById(R.id.infoRefresh);
         userBackground = (ImageView) findViewById(R.id.userBackground);
-        //userBackground.setImageResource(R.drawable.drawabla);
+        if(prefs.getBoolean("isUserBackground",false)){
+            File imgFile = new File(prefs.getString("userBackground",""));
+            if(imgFile.exists()){
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                userBackground.setImageBitmap(myBitmap);
+            }else {
+                userBackground.setImageResource(R.drawable.drawablakaka);
+            }
+        }
 
         if(isOnline()){
             if(Client.getInstance().getLogined()) {

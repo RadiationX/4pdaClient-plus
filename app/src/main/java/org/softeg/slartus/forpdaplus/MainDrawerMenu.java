@@ -5,6 +5,7 @@ package org.softeg.slartus.forpdaplus;/*
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -100,7 +101,7 @@ public class MainDrawerMenu {
             }
         });
         mMenuGroups = new ArrayList<>();
-        mMenuGroups.add(new LastActionsGroup());
+        //mMenuGroups.add(new LastActionsGroup());
         mMenuGroups.add(new MainListGroup());
         mMenuGroups.add(new OthersActionsGroup());
 
@@ -348,6 +349,11 @@ public class MainDrawerMenu {
             }
 
             @Override
+            public int getIcon() {
+                return R.drawable.ic_settings_grey600_24dp;
+            }
+
+            @Override
             public String getName() {
                 return NAME;
             }
@@ -364,6 +370,11 @@ public class MainDrawerMenu {
             @Override
             public String getTitle() {
                 return "Поиск по форуму";
+            }
+
+            @Override
+            public int getIcon() {
+                return R.drawable.ic_delete;
             }
 
             @Override
@@ -386,6 +397,11 @@ public class MainDrawerMenu {
             }
 
             @Override
+            public int getIcon() {
+                return R.drawable.ic_download_grey600_24dp;
+            }
+
+            @Override
             public String getName() {
                 return NAME;
             }
@@ -402,6 +418,11 @@ public class MainDrawerMenu {
             @Override
             public String getTitle() {
                 return "Отметить весь форум прочитанным";
+            }
+
+            @Override
+            public int getIcon() {
+                return R.drawable.ic_check_all_grey600_24dp;
             }
 
             @Override
@@ -495,6 +516,7 @@ public class MainDrawerMenu {
                 assert convertView != null;
 
                 holder.text = (TextView) convertView.findViewById(R.id.row_title);
+                holder.icon = (ImageView) convertView.findViewById(R.id.icon);
 
                 convertView.setTag(holder);
 
@@ -503,8 +525,10 @@ public class MainDrawerMenu {
             }
 
             BrickInfo item = mMenuGroups.get(groupPosition).getChildren().get(childPosition);
-            if (item != null)
+            if (item != null) {
                 holder.text.setText(item.getTitle());
+                holder.icon.setImageDrawable(getContext().getResources().getDrawable(item.getIcon()));
+            }
 
             return convertView;
         }
@@ -517,6 +541,7 @@ public class MainDrawerMenu {
 
         public class ViewHolder {
             public TextView text;
+            public ImageView icon;
         }
     }
 }
