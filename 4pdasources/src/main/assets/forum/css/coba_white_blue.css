@@ -2471,6 +2471,9 @@ a[href*=findpost][title="Перейти к сообщению"]:after {
 .post-block.code > .block-title:before {
   content: "Код (+)";
 }
+.post-block.code > .block-body {
+  white-space: pre-wrap;
+}
 .post-block.code.box > .block-body {
   max-height: 11em;
   overflow: hidden;

@@ -17,11 +17,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import org.softeg.slartus.forpdaapi.ListInfo;
@@ -57,6 +60,8 @@ public class SearchSettingsDialogFragment extends DialogFragment {
     private Spinner source_spinner, sort_spinner, result_spinner, forumsSpinner;
     private View forumsProgress, topicsProgress;
     private View topics_group, forums_group, result_group, sort_group, source_group;
+    private Button forHideButton;
+    private LinearLayout forHide;
     public static final int FORUMS_DIALOG_REQUEST = 1;
 
     protected Bundle args = new Bundle();
@@ -187,6 +192,16 @@ public class SearchSettingsDialogFragment extends DialogFragment {
         source_group = view.findViewById(R.id.source_group);
         sort_group = view.findViewById(R.id.sort_group);
         result_group = view.findViewById(R.id.result_group);
+        forHideButton = (Button) view.findViewById(R.id.forHideButton);
+        forHide = (LinearLayout) view.findViewById(R.id.forHide);
+
+        forHideButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                forHideButton.setVisibility(View.GONE);
+                forHide.setVisibility(View.VISIBLE);
+            }
+        });
         if (view.findViewById(R.id.forums_button) != null) {
             view.findViewById(R.id.forums_button).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -200,7 +215,7 @@ public class SearchSettingsDialogFragment extends DialogFragment {
         if (view.findViewById(R.id.forums_spinner) != null) {
             initSpinner(view);
         }
-        MaterialDialog.Builder adb = new MaterialDialog.Builder(getActivity())
+        MaterialDialog adb = new MaterialDialog.Builder(getActivity())
                 .customView(view,true)
                 .cancelable(true)
                 .title("Поиск")
@@ -218,20 +233,24 @@ public class SearchSettingsDialogFragment extends DialogFragment {
                         ((ISearchDialogListener) getActivity())
                                 .doSearchDialogPositiveClick(createSearchSettings());
                     }
-                    @Override
-                    public void onNeutral(MaterialDialog dialog) {
-                        SearchSettings searchSettings = createSearchSettings();
-                        searchSettings.setQuery("");
-                        searchSettings.setUserName("");
-                        searchSettings.save(PreferenceManager.getDefaultSharedPreferences(App.getInstance()).edit())
-                                .commit();
-                    }
-                });
-        // в поиске по теме не показываем "запомнить настройки"
-        if (SearchSettings.SEARCH_TYPE_FORUM.equals(getSearchSettings().getSearchType()))
-            adb.neutralText("Запомнить");
 
-        final MaterialDialog d = adb.build();
+                }).build();
+
+        // в поиске по теме не показываем "запомнить настройки"
+        if (SearchSettings.SEARCH_TYPE_FORUM.equals(getSearchSettings().getSearchType())) {
+            adb.setActionButton(DialogAction.NEUTRAL, "Запомнить");
+            View neutral = adb.getActionButton(DialogAction.NEUTRAL);
+            neutral.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SearchSettings searchSettings = createSearchSettings();
+                    searchSettings.setQuery("");
+                    searchSettings.setUserName("");
+                    searchSettings.save(PreferenceManager.getDefaultSharedPreferences(App.getInstance()).edit()).commit();
+                }
+            });
+        }
+        final MaterialDialog d = adb;
         return d;
     }
 

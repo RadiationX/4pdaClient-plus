@@ -26,6 +26,9 @@ import com.squareup.picasso.Downloader;
 import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpResponse;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.softeg.slartus.forpdaapi.IHttpClient;
 import org.softeg.slartus.forpdaapi.ProfileApi;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.listfragments.ListFragmentActivity;
@@ -55,7 +58,6 @@ public class ShortUserInfo {
     private Handler mHandler = new Handler();
 
     public ShortUserInfo(Activity activity) {
-        //enableStrictMode();
         prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
 
         mActivity = activity;
@@ -67,6 +69,7 @@ public class ShortUserInfo {
         imgAvatar = (CircleImageView) findViewById(R.id.imgAvatara);
         infoRefresh = (ImageView) findViewById(R.id.infoRefresh);
         userBackground = (ImageView) findViewById(R.id.userBackground);
+
         if(prefs.getBoolean("isUserBackground",false)){
             File imgFile = new File(prefs.getString("userBackground",""));
             if(imgFile.exists()){
@@ -154,10 +157,8 @@ public class ShortUserInfo {
         @Override
         protected Void doInBackground(String... urls) {
             try {
-                strings = ProfileApi.getUserInfo(Client.getInstance(), Client.getInstance().UserId);
-                if ((strings[0] != null) & (strings[1] != null)) {
-
-                } else {
+                strings = getUserInfo(Client.getInstance(), Client.getInstance().UserId);
+                if ((strings[0] == null) & (strings[1] == null)) {
                     strings[1] = prefs.getString("shortUserInfoRep", "-100500");
                     strings[0] = "http://s.4pda.to/img/qms/logo.png";
                 }
@@ -181,40 +182,24 @@ public class ShortUserInfo {
                 userNick.setText(Client.getInstance().getUser());
                 userRep.setText("Репутация: " + strings[1]);
                 prefs.edit().putString("shortUserInfoRep", strings[1]).apply();
-                int qmsCount = Client.getInstance().getQmsCount();
-                if (qmsCount != 0) {
-                    qmsMessages.setText("Новые сообщения QMS: " + qmsCount);
-                } else {
-                    qmsMessages.setText("Нет новых сообщений QMS");
-                }
-                if (Preferences.isLoadShortUserInfo() & prefs.getString("shortAvatarUrl", "http://s.4pda.to/img/qms/logo.png").equals(strings[0])) {
-                    new Picasso.Builder(App.getInstance()).build()
-                            .load(prefs.getString("shortAvatarUrl", "http://s.4pda.to/img/qms/logo.png"))
-                            .error(R.drawable.no_image)
-                            .into(imgAvatar);
-
-                } else {
-                    Picasso.Builder builder = new Picasso.Builder(App.getInstance());
-                    builder.downloader(new Downloader() {
-                        @Override
-                        public Response load(Uri uri, int networkPolicy) throws IOException {
-                            HttpResponse httpResponse = new HttpHelper().getDownloadResponse(uri.toString(), 0);
-                            return new Response(httpResponse.getEntity().getContent(), false, httpResponse.getEntity().getContentLength());
-                        }
-
-                        @Override
-                        public void shutdown() {
-                        }
-                    });
-                    builder.build()
-                            .load(strings[0])
-                            .error(R.drawable.no_image)
-                            .into(imgAvatar);
-                    prefs.edit().putBoolean("isLoadShortUserInfo", true).apply();
-                    prefs.edit().putString("shortAvatarUrl", strings[0]).apply();
-                }
-            } else {
-
+                refreshQms();
+                new Picasso.Builder(App.getInstance())
+                        .downloader(new Downloader() {
+                            @Override
+                            public Response load(Uri uri, int networkPolicy) throws IOException {
+                                HttpResponse httpResponse = new HttpHelper().getDownloadResponse(uri.toString(), 0);
+                                return new Response(httpResponse.getEntity().getContent(), false, httpResponse.getEntity().getContentLength());
+                            }
+                            @Override
+                            public void shutdown() {
+                            }
+                        })
+                        .build()
+                        .load(strings[0])
+                        .error(R.drawable.no_image)
+                        .into(imgAvatar);
+                prefs.edit().putBoolean("isLoadShortUserInfo", true).apply();
+                prefs.edit().putString("shortAvatarUrl", strings[0]).apply();
             }
         }
     }
@@ -228,18 +213,11 @@ public class ShortUserInfo {
         }
         return false;
     }
-    public String getRealPathFromURI(Context context, Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = { MediaStore.Images.Media.DATA };
-            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
+    public static String[] getUserInfo(IHttpClient httpClient, CharSequence userID) throws IOException {
+        String page = httpClient.performGet("http://4pda.ru/forum/index.php?showuser=" + userID);
+        Document doc = Jsoup.parse(page);
+        org.jsoup.nodes.Element element = doc.select("div#main").first();
+        return new String[]{element.select("div.user-box > div.photo > img").first().absUrl("src"),
+                element.select("div.statistic-box span[id*=\"ajaxrep\"]").first().text()};
     }
 }

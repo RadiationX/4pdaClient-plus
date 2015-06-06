@@ -158,13 +158,4 @@ public class ProfileApi {
         org.jsoup.nodes.Element userNickElement = element.select("div.user-box > h1").first();
         return userNickElement.text();
     }
-    public static String[] getUserInfo(IHttpClient httpClient, CharSequence userID) throws IOException {
-        String page = httpClient.performGet("http://4pda.ru/forum/index.php?showuser=" + userID);
-        Document doc = Jsoup.parse(page);
-        org.jsoup.nodes.Element element = doc.select("div#main").first();
-        String[] output = {"",""};
-        output[0] = element.select("div.user-box > div.photo > img").first().absUrl("src");
-        output[1] = element.select("div.statistic-box span[id*=\"ajaxrep\"]").first().text();
-        return output;
-    }
 }
