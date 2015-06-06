@@ -267,7 +267,6 @@ public class PreferencesActivity extends BasePreferencesActivity {
 
             return false;
         }
-
         private void pickUserBackground() {
             new MaterialDialog.Builder(getContext())
                     .content("Выберите изображение")
@@ -328,7 +327,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
 
         private class checkModNew extends AsyncTask<String, Void, Void> {
             String[] output = {"","","",""};
-            int nowVersion = 16;
+            int nowVersion = 17;
             MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
                     .progress(true, 0)
                     .content("Проверка обновления")

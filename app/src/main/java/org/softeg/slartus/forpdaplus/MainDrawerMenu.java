@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -101,7 +102,9 @@ public class MainDrawerMenu {
             }
         });
         mMenuGroups = new ArrayList<>();
-        //mMenuGroups.add(new LastActionsGroup());
+        if(PreferenceManager.getDefaultSharedPreferences(App.getContext()).getBoolean("categoryLast", true)){
+            mMenuGroups.add(new LastActionsGroup());
+        }
         mMenuGroups.add(new MainListGroup());
         mMenuGroups.add(new OthersActionsGroup());
 

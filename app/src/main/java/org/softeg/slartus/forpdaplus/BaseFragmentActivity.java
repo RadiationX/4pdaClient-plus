@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -104,7 +105,8 @@ public class BaseFragmentActivity extends ActionBarActivity
     protected void onCreate(Bundle saveInstance) {
         setTheme(isTransluent() ? App.getInstance().getTransluentThemeStyleResID() : App.getInstance().getThemeStyleResID());
         super.onCreate(saveInstance);
-        if (Integer.valueOf(android.os.Build.VERSION.SDK) == 19) {
+        boolean fullScreen = (getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
+        if (!fullScreen & (Integer.valueOf(android.os.Build.VERSION.SDK) == 19)) {
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
             if (App.getInstance().getCurrentThemeName().equals("white")) {
@@ -112,7 +114,7 @@ public class BaseFragmentActivity extends ActionBarActivity
             } else if (App.getInstance().getCurrentThemeName().equals("black")) {
                 tintManager.setTintColor(getResources().getColor(R.color.statusBar_bl));
             }
-        } else {
+        } else if(!fullScreen) {
             getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);

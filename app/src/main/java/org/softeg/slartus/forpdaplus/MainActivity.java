@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -141,6 +142,11 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             int paddingTopTab = (int) (88.5 * scale + 0.5f);
             int paddingBottom = 0;
 
+            boolean fullScreen = (getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
+            if(fullScreen){
+                paddingTop = (int) (56 * scale + 0.5f);
+                paddingTopTab = (int) (64 * scale + 0.5f);
+            }
             if(Integer.valueOf(android.os.Build.VERSION.SDK) > 19){
                 if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
                     if(needBottom()) {
@@ -160,6 +166,9 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             }
 
             mMainDrawerMenu = new MainDrawerMenu(this, this);
+
+
+
 
             NotifiersManager notifiersManager = new NotifiersManager(this);
             new DonateNotifier(notifiersManager).start(this);

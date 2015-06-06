@@ -153,6 +153,7 @@ HTML body {
   font-family: Courier, Courier New, Verdana, Arial;
   background: #fff8ee;
   font-size: 0.9rem;
+  white-space: pre-wrap;
 }
 .post-block.code > .block-body .post-block.spoil {
   -webkit-box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.3);

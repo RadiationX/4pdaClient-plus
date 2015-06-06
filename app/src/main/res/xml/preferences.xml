@@ -36,6 +36,11 @@
             android:key="userBackground"
             android:summary="Требуется перезапуск приложения"
             android:title="Изображение в выезжающем меню"/>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="categoryLast"
+            android:title="Отображать 'Последние'"
+            android:summary="Меню 'Последние' в выезжающем меню. Требуется перезапуск приложения"/>
         <org.softeg.slartus.forpdaplus.controls.SummaryValueListPreference
             android:defaultValue="-1"
             android:entries="@array/screenOrienationArray"

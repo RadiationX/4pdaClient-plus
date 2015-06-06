@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -52,7 +53,8 @@ public class ImageViewActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         super.setTheme( App.getInstance().getThemeStyleResID() );
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        if (Integer.valueOf(android.os.Build.VERSION.SDK) == 19) {
+        boolean fullScreen = (getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
+        if (!fullScreen & (Integer.valueOf(android.os.Build.VERSION.SDK) == 19)) {
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
             if (App.getInstance().getCurrentThemeName().equals("white")) {

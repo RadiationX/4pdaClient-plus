@@ -2485,6 +2485,7 @@ a[href*=findpost][title="Перейти к сообщению"]:after {
 }
 .post-block.code > .block-body {
   white-space: pre-wrap;
+  font-family: Courier, Courier New, Verdana, Arial;
 }
 .post-block.code.box > .block-body {
   max-height: 11em;
