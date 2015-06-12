@@ -770,7 +770,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
                 if (isCancelled()) return false;
                 Client client = Client.getInstance();
                 if (TextUtils.isEmpty(Comment))
-                    m_ThemeBody = transformBody(Jsoup.connect(m_NewsUrl).get());
+                    m_ThemeBody = transformBody(client.performGet(m_NewsUrl));
                 else {
                     Map<String, String> additionalHeaders = new HashMap<>();
                     additionalHeaders.put("comment", Comment);
@@ -778,7 +778,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
                     additionalHeaders.put("submit", "Отправить комментарий");
                     additionalHeaders.put("comment_reply_ID", ReplyId);
                     additionalHeaders.put("comment_reply_dp", Dp);
-                    m_ThemeBody = transformBody(Jsoup.connect(client.performPost("http://4pda.ru/wp-comments-post.php", additionalHeaders, "UTF-8")).get());
+                    m_ThemeBody = transformBody(client.performPost("http://4pda.ru/wp-comments-post.php", additionalHeaders, "UTF-8"));
 
 
                 }
@@ -790,20 +790,30 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             }
         }
 
-        private String transformBody(Document body) {
+        private String transformBody(String body) {
 
             NewsHtmlBuilder builder = new NewsHtmlBuilder();
-            //Matcher matcher = PatternExtensions.compile("<title>([^<>]*)</title>").matcher(body);
+            Matcher matcher = PatternExtensions.compile("<title>([^<>]*)</title>").matcher(body);
+            Matcher matchert = PatternExtensions.compile("<script type=\".*\">wrs([\\s\\S]*?)<.script>").matcher(body);
             m_Title = "Новости";
-            //if (matcher.find()) {
-                m_Title = body.title();
-            //}
+            if (matcher.find()) {
+                m_Title = Html.fromHtml(matcher.group(1)).toString();
+            }
             builder.beginHtml(m_Title);
             builder.beginBody();
-            builder.append("<div style=\"padding-top:"+builder.getMarginTop()+"px\"/>\n");
+            builder.append("<div style=\"padding-top:" + builder.getMarginTop() + "px\"/>\n");
             builder.append("<div id=\"main\">");
+            builder.append("<script type=\"text/javascript\" async=\"async\" src=\"file:///android_asset/forum/js/jqp.min.js\"></script>\n");
+            builder.append("<script type=\"text/javascript\" async=\"async\" src=\"file:///android_asset/forum/js/site.min.js\" charset=\"windows-1251\"></script>\n");
+            builder.append("<script type=\"text/javascript\">(function(f,h){var c=\"$4\";if(\"function\"!=typeof f[c]||.3>f[c].lib4PDA){var g={},b=function(){return f[c]||this},k=function(a,d){return function(){\"function\"==typeof d&&(!a||a in b?d(b[a],a):!g[a]&&(g[a]=[d])||g[a].push(d))}};b.fn=b.prototype={lib4PDA:.3,constructor:b,addModule:function(a,d){if(!(a in b)){b[a]=b.fn[a]=d?\"function\"==typeof d?d(b):d:h;for(var c=0,e=g[a];e&&c<e.length;)e[c++](b[a],a);delete g[a]}return b},onInit:function(a,d){for(var c=(a=(a+\"\").split(\" \")).length,e=d;c;)e=new k(a[--c],\n" +
+                    "e);e();return b}};f[c]=f.lib4PDA=b;for(c in b.fn)b[c]=b.fn[c]}})(window);(function(a){var wrsI=0;\n" +
+                    "window.wrs=function(c,f){a.write('<div id=\"wrs-div'+wrsI+'\"></div>');var d=a.getElementById('wrs-div'+wrsI),i=setInterval(function(w){if(!c()){return;}clearInterval(i);w=a.write;a.write=function(t){d.innerHTML+=t};f();a.write=w},500);wrsI++}})(document);</script>");
 
             builder.append(parseBody(body));
+
+            if (matchert.find()) {
+                builder.append("<script type=\"text/javascript\">wrs"+matchert.group(1)+"</script>");
+            }
 
             builder.append("</div><br/><br/><br/><br/>");
             builder.endBody();
@@ -811,8 +821,8 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             return builder.getHtml().toString();
         }
 
-        private String parseBody(Document body) {
-            /*Matcher m = PatternExtensions.compile("<article id=\"content\" class=\"\" >([\\s\\S]*?)<aside id=\"sidebar\">").matcher(body);
+        private String parseBody(String body) {
+            Matcher m = PatternExtensions.compile("<article id=\"content\" class=\"\" data-ztm=\".*\">([\\s\\S]*?)<aside id=\"sidebar\">").matcher(body);
             if (m.find()) {
                 return normalizeCommentUrls(m.group(1)).replaceAll("<form[\\s\\S]*?/form>", "");
             }
@@ -823,11 +833,8 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             m = PatternExtensions.compile("<div id=\"main\">([\\s\\S]*?)<div id=\"categories\">").matcher(body);
             if (m.find()) {
                 return normalizeCommentUrls(m.group(1)) + getNavi(body);
-            }*/
-            body.getElementById("commentform").remove();
-            String main = body.getElementById("content").html();
-
-            return normalizeCommentUrls(main);
+            }
+            return normalizeCommentUrls(body);
         }
 
 
@@ -851,6 +858,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             body = Pattern.compile("<iframe[^><]*?src=\"http://www.youtube.com/embed/([^\"/]*)\".*?(?:</iframe>|/>)", Pattern.CASE_INSENSITIVE)
                     .matcher(body)
                     .replaceAll("<a class=\"video-thumb-wrapper\" href=\"http://www.youtube.com/watch?v=$1\"><img class=\"video-thumb\" width=\"480\" height=\"320\" src=\"http://img.youtube.com/vi/$1/0.jpg\"/></a>");
+            /*body = body*/
             return body
                     .replaceAll("<div id=\"comment-form-reply-\\d+\"><a href=\"#\" data-callfn=\"commentform_move\" data-comment=\"(\\d+)\">ответить</a></div></div><ul class=\"comment-list level-(\\d+)\">"
                             , "<div id=\"comment-form-reply-$1\"><a href=\"http://4pdaservice.org/$1/$2\">ответить</a></div></div><ul class=\"comment-list level-$2\">")

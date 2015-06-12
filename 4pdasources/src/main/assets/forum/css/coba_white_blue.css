@@ -1071,8 +1071,23 @@ a {
   font-size: 0.875em;
   color: #757575;
 }
-#main .comment-box .comment-list li .heading .karma {
+#main .comment-box .comment-list li .heading .karma .icon-karma-up {
   display: none;
+}
+#main .comment-box .comment-list li .heading .karma .icon-hide-comment {
+  display: none;
+}
+#main .comment-box .comment-list li .heading .karma .num-wrap {
+  color: #757575;
+  float: right;
+}
+#main .comment-box .comment-list li .heading .karma .num-wrap .num {
+  padding-left: 0.28571429em;
+  font-size: 0.875em;
+}
+#main .comment-box .comment-list li .heading .karma .num-wrap .num:before {
+  padding-right: 0.28571429em;
+  content: " | \2764";
 }
 #main .comment-box .comment-list li .heading .h-meta {
   float: right;

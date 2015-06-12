@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -60,7 +61,7 @@ public class SearchSettingsDialogFragment extends DialogFragment {
     private Spinner source_spinner, sort_spinner, result_spinner, forumsSpinner;
     private View forumsProgress, topicsProgress;
     private View topics_group, forums_group, result_group, sort_group, source_group;
-    private Button forHideButton;
+    private ImageButton forHideButton;
     private LinearLayout forHide;
     public static final int FORUMS_DIALOG_REQUEST = 1;
 
@@ -192,14 +193,19 @@ public class SearchSettingsDialogFragment extends DialogFragment {
         source_group = view.findViewById(R.id.source_group);
         sort_group = view.findViewById(R.id.sort_group);
         result_group = view.findViewById(R.id.result_group);
-        forHideButton = (Button) view.findViewById(R.id.forHideButton);
+        forHideButton = (ImageButton) view.findViewById(R.id.forHideButton);
         forHide = (LinearLayout) view.findViewById(R.id.forHide);
 
         forHideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                forHideButton.setVisibility(View.GONE);
-                forHide.setVisibility(View.VISIBLE);
+                if(forHide.getVisibility() == View.VISIBLE){
+                    forHide.setVisibility(View.GONE);
+                    forHideButton.setImageDrawable(getResources().getDrawable(R.drawable.btn_show_post_panel));
+                }else {
+                    forHide.setVisibility(View.VISIBLE);
+                    forHideButton.setImageDrawable(getResources().getDrawable(R.drawable.btn_hide_post_panel));
+                }
             }
         });
         if (view.findViewById(R.id.forums_button) != null) {

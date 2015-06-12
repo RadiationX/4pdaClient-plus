@@ -2,6 +2,7 @@ package org.softeg.slartus.forpdaplus;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.DrawerLayout;
@@ -105,29 +106,37 @@ public class BaseFragmentActivity extends ActionBarActivity
     protected void onCreate(Bundle saveInstance) {
         setTheme(isTransluent() ? App.getInstance().getTransluentThemeStyleResID() : App.getInstance().getThemeStyleResID());
         super.onCreate(saveInstance);
-        boolean fullScreen = (getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
-        if (!fullScreen & (Integer.valueOf(android.os.Build.VERSION.SDK) == 19)) {
-            SystemBarTintManager tintManager = new SystemBarTintManager(this);
-            tintManager.setStatusBarTintEnabled(true);
-            if (App.getInstance().getCurrentThemeName().equals("white")) {
-                tintManager.setTintColor(getResources().getColor(R.color.statusBar_wh));
-            } else if (App.getInstance().getCurrentThemeName().equals("black")) {
-                tintManager.setTintColor(getResources().getColor(R.color.statusBar_bl));
+        if(PreferenceManager.getDefaultSharedPreferences(App.getContext()).getBoolean("statusbarTransparent",false)) {
+            if (Integer.valueOf(android.os.Build.VERSION.SDK) > 19) {
+                getWindow().setStatusBarColor(Color.TRANSPARENT);
+                getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             }
-        } else if(!fullScreen) {
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            LinearLayout statusBarLay = (LinearLayout) inflater.inflate(R.layout.statusbar, null);
-            LinearLayout statusBar = (LinearLayout) statusBarLay.findViewById(R.id.statusBar);
-            if (App.getInstance().getCurrentThemeName().equals("white")) {
-                statusBar.setBackgroundColor(getResources().getColor(R.color.statusBar_wh));
-            } else if (App.getInstance().getCurrentThemeName().equals("black")) {
-                statusBar.setBackgroundColor(getResources().getColor(R.color.statusBar_bl));
+        }else {
+            if (Integer.valueOf(android.os.Build.VERSION.SDK) == 19) {
+                SystemBarTintManager tintManager = new SystemBarTintManager(this);
+                tintManager.setStatusBarTintEnabled(true);
+                if (App.getInstance().getCurrentThemeName().equals("white")) {
+                    tintManager.setTintColor(getResources().getColor(R.color.statusBar_wh));
+                } else if (App.getInstance().getCurrentThemeName().equals("black")) {
+                    tintManager.setTintColor(getResources().getColor(R.color.statusBar_bl));
+                }
+            } else {
+                getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LinearLayout statusBarLay = (LinearLayout) inflater.inflate(R.layout.statusbar, null);
+                LinearLayout statusBar = (LinearLayout) statusBarLay.findViewById(R.id.statusBar);
+                if (App.getInstance().getCurrentThemeName().equals("white")) {
+                    statusBar.setBackgroundColor(getResources().getColor(R.color.statusBar_wh));
+                } else if (App.getInstance().getCurrentThemeName().equals("black")) {
+                    statusBar.setBackgroundColor(getResources().getColor(R.color.statusBar_bl));
+                }
+                ViewGroup decor = (ViewGroup) getWindow().getDecorView();
+                decor.addView(statusBarLay);
             }
-            ViewGroup decor = (ViewGroup) getWindow().getDecorView();
-            decor.addView(statusBarLay);
         }
 
 

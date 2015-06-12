@@ -327,7 +327,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
 
         private class checkModNew extends AsyncTask<String, Void, Void> {
             String[] output = {"","","",""};
-            int nowVersion = 17;
+            int nowVersion = 18;
             MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
                     .progress(true, 0)
                     .content("Проверка обновления")
@@ -360,7 +360,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
                 }else{
                     String text = "";
                     if (output[2].equals("true")){
-                        text = "<b>"+output[3]+"</b><br/><br/>\"";
+                        text = "<b>"+output[3]+"</b><br/><br/>";
                     }
                     text += "Список всех изменений доступен в теме, в спойлере \"Изменения\"";
                     new MaterialDialog.Builder(getActivity())
@@ -777,7 +777,7 @@ public class PreferencesActivity extends BasePreferencesActivity {
                     "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=2040700\">Remie-l</a></b> (новые стили для топиков)<br/>\n" + */
                     "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=1657987\">__KoSyAk__</a></b> Иконка программы<br/>\n" +
                     "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=96664\">Морфий</a></b> Material стили<br/>\n" +
-                    "* <b><a href=\"http://www.4pda.ru\">Пользователям 4pda</a></b> (тестирование, идеи, поддержка)\n" +
+                    "* <b>Пользователям 4pda</b> (тестирование, идеи, поддержка)\n" +
                     "<br/>" +
                     "Copyright 2014 Artem Slinkin <slartus@gmail.com>";
 

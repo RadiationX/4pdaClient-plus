@@ -46,8 +46,6 @@ public class HtmlBuilder {
     }
 
     public void addStyleSheetLink(StringBuilder sb) {
-
-
         sb.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"file://" + getStyle() + "\" />\n");
     }
 
