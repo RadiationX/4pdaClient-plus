@@ -778,8 +778,8 @@ public class PreferencesActivity extends BasePreferencesActivity {
                     "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=1657987\">__KoSyAk__</a></b> Иконка программы<br/>\n" +
                     "* <b><a href=\"http://4pda.ru/forum/index.php?showuser=96664\">Морфий</a></b> Material стили<br/>\n" +
                     "* <b>Пользователям 4pda</b> (тестирование, идеи, поддержка)\n" +
-                    "<br/>" +
-                    "Copyright 2014 Artem Slinkin <slartus@gmail.com>";
+                    "<br/><br/>" +
+                    "Copyright 2011-2015 Artem Slinkin <slartus@gmail.com>";
 
             MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
                     .title(getProgramFullName(getActivity()))

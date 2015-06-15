@@ -212,7 +212,6 @@ HTML body {
   font-family: Courier, Courier New, Verdana, Arial;
   background: #5e5e5d;
   font-size: 0.9rem;
-  white-space: pre-wrap;
 }
 .post-block.code > .block-body .post-block.spoil {
   -webkit-box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
@@ -1766,6 +1765,7 @@ img[src*="style_emoticons"] {
   display: inline-block;
   vertical-align: top;
   margin: 0.5rem;
+  max-width: 100%;
 }
 #main .wp-caption .wp-caption-dt {
   display: block;
@@ -2606,17 +2606,6 @@ h3 a {
   margin: 0;
   text-align: right;
 }
-.comment-box li .heading .karma > *{
-    display: none;
-}
-.comment-box li .heading .karma .num-wrap {
-    color: black;
-    display: inline-block;
-}
-.comment-box li .heading .karma .num-wrap .num:before {
-    content: " | \2764 ";
-    padding-right: 0.2em;
-}
 .comment-box > .heading h2 {
   display: block;
   color: white;
@@ -2698,12 +2687,29 @@ h3 a {
   border-bottom: 1px solid #4d4d4d;
 }
 .comment-box li .heading .nickname {
+  margin-right: 0.3rem;
   text-decoration: none;
   font-style: normal !important;
   font-size: 1rem;
   font-weight: bold;
   color: white;
   line-height: 1.4;
+}
+.comment-box li .heading .karma {
+  float: right;
+}
+.comment-box li .heading .karma .icon-karma-up {
+  padding: 0 0.3rem;
+}
+.comment-box li .heading .karma .icon-karma-up:before {
+  color: #818181;
+}
+.comment-box li .heading .karma .icon-hide-comment {
+  display: none;
+}
+.comment-box li .heading .karma .num-wrap .num {
+  padding: 0 0.3rem;
+  color: #969696;
 }
 .comment-box li .heading .h-meta {
   display: inline-block;
@@ -2754,23 +2760,21 @@ h3 a {
 }
 .comment-box li DIV[id*="comment-form-reply"] {
   position: absolute;
-  right: 0.3rem;
-  bottom: 0.3rem;
+  right: 4rem;
+  top: 0.3rem;
   display: block;
   text-align: right;
   margin: 0;
 }
 .comment-box li DIV[id*="comment-form-reply"] a {
   display: inline-block;
-  color: #c0c0c0 !important;
+  color: #aaddff;
   text-decoration: none;
   font-size: 0.9rem;
+  font-weight: bold;
   padding: 0 0.5rem;
   height: 1.4rem;
   line-height: 1.3rem;
-  border: 1px solid #4d4d4d;
-  background: #424242;
-  border-radius: 0.15rem;
 }
 .video-thumb-wrapper {
   display: block;

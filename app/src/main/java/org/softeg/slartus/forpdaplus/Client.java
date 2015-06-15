@@ -1,12 +1,16 @@
 package org.softeg.slartus.forpdaplus;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -28,6 +32,7 @@ import org.softeg.slartus.forpdacommon.NotReportException;
 import org.softeg.slartus.forpdacommon.Observer;
 import org.softeg.slartus.forpdacommon.PatternExtensions;
 import org.softeg.slartus.forpdacommon.SimpleCookie;
+import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
 import org.softeg.slartus.forpdaplus.classes.DownloadTask;
 import org.softeg.slartus.forpdaplus.classes.DownloadTasks;
 import org.softeg.slartus.forpdaplus.classes.Forum;
@@ -370,53 +375,22 @@ public class Client implements IHttpClient {
 
     public void showLoginForm(Context mContext, final OnUserChangedListener onUserChangedListener) {
         try {
-            // if (m_LoginDialog == null)
-            AlertDialog m_LoginDialog;
-            {
-                final Context context = mContext;
-                final OnUserChangedListener monUserChangedListener = onUserChangedListener;
-                LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View layout = inflater.inflate(R.layout.login_activity, null);
 
             final LoginDialog loginDialog = new LoginDialog(mContext);
 
-            new AlertDialogBuilder(mContext)
-                    .setTitle("Вход")
-                    .setView(loginDialog.getView())
-                    .setPositiveButton("Вход", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-
+            new MaterialDialog.Builder(mContext)
+                    .title("Вход")
+                    .customView(loginDialog.getView(), true)
+                    .positiveText("Вход")
+                    .negativeText("Отмена")
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
                             loginDialog.connect(onUserChangedListener);
                         }
                     })
-                    .setNegativeButton("Отмена", null)
-                    .create().show();
+                    .show();
 
-
-                m_LoginDialog = new AlertDialogBuilder(context)
-                        .setTitle("Вход")
-                        .setView(layout)
-                        .setPositiveButton("Вход", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                LoginTask loginTask = new LoginTask(context);
-                                loginTask.setOnUserChangedListener(monUserChangedListener);
-                                loginTask.execute(username_edit.getText().toString(), password_edit.getText().toString(),
-                                        Boolean.toString(privacy_checkbox.isChecked()),
-                                        Boolean.toString(remember_checkbox.isChecked()), Boolean.toString(autologin_checkbox.isChecked())
-                                );
-                            }
-                        })
-                        .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                if (monUserChangedListener != null)
-//                                    monUserChangedListener.onUserChanged(m_User, false);
-                            }
-                        })
-                        .create();
-            }
-
-            m_LoginDialog.show();
         } catch (Exception ex) {
             AppLog.e(mContext, ex);
         }

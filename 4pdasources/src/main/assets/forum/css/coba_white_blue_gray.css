@@ -860,6 +860,54 @@ a {
   display: table;
   clear: both;
 }
+#main .container .content .content-box .btn {
+  line-height: 2.5em;
+  padding: 0 1em;
+  display: inline-block;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  color: #ffffff;
+}
+#main .container .content .content-box .btn.green {
+  background: #390;
+}
+#main .container .content .content-box .btn.orenge {
+  background: #fec63d;
+}
+#main .container .content .content-box .btn.gray {
+  background: #999;
+}
+#main .container .content .content-box .btn.white {
+  background: #fff;
+  color: #990000;
+}
+#main .container .content .content-box .eg_tbl {
+  background: transparent;
+  margin-top: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0 -1em;
+}
+#main .container .content .content-box .eg_tbl > li {
+  padding: 0 1em;
+  border-top: 0.0625em solid #e9e9e9;
+  background: transparent;
+}
+#main .container .content .content-box .eg_tbl > li > ol {
+  list-style: none;
+  padding: 0;
+  width: auto;
+}
+#main .container .content .content-box .eg_tbl > li > ol li {
+  padding-top: 1em;
+  text-align: center;
+}
+#main .container .content .content-box .eg_tbl > li > div p._spacer {
+  display: none;
+}
+#main .container .content .content-box .eg_tbl > li:last-child {
+  border-bottom: 0.0625em solid #e9e9e9;
+}
 #main .materials-box {
   background: #ffffff;
   margin: 0.5em;
@@ -1078,16 +1126,22 @@ a {
   display: none;
 }
 #main .comment-box .comment-list li .heading .karma .num-wrap {
-  color: #757575;
   float: right;
 }
-#main .comment-box .comment-list li .heading .karma .num-wrap .num {
+#main .comment-box .comment-list li .heading .karma .num-wrap:before {
+  content: " | ";
   padding-left: 0.28571429em;
   font-size: 0.875em;
 }
+#main .comment-box .comment-list li .heading .karma .num-wrap .num {
+  color: #757575;
+}
 #main .comment-box .comment-list li .heading .karma .num-wrap .num:before {
   padding-right: 0.28571429em;
-  content: " | \2764";
+  content: "\2764";
+}
+#main .comment-box .comment-list li .heading .karma[data-karma-vote*="1"] .num {
+  color: #757575;
 }
 #main .comment-box .comment-list li .heading .h-meta {
   float: right;
