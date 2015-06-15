@@ -791,7 +791,6 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         }
 
         private String transformBody(String body) {
-
             NewsHtmlBuilder builder = new NewsHtmlBuilder();
             Matcher matcher = PatternExtensions.compile("<title>([^<>]*)</title>").matcher(body);
             Matcher matchert = PatternExtensions.compile("<script type=\".*\">wrs([\\s\\S]*?)<.script>").matcher(body);
@@ -822,11 +821,13 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         }
 
         private String parseBody(String body) {
-            Matcher m = PatternExtensions.compile("<article id=\"content\" class=\"\" data-ztm=\".*\">([\\s\\S]*?)<aside id=\"sidebar\">").matcher(body);
+            Matcher m = PatternExtensions.compile("<article id=\"content\" class=\"\" data-ztm=\"[^\"]*\">([\\s\\S]*?)<aside id=\"sidebar\">").matcher(body);
             if (m.find()) {
                 return normalizeCommentUrls(m.group(1)).replaceAll("<form[\\s\\S]*?/form>", "");
             }
-            m = PatternExtensions.compile("<div id=\"main\">([\\s\\S]*?)<form action=\"(http://4pda.ru)?/wp-comments-post.php\" method=\"post\" id=\"commentform\">").matcher(body);
+            m = PatternExtensions
+                    .compile("<div id=\"main\">([\\s\\S]*?)<form action=\"(http://4pda.ru)?/wp-comments-post.php\" method=\"post\" id=\"commentform\">")
+                    .matcher(body);
             if (m.find()) {
                 return normalizeCommentUrls(m.group(1)) + getNavi(body);
             }
@@ -834,6 +835,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             if (m.find()) {
                 return normalizeCommentUrls(m.group(1)) + getNavi(body);
             }
+
             return normalizeCommentUrls(body);
         }
 
@@ -858,7 +860,6 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             body = Pattern.compile("<iframe[^><]*?src=\"http://www.youtube.com/embed/([^\"/]*)\".*?(?:</iframe>|/>)", Pattern.CASE_INSENSITIVE)
                     .matcher(body)
                     .replaceAll("<a class=\"video-thumb-wrapper\" href=\"http://www.youtube.com/watch?v=$1\"><img class=\"video-thumb\" width=\"480\" height=\"320\" src=\"http://img.youtube.com/vi/$1/0.jpg\"/></a>");
-            /*body = body*/
             return body
                     .replaceAll("<div id=\"comment-form-reply-\\d+\"><a href=\"#\" data-callfn=\"commentform_move\" data-comment=\"(\\d+)\">ответить</a></div></div><ul class=\"comment-list level-(\\d+)\">"
                             , "<div id=\"comment-form-reply-$1\"><a href=\"http://4pdaservice.org/$1/$2\">ответить</a></div></div><ul class=\"comment-list level-$2\">")

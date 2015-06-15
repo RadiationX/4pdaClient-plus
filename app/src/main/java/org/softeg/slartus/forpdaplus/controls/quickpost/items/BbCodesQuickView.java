@@ -38,11 +38,11 @@ public class BbCodesQuickView extends BaseQuickView {
         super(context);
     }
 
-    private int getSelectionStart(){
+    private int getSelectionStart() {
         return getEditor().getSelectionStart();
     }
 
-    private int getSelectionEnd(){
+    private int getSelectionEnd() {
         return getEditor().getSelectionEnd();
     }
 
@@ -562,6 +562,8 @@ public class BbCodesQuickView extends BaseQuickView {
         if (selectionStart != -1 && selectionStart != selectionEnd) {
             getEditor().getText().insert(selectionStart, "[" + tag + "]");
             getEditor().getText().insert(selectionEnd + tag.length() + 2, "[/" + tag + "]");
+
+            //getEditor().setSelection(selectionStart + tag.length() + 2, selectionEnd);
             return;
         }
 
