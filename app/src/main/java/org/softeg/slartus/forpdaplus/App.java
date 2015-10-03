@@ -71,6 +71,24 @@ public class App extends android.app.Application {
 
     private static boolean m_IsDebugModeLoaded = false;
     private static boolean m_IsDebugMode = false;
+    private static String currentFragmentTag;
+    private static boolean destroyed=false;
+
+    public static String getCurrentFragmentTag(){
+        return currentFragmentTag;
+    }
+    public static void setCurrentFragmentTag(String s){
+        currentFragmentTag = s;
+    }
+
+
+    public static boolean isDestroyed(){
+        return destroyed;
+    }
+    public static void setDestroid(boolean b){
+        destroyed = b;
+    }
+
 
     public static boolean getIsDebugMode() {
 

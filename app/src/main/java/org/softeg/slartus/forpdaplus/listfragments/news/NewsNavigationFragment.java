@@ -79,7 +79,7 @@ public class NewsNavigationFragment extends BaseBrickFragment implements ActionB
 
         Preferences.News.setLastSelectedSection(position);
 
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         Fragment currentFragment = fragmentManager.findFragmentById(R.id.news_content_frame);
         if (currentFragment != null) {
             if (((IBrickFragment) currentFragment)
@@ -177,6 +177,10 @@ public class NewsNavigationFragment extends BaseBrickFragment implements ActionB
             ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
             ((AppCompatActivity)getActivity()).getSupportActionBar().setListNavigationCallbacks(listAdapter, this);
             ((AppCompatActivity)getActivity()).getSupportActionBar().setSelectedNavigationItem(Preferences.News.getLastSelectedSection());
+
+        }else {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(true);
         }
     }
 

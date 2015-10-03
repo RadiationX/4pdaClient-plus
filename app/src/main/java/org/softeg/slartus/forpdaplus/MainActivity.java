@@ -50,6 +50,7 @@ import org.softeg.slartus.forpdaplus.tabs.Tabs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -80,12 +81,13 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
     public void onDestroy() {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment currentFragment = fragmentManager.findFragmentByTag(currentFragmentTag);
+        Fragment currentFragment = fragmentManager.findFragmentByTag(App.getCurrentFragmentTag());
         if (currentFragment != null) {
             //fragmentManager.beginTransaction().remove(currentFragment).commit();
             //currentFragment.onDestroy();
 
         }
+        App.setDestroid(true);
         super.onDestroy();
     }
 
@@ -146,7 +148,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
                 leftDrawer.setPadding(0,(int) (25 * scale + 0.5f),0,0);
             }
             if(top&bottom){
-                leftDrawer.setPadding(0,(int) (25 * scale + 0.5f),0,(int) (48 * scale + 0.5f));
+                leftDrawer.setPadding(0, (int) (25 * scale + 0.5f), 0, (int) (48 * scale + 0.5f));
             }
 
             mMainDrawerMenu = new MainDrawerMenu(this, this);
@@ -155,6 +157,13 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             new DonateNotifier(notifiersManager).start(this);
             new TopicAttentionNotifier(notifiersManager).start(this);
             new ForPdaVersionNotifier(notifiersManager, 1).start(this);
+            if(saveInstance!=null){
+                for(Fragment fragment:getSupportFragmentManager().getFragments()){
+                    if(!String.valueOf(fragment.getTag()).matches("f1|News_List")){
+                        ((IBrickFragment)fragment).loadData(false);
+                    }
+                }
+            }
         } catch (Throwable ex) {
             AppLog.e(getApplicationContext(), ex);
         }
@@ -239,9 +248,24 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
      * Swaps fragments in the main content view
      */
     public void selectItem(final BrickInfo listTemplate) {
+        if (mMainDrawerMenu != null)
+            mMainDrawerMenu.close();
+        currentFragmentTag = App.getCurrentFragmentTag();
         if (listTemplate.getName().equals(String.valueOf(currentFragmentTag))) {
-            if (mMainDrawerMenu != null)
-                mMainDrawerMenu.close();
+            if(App.isDestroyed()){
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                for (Fragment fr:getSupportFragmentManager().getFragments()) {
+                    if (!String.valueOf(fr.getTag()).matches("f1|News_List|News_Pages|"+listTemplate.getName()))
+                        transaction.remove(fr);
+                    if (String.valueOf(fr.getTag()).matches("News_List|News_Pages"))
+                        transaction.hide(fr);
+                }
+                transaction.show(getSupportFragmentManager().findFragmentByTag(listTemplate.getName()));
+                transaction.commit();
+                App.setDestroid(false);
+                setTitle(listTemplate.getTitle());
+                Log.e("frag",currentFragmentTag+" "+getTitle()+" "+listTemplate.getName());
+            }
             return;
         }else {
             if (getSupportActionBar() != null) {
@@ -257,7 +281,9 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
                     return;
                 }else {
                     for (Fragment fr:getSupportFragmentManager().getFragments())
-                        if(!String.valueOf(fr.getTag()).matches("f1|News_List")) transaction.hide(fr);
+                        if(fr!=null)
+                            if (!String.valueOf(fr.getTag()).matches("f1|News_List"))
+                                transaction.hide(fr);
 
                     Fragment fragment = getSupportFragmentManager().findFragmentByTag(listTemplate.getName());
                     if(fragment==null){
@@ -269,11 +295,9 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
                     }
                 }
             }
-            currentFragmentTag = listTemplate.getName();
-            transaction.commit();
+            App.setCurrentFragmentTag(listTemplate.getName());
             setTitle(listTemplate.getTitle());
-            if (mMainDrawerMenu != null)
-                mMainDrawerMenu.close();
+            transaction.commit();
         }
     }
 
@@ -287,7 +311,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         try {
-            Fragment currentFragment = getSupportFragmentManager().findFragmentByTag(currentFragmentTag);
+            Fragment currentFragment = getSupportFragmentManager().findFragmentByTag(App.getCurrentFragmentTag());
             if (currentFragment != null && ((IBrickFragment) currentFragment).dispatchKeyEvent(event))
                 return true;
         } catch (Throwable ex) {
