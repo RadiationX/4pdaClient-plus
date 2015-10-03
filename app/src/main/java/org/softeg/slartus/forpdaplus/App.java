@@ -45,7 +45,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Time: 8:03
  */
 @ReportsCrashes(
-        mailTo = "ololosh10050@gmail.com",
+        mailTo = "ololosh10050@gmail.com,slartus@gmail.com",
         mode = ReportingInteractionMode.DIALOG,
         customReportContent = {ReportField.APP_VERSION_CODE, ReportField.APP_VERSION_NAME,
                 ReportField.ANDROID_VERSION, ReportField.PHONE_MODEL,
@@ -59,28 +59,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 )
 public class App extends android.app.Application {
     public static final int THEME_WHITE = 0;
-    public static final int THEME_BLACK = 1;
+    public static final int THEME_DARK = 1;
 
-    public static final int THEME_WHITE_HD = 13;
-    public static final int THEME_BLACK_HD = 14;
+    public static final int THEME_MATERIAL_LIGHT = 2;
+    public static final int THEME_MATERIAL_DARK = 3;
+    public static final int THEME_WHITE_OLD_HD = 4;
 
-    public static final int THEME_WHITE_MATERIAL_CYAN = 15;
-    public static final int THEME_WHITE_MATERIAL_LB = 16;
-    public static final int THEME_WHITE_MATERIAL_GRAY= 17;
-    public static final int THEME_BLACK_MATERIAL_DARK = 18;
-
-    public static final int THEME_WHITE_REMIE = 2;
-
-
-    public static final int THEME_WHITE_TRABLONE = 4;
-    public static final int THEME_WHITER_REMIE = 5;
-    public static final int THEME_WHITE_VETALORLOV = 7;
-
-    public static final int THEME_WHITE_OLD = 12;
     public static final int THEME_CUSTOM_CSS = 99;
 
-    private final Integer[] WHITE_THEMES = {THEME_WHITE_TRABLONE, THEME_WHITE_VETALORLOV, THEME_WHITE_REMIE,
-            THEME_WHITER_REMIE, THEME_WHITE, THEME_WHITE_OLD, THEME_WHITE_HD, THEME_WHITE_MATERIAL_CYAN, THEME_WHITE_MATERIAL_LB, THEME_WHITE_MATERIAL_GRAY};
+    private final Integer[] WHITE_THEMES = {THEME_WHITE, THEME_WHITE_OLD_HD, THEME_MATERIAL_LIGHT};
 
     private static boolean m_IsDebugModeLoaded = false;
     private static boolean m_IsDebugMode = false;
@@ -117,17 +104,17 @@ public class App extends android.app.Application {
     }
 
     public int getWebViewFont() {
-        return PreferenceManager.getDefaultSharedPreferences(this).getInt("webViewFont",0);
+        return PreferenceManager.getDefaultSharedPreferences(this).getInt("webViewFont", 0);
     }
     public int getColorAccent(String type) {
         int color = 0;
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         switch(type) {
             case "Accent":
-                color = prefs.getInt("accentColor", Color.rgb(233, 30, 99));
+                color = prefs.getInt("accentColor", Color.rgb(2, 119, 189));
                 break;
             case "Pressed":
-                color = prefs.getInt("accentColorPressed", Color.rgb(233, 30, 99));
+                color = prefs.getInt("accentColorPressed", Color.rgb(0, 89, 159));
                 break;
         }
         return color;
@@ -254,7 +241,11 @@ public class App extends android.app.Application {
     }
 
     public int getThemeStyleWebViewBackground() {
-        return isWhiteTheme() ? getResources().getColor(R.color.white_theme_webview_background) : Color.BLACK;
+        return isWhiteTheme() ? Color.parseColor("#eeeeee") : Color.parseColor("#1a1a1a");
+    }
+
+    public String getCurrentBackgroundColorHtml() {
+        return isWhiteTheme() ? "#eeeeee" : "#1a1a1a";
     }
 
     public String getCurrentTheme() {
@@ -264,10 +255,6 @@ public class App extends android.app.Application {
 
     public String getCurrentThemeName() {
         return isWhiteTheme() ? "white" : "black";
-    }
-
-    public String getCurrentBackgroundColorHtml() {
-        return isWhiteTheme() ? "#fafafa" : "#242424";
     }
 
     private String checkThemeFile(String themePath) {
@@ -283,7 +270,7 @@ public class App extends android.app.Application {
     }
 
     private String defaultCssTheme() {
-        return "/android_asset/forum/css/coba_white_blue.css";
+        return "/android_asset/forum/css/4pda_light_blue.css";
     }
 
     public String getThemeCssFileName() {
@@ -296,7 +283,7 @@ public class App extends android.app.Application {
             return checkThemeFile(themeStr);
 
         String path = "/android_asset/forum/css/";
-        String cssFile = "coba_white_blue.css";
+        String cssFile = "4pda_light_blue.css";
         int theme = Integer.parseInt(themeStr);
         if (theme == -1)
             return themeStr;
@@ -305,43 +292,40 @@ public class App extends android.app.Application {
             case THEME_WHITE:
                 switch (color) {
                     case "pink":
-                        cssFile = "coba_white_blue.css";
+                        cssFile = "4pda_light_blue.css";
                         break;
                     case "blue":
-                        cssFile = "coba_white_blue_blue.css";
+                        cssFile = "4pda_light_pink.css";
                         break;
                     case "gray":
-                        cssFile = "coba_white_blue_gray.css";
+                        cssFile = "4pda_light_gray.css";
                         break;
                 }
                 break;
             /*case THEME_WHITE_OLD:
                 cssFile = "coba_white_blue.css";
                 break;*/
-            case THEME_BLACK:
+            case THEME_DARK:
                 switch (color) {
                     case "pink":
-                        cssFile = "coba_dark_blue.css";
+                        cssFile = "4pda_dark_blue.css";
                         break;
                     case "blue":
-                        cssFile = "coba_dark_blue_blue.css";
+                        cssFile = "4pda_dark_pink.css";
                         break;
                     case "gray":
-                        cssFile = "coba_dark_blue_gray.css";
+                        cssFile = "4pda_dark_gray.css";
                         break;
                 }
                 break;
-            case THEME_WHITE_MATERIAL_CYAN:
-                cssFile = "material_cyan.css";
+            case THEME_MATERIAL_LIGHT:
+                cssFile = "material_light.css";
                 break;
-            case THEME_WHITE_MATERIAL_LB:
-                cssFile = "material_light-blue.css";
-                break;
-            case THEME_WHITE_MATERIAL_GRAY:
-                cssFile = "material_gray.css";
-                break;
-            case THEME_BLACK_MATERIAL_DARK:
+            case THEME_MATERIAL_DARK:
                 cssFile = "material_dark.css";
+                break;
+            case THEME_WHITE_OLD_HD:
+                cssFile = "standart4PDA_HD.css";
                 break;
 
             /*case THEME_WHITE_HD:

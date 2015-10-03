@@ -5,14 +5,13 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -44,22 +43,18 @@ import android.widget.VideoView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.melnykov.fab.FloatingActionButton;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.softeg.slartus.forpdacommon.FileUtils;
 import org.softeg.slartus.forpdacommon.PatternExtensions;
 import org.softeg.slartus.forpdaplus.classes.AdvWebView;
 import org.softeg.slartus.forpdaplus.classes.BrowserViewsFragmentActivity;
 import org.softeg.slartus.forpdaplus.classes.History;
 import org.softeg.slartus.forpdaplus.classes.HtmlBuilder;
+import org.softeg.slartus.forpdaplus.classes.SaveHtml;
 import org.softeg.slartus.forpdaplus.classes.common.ExtUrl;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 import org.softeg.slartus.forpdaplus.video.PlayerActivity;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.lang.reflect.Method;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -90,6 +85,8 @@ public class NewsActivity extends BrowserViewsFragmentActivity
     public static String s_NewsUrl = null;
     private Uri m_Data = null;
     private ArrayList<History> m_History = new ArrayList<>();
+    private boolean pencil;
+    private boolean loadImages;
 
     public static void shownews(Context context, String url) {
         Intent intent = new Intent(context, NewsActivity.class);
@@ -113,7 +110,9 @@ public class NewsActivity extends BrowserViewsFragmentActivity
 
         setContentView(R.layout.news_activity);
 
-        if (Preferences.System.isDeveloper())
+        if (Preferences.System.isDevSavePage()|
+                Preferences.System.isDevInterface()|
+                Preferences.System.isDevStyle())
             Toast.makeText(this, "Режим разработчика", Toast.LENGTH_SHORT).show();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -134,10 +133,11 @@ public class NewsActivity extends BrowserViewsFragmentActivity
 
             }
         }
+        loadImages = webView.getSettings().getLoadsImagesAutomatically();
         webView.setActionBarheight(getSupportActionBar().getHeight());
         setHideActionBar();
 
-        webView.setWebChromeClient(new MyWebChromeClient());
+        //webView.setWebChromeClient(new MyWebChromeClient());
         pnlSearch = (RelativeLayout) findViewById(R.id.pnlSearch);
         txtSearch = (EditText) findViewById(R.id.txtSearch);
         txtSearch.addTextChangedListener(new TextWatcher() {
@@ -192,7 +192,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         fabComment.setColorNormal(App.getInstance().getColorAccent("Accent"));
         fabComment.setColorPressed(App.getInstance().getColorAccent("Pressed"));
         fabComment.setColorRipple(App.getInstance().getColorAccent("Pressed"));
-        if(Client.getInstance().getLogined()){
+        if(Client.getInstance().getLogined()&!PreferenceManager.getDefaultSharedPreferences(App.getInstance()).getBoolean("pancilInActionBar", false)){
             fabComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -243,16 +243,12 @@ public class NewsActivity extends BrowserViewsFragmentActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-
-            onBackPressed();
+            finish();
+            //onBackPressed();
             return true;
         }
 
         return true;
-    }
-
-    public ImageButton getFullScreenButton() {
-        return (ImageButton) findViewById(R.id.btnFullScreen);
     }
 
     @Override
@@ -284,7 +280,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
     @Override
     public void onResume() {
         super.onResume();
-
+        webView.onResume();
         webView.setWebViewClient(new MyWebViewClient());
         if (s_NewsUrl != null) {
             s_NewsUrl = null;
@@ -321,32 +317,13 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         return false;
     }
 
-    private class MyWebChromeClient extends WebChromeClient {
-        @Override
-        public void onShowCustomView(View view, CustomViewCallback callback) {
-
-            super.onShowCustomView(view, callback);
-            if (view instanceof FrameLayout) {
-                FrameLayout frame = (FrameLayout) view;
-                if (frame.getFocusedChild() instanceof VideoView) {
-                    VideoView video = (VideoView) frame.getFocusedChild();
-                    frame.removeView(video);
-                    NewsActivity.this.setContentView(video);
-                    video.setOnCompletionListener(NewsActivity.this);
-                    video.setOnErrorListener(NewsActivity.this);
-                    video.start();
-                }
-            }
-        }
-    }
-
 
     private class MyWebViewClient extends WebViewClient {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
 
-            NewsActivity.this.setProgressBarIndeterminateVisibility(true);
+            //NewsActivity.this.setProgressBarIndeterminateVisibility(true);
         }
 
         @Override
@@ -354,7 +331,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             super.onPageFinished(view, url);
 
 
-            NewsActivity.this.setProgressBarIndeterminateVisibility(false);
+            //NewsActivity.this.setProgressBarIndeterminateVisibility(false);
         }
 
         @Override
@@ -512,7 +489,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         saveHistory(url);
         m_NewsUrl = url;
         closeSearch();
-        GetNewsTask getThemeTask = new GetNewsTask(this);
+        GetNewsTask getThemeTask = new GetNewsTask(NewsActivity.this);
         getThemeTask.execute(url.replace("|", ""));
     }
 
@@ -577,17 +554,27 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
             super.onCreateOptionsMenu(menu, inflater);
             MenuItem item;
-
-            item = menu.add(R.string.Refresh).setIcon(R.drawable.ic_menu_refresh);
+            boolean pencil = PreferenceManager.getDefaultSharedPreferences(App.getInstance()).getBoolean("pancilInActionBar", false);
+            if(Client.getInstance().getLogined()&pencil){
+                item = menu.add("Комментировать").setIcon(R.drawable.ic_pencil_white_24dp);
+                item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        ((NewsActivity) getActivity()).respond();
+                        return true;
+                    }
+                });
+                item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            }
+            item = menu.add(R.string.Refresh).setIcon(R.drawable.ic_refresh_white_24dp);
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     ((NewsActivity) getActivity()).refresh();
                     return true;
                 }
             });
-            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
-            item = menu.add(R.string.Like).setIcon(R.drawable.ic_menu_thumb_up
+            item = menu.add(R.string.Like).setIcon(R.drawable.ic_thumb_up_white_24dp
                     //        MyApp.getInstance().isWhiteTheme() ?R.drawable.rating_good_white : R.drawable.rating_good_dark
             );
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -600,7 +587,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
 
 
             SubMenu optionsMenu = menu.addSubMenu("Настройки");
-            optionsMenu.getItem().setIcon(R.drawable.ic_menu_preferences);
+            optionsMenu.getItem().setIcon(R.drawable.ic_settings_white_24dp);
             optionsMenu.getItem().setTitle(R.string.Settings);
             optionsMenu.add("Скрывать верхнюю панель")
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -611,6 +598,17 @@ public class NewsActivity extends BrowserViewsFragmentActivity
                     return true;
                 }
             }).setCheckable(true).setChecked(Preferences.isHideActionBar());
+            if(!pencil) {
+                optionsMenu.add("Скрывать карандаш")
+                        .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            public boolean onMenuItemClick(MenuItem menuItem) {
+                                Preferences.setHideFab(!Preferences.isHideFab());
+                                getInterface().setHideActionBar();
+                                menuItem.setChecked(Preferences.isHideFab());
+                                return true;
+                            }
+                        }).setCheckable(true).setChecked(Preferences.isHideFab());
+            }
             optionsMenu.add("Размер шрифта")
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                         @Override
@@ -633,7 +631,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
             ExtUrl.addUrlSubMenu(new Handler(), getActivity(), menu,
                     ((NewsActivity) getActivity()).getUrl(), null, null);
 
-            if (Preferences.System.isDeveloper()) {
+            if (Preferences.System.isDevSavePage()) {
                 menu.add("Сохранить страницу").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         try {
@@ -646,7 +644,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
                 });
             }
 
-            item = menu.add(R.string.Close).setIcon(R.drawable.ic_menu_close_clear_cancel);
+            item = menu.add(R.string.Close).setIcon(R.drawable.ic_close_white_24dp);
             item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
                 public boolean onMenuItemClick(MenuItem item) {
@@ -676,30 +674,7 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
-
-                FileOutputStream outputStream;
-
-                try {
-                    String state = Environment.getExternalStorageState();
-                    if (!Environment.MEDIA_MOUNTED.equals(state)) {
-                        Toast.makeText(getContext(), "Внешнее хранилище недоступно!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-
-                    File file = new File(App.getInstance().getExternalFilesDir(null), "news.txt");
-                    FileWriter out = new FileWriter(file);
-                    out.write(html);
-                    out.close();
-                    Uri uri = Uri.fromFile(file);
-
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setDataAndType(uri, "text/plain");
-                    startActivity(intent);
-                } catch (Exception e) {
-                    AppLog.e(NewsActivity.this, e);
-                }
+                new SaveHtml(NewsActivity.this, html, "News");
             }
         });
     }
@@ -745,7 +720,10 @@ public class NewsActivity extends BrowserViewsFragmentActivity
         @Override
         public void addStyleSheetLink(StringBuilder sb) {
             sb.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"file://" + getStyle() + "\" />\n");
-            sb.append("<link rel=\"stylesheet\" href=\"file:///android_asset/forum/css/youtube_video.css\" type=\"text/css\" />\n");
+            sb.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"file:///android_asset/fonts/roboto/import.css\"/>\n");
+            sb.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"file:///android_asset/fonts/flaticons/import.css\"/>\n");
+            sb.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"file:///android_asset/fonts/fontello/import.css\"/>\n");
+            sb.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"file:///android_asset/forum/css/youtube_video.css\" type=\"text/css\" />\n");
         }
     }
 
@@ -799,11 +777,11 @@ public class NewsActivity extends BrowserViewsFragmentActivity
                 m_Title = Html.fromHtml(matcher.group(1)).toString();
             }
             builder.beginHtml(m_Title);
-            builder.beginBody();
+            builder.beginBody("news",null,loadImages);
             builder.append("<div style=\"padding-top:" + builder.getMarginTop() + "px\"/>\n");
             builder.append("<div id=\"main\">");
             builder.append("<script type=\"text/javascript\" async=\"async\" src=\"file:///android_asset/forum/js/jqp.min.js\"></script>\n");
-            builder.append("<script type=\"text/javascript\" async=\"async\" src=\"file:///android_asset/forum/js/site.min.js\" charset=\"windows-1251\"></script>\n");
+            builder.append("<script type=\"text/javascript\" async=\"async\" src=\"file:///android_asset/forum/js/site.min.js\"></script>\n");
             builder.append("<script type=\"text/javascript\">(function(f,h){var c=\"$4\";if(\"function\"!=typeof f[c]||.3>f[c].lib4PDA){var g={},b=function(){return f[c]||this},k=function(a,d){return function(){\"function\"==typeof d&&(!a||a in b?d(b[a],a):!g[a]&&(g[a]=[d])||g[a].push(d))}};b.fn=b.prototype={lib4PDA:.3,constructor:b,addModule:function(a,d){if(!(a in b)){b[a]=b.fn[a]=d?\"function\"==typeof d?d(b):d:h;for(var c=0,e=g[a];e&&c<e.length;)e[c++](b[a],a);delete g[a]}return b},onInit:function(a,d){for(var c=(a=(a+\"\").split(\" \")).length,e=d;c;)e=new k(a[--c],\n" +
                     "e);e();return b}};f[c]=f.lib4PDA=b;for(c in b.fn)b[c]=b.fn[c]}})(window);(function(a){var wrsI=0;\n" +
                     "window.wrs=function(c,f){a.write('<div id=\"wrs-div'+wrsI+'\"></div>');var d=a.getElementById('wrs-div'+wrsI),i=setInterval(function(w){if(!c()){return;}clearInterval(i);w=a.write;a.write=function(t){d.innerHTML+=t};f();a.write=w},500);wrsI++}})(document);</script>");
@@ -814,14 +792,15 @@ public class NewsActivity extends BrowserViewsFragmentActivity
                 builder.append("<script type=\"text/javascript\">wrs"+matchert.group(1)+"</script>");
             }
 
-            builder.append("</div><br/><br/><br/><br/>");
+            builder.append("</div>");
             builder.endBody();
             builder.endHtml();
             return builder.getHtml().toString();
         }
 
         private String parseBody(String body) {
-            Matcher m = PatternExtensions.compile("<article id=\"content\" class=\"\" data-ztm=\"[^\"]*\">([\\s\\S]*?)<aside id=\"sidebar\">").matcher(body);
+            Matcher m = PatternExtensions.compile("<article id=\"content\"[\\s\\S]*?>([\\s\\S]*?)<aside id=\"sidebar\">").matcher(body);
+
             if (m.find()) {
                 return normalizeCommentUrls(m.group(1)).replaceAll("<form[\\s\\S]*?/form>", "");
             }
@@ -857,6 +836,10 @@ public class NewsActivity extends BrowserViewsFragmentActivity
 
 
         private String normalizeCommentUrls(String body) {
+            if(PreferenceManager.getDefaultSharedPreferences(App.getInstance()).getBoolean("loadNewsComment", false)){
+                body = body.replaceAll("(<div class=\"comment-box\" id=\"comments\">[\\s\\S]*?<ul class=\"page-nav box\">[\\s\\S]*?<\\/ul>)", "");
+            }
+
             body = Pattern.compile("<iframe[^><]*?src=\"http://www.youtube.com/embed/([^\"/]*)\".*?(?:</iframe>|/>)", Pattern.CASE_INSENSITIVE)
                     .matcher(body)
                     .replaceAll("<a class=\"video-thumb-wrapper\" href=\"http://www.youtube.com/watch?v=$1\"><img class=\"video-thumb\" width=\"480\" height=\"320\" src=\"http://img.youtube.com/vi/$1/0.jpg\"/></a>");
@@ -953,16 +936,13 @@ public class NewsActivity extends BrowserViewsFragmentActivity
     public void onPause() {
         super.onPause();
 
-        try {
-            // останавливаем всопроизведение видео
-            Class.forName("android.webkit.WebView")
-                    .getMethod("onPause", (Class[]) null)
-                    .invoke(getWebView(), (Object[]) null);
-
-        } catch (Throwable ignored) {
-
-        }
-        getWebView().setWebViewClient(null);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                webView.onPause();
+            }
+        }, 1500);
+        webView.setWebViewClient(null);
 
     }
 

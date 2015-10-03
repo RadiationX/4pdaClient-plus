@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -14,31 +12,23 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
+import android.text.Html;
 import android.util.Pair;
 import android.view.ContextMenu;
-import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import org.softeg.slartus.forpdaapi.LoginResult;
-import org.softeg.slartus.forpdaapi.Profile;
-import org.softeg.slartus.forpdaapi.ProfileApi;
-import org.softeg.slartus.forpdaapi.qms.QmsApi;
-import org.softeg.slartus.forpdaapi.qms.QmsUser;
-import org.softeg.slartus.forpdaapi.qms.QmsUsers;
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import org.softeg.slartus.forpdacommon.NotReportException;
 import org.softeg.slartus.forpdaplus.classes.BrowserViewsFragmentActivity;
 import org.softeg.slartus.forpdaplus.classes.ProfileMenuFragment;
@@ -52,11 +42,12 @@ import org.softeg.slartus.forpdaplus.mainnotifiers.DonateNotifier;
 import org.softeg.slartus.forpdaplus.mainnotifiers.ForPdaVersionNotifier;
 import org.softeg.slartus.forpdaplus.mainnotifiers.NotifiersManager;
 import org.softeg.slartus.forpdaplus.mainnotifiers.TopicAttentionNotifier;
-import org.softeg.slartus.forpdaplus.prefs.Preferences;
 import org.softeg.slartus.forpdaplus.search.ui.SearchSettingsDialogFragment;
 import org.softeg.slartus.forpdaplus.tabs.Tabs;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Created by IntelliJ IDEA.
@@ -72,6 +63,9 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
     MenuFragment mFragment1;
 
     private MainDrawerMenu mMainDrawerMenu;
+    private RelativeLayout leftDrawer,topInform;
+    boolean top;
+    int lastTheme;
 
     @Override
     protected void afterCreate() {
@@ -115,11 +109,13 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
     @Override
     public void onCreate(Bundle saveInstance) {
         super.onCreate(saveInstance);
-
+        lastTheme = App.getInstance().getThemeStyleResID();
         try {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer);
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setHomeButtonEnabled(true);
+                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer);
+            }
             if (checkIntent())
                 return;
             setContentView(R.layout.main);
@@ -132,43 +128,25 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             View child = decor.getChildAt(0);
             decor.removeView(child);
             FrameLayout container = (FrameLayout) drawer.findViewById(R.id.ab_cont); // This is the container we defined just now.
-            container.addView(child,0);
+            leftDrawer = (RelativeLayout) drawer.findViewById(R.id.left_drawer);
+            topInform = (RelativeLayout) drawer.findViewById(R.id.topInform);
+            container.addView(child, 0);
             decor.addView(drawer);
 
-            FrameLayout contentFrame = (FrameLayout) drawer.findViewById(R.id.content_frame);
-            RelativeLayout leftDrawer = (RelativeLayout) drawer.findViewById(R.id.left_drawer);
-            final float scale = getResources().getDisplayMetrics().density;
-            int paddingTop = (int) (80.5 * scale + 0.5f);
-            int paddingTopTab = (int) (88.5 * scale + 0.5f);
-            int paddingBottom = 0;
-
-            boolean fullScreen = (getWindow().getAttributes().flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) != 0;
-            if(fullScreen){
-                paddingTop = (int) (56 * scale + 0.5f);
-                paddingTopTab = (int) (64 * scale + 0.5f);
+            int scale = (int) getResources().getDisplayMetrics().density;
+            boolean bottom = getPreferences().getBoolean("isMarginBottomNav",false);
+            top = !getPreferences().getBoolean("isShowShortUserInfo",true);
+            if(bottom){
+                leftDrawer.setPadding(0,0,0,(int) (48 * scale + 0.5f));
             }
-            if(Integer.valueOf(android.os.Build.VERSION.SDK) > 19){
-                if (!ViewConfiguration.get(this).hasPermanentMenuKey()) {
-                    if(needBottom()) {
-                        paddingBottom = (int) (48 * scale + 0.5f);
-                    }
-                }
-                contentFrame.setPadding(0,paddingTop,0,paddingBottom);
-                leftDrawer.setPadding(0,0,0,paddingBottom);
-                if (isTablet()) {
-                    contentFrame.setPadding(0,paddingTopTab,0,paddingBottom);
-                }
-            }else {
-                contentFrame.setPadding(0, paddingTop, 0, 0);
-                if (isTablet()) {
-                    contentFrame.setPadding(0,paddingTopTab,0,0);
-                }
+            if(top){
+                leftDrawer.setPadding(0,(int) (25 * scale + 0.5f),0,0);
+            }
+            if(top&bottom){
+                leftDrawer.setPadding(0,(int) (25 * scale + 0.5f),0,(int) (48 * scale + 0.5f));
             }
 
             mMainDrawerMenu = new MainDrawerMenu(this, this);
-
-
-
 
             NotifiersManager notifiersManager = new NotifiersManager(this);
             new DonateNotifier(notifiersManager).start(this);
@@ -178,13 +156,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             AppLog.e(getApplicationContext(), ex);
         }
     }
-    public boolean isTablet(){
-        int lil = getContext().getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
-        return ((lil == 4) || (lil == Configuration.SCREENLAYOUT_SIZE_LARGE));
-    }
-    public boolean needBottom(){
-        return PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("paddingBottomMain", true);
-    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -201,7 +173,13 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
         if (mMainDrawerMenu != null) {
             mMainDrawerMenu.syncState();
         }
-        new ShortUserInfo(this);
+
+        if(!top) {
+
+            new ShortUserInfo(this);
+        }else {
+            topInform.setVisibility(View.GONE);
+        }
 
     }
 
@@ -272,10 +250,11 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
 
             currentFragment.onDestroy();
         }
-        getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);// новости выставляют выпадающий список
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setSubtitle(null);
-
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);// новости выставляют выпадающий список
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+            getSupportActionBar().setSubtitle(null);
+        }
         Fragment fragment = listTemplate.createFragment();
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, fragment)
@@ -346,8 +325,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
     @Override
     public void onResume() {
         super.onResume();
-
-
+        if(App.getInstance().getThemeStyleResID()!=lastTheme) recreate();
         m_ExitWarned = false;
     }
 
@@ -377,12 +355,12 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
                                     public boolean onMenuItemClick(android.view.MenuItem menuItem) {
                                         SharedPreferences.Editor editor = prefs.edit();
                                         editor.putString("tabs.defaulttab", tabId);
-                                        editor.commit();
+                                        editor.apply();
                                         menuItem.setChecked(true);
                                         return true;
                                     }
                                 });
-                        android.view.Menu defaultActionMenu = menu.addSubMenu("Действие по умолчанию..");
+                        android.view.Menu defaultActionMenu = menu.addSubMenu("Действие по умолчанию");
                         String[] actionsArray = getResources().getStringArray(R.array.ThemeActionsArray);
                         final String[] actionsValues = getResources().getStringArray(R.array.ThemeActionsValues);
                         final String actionPrefName = "tabs." + tabId + ".Action";
@@ -390,13 +368,13 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
                         for (int i = 0; i < actionsValues.length; i++) {
                             final int finalI = i;
                             defaultActionMenu.add(actionsArray[i])
-                                    .setCheckable(true).setChecked(defaultAction.equals(actionsValues[i]))
+                                    .setCheckable(true).setChecked(defaultAction != null && defaultAction.equals(actionsValues[i]))
                                     .setOnMenuItemClickListener(new android.view.MenuItem.OnMenuItemClickListener() {
                                         @Override
                                         public boolean onMenuItemClick(android.view.MenuItem menuItem) {
                                             SharedPreferences.Editor editor = prefs.edit();
                                             editor.putString(actionPrefName, actionsValues[finalI]);
-                                            editor.commit();
+                                            editor.apply();
                                             menuItem.setChecked(true);
                                             return true;
                                         }
@@ -438,10 +416,8 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
 
         public void setOtherMenu() {
             MenuItem miQuickStart = m_miOther.add("Быстрый доступ");
-            miQuickStart.setIcon(R.drawable.ic_menu_quickrun);
             miQuickStart.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem item) {
-
                     BricksListDialogFragment.showDialog((BricksListDialogFragment.IBricksListDialogCaller) getActivity(),
                             BricksListDialogFragment.QUICK_LIST_ID,
                             ListCore.getBricksNames(ListCore.getQuickBricks()), null);
@@ -460,7 +436,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
 
             m_miOther = menu;
             item = menu.add(R.string.Search)
-                    .setIcon(R.drawable.ic_menu_search)
+                    .setIcon(R.drawable.ic_magnify_white_24dp)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
                         public boolean onMenuItemClick(MenuItem item) {
@@ -472,10 +448,32 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
             setOtherMenu();
+            menu.add("Правила форума").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                public boolean onMenuItemClick(MenuItem item) {
+                    StringBuilder text = new StringBuilder();
+                    try {
 
+                        BufferedReader br = new BufferedReader(new InputStreamReader(App.getInstance().getAssets().open("rules.txt"), "UTF-8"));
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            text.append(line).append("\n");
+                        }
+
+                    } catch (IOException e) {
+                        AppLog.e(getActivity(), e);
+                    }
+                    new MaterialDialog.Builder(getActivity())
+                            .title("Правила форума")
+                            .content(Html.fromHtml(text.toString()))
+                            .positiveText(android.R.string.ok)
+                            .show();
+
+                    return true;
+                }
+            });
 
             item = menu.add(0, 0, 999, R.string.CloseApp)
-                    .setIcon(R.drawable.ic_menu_close_clear_cancel)
+                    .setIcon(R.drawable.ic_close_white_24dp)
                     .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
                         public boolean onMenuItemClick(MenuItem item) {

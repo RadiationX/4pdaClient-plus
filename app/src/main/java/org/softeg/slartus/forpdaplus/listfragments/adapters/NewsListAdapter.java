@@ -139,8 +139,13 @@ public class NewsListAdapter extends BaseAdapter {
             });
         }
         if (data.getTagTitle() != null && holder.textTag != null) {
-            holder.textTag.setVisibility(View.VISIBLE);
-            holder.textTag.setText(data.getTagTitle());
+            if(data.getTagTitle().equals("")){
+                holder.textTag.setVisibility(View.GONE);
+            }else {
+                holder.textTag.setVisibility(View.VISIBLE);
+                holder.textTag.setText(data.getTagTitle());
+            }
+
         }
         if (data.getSourceTitle() != null && holder.textSource != null) {
             holder.textSource.setVisibility(View.VISIBLE);

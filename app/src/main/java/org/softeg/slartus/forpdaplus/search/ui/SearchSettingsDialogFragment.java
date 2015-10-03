@@ -17,13 +17,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -201,10 +199,10 @@ public class SearchSettingsDialogFragment extends DialogFragment {
             public void onClick(View v) {
                 if(forHide.getVisibility() == View.VISIBLE){
                     forHide.setVisibility(View.GONE);
-                    forHideButton.setImageDrawable(getResources().getDrawable(R.drawable.btn_show_post_panel));
+                    forHideButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_plus_grey600_24dp));
                 }else {
                     forHide.setVisibility(View.VISIBLE);
-                    forHideButton.setImageDrawable(getResources().getDrawable(R.drawable.btn_hide_post_panel));
+                    forHideButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_close_grey600_24dp));
                 }
             }
         });

@@ -1,8 +1,6 @@
 package org.softeg.slartus.forpdaplus;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
@@ -18,8 +16,6 @@ import com.squareup.picasso.Picasso;
 
 import org.softeg.slartus.forpdaapi.ProfileApi;
 import org.softeg.slartus.forpdaapi.classes.LoginForm;
-import org.softeg.slartus.forpdaplus.classes.AlertDialogBuilder;
-import org.softeg.slartus.forpdaplus.classes.AppProgressDialog;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 
 /**

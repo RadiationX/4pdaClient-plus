@@ -1,12 +1,10 @@
 package org.softeg.slartus.forpdaplus.mainnotifiers;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Html;
-import android.webkit.WebView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -85,7 +83,7 @@ public class TopicAttentionNotifier extends MainNotifier {
                                             .title("Объявление клиента")
                                             .cancelable(false)
                                             .content(Html.fromHtml(topicAttention))
-                                            .positiveText("Я прочитал")
+                                            .positiveText("Ок")
                                             .build();
                             addToStack(alertDialog);
                         }

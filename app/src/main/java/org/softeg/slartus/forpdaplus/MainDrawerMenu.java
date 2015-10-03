@@ -5,7 +5,10 @@ package org.softeg.slartus.forpdaplus;/*
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -19,26 +22,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-
-import org.softeg.slartus.forpdaapi.ProfileApi;
-import org.softeg.slartus.forpdaapi.qms.QmsApi;
-import org.softeg.slartus.forpdaapi.qms.QmsUser;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.listtemplates.BrickInfo;
 import org.softeg.slartus.forpdaplus.listtemplates.ListCore;
 import org.softeg.slartus.forpdaplus.listtemplates.NewsPagerBrickInfo;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 import org.softeg.slartus.forpdaplus.prefs.PreferencesActivity;
-import org.softeg.slartus.forpdaplus.profile.ProfileWebViewActivity;
-import org.softeg.slartus.forpdaplus.qms.QmsContactsListFragment;
 import org.softeg.slartus.forpdaplus.tabs.Tabs;
 
 import java.util.ArrayList;
@@ -52,6 +49,8 @@ public class MainDrawerMenu {
     private SelectItemListener mSelectItemListener;
     private BaseExpandableListAdapter mAdapter;
     private Handler mHandler = new Handler();
+    private SharedPreferences prefs;
+    private Resources resources;
 
 
     public interface SelectItemListener {
@@ -59,22 +58,23 @@ public class MainDrawerMenu {
     }
 
     public MainDrawerMenu(Activity activity, SelectItemListener listener) {
-        DisplayMetrics displayMetrics = App.getContext().getResources().getDisplayMetrics();
+        resources = App.getInstance().getResources();
+        prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+        DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels;
-        if (dpWidth>displayMetrics.density*400) {
-            dpWidth = displayMetrics.density*400;
+        if (dpWidth > displayMetrics.density * 400) {
+            dpWidth = displayMetrics.density * 400;
         }
-        dpWidth -= 80*displayMetrics.density;
+        dpWidth -= 80 * displayMetrics.density;
         mActivity = activity;
         mSelectItemListener = listener;
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 
-
         mDrawerList = (ExpandableListView) findViewById(R.id.left_drawer_list);
         mDrawer = (RelativeLayout) findViewById(R.id.left_drawer);
 
-        mDrawerLayout.setDrawerShadow(R.drawable.navdrawer, GravityCompat.START);
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         DrawerLayout.LayoutParams params = (DrawerLayout.LayoutParams) mDrawer.getLayoutParams();
         params.width = (int) dpWidth;
         if ("right".equals(Preferences.System.getDrawerMenuPosition())) {
@@ -102,7 +102,7 @@ public class MainDrawerMenu {
             }
         });
         mMenuGroups = new ArrayList<>();
-        if(PreferenceManager.getDefaultSharedPreferences(App.getContext()).getBoolean("categoryLast", true)){
+        if (prefs.getBoolean("categoryLast", true)) {
             mMenuGroups.add(new LastActionsGroup());
         }
         mMenuGroups.add(new MainListGroup());
@@ -133,6 +133,7 @@ public class MainDrawerMenu {
             brickInfo = new NewsPagerBrickInfo();
         selectItem(brickInfo);
     }
+
     /*
     Область вытягивания
      */
@@ -177,7 +178,6 @@ public class MainDrawerMenu {
 
         Preferences.Lists.setLastSelectedList(brickIinfo.getName());
         Preferences.Lists.addLastAction(brickIinfo.getName());
-
         mAdapter.notifyDataSetChanged();
     }
 
@@ -198,11 +198,18 @@ public class MainDrawerMenu {
         @Override
         public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition,
                                     long id) {
+
             Object o = mAdapter.getChild(groupPosition, childPosition);
             MenuGroup menuGroup = (MenuGroup) mAdapter.getGroup(groupPosition);
             BrickInfo brickInfo = (BrickInfo) o;
             assert menuGroup != null;
             menuGroup.itemAction(brickInfo);
+            int i = 1;
+            if (!prefs.getBoolean("categoryLast", true)) i = 0;
+            if (groupPosition <= i) {
+                prefs.edit().putInt("menuItemGroup", groupPosition).apply();
+                prefs.edit().putString("menuItemChild", brickInfo.getName()).apply();
+            }
 
             return true;
         }
@@ -377,7 +384,7 @@ public class MainDrawerMenu {
 
             @Override
             public int getIcon() {
-                return R.drawable.ic_delete;
+                return R.drawable.ic_close_grey600_24dp;
             }
 
             @Override
@@ -520,6 +527,7 @@ public class MainDrawerMenu {
 
                 holder.text = (TextView) convertView.findViewById(R.id.row_title);
                 holder.icon = (ImageView) convertView.findViewById(R.id.icon);
+                holder.item = (LinearLayout) convertView.findViewById(R.id.item);
 
                 convertView.setTag(holder);
 
@@ -528,9 +536,22 @@ public class MainDrawerMenu {
             }
 
             BrickInfo item = mMenuGroups.get(groupPosition).getChildren().get(childPosition);
-            if (item != null) {
-                holder.text.setText(item.getTitle());
-                holder.icon.setImageDrawable(getContext().getResources().getDrawable(item.getIcon()));
+            holder.text.setText(item.getTitle());
+            holder.icon.setImageDrawable(getContext().getResources().getDrawable(item.getIcon()));
+            if (groupPosition == prefs.getInt("menuItemGroup", 0)) {
+                if (item.getName().equals(prefs.getString("menuItemChild", "News_pages"))) {
+                    holder.text.setTextColor(resources.getColor(R.color.selectedItemText));
+                    holder.item.setBackgroundResource(R.color.selectedItem);
+                    holder.icon.setColorFilter(resources.getColor(R.color.selectedItemText), PorterDuff.Mode.SRC_ATOP);
+                } else {
+                    holder.text.setTextColor(resources.getColor(getTextColor()));
+                    holder.item.setBackgroundResource(Color.TRANSPARENT);
+                    holder.icon.clearColorFilter();
+                }
+            } else {
+                holder.text.setTextColor(resources.getColor(getTextColor()));
+                holder.item.setBackgroundResource(Color.TRANSPARENT);
+                holder.icon.clearColorFilter();
             }
 
             return convertView;
@@ -545,6 +566,14 @@ public class MainDrawerMenu {
         public class ViewHolder {
             public TextView text;
             public ImageView icon;
+            public LinearLayout item;
+        }
+    }
+    private int getTextColor() {
+        if (App.getInstance().isWhiteTheme()) {
+            return R.color.drawer_menu_text_wh;
+        } else {
+            return R.color.drawer_menu_text_bl;
         }
     }
 }

@@ -48,8 +48,29 @@ public class Preferences {
 
     public static Boolean isHideActionBar() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
-
         return prefs.getBoolean("actionbar.hide", true);
+    }
+    public static void setHideActionBar(Boolean hide) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+        prefs.edit().putBoolean("actionbar.hide", hide).apply();
+    }
+
+    public static Boolean isHideFab() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+        return prefs.getBoolean("fab.hide", true);
+    }
+    public static void setHideFab(Boolean hide) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+        prefs.edit().putBoolean("fab.hide", hide).apply();
+    }
+
+    public static Boolean isBrowserView() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+        return prefs.getBoolean("theme.BrowserStyle", true);
+    }
+    public static void setBrowserView(Boolean view) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+        prefs.edit().putBoolean("theme.BrowserStyle", view).apply();
     }
 
     public static Boolean notifyBetaVersions() {
@@ -58,10 +79,15 @@ public class Preferences {
         return prefs.getBoolean("notify.beta_version", false);
     }
 
-    public static void setHideActionBar(Boolean hide) {
+    public static void setHideArrows(Boolean hide) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
 
-        prefs.edit().putBoolean("actionbar.hide", hide).apply();
+        prefs.edit().putBoolean("hideArrows", hide).apply();
+    }
+    public static Boolean isHideArrows() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+
+        return prefs.getBoolean("hideArrows", false);
     }
 
     public static void setHideArrows(Boolean hide) {
@@ -90,7 +116,7 @@ public class Preferences {
 
         public static Boolean getScrollByButtons() {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
-            return prefs.getBoolean("lists.scroll_by_buttons", true);
+            return prefs.getBoolean("lists.scroll_by_buttons", false);
         }
 
         public static void setLastSelectedList(String listName) {
@@ -338,9 +364,24 @@ public class Preferences {
             return (scrollUpKeys.contains("," + Integer.toString(keyCode) + ","));
         }
 
-        public static boolean isDeveloper() {
+        public static boolean isDevSavePage() {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
-            return prefs.getBoolean("system.developer", false);
+            return prefs.getBoolean("system.developerSavePage", false);
+        }
+
+        public static boolean isDevInterface() {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+            return prefs.getBoolean("system.developerInterface", false);
+        }
+
+        public static boolean isDevStyle() {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+            return prefs.getBoolean("system.developerStyle", false);
+        }
+
+        public static boolean isDevGrid() {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(App.getInstance());
+            return prefs.getBoolean("system.developerGrid", false);
         }
 
         public static boolean isCurator() {

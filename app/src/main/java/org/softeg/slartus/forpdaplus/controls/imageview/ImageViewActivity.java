@@ -3,28 +3,28 @@ package org.softeg.slartus.forpdaplus.controls.imageview;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.opengl.GLES10;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
-
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import org.softeg.slartus.forpdaplus.App;
+import org.softeg.slartus.forpdaplus.BaseFragmentActivity;
 import org.softeg.slartus.forpdaplus.R;
 
 import java.util.ArrayList;
+
+import javax.microedition.khronos.egl.EGL10;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.egl.EGLDisplay;
+import javax.microedition.khronos.opengles.GL10;
 
 
 /*
  * Created by slartus on 14.10.2014.
  */
-public class ImageViewActivity extends ActionBarActivity {
+public class ImageViewActivity extends BaseFragmentActivity {
     private static final String IMAGE_URLS_KEY = "IMAGE_URLS_KEY";
     private static final String SELECTED_INDEX_KEY = "SELECTED_INDEX_KEY";
 
@@ -54,29 +54,6 @@ public class ImageViewActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setTheme(App.getInstance().getThemeStyleResID());
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        if(PreferenceManager.getDefaultSharedPreferences(App.getContext()).getBoolean("statusbarTransparent",false)) {
-            if (Integer.valueOf(android.os.Build.VERSION.SDK) > 19) {
-                getWindow().setStatusBarColor(Color.TRANSPARENT);
-                getWindow().getDecorView().setSystemUiVisibility(
-                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            }
-        }else{
-            if (Integer.valueOf(android.os.Build.VERSION.SDK) == 19) {
-                SystemBarTintManager tintManager = new SystemBarTintManager(this);
-                tintManager.setStatusBarTintEnabled(true);
-                if (App.getInstance().getCurrentThemeName().equals("white")) {
-                    tintManager.setTintColor(getResources().getColor(R.color.statusBar_wh));
-                } else if (App.getInstance().getCurrentThemeName().equals("black")) {
-                    tintManager.setTintColor(getResources().getColor(R.color.statusBar_bl));
-                }
-            } else {
-                getWindow().getDecorView().setSystemUiVisibility(
-                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            }
-        }
         setContentView(R.layout.image_view_activity);
 
         ImageViewFragment fragment =
@@ -99,6 +76,7 @@ public class ImageViewActivity extends ActionBarActivity {
 
         fragment.showImage(urls, index);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

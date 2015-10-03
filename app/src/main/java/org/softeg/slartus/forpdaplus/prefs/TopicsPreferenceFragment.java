@@ -2,7 +2,6 @@ package org.softeg.slartus.forpdaplus.prefs;/*
  * Created by slinkin on 16.04.2014.
  */
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;

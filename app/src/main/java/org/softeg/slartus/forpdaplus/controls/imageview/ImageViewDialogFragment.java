@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -89,6 +88,7 @@ public class ImageViewDialogFragment extends DialogFragment {
                 }).build();
 
         builder.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        builder.show();
         return builder;
 
     }

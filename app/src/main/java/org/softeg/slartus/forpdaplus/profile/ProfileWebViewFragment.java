@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
@@ -35,6 +36,7 @@ import org.softeg.slartus.forpdaplus.Client;
 import org.softeg.slartus.forpdaplus.IntentActivity;
 import org.softeg.slartus.forpdaplus.R;
 import org.softeg.slartus.forpdaplus.classes.HtmlBuilder;
+import org.softeg.slartus.forpdaplus.classes.SaveHtml;
 import org.softeg.slartus.forpdaplus.common.AppLog;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 import org.softeg.slartus.forpdaplus.qms.QmsChatActivity;
@@ -46,7 +48,7 @@ public class ProfileWebViewFragment extends DialogFragment
         implements LoaderManager.LoaderCallbacks<Profile> {
 
     private static final String TAG = "ProfileWebViewFragment";
-    private WebView m_WebView;
+    private static WebView m_WebView;
 
 
     protected Bundle args;
@@ -81,6 +83,9 @@ public class ProfileWebViewFragment extends DialogFragment
         DialogFragment newFragment = ProfileWebViewFragment.newInstance(userId, userNick);
         newFragment.getArguments().putBoolean("DIALOG", true);
         newFragment.show(fragmentActivity.getSupportFragmentManager(), "dialog");
+    }
+    public static WebView getWebView(){
+        return m_WebView;
     }
 
     private static ProfileWebViewFragment newInstance(String userId, String userNick) {
@@ -315,10 +320,11 @@ public class ProfileWebViewFragment extends DialogFragment
         public Profile loadInBackground() {
             try {
                 Profile profile = ProfileApi.getProfile(Client.getInstance(),
-                        args.getString(ProfileWebViewActivity.USER_ID_KEY));
+                        args.getString(ProfileWebViewActivity.USER_ID_KEY),
+                        PreferenceManager.getDefaultSharedPreferences(App.getInstance()).getBoolean("isSquareAvarars",false)?"":"circle");
                 ProfileHtmlBuilder builder = new ProfileHtmlBuilder();
                 builder.beginHtml(profile.getNick().toString());
-                builder.beginBody();
+                builder.beginBody("profile");
                 builder.append(profile.getHtmlBody());
                 builder.endBody();
                 builder.endHtml();
@@ -380,6 +386,15 @@ public class ProfileWebViewFragment extends DialogFragment
             }
         }
 
+    }
+    @JavascriptInterface
+    public void saveHtml(final String html) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                new SaveHtml(getActivity(),html,"Profile");
+            }
+        });
     }
 
 }
