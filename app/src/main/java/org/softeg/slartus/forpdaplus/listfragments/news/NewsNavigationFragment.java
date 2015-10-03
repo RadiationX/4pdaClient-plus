@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -90,7 +92,7 @@ public class NewsNavigationFragment extends BaseBrickFragment implements ActionB
 
         Fragment fragment = NewsListFragment.newInstance(tag);
         fragmentManager.beginTransaction()
-                .replace(R.id.news_content_frame, fragment)
+                .replace(R.id.news_content_frame, fragment, "News_List")
                 .commit();
     }
 
@@ -113,20 +115,12 @@ public class NewsNavigationFragment extends BaseBrickFragment implements ActionB
         return v;
     }
 
-
+    NavigationListAdapter listAdapter;
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        assert ((ActionBarActivity)getActivity()).getSupportActionBar() != null;
-        ((ActionBarActivity)getActivity()).getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-        ((ActionBarActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        NavigationListAdapter listAdapter = new NavigationListAdapter(getActivity());
-        ((ActionBarActivity)getActivity()).getSupportActionBar().setListNavigationCallbacks(listAdapter, this);
-
-        ((ActionBarActivity)getActivity()).getSupportActionBar().setSelectedNavigationItem(Preferences.News.getLastSelectedSection());
-
+        listAdapter = new NavigationListAdapter(getActivity());
+        onHiddenChanged(false);
     }
 
     @Override
@@ -172,6 +166,18 @@ public class NewsNavigationFragment extends BaseBrickFragment implements ActionB
             currentFragment.onDestroy();
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden){
+            assert ((AppCompatActivity)getActivity()).getSupportActionBar() != null;
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setListNavigationCallbacks(listAdapter, this);
+            ((AppCompatActivity)getActivity()).getSupportActionBar().setSelectedNavigationItem(Preferences.News.getLastSelectedSection());
+        }
     }
 
     @Override

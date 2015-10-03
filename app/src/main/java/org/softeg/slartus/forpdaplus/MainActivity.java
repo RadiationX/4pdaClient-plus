@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.text.Html;
+import android.util.Log;
 import android.util.Pair;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
@@ -66,6 +67,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
     private RelativeLayout leftDrawer,topInform;
     boolean top;
     int lastTheme;
+    String currentFragmentTag;
 
     @Override
     protected void afterCreate() {
@@ -77,10 +79,10 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
     public void onDestroy() {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment currentFragment = fragmentManager.findFragmentById(R.id.content_frame);
+        Fragment currentFragment = fragmentManager.findFragmentByTag(currentFragmentTag);
         if (currentFragment != null) {
             //fragmentManager.beginTransaction().remove(currentFragment).commit();
-            currentFragment.onDestroy();
+            //currentFragment.onDestroy();
 
         }
         super.onDestroy();
@@ -236,41 +238,40 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
      * Swaps fragments in the main content view
      */
     public void selectItem(final BrickInfo listTemplate) {
-        //final BrickInfo listTemplate = ((MenuBrickAdapter) mAdapter).getItem(position);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment currentFragment = fragmentManager.findFragmentById(R.id.content_frame);
-
-        if (currentFragment != null) {
-            if (((IBrickFragment) currentFragment)
-                    .getListName().equals(listTemplate.getName())) {
-                if (mMainDrawerMenu != null)
-                    mMainDrawerMenu.close();
-                return;
+        if (listTemplate.getName().equals(String.valueOf(currentFragmentTag))) {
+            if (mMainDrawerMenu != null)
+                mMainDrawerMenu.close();
+            return;
+        }else {
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);// новости выставляют выпадающий список
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                getSupportActionBar().setSubtitle(null);
             }
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            if (currentFragmentTag == null) {
+                transaction.add(R.id.content_frame, listTemplate.createFragment(), listTemplate.getName());
+            }else {
+                if (currentFragmentTag.equals(listTemplate.getName())) {
+                    return;
+                }else {
+                    for (Fragment fr:getSupportFragmentManager().getFragments())
+                        if(!String.valueOf(fr.getTag()).matches("f1|News_List")) transaction.hide(fr);
 
-            currentFragment.onDestroy();
+                    Fragment fragment = getSupportFragmentManager().findFragmentByTag(listTemplate.getName());
+                    if(fragment==null){
+                        transaction.add(R.id.content_frame, listTemplate.createFragment(), listTemplate.getName());
+                    }else {
+                        transaction.show(fragment);
+                    }
+                }
+            }
+            currentFragmentTag = listTemplate.getName();
+            transaction.commit();
+            setTitle(listTemplate.getTitle());
+            if (mMainDrawerMenu != null)
+                mMainDrawerMenu.close();
         }
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);// новости выставляют выпадающий список
-            getSupportActionBar().setDisplayShowTitleEnabled(true);
-            getSupportActionBar().setSubtitle(null);
-        }
-        Fragment fragment = listTemplate.createFragment();
-        fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment)
-                .commit();
-
-        setTitle(listTemplate.getTitle());
-        if (mMainDrawerMenu != null)
-            mMainDrawerMenu.close();
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Preferences.Lists.setLastSelectedList(listTemplate.getName());
-//                Preferences.Lists.addLastAction(listTemplate.getName());
-//            }
-//        }).start();
-
     }
 
     private Boolean m_ExitWarned = false;
@@ -283,7 +284,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         try {
-            Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
+            Fragment currentFragment = getSupportFragmentManager().findFragmentByTag(currentFragmentTag);
             if (currentFragment != null && ((IBrickFragment) currentFragment).dispatchKeyEvent(event))
                 return true;
         } catch (Throwable ex) {
@@ -299,7 +300,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
                 mMainDrawerMenu.close();
                 return;
             }
-            Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
+            Fragment currentFragment = getSupportFragmentManager().findFragmentByTag(currentFragmentTag);
             if (currentFragment == null || !((IBrickFragment) currentFragment).onBackPressed()) {
                 if (!m_ExitWarned) {
                     Toast.makeText(this, "Нажмите кнопку НАЗАД снова, чтобы выйти из программы", Toast.LENGTH_SHORT).show();
