@@ -43,6 +43,7 @@ import org.softeg.slartus.forpdaplus.mainnotifiers.DonateNotifier;
 import org.softeg.slartus.forpdaplus.mainnotifiers.ForPdaVersionNotifier;
 import org.softeg.slartus.forpdaplus.mainnotifiers.NotifiersManager;
 import org.softeg.slartus.forpdaplus.mainnotifiers.TopicAttentionNotifier;
+import org.softeg.slartus.forpdaplus.prefs.Preferences;
 import org.softeg.slartus.forpdaplus.search.ui.SearchSettingsDialogFragment;
 import org.softeg.slartus.forpdaplus.tabs.Tabs;
 
@@ -263,6 +264,8 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
                         transaction.add(R.id.content_frame, listTemplate.createFragment(), listTemplate.getName());
                     }else {
                         transaction.show(fragment);
+                        if(Preferences.Lists.isRefresh())
+                            ((IBrickFragment)fragment).loadData(true);
                     }
                 }
             }

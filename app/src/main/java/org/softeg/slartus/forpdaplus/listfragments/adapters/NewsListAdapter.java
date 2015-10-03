@@ -117,7 +117,7 @@ public class NewsListAdapter extends BaseAdapter {
 
                 @Override
                 public void onLoadingStarted(String p1, View p2) {
-                    p2.setVisibility(View.GONE);
+                    //p2.setVisibility(View.GONE);
                     holder.mProgressBar.setVisibility(View.VISIBLE);
                 }
 
@@ -128,7 +128,7 @@ public class NewsListAdapter extends BaseAdapter {
 
                 @Override
                 public void onLoadingComplete(String p1, View p2, Bitmap p3) {
-                    p2.setVisibility(View.VISIBLE);
+                    //p2.setVisibility(View.VISIBLE);
                     holder.mProgressBar.setVisibility(View.INVISIBLE);
                 }
 
