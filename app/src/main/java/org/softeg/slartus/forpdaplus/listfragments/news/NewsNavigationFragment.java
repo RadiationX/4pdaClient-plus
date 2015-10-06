@@ -135,7 +135,7 @@ public class NewsNavigationFragment extends BaseBrickFragment implements ActionB
 
     @Override
     public void loadData(boolean isRefresh) {
-        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.news_content_frame);
+        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentByTag("News_List");
         if (currentFragment != null) {
             ((IBrickFragment) currentFragment).loadData(isRefresh);
         }
@@ -143,7 +143,7 @@ public class NewsNavigationFragment extends BaseBrickFragment implements ActionB
 
     @Override
     public void startLoad() {
-        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.news_content_frame);
+        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentByTag("News_List");
         if (currentFragment != null) {
             ((IBrickFragment) currentFragment).startLoad();
         }
@@ -151,7 +151,7 @@ public class NewsNavigationFragment extends BaseBrickFragment implements ActionB
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.news_content_frame);
+        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentByTag("News_List");
         if (currentFragment != null) {
             return ((IBrickFragment) currentFragment).dispatchKeyEvent(event);
         }
@@ -160,7 +160,7 @@ public class NewsNavigationFragment extends BaseBrickFragment implements ActionB
 
     @Override
     public void onDestroy() {
-        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.news_content_frame);
+        Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentByTag("News_List");
         if (currentFragment != null) {
 //            getFragmentManager().beginTransaction().remove(currentFragment).commit();
             currentFragment.onDestroy();

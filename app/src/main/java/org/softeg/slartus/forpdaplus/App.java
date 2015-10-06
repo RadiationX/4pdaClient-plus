@@ -85,7 +85,7 @@ public class App extends android.app.Application {
     public static boolean isDestroyed(){
         return destroyed;
     }
-    public static void setDestroid(boolean b){
+    public static void setDestroyed(boolean b){
         destroyed = b;
     }
 

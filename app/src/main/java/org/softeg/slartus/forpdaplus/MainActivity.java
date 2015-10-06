@@ -50,7 +50,6 @@ import org.softeg.slartus.forpdaplus.tabs.Tabs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -87,7 +86,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             //currentFragment.onDestroy();
 
         }
-        App.setDestroid(true);
+        App.setDestroyed(true);
         super.onDestroy();
     }
 
@@ -157,13 +156,13 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
             new DonateNotifier(notifiersManager).start(this);
             new TopicAttentionNotifier(notifiersManager).start(this);
             new ForPdaVersionNotifier(notifiersManager, 1).start(this);
-            if(saveInstance!=null){
+/*            if(saveInstance!=null){
                 for(Fragment fragment:getSupportFragmentManager().getFragments()){
                     if(!String.valueOf(fragment.getTag()).matches("f1|News_List")){
                         ((IBrickFragment)fragment).loadData(false);
                     }
                 }
-            }
+            }*/
         } catch (Throwable ex) {
             AppLog.e(getApplicationContext(), ex);
         }
@@ -251,54 +250,47 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
         if (mMainDrawerMenu != null)
             mMainDrawerMenu.close();
         currentFragmentTag = App.getCurrentFragmentTag();
-        if (listTemplate.getName().equals(String.valueOf(currentFragmentTag))) {
-            if(App.isDestroyed()){
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                for (Fragment fr:getSupportFragmentManager().getFragments()) {
-                    if (!String.valueOf(fr.getTag()).matches("f1|News_List|News_Pages|"+listTemplate.getName()))
-                        transaction.remove(fr);
-                    if (String.valueOf(fr.getTag()).matches("News_List|News_Pages"))
-                        transaction.hide(fr);
-                }
-                transaction.show(getSupportFragmentManager().findFragmentByTag(listTemplate.getName()));
-                transaction.commit();
-                App.setDestroid(false);
-                setTitle(listTemplate.getTitle());
-                Log.e("frag",currentFragmentTag+" "+getTitle()+" "+listTemplate.getName());
-            }
-            return;
-        }else {
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);// новости выставляют выпадающий список
-                getSupportActionBar().setDisplayShowTitleEnabled(true);
-                getSupportActionBar().setSubtitle(null);
-            }
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            if (currentFragmentTag == null) {
-                transaction.add(R.id.content_frame, listTemplate.createFragment(), listTemplate.getName());
+        String itemName = listTemplate.getName();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (itemName.equals(String.valueOf(currentFragmentTag))) {
+            if(getSupportFragmentManager().findFragmentByTag(currentFragmentTag)==null){
+                transaction.add(R.id.content_frame, listTemplate.createFragment(), itemName);
             }else {
-                if (currentFragmentTag.equals(listTemplate.getName())) {
-                    return;
-                }else {
-                    for (Fragment fr:getSupportFragmentManager().getFragments())
-                        if(fr!=null)
-                            if (!String.valueOf(fr.getTag()).matches("f1|News_List"))
-                                transaction.hide(fr);
-
-                    Fragment fragment = getSupportFragmentManager().findFragmentByTag(listTemplate.getName());
-                    if(fragment==null){
-                        transaction.add(R.id.content_frame, listTemplate.createFragment(), listTemplate.getName());
-                    }else {
-                        transaction.show(fragment);
-                        if(Preferences.Lists.isRefresh())
-                            ((IBrickFragment)fragment).loadData(true);
+                for (Fragment fr:getSupportFragmentManager().getFragments()) {
+                    if (fr != null) {
+                        if((getSupportFragmentManager().findFragmentByTag("News_List")!=null)&(!fr.getTag().equals(itemName)))
+                            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("News_List")).commit();
+                        if (!fr.getTag().equals("f1")) transaction.hide(fr);
                     }
                 }
+                transaction.show(getSupportFragmentManager().findFragmentByTag(currentFragmentTag));
             }
-            App.setCurrentFragmentTag(listTemplate.getName());
-            setTitle(listTemplate.getTitle());
-            transaction.commit();
+
+        }else{
+            if (currentFragmentTag == null) {
+                transaction.add(R.id.content_frame, listTemplate.createFragment(), itemName);
+            }else {
+                for (Fragment fr:getSupportFragmentManager().getFragments()) {
+                    if (fr != null) {
+                        if(getSupportFragmentManager().findFragmentByTag("News_List")!=null)
+                            getSupportFragmentManager().beginTransaction().remove(getSupportFragmentManager().findFragmentByTag("News_List")).commit();
+                        if (!fr.getTag().equals("f1")) transaction.hide(fr);
+                    }
+                }
+
+                Fragment fragment = getSupportFragmentManager().findFragmentByTag(itemName);
+                if(fragment==null){
+                    transaction.add(R.id.content_frame, listTemplate.createFragment(), itemName);
+                }else {
+                    transaction.show(fragment);
+                    if(Preferences.Lists.isRefresh())
+                        ((IBrickFragment)fragment).loadData(true);
+                }
+            }
         }
+        transaction.commit();
+        App.setCurrentFragmentTag(itemName);
+        setTitle(listTemplate.getTitle());
     }
 
     private Boolean m_ExitWarned = false;
@@ -340,6 +332,7 @@ public class MainActivity extends BrowserViewsFragmentActivity implements Bricks
                     }, 3 * 1000);
                 } else {
                     appExit();
+                    App.setDestroyed(false);
                 }
 
             } else {
