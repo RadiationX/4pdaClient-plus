@@ -49,6 +49,7 @@ import org.softeg.slartus.forpdaplus.post.EditPostActivity;
 import org.softeg.slartus.forpdaplus.prefs.Preferences;
 import org.softeg.slartus.forpdaplus.profile.ProfileEditActivity;
 import org.softeg.slartus.forpdaplus.profile.ProfileWebViewActivity;
+import org.softeg.slartus.forpdaplus.profile.ProfileWebViewFragment;
 import org.softeg.slartus.forpdaplus.qms.QmsChatActivity;
 import org.softeg.slartus.forpdaplus.qms.QmsContactThemesActivity;
 import org.softeg.slartus.forpdaplus.search.ui.SearchActivity;
